@@ -1,13 +1,13 @@
 package com.infoshare.alpha;
 
+import com.infoshare.alpha.wwr.Address;
+import com.infoshare.alpha.wwr.Institution;
+import com.infoshare.alpha.wwr.Patient;
+import com.infoshare.alpha.wwr.Pesel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import com.infoshare.alpha.wwr.Address;
-import com.infoshare.alpha.wwr.Patient;
-import com.infoshare.alpha.wwr.Pesel;
-import com.infoshare.alpha.wwr.Institution;
 
 /**
  * Hello world!
@@ -37,7 +37,7 @@ public class App
         institutions.add(new Institution("WWR5", new Address("Gdynia", "Swietojanska 110", "+48 456 123 123")));
         
         
-        Optional<Institution> inst = institutions.stream().filter(i -> "Gdańsk".equals(i.getAddress().getCity())).findAny();
+        Optional<Institution> inst = institutions.stream().filter(i->"Gdańsk".equals(i.getAddress().getCity())).findAny();
         
 
         System.out.println(inst.toString());
