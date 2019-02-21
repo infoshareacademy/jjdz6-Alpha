@@ -25,11 +25,17 @@ public class App
         2. build project go to project dir where is pom.xml file, then : mvn install
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
-    		Address address = new Address("Gdańsk", "Pilotów 23e", "+48 691 957 655");
-    		Pesel pesel = new Pesel("84101714434");
+
+
+    }
+
+    public static void filterTest()
+    {
+        Address address = new Address("Gdańsk", "Pilotów 23e", "+48 691 957 655");
+        Pesel pesel = new Pesel("84101714434");
         Patient patient = new Patient("Jan", "Nowak", pesel , address );
-        
-        List<Institution> institutions = new ArrayList<Institution>();   
+
+        List<Institution> institutions = new ArrayList<Institution>();
 
         institutions.add(new Institution("WWR1", new Address("Gdańsk", "Nowe Ogroady 23", "+48 564 123 123")));
         institutions.add(new Institution("WWR2", new Address("Gdańsk", "Al. Gruwaldzka 223", "+48 564 123 555")));
@@ -50,11 +56,5 @@ public class App
 
 //        Optional<Institution> inst = institutions.stream().filter(i->"Gdańsk".equals(i.getAddress().getCity())).findAny();
 //        System.out.println(inst.toString());
-        
- 
-        
-        
-        
-
     }
 }
