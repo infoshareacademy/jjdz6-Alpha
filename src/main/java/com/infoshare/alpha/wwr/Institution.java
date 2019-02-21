@@ -1,12 +1,12 @@
 package com.infoshare.alpha.wwr;
 
 public class Institution {
+	
+	private String name;
+    
+	private Address address;
 
-    private Address address;
-
-    private String name;
-
-    public Institution(Address address, String name) {
+    public Institution(String name, Address address) {
         this.address = address;
         this.name = name;
     }
@@ -16,11 +16,18 @@ public class Institution {
         this.name = "";
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     public String getName() {
         return name;
     }
+    
+    public Address getAddress() {
+        return address;
+    }
+    
+    @Override
+    public String toString()
+    {
+    		return " Name : " + this.name + this.address.toString();   	
+    }
+
 }
