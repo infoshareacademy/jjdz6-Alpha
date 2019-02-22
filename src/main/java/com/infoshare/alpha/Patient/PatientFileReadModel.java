@@ -27,6 +27,6 @@ public class PatientFileReadModel implements PatientReadModel {
     @Override
     public List<Institution> getNearestPatientFacilitiesByCity(Patient patient) {
 
-        return this.institutionsRepository.findInstitutionsByCity(patient.getAddress().getCity());
+        return this.institutionsRepository.findByCity(patient.getAddress().getCity());
     }
 }

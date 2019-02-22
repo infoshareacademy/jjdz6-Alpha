@@ -1,29 +1,31 @@
 package com.infoshare.alpha.wwr;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatientsRepository {
 
-    // patients repo, hold collection of Patients from file
-
     private List<Patient> patients;
 
-    private String repoFilePath;
+    public PatientsRepository() {
 
+        this.patients = new ArrayList<>();
 
-    public List<Patient> getPatients() {
+        patients.add(new Patient("Adam", "Kowalski", new Pesel("01070111234"), new Address("Gdańsk", "Pilotów 23e", "+48 691 957 655")));
+        patients.add(new Patient("Anna", "Testowa", new Pesel("15070111234"), new Address("Sopot", "Pilotów 23e", "+48 691 957 655")));
+        patients.add(new Patient("Karol", "Kowalski", new Pesel("17070111234"), new Address("Gdynia", "Pilotów 23e", "+48 691 957 655")));
+        patients.add(new Patient("Brajan", "Nosacz", new Pesel("18070111234"), new Address("Gdańsk", "Pilotów 23e", "+48 691 957 655")));
+        patients.add(new Patient("Dzesika", "Somsiad", new Pesel("19010111234"), new Address("Gdynia", "Pilotów 23e", "+48 691 957 655")));
+    }
+
+    public List<Patient> getAllPatients() {
         return patients;
     }
 
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
-    }
+//    public List<Patient> getByName() {
+//
+//    }
 
-    public void setRepoFilePath(String repoFilePath) {
-        this.repoFilePath = repoFilePath;
-    }
 
-    public String getRepoFilePath() {
-        return repoFilePath;
-    }
+
 }
