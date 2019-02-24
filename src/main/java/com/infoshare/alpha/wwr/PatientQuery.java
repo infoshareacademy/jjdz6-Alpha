@@ -1,5 +1,6 @@
 package com.infoshare.alpha.wwr;
-// not user yet
+
+// not used yet
 public class PatientQuery {
 
     private Patient patient;

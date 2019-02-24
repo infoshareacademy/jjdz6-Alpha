@@ -19,12 +19,18 @@ public class PatientsRepository {
     }
 
     public List<Patient> getAllPatients() {
+
         return patients;
     }
 
-//    public List<Patient> getByName() {
-//
-//    }
+
+
+
+    public Patient getPatientByQuery(PatientQuery patientQuery) {
+
+        return new Patient();
+    }
+
 
 
 

@@ -11,6 +11,10 @@ public class Patient extends User {
         this.address = address;
     }
 
+    public Patient() {
+        super("", "");
+    }
+
     public Address getAddress() {
         return address;
     }
