@@ -40,7 +40,7 @@ public class PatientsFileReadModel implements PatientsReadModel {
                 facilitiesCollection = this.facilitiesRepository.getByName(query.getKeyword());
                 break;
             default:
-                facilitiesCollection = new ArrayList<Facility>();
+                facilitiesCollection = new ArrayList<>();
         }
 
         return facilitiesCollection;
