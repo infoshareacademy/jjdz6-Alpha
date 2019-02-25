@@ -23,27 +23,6 @@ public class FacilitiesRepository {
         return this.facilities;
     }
 
-    public List<Facility> getByQuery(PatientFacilityQuery query) {
-
-        List<Facility> facilitiesCollection;
-
-        PatientFacilityQueryFields field = query.getQueryField();
-
-        switch (field) {
-            case CITY:
-                facilitiesCollection = this.getByCity(query.getKeyword());
-                break;
-            case FACILITY_NAME:
-                facilitiesCollection = this.getByName(query.getKeyword());
-                break;
-            default:
-                facilitiesCollection = new ArrayList<Facility>();
-        }
-
-
-        return facilitiesCollection;
-    }
-
     public List<Facility> getByName(String name) {
 
         return this.facilities.
