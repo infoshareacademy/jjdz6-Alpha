@@ -1,6 +1,6 @@
 package com.infoshare.alpha;
 
-import com.infoshare.alpha.Patient.PatientFileReadModel;
+
 import com.infoshare.alpha.wwr.*;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class App
 
     public static void testGetNearestFacilities()
     {
-        PatientFileReadModel patientFileReadModel = new PatientFileReadModel(
+        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
                 new FacilitiesRepository(),
                 new PatientsRepository()
         );
