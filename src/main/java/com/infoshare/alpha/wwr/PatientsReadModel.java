@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface PatientsReadModel {
 
-    public List<Institution> getNearestPatientFacilitiesByCity(Patient patient);
+    public List<Facility> getNearestPatientFacilitiesByCity(Patient patient);
+
+    public List<Facility> getPatientFacilitiesByQuery(PatientFacilityQuery query);
 
 
 }

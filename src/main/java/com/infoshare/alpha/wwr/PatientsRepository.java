@@ -26,7 +26,7 @@ public class PatientsRepository {
 
 
 
-    public Patient getPatientByQuery(PatientQuery patientQuery) {
+    public Patient getPatientByQuery(PatientFacilityQuery patientQuery) {
 
         return new Patient();
     }

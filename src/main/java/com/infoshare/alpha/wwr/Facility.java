@@ -1,19 +1,14 @@
 package com.infoshare.alpha.wwr;
 
-public class Institution {
+public class Facility {
 	
 	private String name;
     
 	private Address address;
 
-    public Institution(String name, Address address) {
+    public Facility(String name, Address address) {
         this.address = address;
         this.name = name;
-    }
-
-    public Institution() {
-        this.address = new Address();
-        this.name = "";
     }
 
     public String getName() {

@@ -4,24 +4,29 @@ import java.util.List;
 
 public class PatientsFileReadModel implements PatientsReadModel {
 
-
-    private InstitutionsRepository institutionsRepository;
+    private FacilitiesRepository institutionsRepository;
 
     private PatientsRepository patientsRepository;
 
-    public PatientsFileReadModel(InstitutionsRepository institutionsRepository, PatientsRepository patientsRepository) {
+    public PatientsFileReadModel(FacilitiesRepository institutionsRepository, PatientsRepository patientsRepository) {
         this.institutionsRepository = institutionsRepository;
         this.patientsRepository = patientsRepository;
     }
 
     public PatientsFileReadModel() {
-        this.institutionsRepository = new InstitutionsRepository();
+        this.institutionsRepository = new FacilitiesRepository();
         this.patientsRepository = new PatientsRepository();
     }
 
     @Override
-    public List<Institution> getNearestPatientFacilitiesByCity(Patient patient) {
+    public List<Facility> getNearestPatientFacilitiesByCity(Patient patient) {
 
-        return this.institutionsRepository.findByCity(patient.getAddress().getCity());
+        return this.institutionsRepository.getByCity(patient.getAddress().getCity());
+    }
+
+    @Override
+    public List<Facility> getPatientFacilitiesByQuery(PatientFacilityQuery query) {
+
+        return this.institutionsRepository.getByQuery(query);
     }
 }
