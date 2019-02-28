@@ -3,6 +3,7 @@ package com.infoshare.alpha;
 
 import com.infoshare.alpha.wwr.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 
@@ -22,11 +23,29 @@ public class App
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
+        testFacilitiesRepo();
 
 //        testGetNearestFacilities();
+//        testGetFacilitiesByQuery();
 
-        testGetFacilitiesByQuery();
 
+    }
+
+    public static void testFacilitiesRepo() {
+
+        String filePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/java/com/infoshare/alpha/wwr/facilities.json";
+        try {
+
+            FacilitiesRepository facilitiesRepo = new FacilitiesRepository(filePath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+//        List<Facility> facilities = facilitiesRepo.getAll();
+//
+//        for (Facility f : facilities) {
+//            System.out.println(f.toString());
+//        }
 
     }
 

@@ -1,0 +1,45 @@
+   [
+    {
+      "name": "WWR1",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Nowe Ogrody 23",
+        "phone": "+48 564 123 123"
+      }
+    },
+    {
+      "name": "WWR2",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Al. Grunwaldzka 114",
+        "phone": "+48 654 123 111"
+      }
+    },
+    {
+      "name": "WWR3",
+      "address": {
+        "city": "Sopot",
+        "street": "Zwyciestwa 17",
+        "phone": "+48 754 123 111"
+      }
+    },
+    {
+      "name": "WWR4",
+      "address": {
+        "city": "Gdynia",
+        "street": "Kolejowa 18",
+        "phone": "+48 112 123 123"
+      }
+    },
+    {
+      "name": "WWR5",
+      "address": {
+        "city": "Gdynia",
+        "street": "Swientojanska 110",
+        "phone": "+48 653 123 123"
+      }
+    }
+  ]
+
+
+

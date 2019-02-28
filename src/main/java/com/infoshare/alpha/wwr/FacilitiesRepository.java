@@ -1,12 +1,47 @@
 package com.infoshare.alpha.wwr;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FacilitiesRepository {
 
+
     private List<Facility> facilities;
+
+    public FacilitiesRepository(String jsonRepoFilePath) throws FileNotFoundException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(jsonRepoFilePath));
+
+        Gson gson = new Gson();
+        ArrayList json = gson.fromJson(bufferedReader, ArrayList.class);
+
+        JsonParser parser = new JsonParser();
+        for (Object o : json) {
+            System.out.println(o.toString());
+            JsonElement element = parser.parse(o.toString());
+
+//            JsonElement element = parser.parse(o.toString());
+//            JsonObject jsonFacility = element.getAsJsonObject();
+//            System.out.println(jsonFacility.toString());
+        }
+
+//        System.out.println(json.toString());
+
+
+//        JsonParser parser = new JsonParser();
+//        JsonElement element = parser.parse(json.toString());
+//        System.out.println(element.getAsJsonArray().toString());
+
+
+    }
 
     public FacilitiesRepository() {
         this.facilities = new ArrayList<>();
