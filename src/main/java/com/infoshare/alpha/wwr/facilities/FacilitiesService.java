@@ -2,16 +2,18 @@ package com.infoshare.alpha.wwr.facilities;
 
 public class FacilitiesService {
 
-    private FacilitiesRepository facilitiesRepository = new FacilitiesRepository();
+    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
+
+    private FacilitiesRepository facilitiesDbRepository = new FacilitiesDbRepository();
 
     public FacilitiesService() {
 
     }
 
     public void add(Facility facility) {
-        Facilities facilities = this.facilitiesRepository.getAll();
+        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         facilities.add(facility);
-        this.facilitiesRepository.persist();
+        this.facilitiesReadModelDbRepository.persist();
     }
 
     public void delete(Facility facility) {

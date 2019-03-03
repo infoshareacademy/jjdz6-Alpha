@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.patients;
 
-import com.infoshare.alpha.wwr.facilities.FacilitiesRepository;
+import com.infoshare.alpha.wwr.facilities.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.facilities.Facility;
 
 import java.util.ArrayList;
@@ -8,24 +8,24 @@ import java.util.List;
 
 public class PatientsFileReadModel implements PatientsReadModel {
 
-    private FacilitiesRepository facilitiesRepository;
+    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
 
     private PatientsRepository patientsRepository;
 
-    public PatientsFileReadModel(FacilitiesRepository institutionsRepository, PatientsRepository patientsRepository) {
-        this.facilitiesRepository = institutionsRepository;
+    public PatientsFileReadModel(FacilitiesReadModelDbRepository institutionsRepository, PatientsRepository patientsRepository) {
+        this.facilitiesReadModelDbRepository = institutionsRepository;
         this.patientsRepository = patientsRepository;
     }
 
     public PatientsFileReadModel() {
-        this.facilitiesRepository = new FacilitiesRepository();
+        this.facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
         this.patientsRepository = new PatientsRepository();
     }
 
     @Override
     public List<Facility> getNearestPatientFacilitiesByCity(Patient patient) {
 
-        return this.facilitiesRepository.getByCity(patient.getAddress().getCity());
+        return this.facilitiesReadModelDbRepository.getByCity(patient.getAddress().getCity());
     }
 
     @Override
@@ -37,10 +37,10 @@ public class PatientsFileReadModel implements PatientsReadModel {
 
         switch (field) {
             case CITY:
-                facilitiesCollection = this.facilitiesRepository.getByCity(query.getKeyword());
+                facilitiesCollection = this.facilitiesReadModelDbRepository.getByCity(query.getKeyword());
                 break;
             case FACILITY_NAME:
-                facilitiesCollection = this.facilitiesRepository.getByName(query.getKeyword());
+                facilitiesCollection = this.facilitiesReadModelDbRepository.getByName(query.getKeyword());
                 break;
             default:
                 facilitiesCollection = new ArrayList<>();

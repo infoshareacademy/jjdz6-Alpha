@@ -2,7 +2,7 @@ package com.infoshare.alpha;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.facilities.FacilitiesRepository;
+import com.infoshare.alpha.wwr.facilities.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.facilities.Facility;
 import com.infoshare.alpha.wwr.patients.*;
@@ -13,6 +13,7 @@ public class App
 {
     public static void main( String[] args )
     {
+
        
 		/*
         1. install maven in your system ( ubuntu : sudo apt install mvn )
@@ -20,7 +21,7 @@ public class App
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
-		testFacilityWrite();
+//		testFacilityWrite();
 //        testFacilitiesRepo();
 //        testGetNearestFacilities();
 //        testGetFacilitiesByQuery();
@@ -30,25 +31,25 @@ public class App
 
     public static void testFacilityWrite() {
         FacilitiesService facilitiesService = new FacilitiesService();
-        facilitiesService.add(new Facility("WWR-Gdynia-Port", new Address("Gdynia", "Portowa 1", "+48 112 234 123")));
+        facilitiesService.add(new Facility("WWR-Gdynia-Port-2", new Address("Gdynia", "Portowa 2", "+48 112 234 111")));
         System.out.println("saved.");
 
-        FacilitiesRepository facilitiesRepository = new FacilitiesRepository();
+        FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
 
-        facilitiesRepository.getAll().printAllFacilities();
+        facilitiesReadModelDbRepository.getAll().printAllFacilities();
 
     }
 
     public static void testFacilitiesRepo() {
 
-        FacilitiesRepository facilitiesRepository = new FacilitiesRepository();
-        facilitiesRepository.getAll().printAllFacilities();
+        FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
+        facilitiesReadModelDbRepository.getAll().printAllFacilities();
     }
 
     public static void testGetFacilitiesByQuery() {
 
         PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
-                new FacilitiesRepository(),
+                new FacilitiesReadModelDbRepository(),
                 new PatientsRepository()
         );
 
@@ -75,7 +76,7 @@ public class App
     public static void testGetNearestFacilities()
     {
         PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
-                new FacilitiesRepository(),
+                new FacilitiesReadModelDbRepository(),
                 new PatientsRepository()
         );
 
