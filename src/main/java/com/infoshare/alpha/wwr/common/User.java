@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr;
+package com.infoshare.alpha.wwr.common;
 
 public abstract class User {
 

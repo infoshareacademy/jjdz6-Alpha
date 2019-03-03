@@ -1,17 +1,14 @@
 package com.infoshare.alpha;
 
+import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Pesel;
+import com.infoshare.alpha.wwr.facilities.FacilitiesRepository;
+import com.infoshare.alpha.wwr.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.facilities.Facility;
+import com.infoshare.alpha.wwr.patients.*;
 
-import com.infoshare.alpha.wwr.*;
-
-import java.io.FileNotFoundException;
 import java.util.List;
 
-
-/**
- * Hello world!
- *
- *
- */
 public class App 
 {
     public static void main( String[] args )
@@ -23,30 +20,29 @@ public class App
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
-        testFacilitiesRepo();
-
+		testFacilityWrite();
+//        testFacilitiesRepo();
 //        testGetNearestFacilities();
 //        testGetFacilitiesByQuery();
 
 
     }
 
+    public static void testFacilityWrite() {
+        FacilitiesService facilitiesService = new FacilitiesService();
+        facilitiesService.add(new Facility("WWR-Gdynia-Port", new Address("Gdynia", "Portowa 1", "+48 112 234 123")));
+        System.out.println("saved.");
+
+        FacilitiesRepository facilitiesRepository = new FacilitiesRepository();
+
+        facilitiesRepository.getAll().printAllFacilities();
+
+    }
+
     public static void testFacilitiesRepo() {
 
-        String filePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/java/com/infoshare/alpha/wwr/facilities.json";
-        try {
-
-            FacilitiesRepository facilitiesRepo = new FacilitiesRepository(filePath);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-//        List<Facility> facilities = facilitiesRepo.getAll();
-//
-//        for (Facility f : facilities) {
-//            System.out.println(f.toString());
-//        }
-
+        FacilitiesRepository facilitiesRepository = new FacilitiesRepository();
+        facilitiesRepository.getAll().printAllFacilities();
     }
 
     public static void testGetFacilitiesByQuery() {
@@ -97,36 +93,4 @@ public class App
 
     }
 
-
-
-
-
-//    public static void filterTest()
-//    {
-//        Address address = new Address("Gdańsk", "Pilotów 23e", "+48 691 957 655");
-//        Pesel pesel = new Pesel("84101714434");
-//        Patient patient = new Patient("Jan", "Nowak", pesel , address );
-//
-//        List<Facility> institutions = new ArrayList<Facility>();
-//
-//        institutions.add(new Facility("WWR1", new Address("Gdańsk", "Nowe Ogroady 23", "+48 564 123 123")));
-//        institutions.add(new Facility("WWR2", new Address("Gdańsk", "Al. Gruwaldzka 223", "+48 564 123 555")));
-//        institutions.add(new Facility("WWR3", new Address("Sopot", "Zwyciestwa 17", "+48 754 123 123")));
-//        institutions.add(new Facility("WWR4", new Address("Gdynia", "Kolejowa 23", "+48 112 123 123")));
-//        institutions.add(new Facility("WWR5", new Address("Gdynia", "Swietojanska 110", "+48 456 123 123")));
-//
-//
-//        String filter = "Gdańsk";
-//
-//        List<Facility> filteredInstitutions = institutions.stream().filter(s->filter.equals(s.getAddress().getCity())).collect(Collectors.toList());
-//
-//        for (Facility i : filteredInstitutions) {
-//            System.out.println(i.toString());
-//        }
-        //institutions.stream().filter(s->"Gdańsk".equals(s.getAddress().getCity())).findAny();
-
-
-//        Optional<Facility> inst = institutions.stream().filter(i->"Gdańsk".equals(i.getAddress().getCity())).findAny();
-//        System.out.println(inst.toString());
-//    }
 }

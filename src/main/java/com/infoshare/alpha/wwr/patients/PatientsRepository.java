@@ -1,4 +1,7 @@
-package com.infoshare.alpha.wwr;
+package com.infoshare.alpha.wwr.patients;
+
+import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Pesel;
 
 import java.util.ArrayList;
 import java.util.List;

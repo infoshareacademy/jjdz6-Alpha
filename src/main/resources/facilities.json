@@ -1,0 +1,61 @@
+{
+  "facilities": [
+    {
+      "name": "WWR1",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Nowe Ogroady 23",
+        "phone": "+48 564 123 123"
+      }
+    },
+    {
+      "name": "WWR2",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Al. Gruwaldzka 223",
+        "phone": "+48 564 123 555"
+      }
+    },
+    {
+      "name": "WWR3",
+      "address": {
+        "city": "Sopot",
+        "street": "Zwyciestwa 17",
+        "phone": "+48 754 123 123"
+      }
+    },
+    {
+      "name": "WWR4",
+      "address": {
+        "city": "Gdynia",
+        "street": "Kolejowa 23",
+        "phone": "+48 112 123 123"
+      }
+    },
+    {
+      "name": "WWR5",
+      "address": {
+        "city": "Gdynia",
+        "street": "Swietojanska 110",
+        "phone": "+48 456 123 123"
+      }
+    },
+    {
+      "name": "WWR-Oliva",
+      "address": {
+        "city": "Gdańsk-Oliwa",
+        "street": "Krzywoustego 123",
+        "phone": "+48 543 234 123"
+      }
+    },
+    {
+      "id": "7cf660a8-9fb6-45bd-8ddb-6b67379e3039",
+      "name": "WWR-Gdynia-Port",
+      "address": {
+        "city": "Gdynia",
+        "street": "Portowa 1",
+        "phone": "+48 112 234 123"
+      }
+    }
+  ]
+}

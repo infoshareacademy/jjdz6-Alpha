@@ -1,4 +1,8 @@
-package com.infoshare.alpha.wwr;
+package com.infoshare.alpha.wwr.patients;
+
+import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Pesel;
+import com.infoshare.alpha.wwr.common.User;
 
 public class Patient extends User {
 

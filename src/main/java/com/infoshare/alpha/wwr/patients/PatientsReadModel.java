@@ -1,4 +1,6 @@
-package com.infoshare.alpha.wwr;
+package com.infoshare.alpha.wwr.patients;
+
+import com.infoshare.alpha.wwr.facilities.Facility;
 
 import java.util.List;
 
