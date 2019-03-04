@@ -1,5 +1,6 @@
 package com.infoshare.alpha;
 
+
 /**
  * Hello world!
  *
@@ -7,15 +8,14 @@ package com.infoshare.alpha;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) {
         /*
         1. install maven in your system ( ubuntu : sudo apt install mvn )
         2. build project go to project dir where is pom.xml file, then : mvn install
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
-
-        System.out.println( "Hello World!" );
+       Menu.menu();
+       Menu.choiceOfMenuOption();
     }
 }
