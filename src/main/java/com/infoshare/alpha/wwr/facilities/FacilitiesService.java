@@ -1,13 +1,18 @@
 package com.infoshare.alpha.wwr.facilities;
 
-public class FacilitiesService {
+import com.infoshare.alpha.wwr.utils.DI;
 
-    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
+public class FacilitiesService implements DI{
 
-    private FacilitiesRepository facilitiesDbRepository = new FacilitiesDbRepository();
+    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
+    private FacilitiesRepository facilitiesDbRepository;
 
-    public FacilitiesService() {
-
+    public FacilitiesService(
+    		FacilitiesRepository facilitiesDbRepository,
+    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
+    		) {
+    		this.facilitiesDbRepository = facilitiesDbRepository;
+    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;   		
     }
 
     public void add(Facility facility) {

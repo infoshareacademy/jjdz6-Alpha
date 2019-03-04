@@ -2,17 +2,35 @@ package com.infoshare.alpha;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
+import com.infoshare.alpha.wwr.facilities.Facilities;
+import com.infoshare.alpha.wwr.facilities.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.facilities.FacilitiesReadModelDbRepository;
-import com.infoshare.alpha.wwr.facilities.FacilitiesService;
+//import com.infoshare.alpha.wwr.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.facilities.Facility;
 import com.infoshare.alpha.wwr.patients.*;
+import com.infoshare.alpha.wwr.utils.AppDI;
 
 import java.util.List;
 
 public class App 
 {
+
     public static void main( String[] args )
     {
+    		String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
+    		String patientsRepoFilePath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
+    		
+    		AppDI di = new AppDI(facilitiesRepoPath, patientsRepoFilePath);
+    		
+    		di.printDIServices();
+    		
+    		FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService("FacilitiesReadModel");
+    		
+    		Facilities facilities = facilitiesReadModel.getAll();
+    		facilities.printAllFacilities();
+    		
+    		
+    		
 
        
 		/*
@@ -30,13 +48,13 @@ public class App
     }
 
     public static void testFacilityWrite() {
-        FacilitiesService facilitiesService = new FacilitiesService();
-        facilitiesService.add(new Facility("WWR-Gdynia-Port-2", new Address("Gdynia", "Portowa 2", "+48 112 234 111")));
-        System.out.println("saved.");
-
-        FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
-
-        facilitiesReadModelDbRepository.getAll().printAllFacilities();
+//        FacilitiesService facilitiesService = new FacilitiesService();
+//        facilitiesService.add(new Facility("WWR-Gdynia-Port-2", new Address("Gdynia", "Portowa 2", "+48 112 234 111")));
+//        System.out.println("saved.");
+//
+//        FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
+//
+//        facilitiesReadModelDbRepository.getAll().printAllFacilities();
 
     }
 

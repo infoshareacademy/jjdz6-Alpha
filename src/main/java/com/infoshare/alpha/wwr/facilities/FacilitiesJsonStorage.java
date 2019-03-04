@@ -4,13 +4,38 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.*;
 import java.net.URL;
+import com.infoshare.alpha.wwr.utils.DI;
 
-// TODO: wyniesci plik na zewnatrz
-public class FacilitiesJsonStorage {
+public class FacilitiesJsonStorage implements DI{
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final String FACILITIES_JSON_FILE = System.getProperty("user.dir") + "/classes/" + "facilities.json";
+	private String facilitiesRepoFilePath;
+	private Gson gsonInstance;
+	
+	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+	private static final String FACILITIES_JSON_FILE = System.getProperty("user.dir") + "/classes/" + "facilities.json";
+	
+	
+	public FacilitiesJsonStorage(String facilitiesRepoFilePath) {
+		this.facilitiesRepoFilePath = facilitiesRepoFilePath;
+		this.gsonInstance = new GsonBuilder().setPrettyPrinting().create();
+	}
+	
+	public Facilities loadResources() {		
+        try {
+            Reader reader = new FileReader(this.facilitiesRepoFilePath);
+            //URL resource = FacilitiesJsonStorage.class.getResource("/facilities.json");
+            Facilities facilities = this.gsonInstance.fromJson(reader, Facilities.class);
 
+            return facilities == null ? new Facilities() : facilities;
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File " + FACILITIES_JSON_FILE + " load error");
+            System.out.println(e.toString());
+        }
+        
+		return new Facilities();
+	}
+	
     public static void write(Facilities facilities) {
 
 
