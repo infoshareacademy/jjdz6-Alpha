@@ -25,7 +25,6 @@ public class Menu {
         boolean exit = false;
 
         while (!exit) {
-            Integer choice;
             Menu menu = new Menu();
             menu.choice = menu.getConsoleInput();
             System.out.println();
