@@ -1,36 +1,30 @@
 package com.infoshare.alpha;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.facilities.Facilities;
-import com.infoshare.alpha.wwr.facilities.FacilitiesReadModel;
-import com.infoshare.alpha.wwr.facilities.FacilitiesReadModelDbRepository;
-//import com.infoshare.alpha.wwr.facilities.FacilitiesService;
-import com.infoshare.alpha.wwr.facilities.Facility;
-import com.infoshare.alpha.wwr.patients.*;
-import com.infoshare.alpha.wwr.utils.AppDI;
+import com.infoshare.alpha.wwr.di.AppDI;
+import com.infoshare.alpha.wwr.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.facilities.readModel.FacilitiesReadModel;
 
-import java.util.List;
+//import com.infoshare.alpha.wwr.facilities.FacilitiesService;
 
 public class App 
 {
+    public static AppDI di;
+    public static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
+        App.di = new AppDI(facilitiesFilePath, patientsFilePath);
+    }
 
     public static void main( String[] args )
     {
-    		String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
-    		String patientsRepoFilePath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
-    		
-    		AppDI di = new AppDI(facilitiesRepoPath, patientsRepoFilePath);
-    		
-    		di.printDIServices();
-    		
-    		FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService("FacilitiesReadModel");
+    		String facilitiesRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/facilities.json";
+    		String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
+
+    		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);
+
+
+    		FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
     		
     		Facilities facilities = facilitiesReadModel.getAll();
     		facilities.printAllFacilities();
-    		
-    		
-    		
 
        
 		/*
@@ -39,77 +33,58 @@ public class App
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
-//		testFacilityWrite();
-//        testFacilitiesRepo();
-//        testGetNearestFacilities();
-//        testGetFacilitiesByQuery();
-
-
     }
 
-    public static void testFacilityWrite() {
-//        FacilitiesService facilitiesService = new FacilitiesService();
-//        facilitiesService.add(new Facility("WWR-Gdynia-Port-2", new Address("Gdynia", "Portowa 2", "+48 112 234 111")));
-//        System.out.println("saved.");
+
+
+
+
+//    public static void testGetFacilitiesByQuery() {
 //
-//        FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
+//        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
+//                new FacilitiesReadModelDbRepository(),
+//                new PatientsRepository()
+//        );
 //
-//        facilitiesReadModelDbRepository.getAll().printAllFacilities();
+//        PatientFacilityQuery patientFacilityQuery = new PatientFacilityQuery(
+//                new Patient(
+//                        "Adam",
+//                        "Kowalski",
+//                        new Pesel("12121203123"),
+//                        new Address("Gdynia", "Nowe ogrody 23/12", "+48 123 123 123")
+//                ),
+//                PatientFacilityQueryFields.FACILITY_NAME,
+//                "WWR4"
+//        );
+//
+//        List<Facility> facilities = patientFileReadModel.getPatientFacilitiesByQuery(patientFacilityQuery);
+//
+//        for(Facility i : facilities) {
+//            System.out.println(i.toString());
+//        }
 
-    }
-
-    public static void testFacilitiesRepo() {
-
-        FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
-        facilitiesReadModelDbRepository.getAll().printAllFacilities();
-    }
-
-    public static void testGetFacilitiesByQuery() {
-
-        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
-                new FacilitiesReadModelDbRepository(),
-                new PatientsRepository()
-        );
-
-        PatientFacilityQuery patientFacilityQuery = new PatientFacilityQuery(
-                new Patient(
-                        "Adam",
-                        "Kowalski",
-                        new Pesel("12121203123"),
-                        new Address("Gdynia", "Nowe ogrody 23/12", "+48 123 123 123")
-                ),
-                PatientFacilityQueryFields.FACILITY_NAME,
-                "WWR4"
-        );
-
-        List<Facility> facilities = patientFileReadModel.getPatientFacilitiesByQuery(patientFacilityQuery);
-
-        for(Facility i : facilities) {
-            System.out.println(i.toString());
-        }
-
-    }
+//    }
 
 
-    public static void testGetNearestFacilities()
-    {
-        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
-                new FacilitiesReadModelDbRepository(),
-                new PatientsRepository()
-        );
-
-        List<Facility> nextFacilities = patientFileReadModel.getNearestPatientFacilitiesByCity(
-                new Patient(
-                        "Adam",
-                        "Kowalski",
-                        new Pesel("12121203123"),
-                        new Address("Gdynia", "Nowe ogrody 23/12", "+48 123 123 123")
-                ));
-
-        for(Facility i : nextFacilities) {
-            System.out.println(i.toString());
-        }
-
-    }
+//    public static void testGetNearestFacilities()
+//    {
+//        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
+//                new FacilitiesReadModelDbRepository(),
+//                new PatientsRepository()
+//        );
+//
+//        List<Facility> nextFacilities = patientFileReadModel.getNearestPatientFacilitiesByCity(
+//                new Patient(
+//                        "Adam",
+//                        "Kowalski",
+//                        new Pesel("12121203123"),
+//                        new Address("Gdynia", "Nowe ogrody 23/12", "+48 123 123 123")
+//                ));
+//
+//        for(Facility i : nextFacilities) {
+//            System.out.println(i.toString());
+//        }
+//
+//    }
 
 }

@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.patients;
 
-import com.infoshare.alpha.wwr.facilities.FacilitiesReadModelDbRepository;
-import com.infoshare.alpha.wwr.facilities.Facility;
+import com.infoshare.alpha.wwr.facilities.readModel.FacilitiesReadModelDbRepository;
+import com.infoshare.alpha.wwr.facilities.entity.Facility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,6 @@ public class PatientsFileReadModel implements PatientsReadModel {
     public PatientsFileReadModel(FacilitiesReadModelDbRepository institutionsRepository, PatientsRepository patientsRepository) {
         this.facilitiesReadModelDbRepository = institutionsRepository;
         this.patientsRepository = patientsRepository;
-    }
-
-    public PatientsFileReadModel() {
-        this.facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
-        this.patientsRepository = new PatientsRepository();
     }
 
     @Override

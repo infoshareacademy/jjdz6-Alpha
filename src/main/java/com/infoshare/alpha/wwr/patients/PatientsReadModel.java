@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.patients;
 
-import com.infoshare.alpha.wwr.facilities.Facility;
+import com.infoshare.alpha.wwr.facilities.entity.Facility;
 
 import java.util.List;
 

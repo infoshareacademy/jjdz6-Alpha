@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.facilities;
+package com.infoshare.alpha.wwr.facilities.entity;
 
 import com.infoshare.alpha.wwr.common.Address;
 

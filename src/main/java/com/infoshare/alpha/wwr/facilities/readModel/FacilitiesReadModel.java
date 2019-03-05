@@ -1,11 +1,12 @@
-package com.infoshare.alpha.wwr.facilities;
+package com.infoshare.alpha.wwr.facilities.readModel;
 
 //import java.util.List;
 
-import com.infoshare.alpha.wwr.utils.DI;
+import com.infoshare.alpha.wwr.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.di.DI;
 
 
-// klasa ktora udostepnia metody odczytujace dane dot. placowek
+// klasa ktora udostepnia metody (tylko) odczytujace dane dot. placowek
 
 
 public class FacilitiesReadModel implements DI {
@@ -13,6 +14,7 @@ public class FacilitiesReadModel implements DI {
 	private FacilitiesReadModelDb repository;
 
 	public FacilitiesReadModel(FacilitiesReadModelDb repository) {
+
 		this.repository = repository;
 	}
 	
