@@ -4,8 +4,10 @@ import com.infoshare.alpha.wwr.di.AppDI;
 import com.infoshare.alpha.wwr.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.facilities.readModel.FacilitiesReadModel;
 
-//import com.infoshare.alpha.wwr.facilities.FacilitiesService;
 
+/**
+ * This class is controller for wwr program
+ */
 public class App 
 {
     public static AppDI di;
