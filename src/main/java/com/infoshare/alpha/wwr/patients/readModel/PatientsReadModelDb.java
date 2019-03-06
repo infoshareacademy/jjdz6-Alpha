@@ -6,7 +6,7 @@ import com.infoshare.alpha.wwr.patients.entity.Patient;
 
 import java.util.List;
 
-public interface PatientsReadModel {
+public interface PatientsReadModelDb {
 
     public List<Facility> getNearestPatientFacilitiesByCity(Patient patient);
 

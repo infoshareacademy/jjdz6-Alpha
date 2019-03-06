@@ -8,11 +8,11 @@ import com.infoshare.alpha.wwr.patients.entity.Patient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientsRepository {
+public class PatientsReadModelDbRepository {
 
     private List<Patient> patients;
 
-    public PatientsRepository() {
+    public PatientsReadModelDbRepository() {
 
         this.patients = new ArrayList<>();
 
@@ -28,15 +28,9 @@ public class PatientsRepository {
         return patients;
     }
 
-
-
-
     public Patient getPatientByQuery(PatientFacilityQuery patientQuery) {
 
         return new Patient();
     }
-
-
-
 
 }

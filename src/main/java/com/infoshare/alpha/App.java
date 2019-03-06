@@ -14,27 +14,30 @@ public class App
     public static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
         App.di = new AppDI(facilitiesFilePath, patientsFilePath);
     }
+    
+    
 
     public static void main( String[] args )
     {
-    		String facilitiesRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/facilities.json";
+    		String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
     		String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
 
-    		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);
-
-
-    		FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
-    		
-    		Facilities facilities = facilitiesReadModel.getAll();
-    		facilities.printAllFacilities();
-
-       
-		/*
-        1. install maven in your system ( ubuntu : sudo apt install mvn )
-        2. build project go to project dir where is pom.xml file, then : mvn install
-        3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
-        */
-
+    		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);    
+    }
+    
+    public static void exampleGetAllFacilities() {
+    	FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
+    	Facilities facilities = facilitiesReadModel.getAll();
+    	facilities.printAllFacilities(); 
+    }
+    
+    public static void getPatientFacilitiesByQuery() {
+    	
+    	PatientsReadModel;
+    	
+    	
+    	
+    	
     }
 
 

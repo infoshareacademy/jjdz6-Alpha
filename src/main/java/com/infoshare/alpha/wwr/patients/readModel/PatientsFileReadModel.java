@@ -9,41 +9,42 @@ import com.infoshare.alpha.wwr.patients.entity.Patient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientsFileReadModel implements PatientsReadModel {
+public class PatientsFileReadModel implements DI {
 
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
 
-    private PatientsRepository patientsRepository;
+    private PatientsReadModelDbRepository patientsRepository;
 
-    public PatientsFileReadModel(FacilitiesReadModelDbRepository institutionsRepository, PatientsRepository patientsRepository) {
+    public PatientsFileReadModel(FacilitiesReadModelDbRepository institutionsRepository, PatientsReadModelDbRepository patientsRepository) {
         this.facilitiesReadModelDbRepository = institutionsRepository;
         this.patientsRepository = patientsRepository;
     }
-
-    @Override
-    public List<Facility> getNearestPatientFacilitiesByCity(Patient patient) {
-
-        return this.facilitiesReadModelDbRepository.getByCity(patient.getAddress().getCity());
-    }
-
-    @Override
-    public List<Facility> getPatientFacilitiesByQuery(PatientFacilityQuery query) {
-
-        List<Facility> facilitiesCollection;
-
-        PatientFacilityQueryFields field = query.getQueryField();
-
-        switch (field) {
-            case CITY:
-                facilitiesCollection = this.facilitiesReadModelDbRepository.getByCity(query.getKeyword());
-                break;
-            case FACILITY_NAME:
-                facilitiesCollection = this.facilitiesReadModelDbRepository.getByName(query.getKeyword());
-                break;
-            default:
-                facilitiesCollection = new ArrayList<>();
-        }
-
-        return facilitiesCollection;
-    }
+// TODO: move to Facilities Read Model
+//    @Override
+//    
+//    public List<Facility> getNearestPatientFacilitiesByCity(Patient patient) {
+//
+//        return this.facilitiesReadModelDbRepository.getByCity(patient.getAddress().getCity());
+//    }
+//
+//    @Override
+//    public List<Facility> getPatientFacilitiesByQuery(PatientFacilityQuery query) {
+//
+//        List<Facility> facilitiesCollection;
+//
+//        PatientFacilityQueryFields field = query.getQueryField();
+//
+//        switch (field) {
+//            case CITY:
+//                facilitiesCollection = this.facilitiesReadModelDbRepository.getByCity(query.getKeyword());
+//                break;
+//            case FACILITY_NAME:
+//                facilitiesCollection = this.facilitiesReadModelDbRepository.getByName(query.getKeyword());
+//                break;
+//            default:
+//                facilitiesCollection = new ArrayList<>();
+//        }
+//
+//        return facilitiesCollection;
+//    }
 }
