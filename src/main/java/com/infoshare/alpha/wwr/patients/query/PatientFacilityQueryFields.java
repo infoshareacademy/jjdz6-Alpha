@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.patients;
+package com.infoshare.alpha.wwr.patients.query;
 
 public enum PatientFacilityQueryFields {
 
