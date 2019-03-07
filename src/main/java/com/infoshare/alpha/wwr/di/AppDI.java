@@ -36,7 +36,8 @@ public final class AppDI {
 	public DI getService(String name) {
 		
 		if (!this.di.containsKey(name)) {
-			// thorw execption di not contains service
+			// TODO: tutaj nalezy rzucac wyjatek 
+			System.out.println("Exception : Service " + name + " not found .");
 		}
 		
 		return (DI)this.di.get(name);

@@ -1,9 +1,13 @@
 package com.infoshare.alpha;
 
+import java.util.HashMap;
+
 import com.infoshare.alpha.wwr.di.AppDI;
+import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.facilities.readModel.FacilitiesReadModel;
-
+import com.infoshare.alpha.wwr.patients.readModel.PatientsFileReadModel;
+import java.lang.Class;
 
 /**
  * This class is controller for wwr program
@@ -19,11 +23,14 @@ public class App
 
     public static void main( String[] args )
     {
-    		String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
-    		String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
-
-    		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);    
+//    		String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
+//    		String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
+//    		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);   
+    	testHashMap();
     }
+    
+    
+    
     
     public static void exampleGetAllFacilities() {
     	FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
@@ -32,9 +39,18 @@ public class App
     }
     
     public static void getPatientFacilitiesByQuery() {
+    }
+    
+    public static void testHashMap() {
     	
-    	PatientsReadModel;
+    	HashMap<Class, DI> map = new HashMap<>();
     	
+    	map.put(PatientsFileReadModel.class, new PatientsFileReadModel());
+    	
+    	if (map.containsKey(PatientsFileReadModel.class)) {
+    		System.out.println("contains.");
+    		System.out.println(map.get(PatientsFileReadModel.class).toString());
+    	}
     	
     	
     	
