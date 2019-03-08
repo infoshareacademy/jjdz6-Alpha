@@ -48,5 +48,16 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
     
     public List<Facility> getByAddress(Address address) {
     	
+    	Facilities facilities = this.storage.load();    	
+    	String filterCity = address.getCity();
+    	String filterStreet = address.getStreet();
+    	String filterPhone = address.getPhone();
+    	
+    	return facilities.getFacilities().
+    			stream().
+    			filter(s->filterCity.equals(s.getAddress().getCity()))
+    			.filter(s->filterStreet.equals(s.getAddress().getStreet()))
+    			.filter(s->filterPhone.equals(s.getAddress().getPhone()))
+    			.collect(Collectors.toList());
     }
 }
