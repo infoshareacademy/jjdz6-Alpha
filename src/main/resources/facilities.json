@@ -1,6 +1,7 @@
 {
   "facilities": [
     {
+      "id": "95af228a-9da5-4074-bfc3-c4cc2377755b",
       "name": "WWR1",
       "address": {
         "city": "Gdańsk",
@@ -9,6 +10,7 @@
       }
     },
     {
+      "id": "ad499fcf-d0ed-4ede-aa89-83fa4b7dfff3",
       "name": "WWR2",
       "address": {
         "city": "Gdańsk",
@@ -17,6 +19,7 @@
       }
     },
     {
+      "id": "dd205405-1f8c-4d44-9eb0-06e0ca3f02bf",
       "name": "WWR3",
       "address": {
         "city": "Sopot",
@@ -25,6 +28,7 @@
       }
     },
     {
+      "id": "a3387df6-cfbb-4135-b6a8-ab872ea214ce",
       "name": "WWR4",
       "address": {
         "city": "Gdynia",
@@ -33,6 +37,7 @@
       }
     },
     {
+      "id": "964b55c1-b632-4d51-998b-d80471f7c4da",
       "name": "WWR5",
       "address": {
         "city": "Gdynia",
@@ -41,6 +46,7 @@
       }
     },
     {
+      "id": "f2eca580-bca5-41fd-80a9-766ff2760091",
       "name": "WWR-Oliva",
       "address": {
         "city": "Gdańsk-Oliwa",
@@ -49,7 +55,7 @@
       }
     },
     {
-      "id": "7cf660a8-9fb6-45bd-8ddb-6b67379e3039",
+      "id": "0d765811-73d3-4b19-886f-e524164762bd",
       "name": "WWR-Gdynia-Port",
       "address": {
         "city": "Gdynia",

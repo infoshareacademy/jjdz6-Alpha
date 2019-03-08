@@ -1,11 +1,15 @@
 package com.infoshare.alpha.wwr.facilities.repository;
 
 import com.infoshare.alpha.wwr.di.DI;
+import com.infoshare.alpha.wwr.facilities.dataStorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.facilities.entity.Facilities;
 
 public class FacilitiesDbRepository implements FacilitiesRepository, DI {
 
-    public FacilitiesDbRepository(){
+	FacilitiesJsonStorage storage;
+	
+    public FacilitiesDbRepository(FacilitiesJsonStorage storage){
+    	this.storage = storage;
     }
 
     public void persist(Facilities facilities) {

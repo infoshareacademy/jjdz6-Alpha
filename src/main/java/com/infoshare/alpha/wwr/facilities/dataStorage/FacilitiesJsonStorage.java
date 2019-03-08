@@ -17,7 +17,7 @@ public class FacilitiesJsonStorage implements DI {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
-	public Facilities loadResources() {
+	public Facilities load() {
         try {
             Reader reader = new FileReader(this.facilitiesRepoFilePath);
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
@@ -29,6 +29,16 @@ public class FacilitiesJsonStorage implements DI {
         }
         
 		return new Facilities();
+	}
+		
+	public void save(Facilities facilities) {
+		try {
+			Writer writer = new FileWriter(this.facilitiesRepoFilePath);
+			this.gson.toJson(facilities, writer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

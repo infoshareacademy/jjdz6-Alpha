@@ -21,6 +21,7 @@ public class FacilitiesService implements DI{
     }
 
     public void add(Facility facility) {
+    	//TODO: check if facility already exists
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         facilities.add(facility);
         this.facilitiesDbRepository.persist(facilities);

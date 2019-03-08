@@ -28,11 +28,19 @@ public final class AppDI {
 		this.initializeDiServices();
 	}
 	
-//	public Set<String> getDIServicesNames() {
-//
-//		return this.di.keySet();
-//	}
-	
+	private void initializeDiServices() {
+		
+		FacilitiesJsonStorage facilitiesJsonStorage = new FacilitiesJsonStorage(this.facilitiesFilePath);
+		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository(facilitiesJsonStorage);
+		FacilitiesReadModel facilitiesReadModel = new FacilitiesReadModel(facilitiesReadModelDbRepository);
+		FacilitiesRepository facilitiesRepository = new FacilitiesDbRepository(facilitiesJsonStorage);
+		
+		this.di.put(FacilitiesJsonStorage.class.toString(), facilitiesJsonStorage);
+		this.di.put(FacilitiesReadModelDbRepository.class.toString(), facilitiesReadModelDbRepository);
+		this.di.put(FacilitiesReadModel.class.toString(), facilitiesReadModel);
+		this.di.put(FacilitiesService.class.toString(), new FacilitiesService(facilitiesRepository, facilitiesReadModelDbRepository));
+	}
+		
 	public DI getService(String name) {
 		
 		if (!this.di.containsKey(name)) {
@@ -50,16 +58,5 @@ public final class AppDI {
 		}
 	}
 	
-	private void initializeDiServices() {
-		
-		FacilitiesJsonStorage facilitiesJsonStorage = new FacilitiesJsonStorage(this.facilitiesFilePath);
-		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository(facilitiesJsonStorage);
-		FacilitiesReadModel facilitiesReadModel = new FacilitiesReadModel(facilitiesReadModelDbRepository);
-		FacilitiesRepository facilitiesRepository = new FacilitiesDbRepository();
-		
-		this.di.put(FacilitiesJsonStorage.class.toString(), facilitiesJsonStorage);
-		this.di.put(FacilitiesReadModelDbRepository.class.toString(), facilitiesReadModelDbRepository);
-		this.di.put(FacilitiesReadModel.class.toString(), facilitiesReadModel);
-		this.di.put(FacilitiesService.class.toString(), new FacilitiesService(facilitiesRepository, facilitiesReadModelDbRepository));
-	}
+
 }

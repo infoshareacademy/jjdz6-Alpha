@@ -6,5 +6,4 @@ public interface FacilitiesRepository {
 
     public void persist(Facilities facilities);
 
-
 }
