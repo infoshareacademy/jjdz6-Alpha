@@ -9,11 +9,10 @@ public class FacilitiesDbRepository implements FacilitiesRepository, DI {
 	FacilitiesJsonStorage storage;
 	
     public FacilitiesDbRepository(FacilitiesJsonStorage storage){
-    	this.storage = storage;
+        this.storage = storage;
     }
 
     public void persist(Facilities facilities) {
-
-        // TODO: to implement
+        this.storage.save(facilities);
     }
 }

@@ -1,8 +1,17 @@
 package com.infoshare.alpha;
 
+import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.di.AppDI;
 import com.infoshare.alpha.wwr.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.facilities.query.FacilityPatientQuery;
+import com.infoshare.alpha.wwr.facilities.query.FacilityQueryFields;
 import com.infoshare.alpha.wwr.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.patients.entity.Patient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is controller for wwr program
@@ -24,8 +33,10 @@ public class App
     		String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
     		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);  
     		
-    		
-    		exampleGetAllFacilities();
+    	//exampleGetAllFacilities();
+
+        exampleGetPatientFacilitiesByQuery();
+
     }
      
     private static FacilitiesReadModel getFacilitiesReadModel() {
@@ -40,8 +51,22 @@ public class App
     	facilities.printAllFacilities(); 
     }
     
-    public static void getPatientFacilitiesByQuery() {
+    public static void exampleGetPatientFacilitiesByQuery() {
+        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
 
+        List <FacilityQueryFields> facilityQueryFields = new ArrayList<>();
+        facilityQueryFields.add(FacilityQueryFields.CITY);
+        facilityQueryFields.add(FacilityQueryFields.FACILITY_NAME);
+
+        FacilityPatientQuery facilityPatientQuery = new FacilityPatientQuery(
+                new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdańsk", "ul.Pilotów 23", "+48 123 345 334")),
+                facilityQueryFields
+        );
+
+        List<Facility> facilities = facilitiesReadModel.getByPatientCity(facilityPatientQuery);
+        Facilities f = new Facilities();
+        f.setFacilities(facilities);
+        f.printAllFacilities();
     }
  
     

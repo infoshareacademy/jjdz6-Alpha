@@ -36,7 +36,6 @@ public class FacilitiesJsonStorage implements DI {
 			Writer writer = new FileWriter(this.facilitiesRepoFilePath);
 			this.gson.toJson(facilities, writer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
