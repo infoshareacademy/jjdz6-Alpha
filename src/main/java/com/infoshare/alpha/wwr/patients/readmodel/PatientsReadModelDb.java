@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.patients.readModel;
+package com.infoshare.alpha.wwr.patients.readmodel;
 
 import com.infoshare.alpha.wwr.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.patients.query.PatientFacilityQuery;
