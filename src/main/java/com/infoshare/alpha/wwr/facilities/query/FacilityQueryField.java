@@ -1,13 +1,15 @@
 package com.infoshare.alpha.wwr.facilities.query;
 
-public enum FacilityQueryFields {
+public enum FacilityQueryField {
 
     CITY("city"),
+    STREET("street"),
+    PHONE("phone"),
     FACILITY_NAME("facility_name");
 
     private String allowedField;
 
-    FacilityQueryFields(String allowedField) {
+    FacilityQueryField(String allowedField) {
         this.allowedField = allowedField;
     }
 

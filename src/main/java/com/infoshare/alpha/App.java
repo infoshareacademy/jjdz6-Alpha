@@ -6,7 +6,7 @@ import com.infoshare.alpha.wwr.di.AppDI;
 import com.infoshare.alpha.wwr.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.facilities.query.FacilityPatientQuery;
-import com.infoshare.alpha.wwr.facilities.query.FacilityQueryFields;
+import com.infoshare.alpha.wwr.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.patients.entity.Patient;
 
@@ -54,9 +54,9 @@ public class App
     public static void exampleGetPatientFacilitiesByQuery() {
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
 
-        List <FacilityQueryFields> facilityQueryFields = new ArrayList<>();
-        facilityQueryFields.add(FacilityQueryFields.CITY);
-        facilityQueryFields.add(FacilityQueryFields.FACILITY_NAME);
+        List <FacilityQueryField> facilityQueryFields = new ArrayList<>();
+        facilityQueryFields.add(FacilityQueryField.CITY);
+        facilityQueryFields.add(FacilityQueryField.FACILITY_NAME);
 
         FacilityPatientQuery facilityPatientQuery = new FacilityPatientQuery(
                 new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdańsk", "ul.Pilotów 23", "+48 123 345 334")),

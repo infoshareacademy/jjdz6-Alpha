@@ -8,7 +8,7 @@ public class FacilityPatientQuery extends FacilityQuery {
 
 	private Patient patient;
 	
-	public FacilityPatientQuery(Patient patient, List<FacilityQueryFields> queryFields) {
+	public FacilityPatientQuery(Patient patient, List<FacilityQueryField> queryFields) {
 		super(queryFields, "");
 		this.patient = patient;
 	}
@@ -17,6 +17,10 @@ public class FacilityPatientQuery extends FacilityQuery {
 		
 		return this.patient;
 	}
+
+
+
+
 
 	
 

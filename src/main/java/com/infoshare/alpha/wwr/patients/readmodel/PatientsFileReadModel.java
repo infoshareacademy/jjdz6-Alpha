@@ -33,7 +33,7 @@ public class PatientsFileReadModel implements DI {
 //
 //        List<Facility> facilitiesCollection;
 //
-//        PatientFacilityQueryFields field = query.getQueryField();
+//        PatientFacilityQueryFields field = query.getQueryFields();
 //
 //        switch (field) {
 //            case CITY:

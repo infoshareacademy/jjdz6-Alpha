@@ -5,9 +5,12 @@ import com.infoshare.alpha.wwr.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.facilities.query.FacilityPatientQuery;
+import com.infoshare.alpha.wwr.facilities.query.FacilityQueryField;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, DI {
 
@@ -59,5 +62,26 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
     			.filter(s->filterStreet.equals(s.getAddress().getStreet()))
     			.filter(s->filterPhone.equals(s.getAddress().getPhone()))
     			.collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Facility> getByPatient(FacilityPatientQuery query) {
+        //TODO : to implement
+        Facilities facilities = this.storage.load();
+
+        Stream facilitiesStrea = facilities.getFacilities().stream();
+
+        List<FacilityQueryField> facilityQueryFields = query.getQueryFields();
+//        if (facilityQueryFields.contains(FacilityQueryField.CITY)) {
+//            ((Stream) facilitiesStrea).filter();
+//        }
+
+        for (FacilityQueryField f : query.getQueryFields()) {
+
+        }
+
+
+        return null;
+
     }
 }

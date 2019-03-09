@@ -4,16 +4,16 @@ import java.util.List;
 
 public class FacilityQuery {
 
-    private List<FacilityQueryFields> queryFields;
+    private List<FacilityQueryField> queryFields;
 
     private String keyword;
 
-    public FacilityQuery(List<FacilityQueryFields> queryFields, String keyword) {
+    public FacilityQuery(List<FacilityQueryField> queryFields, String keyword) {
         this.queryFields = queryFields;
         this.keyword = keyword;
     }
 
-    public List<FacilityQueryFields> getQueryField() {
+    public List<FacilityQueryField> getQueryFields() {
         return queryFields;
     }
 

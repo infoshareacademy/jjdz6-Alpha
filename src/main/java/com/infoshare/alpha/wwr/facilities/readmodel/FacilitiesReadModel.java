@@ -44,4 +44,12 @@ public class FacilitiesReadModel implements DI {
     	return this.repository.getByCity(patientsCity);
     }
 
+    public List<Facility> getByPatient(FacilityPatientQuery query) {
+
+    	return this.repository.getByPatient(query);
+    }
+
+
+
+
 }
