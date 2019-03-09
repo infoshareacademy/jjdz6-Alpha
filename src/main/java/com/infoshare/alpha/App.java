@@ -14,7 +14,14 @@ public class App
     public static void main( String[] args )
     {
 
-       
+//        System.out.println(args[0]);
+//        System.out.println(args[1]);
+//        System.out.println(args[2]);
+        System.out.println(args[3]);
+//       for (String s : args) {
+//           System.out.println(s);
+//       }
+
 		/*
         1. install maven in your system ( ubuntu : sudo apt install mvn )
         2. build project go to project dir where is pom.xml file, then : mvn install
