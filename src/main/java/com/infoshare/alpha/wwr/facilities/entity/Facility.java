@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.facilities;
+package com.infoshare.alpha.wwr.facilities.entity;
 
 import com.infoshare.alpha.wwr.common.Address;
 
@@ -23,21 +23,24 @@ public class Facility {
     }
 
     public String getName() {
-        return name;
+ 
+    	return name;
     }
     
     public Address getAddress() {
-        return address;
+
+    	return address;
     }
 
     public UUID getId() {
-        return id;
+ 
+    	return id;
     }
 
     @Override
-    public String toString()
-    {
-    		return " Name : " + this.name + this.address.toString();
+    public String toString() {
+
+    	return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString();
     }
 
 }

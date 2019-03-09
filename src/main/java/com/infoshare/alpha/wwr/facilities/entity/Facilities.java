@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.facilities;
+package com.infoshare.alpha.wwr.facilities.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +11,17 @@ public class Facilities {
     }
 
     public void setFacilities(List<Facility> facilities) {
+
         this.facilities = facilities;
     }
 
     public List<Facility> getFacilities() {
+
         return facilities;
     }
 
     public void add(Facility facility) {
+
         this.facilities.add(facility);
     }
 

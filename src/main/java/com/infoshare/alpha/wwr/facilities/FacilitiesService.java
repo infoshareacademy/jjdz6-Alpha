@@ -1,26 +1,57 @@
 package com.infoshare.alpha.wwr.facilities;
 
-public class FacilitiesService {
+import com.infoshare.alpha.wwr.facilities.command.FacilityAddCommand;
+import com.infoshare.alpha.wwr.facilities.command.FacilityDeleteCommand;
+import com.infoshare.alpha.wwr.facilities.command.FacilityEditCommand;
+import com.infoshare.alpha.wwr.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.facilities.readmodel.FacilitiesReadModelDbRepository;
+import com.infoshare.alpha.wwr.facilities.repository.FacilitiesRepository;
+import com.infoshare.alpha.wwr.di.DI;
 
-    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository();
+public class FacilitiesService implements DI{
 
-    private FacilitiesRepository facilitiesDbRepository = new FacilitiesDbRepository();
+    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
+    private FacilitiesRepository facilitiesDbRepository;
 
-    public FacilitiesService() {
-
+    public FacilitiesService(
+    		FacilitiesRepository facilitiesDbRepository,
+    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
+    		) {
+    		this.facilitiesDbRepository = facilitiesDbRepository;
+    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;   		
     }
 
-    public void add(Facility facility) {
+    public void add(FacilityAddCommand command) {
+
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-        facilities.add(facility);
-        this.facilitiesReadModelDbRepository.persist();
+
+        if (facilities.getFacilities().contains(command.getFacility())) {
+            //TODO:  throw facility already exists!
+            System.out.println("Facility : " + command.getFacility().toString() + " exists !");
+            return;
+        }
+
+        facilities.add(command.getFacility());
+        this.facilitiesDbRepository.persist(facilities);
     }
 
-    public void delete(Facility facility) {
+    public void delete(FacilityDeleteCommand command) {
+
+        // funckcja do usuwania placówki
+        // 1. sprawdz czy taka placowka istnieje w kolekcji
+        // 2. jesli nie itnieje rzuc wyjatek
+        // 3. jesli istnieje to usun z kolekcji
+        // 4. zapisz kolekcje do repo
 
     }
 
-    public void edit(FacilityEditCommand facilityEditCommand) {
+    public void edit(FacilityEditCommand command) {
+
+        // funkcja do edycji placowki
+        // 1. sprawdz czy taka placowka istnieje w kolekcji
+        // 2. jesli nie itnieje rzuc wyjatek
+        // 3. jesli istnieje to podmien w kolekcji
+        // 4. zapisz cala kolekcje do repo
 
     }
 }

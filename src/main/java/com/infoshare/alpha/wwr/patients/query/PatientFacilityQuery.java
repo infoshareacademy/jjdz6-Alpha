@@ -1,4 +1,6 @@
-package com.infoshare.alpha.wwr.patients;
+package com.infoshare.alpha.wwr.patients.query;
+
+import com.infoshare.alpha.wwr.patients.entity.Patient;
 
 public class PatientFacilityQuery {
 
