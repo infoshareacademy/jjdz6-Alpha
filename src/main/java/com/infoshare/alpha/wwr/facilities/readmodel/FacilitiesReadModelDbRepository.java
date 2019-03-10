@@ -6,6 +6,7 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.facilities.query.FacilityPatientQuery;
+import com.infoshare.alpha.wwr.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.facilities.query.FacilityQueryField;
 
 import java.util.List;
@@ -25,11 +26,13 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
         }
     }
 
+    @Override
     public Facilities getAll() {
         
         return this.storage.load();
     }
 
+    @Override
     public List<Facility> getByName(String name) {
     	Facilities facilities = this.storage.load();
     	
@@ -39,6 +42,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Facility> getByCity(String city) {
     	Facilities facilities = this.storage.load();
     	
@@ -48,7 +52,8 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
                 .collect(Collectors.toList());
     }
     
-    
+
+    @Override
     public List<Facility> getByAddress(Address address) {
     	
     	Facilities facilities = this.storage.load();    	
@@ -91,5 +96,10 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
         }
 
         return filteredFacilities;
+    }
+
+    @Override
+    public List<Facility> getByQuery(FacilityQuery query) {
+        return null;
     }
 }

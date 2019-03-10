@@ -18,10 +18,4 @@ public class FacilityPatientQuery extends FacilityQuery {
 		return this.patient;
 	}
 
-
-
-
-
-	
-
 }
