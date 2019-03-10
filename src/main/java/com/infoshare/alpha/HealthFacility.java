@@ -1,6 +1,15 @@
 package com.infoshare.alpha;
 
 public class HealthFacility {
+
+    public String name;
+    public String street;
+    public String city;
+    public String postalCode;
+    public String telephoneNumber;
+    public boolean isPrivate;
+
+
     public static void healthFacilitySubMenu() {
         System.out.println();
         System.out.println("                   HEALTH FACILITY subMENU             ");
