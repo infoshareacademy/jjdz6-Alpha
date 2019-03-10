@@ -1,6 +1,12 @@
 package com.infoshare.alpha;
 
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 /**
  * Hello world!
  *
@@ -15,7 +21,14 @@ public class App
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
-       Menu.menu();
+        Gson gson = new Gson();
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(Paths.get("facilities.json")));
+        } catch (IOException e) {
+        }
+        HealthFacility[] healthFacilities = gson.fromJson(json, HealthFacility[].class);
+        Menu.menu();
        Menu.choiceOfMenuOption();
     }
 }
