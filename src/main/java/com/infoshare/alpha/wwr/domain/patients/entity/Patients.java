@@ -7,7 +7,6 @@ public class Patients {
 
 	private List<Patient> patients = new ArrayList<>();
 
-
 	public void setPatients(List<Patient> patients) {
 
 		this.patients = patients;
