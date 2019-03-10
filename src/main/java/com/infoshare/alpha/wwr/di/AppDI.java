@@ -2,12 +2,12 @@ package com.infoshare.alpha.wwr.di;
 
 import java.util.HashMap;
 
-import com.infoshare.alpha.wwr.facilities.repository.FacilitiesDbRepository;
-import com.infoshare.alpha.wwr.facilities.datastorage.FacilitiesJsonStorage;
-import com.infoshare.alpha.wwr.facilities.readmodel.FacilitiesReadModel;
-import com.infoshare.alpha.wwr.facilities.readmodel.FacilitiesReadModelDbRepository;
-import com.infoshare.alpha.wwr.facilities.repository.FacilitiesRepository;
-import com.infoshare.alpha.wwr.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesDbRepository;
+import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
+import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
+import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 
 // klasa ktora udostepnia wszystkie funkcjonalnosci aplikacji, serwisy i read modele z jednego miejsca
 // DI - dependency injection
