@@ -1,23 +1,18 @@
 package com.infoshare.alpha.wwr.facilities.query;
 
-import java.util.List;
+import java.util.Map;
 
 public class FacilityQuery {
 
-    private List<FacilityQueryField> queryFields;
+    private Map<FacilityQueryField, String> queryFields;
 
-    private String keyword;
 
-    public FacilityQuery(List<FacilityQueryField> queryFields, String keyword) {
+    public FacilityQuery(Map<FacilityQueryField, String> queryFields) {
         this.queryFields = queryFields;
-        this.keyword = keyword;
     }
 
-    public List<FacilityQueryField> getQueryFields() {
+    public Map<FacilityQueryField, String > getQueryFields() {
         return queryFields;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
 }

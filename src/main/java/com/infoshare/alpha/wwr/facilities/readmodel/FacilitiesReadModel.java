@@ -6,9 +6,10 @@ import com.infoshare.alpha.wwr.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.di.DI;
+import com.infoshare.alpha.wwr.facilities.query.FacilityQuery;
 
 /**
- * Class read data from facilities repository also eg. nearest patients facilities
+ * Class read data from facilities repository also eg. nearest patients facilities or by query
  * 
  * @author pkowerzanow
  *
@@ -48,6 +49,13 @@ public class FacilitiesReadModel implements DI {
 
     	return this.repository.getByPatient(query);
     }
+
+    public List<Facility> getByQuery(FacilityQuery query) {
+
+    	return this.repository.getByQuery(query);
+    }
+
+
 
 
 

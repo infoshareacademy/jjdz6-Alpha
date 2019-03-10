@@ -102,38 +102,37 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
 
     @Override
     public List<Facility> getByQuery(FacilityQuery query) {
-//        Map<FacilityQueryField, String> facilityQueryFields = query.getQueryFields();
-//
-//
-//        Facilities facilities = this.storage.load();
-//        List<Facility> filteredFacilities = facilities.getFacilities();
-//
-//        if (facilityQueryFields.containsKey(FacilityQueryField.FACILITY_NAME)) {
-//            String filterName = facilityQueryFields.get(FacilityQueryField.FACILITY_NAME);
-//            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterName.equals(s.getName()));
-//            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
-//        }
-//
-//        if (facilityQueryFields.containsKey(FacilityQueryField.CITY)) {
-//            String filterCity = facilityQueryFields.get(FacilityQueryField.CITY);
-//            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterCity.equals(s.getAddress().getCity()));
-//            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
-//        }
-//
-//        if (facilityQueryFields.containsKey(FacilityQueryField.STREET)) {
-//            String filterStreet = facilityQueryFields.get(FacilityQueryField.STREET);
-//            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterStreet.equals(s.getAddress().getStreet()));
-//            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
-//        }
-//
-//        if (facilityQueryFields.containsKey(FacilityQueryField.PHONE)) {
-//            String filterPhone = facilityQueryFields.get(FacilityQueryField.PHONE);
-//            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterPhone.equals(s.getAddress().getPhone()));
-//            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
-//        }
-//
-//        return filteredFacilities;
+        Map<FacilityQueryField, String> facilityQueryFields = query.getQueryFields();
 
-        return null;
+
+        Facilities facilities = this.storage.load();
+        List<Facility> filteredFacilities = facilities.getFacilities();
+
+        if (facilityQueryFields.containsKey(FacilityQueryField.FACILITY_NAME)) {
+            String filterName = facilityQueryFields.get(FacilityQueryField.FACILITY_NAME);
+            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterName.equals(s.getName()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
+        }
+
+        if (facilityQueryFields.containsKey(FacilityQueryField.CITY)) {
+            String filterCity = facilityQueryFields.get(FacilityQueryField.CITY);
+            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterCity.equals(s.getAddress().getCity()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
+        }
+
+        if (facilityQueryFields.containsKey(FacilityQueryField.STREET)) {
+            String filterStreet = facilityQueryFields.get(FacilityQueryField.STREET);
+            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterStreet.equals(s.getAddress().getStreet()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
+        }
+
+        if (facilityQueryFields.containsKey(FacilityQueryField.PHONE)) {
+            String filterPhone = facilityQueryFields.get(FacilityQueryField.PHONE);
+            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterPhone.equals(s.getAddress().getPhone()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
+        }
+
+        return filteredFacilities;
+
     }
 }
