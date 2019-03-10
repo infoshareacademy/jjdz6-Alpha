@@ -40,7 +40,7 @@ public class App
     		
     	//exampleGetAllFacilities();
         //exampleGetPatientFacilitiesByQuery();
-        exampleGetFacilitiesByQuery();
+        //exampleGetFacilitiesByQuery();
     }
      
     private static FacilitiesReadModel getFacilitiesReadModel() {
