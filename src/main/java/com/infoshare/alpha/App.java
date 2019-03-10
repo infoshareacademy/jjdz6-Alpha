@@ -29,9 +29,11 @@ public class App
     {
     		//String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
 
+        // Te parametry beda przesylane z args.
         String facilitiesRepoPath = "/home/pkowerzanow/dev/childDevelopmentSupportSystem/src/main/resources/facilities.json";
-    		String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
-    		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);  
+    	String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
+
+    	App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);
     		
     	//exampleGetAllFacilities();
         exampleGetPatientFacilitiesByQuery();
@@ -65,7 +67,6 @@ public class App
         f.setFacilities(facilities);
         f.printAllFacilities();
     }
-
 
 }
 
