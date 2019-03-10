@@ -34,16 +34,13 @@ public class App
     		App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);  
     		
     	//exampleGetAllFacilities();
-
         exampleGetPatientFacilitiesByQuery();
-
     }
      
     private static FacilitiesReadModel getFacilitiesReadModel() {
     	
     	return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
     }
-   
     
     public static void exampleGetAllFacilities() {
     	FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
@@ -55,77 +52,20 @@ public class App
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
 
         List <FacilityQueryField> facilityQueryFields = new ArrayList<>();
-        facilityQueryFields.add(FacilityQueryField.CITY);
-        facilityQueryFields.add(FacilityQueryField.FACILITY_NAME);
+//        facilityQueryFields.add(FacilityQueryField.CITY);
+        facilityQueryFields.add(FacilityQueryField.STREET);
 
         FacilityPatientQuery facilityPatientQuery = new FacilityPatientQuery(
-                new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdańsk", "ul.Pilotów 23", "+48 123 345 334")),
+                new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdańsk", "Kolejowa 23", "+48 123 345 334")),
                 facilityQueryFields
         );
 
-        List<Facility> facilities = facilitiesReadModel.getByPatientCity(facilityPatientQuery);
+        List<Facility> facilities = facilitiesReadModel.getByPatient(facilityPatientQuery);
         Facilities f = new Facilities();
         f.setFacilities(facilities);
         f.printAllFacilities();
     }
- 
-    
-    
-    
-    
-//    public static void generateUUIDS() {
-//    	for(int i = 0; i < 8; i++) {
-//    		System.out.println(UUID.randomUUID());
-//    	}  	
-//    }
 
-//    public static void testGetFacilitiesByQuery() {
-//
-//        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
-//                new FacilitiesReadModelDbRepository(),
-//                new PatientsRepository()
-//        );
-//
-//        PatientFacilityQuery patientFacilityQuery = new PatientFacilityQuery(
-//                new Patient(
-//                        "Adam",
-//                        "Kowalski",
-//                        new Pesel("12121203123"),
-//                        new Address("Gdynia", "Nowe ogrody 23/12", "+48 123 123 123")
-//                ),
-//                PatientFacilityQueryFields.FACILITY_NAME,
-//                "WWR4"
-//        );
-//
-//        List<Facility> facilities = patientFileReadModel.getPatientFacilitiesByQuery(patientFacilityQuery);
-//
-//        for(Facility i : facilities) {
-//            System.out.println(i.toString());
-//        }
-
-//    }
-
-
-//    public static void testGetNearestFacilities()
-//    {
-//        PatientsFileReadModel patientFileReadModel = new PatientsFileReadModel(
-//                new FacilitiesReadModelDbRepository(),
-//                new PatientsRepository()
-//        );
-//
-//        List<Facility> nextFacilities = patientFileReadModel.getNearestPatientFacilitiesByCity(
-//                new Patient(
-//                        "Adam",
-//                        "Kowalski",
-//                        new Pesel("12121203123"),
-//                        new Address("Gdynia", "Nowe ogrody 23/12", "+48 123 123 123")
-//                ));
-//
-//        for(Facility i : nextFacilities) {
-//            System.out.println(i.toString());
-//        }
-//
-//    }
 
 }
 

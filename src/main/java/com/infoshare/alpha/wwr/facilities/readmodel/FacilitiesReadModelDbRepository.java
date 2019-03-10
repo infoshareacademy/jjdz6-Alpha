@@ -66,22 +66,30 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
 
     @Override
     public List<Facility> getByPatient(FacilityPatientQuery query) {
-        //TODO : to implement
-        Facilities facilities = this.storage.load();
-
-        Stream facilitiesStrea = facilities.getFacilities().stream();
 
         List<FacilityQueryField> facilityQueryFields = query.getQueryFields();
-//        if (facilityQueryFields.contains(FacilityQueryField.CITY)) {
-//            ((Stream) facilitiesStrea).filter();
-//        }
 
-        for (FacilityQueryField f : query.getQueryFields()) {
+        Facilities facilities = this.storage.load();
+        List<Facility> filteredFacilities = facilities.getFacilities();
 
+        if (facilityQueryFields.contains(FacilityQueryField.CITY)) {
+            String filterCity = query.getPatient().getAddress().getCity();
+            Stream facilitiesStream = facilities.getFacilities().stream().filter(s->filterCity.equals(s.getAddress().getCity()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
+        if (facilityQueryFields.contains(FacilityQueryField.STREET)) {
+            String filterStreet = query.getPatient().getAddress().getStreet();
+            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterStreet.equals(s.getAddress().getStreet()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
+        }
 
-        return null;
+        if (facilityQueryFields.contains(FacilityQueryField.PHONE)) {
+            String filterPhone = query.getPatient().getAddress().getPhone();
+            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterPhone.equals(s.getAddress().getPhone()));
+            filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
+        }
 
+        return filteredFacilities;
     }
 }
