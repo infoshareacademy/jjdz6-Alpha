@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.domain.patients.readmodel;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.domain.patients.query.PatientFacilityQuery;
+import com.infoshare.alpha.wwr.domain.patients.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class PatientsReadModelDbRepository {
         return patients;
     }
 
-    public Patient getPatientByQuery(PatientFacilityQuery patientQuery) {
+    public Patient getPatientByQuery(FacilityQuery patientQuery) {
 
         return new Patient();
     }

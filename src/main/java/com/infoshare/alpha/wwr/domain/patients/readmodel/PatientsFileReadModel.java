@@ -3,7 +3,7 @@ package com.infoshare.alpha.wwr.domain.patients.readmodel;
 //import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.di.DI;
 //import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
-//import com.infoshare.alpha.wwr.domain.patients.query.PatientFacilityQuery;
+//import com.infoshare.alpha.wwr.domain.patients.query.FacilityQuery;
 //import com.infoshare.alpha.wwr.domain.patients.query.PatientFacilityQueryFields;
 //import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
@@ -29,7 +29,7 @@ public class PatientsFileReadModel implements DI {
 //    }
 //
 //    @Override
-//    public List<Facility> getPatientFacilitiesByQuery(PatientFacilityQuery query) {
+//    public List<Facility> getPatientFacilitiesByQuery(FacilityQuery query) {
 //
 //        List<Facility> facilitiesCollection;
 //

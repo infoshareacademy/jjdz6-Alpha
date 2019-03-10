@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.domain.patients.query;
 
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
-public class PatientFacilityQuery {
+public class FacilityQuery {
 
     private Patient patient;
 
@@ -10,7 +10,7 @@ public class PatientFacilityQuery {
 
     private String keyword;
 
-    public PatientFacilityQuery(Patient patient, PatientFacilityQueryFields queryField, String keyword) {
+    public FacilityQuery(Patient patient, PatientFacilityQueryFields queryField, String keyword) {
         this.patient = patient;
         this.queryField = queryField;
         this.keyword = keyword;
