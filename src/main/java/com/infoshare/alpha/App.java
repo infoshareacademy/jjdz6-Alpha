@@ -1,5 +1,6 @@
 package com.infoshare.alpha;
 
+import static com.infoshare.alpha.HealthFacility.deserializeHealthFacility;
 import static com.infoshare.alpha.HealthFacility.serializeHealthFacility;
 
 
@@ -15,6 +16,7 @@ public class App {
         */
 
         serializeHealthFacility();
+        deserializeHealthFacility();
 
         Menu.menu();
         Menu.choiceOfMenuOption();

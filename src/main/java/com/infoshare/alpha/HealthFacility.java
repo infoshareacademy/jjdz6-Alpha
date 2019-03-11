@@ -42,7 +42,7 @@ public class HealthFacility {
                 "Gdynia",
                 "81-425",
                 "58 622-07-48",
-                true
+                false
         );
 
         Gson gson1 = new Gson();
@@ -54,7 +54,7 @@ public class HealthFacility {
                 "Gdynia",
                 "81-377",
                 "58 621-74-40",
-                true
+                false
         );
 
         Gson gson2 = new Gson();
@@ -66,12 +66,28 @@ public class HealthFacility {
                 "Gdańsk",
                 "80-371",
                 "58 553-41-36",
-                true
+                false
         );
 
         Gson gson3 = new Gson();
         String json3 = gson3.toJson(healthFacility3);
     }
+    public static void deserializeHealthFacility() {
+        String userJson1 = "{'name': 'NZOZ Ośrodek Wczesnej Interwencji','street': 'Harcerska 4', 'city': 'Gdynia','postalCode': '81-425','telephoneNumber': '58 622-07-48','isPrivate': false}";
 
+        Gson gson1 = new Gson();
+        HealthFacility healthFacility1 = gson1.fromJson(userJson1, HealthFacility.class);
+
+        String userJson2 = "{'name': 'NZOZ Ośrodek Wczesnej Interwencji, filia nr 1','street': 'Necla 11', 'city': 'Gdynia','postalCode': '81-377','telephoneNumber': '58 621-74-40','isPrivate': false}";
+
+        Gson gson2 = new Gson();
+        HealthFacility healthFacility2 = gson2.fromJson(userJson2, HealthFacility.class);
+
+        String userJson3 = "{'name': 'Ośrodek Wczesnej Interwencji i Wspomagania Rozwoju w Gdańsku','street': 'Jagiellońska 11', 'city': 'Gdańsk','postalCode': '80-371','telephoneNumber': '58 553-41-36','isPrivate': false}";
+
+        Gson gson3 = new Gson();
+        HealthFacility healthFacility3 = gson3.fromJson(userJson3, HealthFacility.class);
+        
+    }
 
 }
