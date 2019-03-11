@@ -22,7 +22,7 @@ public class Patients {
 		this.patients.add(patient);
 	}
 
-	public void printAllFacilities() {
+	public void printAllPatients() {
 		for (Patient patient : this.patients) {
 			System.out.println(patient.toString());
 		}

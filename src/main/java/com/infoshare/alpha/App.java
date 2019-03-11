@@ -10,6 +10,8 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class App 
 {
     public static AppDI di;
+    
     public static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
         App.di = new AppDI(facilitiesFilePath, patientsFilePath);
     }
@@ -30,22 +33,32 @@ public class App
 
     public static void main( String[] args )
     {
-    		//String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
+    	String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
+    	String patientsRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/patients.json";
 
         // Te parametry beda przesylane z args.
-        String facilitiesRepoPath = "/home/pkowerzanow/dev/childDevelopmentSupportSystem/src/main/resources/facilities.json";
-    	String patientsRepoFilePath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
+        //String facilitiesRepoPath = "/home/pkowerzanow/dev/childDevelopmentSupportSystem/src/main/resources/facilities.json";
+    	//String patientsRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
 
-    	App.initializeDi(facilitiesRepoPath, patientsRepoFilePath);
+    	App.initializeDi(facilitiesRepoPath, patientsRepoPath);
     		
     	//exampleGetAllFacilities();
         //exampleGetPatientFacilitiesByQuery();
         //exampleGetFacilitiesByQuery();
+    	exampleGetAllPatients();
     }
-     
+    
+         
     private static FacilitiesReadModel getFacilitiesReadModel() {
     	
     	return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
+    }
+    
+    public static void exampleGetAllPatients() {
+    	PatientsReadModelDbRepository patientsReadModelDbRepository = (PatientsReadModelDbRepository) di.getService(PatientsReadModelDbRepository.class.toString());
+    
+    	Patients patients = patientsReadModelDbRepository.getAll();
+    	patients.printAllPatients();
     }
     
     public static void exampleGetAllFacilities() {

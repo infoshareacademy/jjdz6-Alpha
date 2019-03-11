@@ -26,4 +26,10 @@ public class Patient extends User {
     public Pesel getPesel() {
     		return this.pesel;
     }
+    
+    @Override
+    public String toString() {
+
+    	return "Name: " + this.getName() + " Surname : " + this.getSurname() + this.address.toString() + this.pesel;
+    }
 }
