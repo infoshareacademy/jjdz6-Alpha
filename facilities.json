@@ -1,13 +1,12 @@
 [
   {
-"name": "NZOZ Ośrodek Wczesnej Interwencji",
+    "name": "NZOZ Ośrodek Wczesnej Interwencji",
     "street": "Harcerska 4",
     "city": "Gdynia",
     "postalCode": "81-425",
     "telephoneNumber": "58 622-07-48",
     "isPrivate": true
   },
-
   {
     "name": "NZOZ Ośrodek Wczesnej Interwencji, filia nr 1",
     "street": "Necla 11",
@@ -16,7 +15,6 @@
     "telephoneNumber": "58 621-74-40",
     "isPrivate": true
   },
-
   {
     "name": "Ośrodek Wczesnej Interwencji i Wspomagania Rozwoju w Gdańsku",
     "street": "Jagiellońska 11",
@@ -25,5 +23,4 @@
     "telephoneNumber": "58 553-41-36",
     "isPrivate": true
   }
-
 ]
