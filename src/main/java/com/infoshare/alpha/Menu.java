@@ -1,10 +1,5 @@
 package com.infoshare.alpha;
 
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Menu {
@@ -23,7 +18,6 @@ public class Menu {
 
     private int getConsoleInput() {
         Scanner scanner = new Scanner(System.in);
-
         return scanner.nextInt();
     }
 
