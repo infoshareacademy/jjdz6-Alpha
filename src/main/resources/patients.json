@@ -1,0 +1,34 @@
+{
+  "patients": [
+    {
+      "name": "imie-test",
+      "surname": "nazwisko-test",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Nowe Ogroady 23",
+        "phone": "+48 564 123 123"
+      },
+      "pesel": { "pesel" : "87101612345"}
+    },
+    {
+      "name": "imie-test",
+      "surname": "nazwisko-test",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Nowe Ogroady 23",
+        "phone": "+48 564 123 123"
+      },
+      "pesel": { "pesel" : "87101612345"}
+    },
+        {
+      "name": "imie-test",
+      "surname": "nazwisko-test",
+      "address": {
+        "city": "Gdańsk",
+        "street": "Nowe Ogroady 23",
+        "phone": "+48 564 123 123"
+      },
+      "pesel": { "pesel" : "87101612345"}
+    }
+  ]
+}
