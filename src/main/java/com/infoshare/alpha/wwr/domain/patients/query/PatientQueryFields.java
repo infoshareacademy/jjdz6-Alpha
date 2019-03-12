@@ -1,13 +1,17 @@
 package com.infoshare.alpha.wwr.domain.patients.query;
 
-public enum PatientFacilityQueryFields {
+public enum PatientQueryFields {
 
+    NAME("name"),
+    SURNAME("surname"),
+    PESEL("pesel"),
     CITY("city"),
-    FACILITY_NAME("facility_name");
+    STREET("street"),
+    PHONE("phone");
 
     private String allowedField;
 
-    PatientFacilityQueryFields(String allowedField) {
+    PatientQueryFields(String allowedField) {
         this.allowedField = allowedField;
     }
 

@@ -4,23 +4,23 @@ public class Pesel {
 
     private String pesel;
 
-    public Pesel(String pesel) {
-        // mozna dorobic walidacje
+    public Pesel(String pesel) throws PeselException {
         if (pesel.length() != 11) {
-            // rzuc wyjatek
-            System.out.println("Pesel niepoprawny");
+        	
+        	throw PeselException.validationError();
         }
         this.pesel = pesel;
     }
 
     public String getPesel() {
-
+    	
         return pesel;
     }
 
     @Override
     public String toString() {
-        return "Pesel{" +
+    	
+        return " Pesel{ " +
                 "pesel='" + pesel + '\'' +
                 '}';
     }
