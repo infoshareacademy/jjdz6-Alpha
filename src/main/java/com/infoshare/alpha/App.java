@@ -23,9 +23,9 @@ import java.util.Map;
  */
 public class App 
 {
-    public static AppDI di;
+    private static AppDI di;
     
-    public static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
+    private static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
         App.di = new AppDI(facilitiesFilePath, patientsFilePath);
     }
     
@@ -35,18 +35,51 @@ public class App
     {
     	String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
     	String patientsRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/patients.json";
-
         // Te parametry beda przesylane z args.
         //String facilitiesRepoPath = "/home/pkowerzanow/dev/childDevelopmentSupportSystem/src/main/resources/facilities.json";
     	//String patientsRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
-
+    	
+    	
     	App.initializeDi(facilitiesRepoPath, patientsRepoPath);
-    		
+    	App.wwrPlay();
+
     	//exampleGetAllFacilities();
         //exampleGetPatientFacilitiesByQuery();
         //exampleGetFacilitiesByQuery();
-    	exampleGetAllPatients();
+    	//exampleGetAllPatients();
     }
+    
+    
+    // ------- Func App -------------------------
+    private static void wwrPlay() {
+    	
+    	// funkcja ktora ma za zadanie wysietlac menu , podmenu 
+    	// zbierac informacje o wybranym menu oraz submenu oraz uruchamiac opcje systemu
+    	
+    	Menu.printMainMenu(); // zajawka wyboru opcji programu
+    	/*
+    	switch (selectedOption) {
+    	case PATIENT_SUBMENU: 
+    			printPatientsMenu();
+    			break;
+    	case FACILITY_MENU():
+    			printFacilitiesMenu();
+    	        // zbierz informacje 
+    	        break;
+    	}
+    	*/
+    }
+    
+    
+    private static void addPatient() {
+    	System.out.println("Add patient: ");
+    	// TODO: print patient sub menu 
+    	// 1. add menu for adding patient
+    }
+    
+    
+    
+    // ------- DI usage examples -----------------
     
          
     private static FacilitiesReadModel getFacilitiesReadModel() {
