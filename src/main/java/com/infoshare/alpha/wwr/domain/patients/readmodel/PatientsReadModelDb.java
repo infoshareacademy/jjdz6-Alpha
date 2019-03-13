@@ -7,6 +7,5 @@ public interface PatientsReadModelDb {
 	
 	public Patients getAll();
 	
-	public Patients getByQuery(PatientQuery patientQuery);
-	
+	public Patients getByQuery(PatientQuery patientQuery);	
 }

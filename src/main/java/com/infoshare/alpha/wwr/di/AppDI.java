@@ -7,7 +7,9 @@ import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStora
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
+import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
@@ -48,10 +50,14 @@ public final class AppDI {
 		PatientsJsonStorage patientsJsonStorage = new PatientsJsonStorage(this.patientsFilePath);
 		PatientsDbRepository patientsDbRepository = new PatientsDbRepository(patientsJsonStorage);
 		PatientsReadModelDbRepository patientsDbReadModelRepository = new PatientsReadModelDbRepository(patientsJsonStorage);
+		PatientsReadModel patientsReadModel = new PatientsReadModel(patientsDbReadModelRepository);
+		PatientsService patientsService = new PatientsService(patientsDbReadModelRepository, patientsDbRepository);
 		
 		this.di.put(PatientsJsonStorage.class.toString(), patientsJsonStorage);
 		this.di.put(PatientsRepository.class.toString(), patientsDbRepository);
 		this.di.put(PatientsReadModelDbRepository.class.toString(), patientsDbReadModelRepository);
+		this.di.put(PatientsReadModel.class.getName(), patientsReadModel);
+		this.di.put(PatientsService.class.getName(), patientsService);
 	}
 		
 	public DI getService(String name) {

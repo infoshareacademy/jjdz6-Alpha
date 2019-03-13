@@ -16,5 +16,4 @@ public class PatientsDbRepository implements PatientsRepository, DI {
     public void persist(Patients patients) {
         this.storage.save(patients);
     }
-
 }
