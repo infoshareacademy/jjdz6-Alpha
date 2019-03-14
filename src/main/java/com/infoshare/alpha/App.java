@@ -12,7 +12,9 @@ import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
+import com.infoshare.alpha.wwr.utils.Menu;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,20 +58,26 @@ public class App
     	// funkcja ktora ma za zadanie wysietlac menu , podmenu 
     	// zbierac informacje o wybranym menu oraz submenu oraz uruchamiac opcje systemu
     	
-    	Menu.printMainMenu(); // zajawka wyboru opcji programu
-    	/*
-    	switch (selectedOption) {
-    	case PATIENT_SUBMENU: 
-    			printPatientsMenu();
-    			break;
-    	case FACILITY_MENU():
-    			printFacilitiesMenu();
-    	        // zbierz informacje 
-    	        break;
+    	boolean programEnd = false;
+    	String mainMenuOption = null;
+    	Menu.printMainMenu();
+    	
+    	while(!programEnd) {
+    		
+    		mainMenuOption = Menu.getConsoleStringInput();
+    		switch (mainMenuOption) {
+    			case "p": 
+    				Menu.printPatientMenu();
+    				break;
+    			case "f":
+    				Menu.printFacilitiesMenu();
+    				break;
+    			case "x":
+    				programEnd = true;
+    		}
     	}
-    	*/
+    	System.out.println("Bye.");
     }
-    
     
     private static void addPatient() {
     	System.out.println("Add patient: ");
