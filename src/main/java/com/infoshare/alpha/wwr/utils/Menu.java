@@ -35,6 +35,7 @@ public class Menu {
 		System.out.println("5. Delete patient");
 		
 		System.out.println("6. Add patiients from file");
+		System.out.println("0. -> EXIT TO MAIN MENU");
 	}
 
 	public static void printFacilitiesMenu() {
@@ -48,6 +49,7 @@ public class Menu {
 		System.out.println("5. Delete facility");
 		
 		System.out.println("6. Add facilities from file");
+		System.out.println("0. -> EXIT TO MAIN MENU");
 		
 	}
 	
@@ -59,5 +61,26 @@ public class Menu {
 	public static String getConsoleStringInput(){
 	        Scanner scanner = new Scanner(System.in);
 	        return scanner.nextLine();
+	}
+	
+	public final static void clearConsole()
+	{
+	    try
+	    {
+	        final String os = System.getProperty("os.name");
+
+	        if (os.contains("Windows"))
+	        {
+	            Runtime.getRuntime().exec("cls");
+	        }
+	        else
+	        {
+	            Runtime.getRuntime().exec("clear");
+	        }
 	    }
+	    catch (final Exception e)
+	    {
+	        //  Handle any exceptions.
+	    }
+	}
 }

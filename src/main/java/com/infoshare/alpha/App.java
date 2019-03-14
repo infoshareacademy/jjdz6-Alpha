@@ -60,17 +60,22 @@ public class App
     	
     	boolean programEnd = false;
     	String mainMenuOption = null;
+    	
     	Menu.printMainMenu();
     	
     	while(!programEnd) {
-    		
+    		Menu.clearConsole();
     		mainMenuOption = Menu.getConsoleStringInput();
     		switch (mainMenuOption) {
     			case "p": 
-    				Menu.printPatientMenu();
+    				App.patientOption();
+    				Menu.clearConsole();
+    				Menu.printMainMenu();
     				break;
     			case "f":
-    				Menu.printFacilitiesMenu();
+    				App.facilityOption();
+    				Menu.clearConsole();
+    				Menu.printMainMenu();
     				break;
     			case "x":
     				programEnd = true;
@@ -79,10 +84,77 @@ public class App
     	System.out.println("Bye.");
     }
     
+    private static void patientOption() {
+    	boolean patientMenuEnd = false;
+    	int patientMenuOption;
+    	
+    	Menu.printPatientMenu();
+    	
+    	while(!patientMenuEnd) {
+    		patientMenuOption = Menu.getConsoleNumberInput();
+    		
+    		switch(patientMenuOption) {
+    		case 1: 
+    			System.out.println("Add patient.");
+    			App.addPatient();
+    			break;
+    		case 2:
+    			System.out.println("Edit patient");
+    			break;
+    		case 0:
+    			patientMenuEnd = true;
+    			break;
+    		}
+    	}
+    }
+    
+    private static void facilityOption() {
+    	boolean facilityMenuEnd = false;
+    	
+    	int facilityMenuOption;
+    	
+    	Menu.printFacilitiesMenu();
+    	
+    	while(!facilityMenuEnd) {
+    		facilityMenuOption = Menu.getConsoleNumberInput();
+    		switch(facilityMenuOption) {
+    		case 1:
+    			System.out.println("Add facility");
+    			break;
+    		case 2:
+    			System.out.println("Edit facility");
+    			break;
+    		case 0:
+    			facilityMenuEnd = true;
+    			break;
+    		}
+    	}
+    }
+    
+    
     private static void addPatient() {
+    	// assemby patient data
     	System.out.println("Add patient: ");
-    	// TODO: print patient sub menu 
-    	// 1. add menu for adding patient
+    	System.out.println("Enter patient name: ");
+    	String name = Menu.getConsoleStringInput();
+    	
+    	System.out.println("Enter patient surname: ");
+    	String surname = Menu.getConsoleStringInput();
+    	
+    	
+    	// build add command : 
+    	
+    	// use patient service from di 
+    	// add patient 
+    	
+    	// print confirmation for user
+
+    }
+    
+    private Address void assemblyAddressData() {
+    	
+    	
+    	return new Address();
     }
     
     
