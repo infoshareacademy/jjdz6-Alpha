@@ -41,10 +41,10 @@ public final class AppDI {
 		FacilitiesReadModel facilitiesReadModel = new FacilitiesReadModel(facilitiesReadModelDbRepository);
 		FacilitiesRepository facilitiesRepository = new FacilitiesDbRepository(facilitiesJsonStorage);
 		
-		this.di.put(FacilitiesJsonStorage.class.toString(), facilitiesJsonStorage);
-		this.di.put(FacilitiesReadModelDbRepository.class.toString(), facilitiesReadModelDbRepository);
-		this.di.put(FacilitiesReadModel.class.toString(), facilitiesReadModel);
-		this.di.put(FacilitiesService.class.toString(), new FacilitiesService(facilitiesRepository, facilitiesReadModelDbRepository));
+		this.di.put(FacilitiesJsonStorage.class.getName(), facilitiesJsonStorage);
+		this.di.put(FacilitiesReadModelDbRepository.class.getName(), facilitiesReadModelDbRepository);
+		this.di.put(FacilitiesReadModel.class.getName(), facilitiesReadModel);
+		this.di.put(FacilitiesService.class.getName(), new FacilitiesService(facilitiesRepository, facilitiesReadModelDbRepository));
 	
 	
 		PatientsJsonStorage patientsJsonStorage = new PatientsJsonStorage(this.patientsFilePath);
@@ -53,9 +53,9 @@ public final class AppDI {
 		PatientsReadModel patientsReadModel = new PatientsReadModel(patientsDbReadModelRepository);
 		PatientsService patientsService = new PatientsService(patientsDbReadModelRepository, patientsDbRepository);
 		
-		this.di.put(PatientsJsonStorage.class.toString(), patientsJsonStorage);
-		this.di.put(PatientsRepository.class.toString(), patientsDbRepository);
-		this.di.put(PatientsReadModelDbRepository.class.toString(), patientsDbReadModelRepository);
+		this.di.put(PatientsJsonStorage.class.getName(), patientsJsonStorage);
+		this.di.put(PatientsRepository.class.getName(), patientsDbRepository);
+		this.di.put(PatientsReadModelDbRepository.class.getName(), patientsDbReadModelRepository);
 		this.di.put(PatientsReadModel.class.getName(), patientsReadModel);
 		this.di.put(PatientsService.class.getName(), patientsService);
 	}

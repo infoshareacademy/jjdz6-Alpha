@@ -1,34 +1,28 @@
 {
   "patients": [
     {
-      "name": "imie-test",
-      "surname": "nazwisko-test",
       "address": {
-        "city": "Gdańsk",
-        "street": "Nowe Ogroady 23",
-        "phone": "+48 564 123 123"
+        "city": "Gdansk",
+        "street": "Pilotow ",
+        "phone": "444 444 444"
       },
-      "pesel": { "pesel" : "87101612345"}
+      "pesel": {
+        "pesel": "84101714435"
+      },
+      "name": "Piotr",
+      "surname": "Kowerzanow"
     },
     {
-      "name": "imie-test",
-      "surname": "nazwisko-test",
       "address": {
-        "city": "Gdańsk",
-        "street": "Nowe Ogroady 23",
-        "phone": "+48 564 123 123"
+        "city": "Gdansk",
+        "street": "pppppp",
+        "phone": "444555666"
       },
-      "pesel": { "pesel" : "87101612345"}
-    },
-        {
-      "name": "imie-test",
-      "surname": "nazwisko-test",
-      "address": {
-        "city": "Gdańsk",
-        "street": "Nowe Ogroady 23",
-        "phone": "+48 564 123 123"
+      "pesel": {
+        "pesel": "84101733444"
       },
-      "pesel": { "pesel" : "87101612345"}
+      "name": "test",
+      "surname": "test"
     }
   ]
 }

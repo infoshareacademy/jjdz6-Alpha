@@ -2,6 +2,7 @@ package com.infoshare.alpha.wwr.domain.patients;
 
 import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
 
@@ -21,7 +22,14 @@ public class PatientsService implements DI{
 	}
 	
 	public void add(Patient patient) {
-		//TODO: to implement
+
+		Patients patients = this.patientsReadModelDbRepository.getAll();
+
+		patients.add(patient);
+
+		this.patientsRepository.persist(patients);
+
+		System.out.println(patient.toString() + " added. ");
 	}
 	
 	public void edit(Patient patient) {

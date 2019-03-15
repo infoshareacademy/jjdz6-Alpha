@@ -29,12 +29,13 @@ public class Menu {
 		
 		System.out.println("1. Show all patients");
 		System.out.println("2. Find patient");
+		//System.out.println("3. Find patient facilities.");
 		
 		System.out.println("3. Add patient");
 		System.out.println("4. Edit patient");
 		System.out.println("5. Delete patient");
 		
-		System.out.println("6. Add patiients from file");
+		System.out.println("6. Add patients from file");
 		System.out.println("0. -> EXIT TO MAIN MENU");
 	}
 

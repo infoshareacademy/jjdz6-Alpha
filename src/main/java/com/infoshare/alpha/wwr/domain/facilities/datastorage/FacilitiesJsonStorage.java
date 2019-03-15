@@ -18,26 +18,22 @@ public class FacilitiesJsonStorage implements DI {
 	}
 	
 	public Facilities load() {
-        try {
-            Reader reader = new FileReader(this.facilitiesRepoFilePath);
+        try (Reader reader = new FileReader(this.facilitiesRepoFilePath)) {
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
 
             return facilities == null ? new Facilities() : facilities;
-        } catch (FileNotFoundException e) {
-            System.out.println("File " + this.facilitiesRepoFilePath + " load error");
-            System.out.println(e.toString());
-        }
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
         
 		return new Facilities();
 	}
 		
 	public void save(Facilities facilities) {
-		try {
-			Writer writer = new FileWriter(this.facilitiesRepoFilePath);
+		try (Writer writer = new FileWriter(this.facilitiesRepoFilePath)){
 			this.gson.toJson(facilities, writer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
 }
