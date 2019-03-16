@@ -3,6 +3,7 @@ package com.infoshare.alpha.wwr.utils;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
 public class InputForms {
@@ -20,6 +21,14 @@ public class InputForms {
         Address address = InputForms.getAddressFromKeyboard();
 
         return new Patient(name, surname, pesel, address);
+    }
+
+    public static Facility getFacilityFromKeyboard() {
+        System.out.println("Enter facility name: ");
+        String name = Menu.getConsoleStringInput();
+        Address address = InputForms.getAddressFromKeyboard();
+
+        return new Facility(name, address);
     }
 
     public static Address getAddressFromKeyboard() {
