@@ -84,4 +84,15 @@ public class Menu {
 	        //  Handle any exceptions.
 	    }
 	}
+
+	public static void shouldContinue() {
+		boolean endContinue = false;
+		while(!endContinue) {
+			System.out.println("Press c to continue ...");
+			String c = Menu.getConsoleStringInput();
+			if (c.equals("c")) {
+				endContinue = true;
+			}
+		}
+	}
 }

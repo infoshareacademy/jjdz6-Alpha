@@ -28,26 +28,26 @@ public class App
 {
     private static AppDI di;
     
-    private static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
-        App.di = new AppDI(facilitiesFilePath, patientsFilePath);
-    }
-
     public static void main( String[] args )
     {
-    	// Te parametry beda przesylane z args.
-//    	String facilitiesRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/facilities.json";
-//    	String patientsRepoPath = "/Users/pkowerzanow/dev/jjdz6-Alpha/src/main/resources/patients.json";
+    	String facilitiesRepoPath = args[0];
+    	String patientsRepoPath = args[1];
 
-        String facilitiesRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/facilities.json";
-    	String patientsRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
-    	
-    	
+//    	String facilitiesRepoPath = "/home/pkowerzanow/dev/childDevelopmentSupportSystem/src/main/resources/facilities.json";
+//    	String patientsRepoPath = "/home/pkowerzanow/dev/childDevelopmentSupportSystem/src/main/resources/patients.json";
+
+//        String facilitiesRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/facilities.json";
+//    	String patientsRepoPath = "/home/piotr/dev/infoshare/jjdz6-Alpha/src/main/resources/patients.json";
+
+
     	App.initializeDi(facilitiesRepoPath, patientsRepoPath);
     	App.wwrPlay();
-
     }
 
-    // ------- Func App -------------------------
+	private static void initializeDi(String facilitiesFilePath, String patientsFilePath) {
+		App.di = new AppDI(facilitiesFilePath, patientsFilePath);
+	}
+
     private static void wwrPlay() {
     	boolean programEnd = false;
     	String mainMenuOption;
@@ -96,12 +96,14 @@ public class App
 				switch(patientMenuOption) {
 					case 1:
 						App.showAllPatients();
+						Menu.shouldContinue();
 						Menu.clearConsole();
 						Menu.printPatientMenu();
 						break;
 					case 3:
 						System.out.println("Add patient.");
 						App.addPatient();
+						Menu.shouldContinue();
 						Menu.clearConsole();
 						Menu.printPatientMenu();
 						break;
@@ -109,6 +111,7 @@ public class App
 						System.out.println("Edit patient");
 						Menu.clearConsole();
 						Menu.printPatientMenu();
+						Menu.shouldContinue();
 						break;
 					case 0:
 						patientMenuEnd = true;
@@ -137,10 +140,11 @@ public class App
 					case 1:
 						System.out.println("Show all facilities:");
 						showAllFacilities();
+						Menu.shouldContinue();
 						Menu.printFacilitiesMenu();
 						break;
 					case 3:
-						System.out.println("Add facility");
+						System.out.println("Add facility -> not implement yet");
 						Menu.printFacilitiesMenu();
 						break;
 					case 4:
