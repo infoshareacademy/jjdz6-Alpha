@@ -23,6 +23,18 @@
       },
       "name": "test",
       "surname": "test"
+    },
+    {
+      "address": {
+        "city": "Gdańsk",
+        "street": "Grunwaldzka",
+        "phone": "444 444 444"
+      },
+      "pesel": {
+        "pesel": "85101112123"
+      },
+      "name": "Kroko",
+      "surname": "Kroko 222"
     }
   ]
 }

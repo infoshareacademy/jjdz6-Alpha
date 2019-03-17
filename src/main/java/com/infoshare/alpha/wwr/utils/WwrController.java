@@ -16,7 +16,6 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
-
 import java.util.*;
 
 public class WwrController {
@@ -74,20 +73,20 @@ public class WwrController {
 
                 switch(patientMenuOption) {
                     case 1:
-                        showAllPatients();
+                        this.showAllPatients();
                         Menu.shouldContinue();
                         Menu.clearConsole();
                         Menu.printPatientMenu();
                         break;
                     case 3:
-                        System.out.println("Add patient.");
-                        addPatient();
+                        System.out.println("Add patient. -> not implemented yet");
+                        this.addPatient();
                         Menu.shouldContinue();
                         Menu.clearConsole();
                         Menu.printPatientMenu();
                         break;
                     case 4:
-                        System.out.println("Edit patient");
+                        System.out.println("Edit patient -> not implemented yet");
                         Menu.clearConsole();
                         Menu.printPatientMenu();
                         Menu.shouldContinue();
@@ -127,7 +126,7 @@ public class WwrController {
                         Menu.printFacilitiesMenu();
                         break;
                     case 4:
-                        System.out.println("Edit facility");
+                        System.out.println("Edit facility -> not implemented yet");
                         Menu.printFacilitiesMenu();
                         break;
                     case 0:
