@@ -13,6 +13,7 @@ import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
+import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
@@ -79,13 +80,19 @@ public class WwrController {
                         Menu.printPatientMenu();
                         break;
                     case 3:
+                        this.findPatientsFacilities();
+                        Menu.shouldContinue();
+                        Menu.clearConsole();
+                        Menu.printPatientMenu();
+                        break;
+                    case 4:
                         System.out.println("Add patient. -> not implemented yet");
                         this.addPatient();
                         Menu.shouldContinue();
                         Menu.clearConsole();
                         Menu.printPatientMenu();
                         break;
-                    case 4:
+                    case 5:
                         System.out.println("Edit patient -> not implemented yet");
                         Menu.clearConsole();
                         Menu.printPatientMenu();
@@ -170,6 +177,44 @@ public class WwrController {
         facilitiesReadModel.getAll().printAllFacilities();
         System.out.println("--------------------------------------------------------------------------------------");
 
+    }
+
+    private void findPatientsFacilities() {
+        PatientsReadModel patientsReadModel = (PatientsReadModel) di.getService(PatientsReadModel.class.getName());
+        FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName());
+
+        Patients patients = patientsReadModel.getAll();
+        List<Patient> patientList = patients.getPatients();
+
+        System.out.println("Select patient id: ");
+        Map<Integer, Patient> patientMap = new HashMap<>();
+        Integer ids = 0;
+        for(Patient patient : patientList) {
+            System.out.println(" [ " + ids + " ] " + patient.getName() + " " + patient.getSurname() + " " + patient.getPesel() + " " + patient.getAddress());
+            patientMap.put(ids, patient);
+            ids++;
+        }
+
+        int selectedPatientId = Menu.getConsoleNumberInput();
+        Patient selectedPatient = patientMap.get(selectedPatientId);
+
+        List<FacilityQueryField> facilityQueryFields = new ArrayList<>();
+        facilityQueryFields.add(FacilityQueryField.CITY);
+        List <Facility> facilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
+
+
+        System.out.println("-------------------------------------------------");
+        System.out.println("Patients nearest facilities");
+        System.out.println("-------------------------------------------------");
+        if (facilities.size() > 0) {
+            for (Facility facility : facilities) {
+                System.out.println(facility);
+            }
+        } else {
+            System.out.println("[!] [ No facilities found. ]");
+        }
+
+        System.out.println("-------------------------------------------------");
     }
 
     // ------- DI usage examples -----------------
