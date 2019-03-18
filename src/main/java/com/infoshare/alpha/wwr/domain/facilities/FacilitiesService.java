@@ -36,14 +36,20 @@ public class FacilitiesService implements DI{
         this.facilitiesDbRepository.persist(facilities);
     }
 
-    public void delete(FacilityDeleteCommand command) {
+    public void delete(FacilityDeleteCommand command) throws FacilitiesException {
 
         // funckcja do usuwania placówki
         // 1. sprawdz czy taka placowka istnieje w kolekcji
-        // 2. jesli nie itnieje rzuc wyjatek : throw FacilitiesException.facilityNotFound());
-        // 3. jesli istnieje to usun z kolekcji
-        // 4. zapisz kolekcje do repo
-
+        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        if(!(facilities.getFacilities().contains(command.getFacility()))){
+            // 2. jesli nie itnieje rzuc wyjatek : throw FacilitiesException.facilityNotFound());
+            throw FacilitiesException.facilityNotFound(command.getFacility().getName());
+            // 3. jesli istnieje to usun z kolekcji
+        }else{
+            facilities.getFacilities().remove(command.getFacility());
+            // 4. zapisz kolekcje do repo
+            this.facilitiesDbRepository.persist(facilities);
+        }
     }
 
     public void edit(FacilityEditCommand command) {

@@ -4,12 +4,18 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
 import com.infoshare.alpha.wwr.di.AppDI;
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
+import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
+import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesDbRepository;
+import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
@@ -136,6 +142,9 @@ public class WwrController {
                         System.out.println("Edit facility -> not implemented yet");
                         Menu.printFacilitiesMenu();
                         break;
+                    case 5:
+                        System.out.println("Delete facility");
+                        this.deleteFacility();
                     case 0:
                         facilityMenuEnd = true;
                         break;
@@ -295,6 +304,15 @@ public class WwrController {
 
         patientsDbRepository.persist(patients);
 
+    }
+
+    public void deleteFacility() {
+        Facility facility = InputForms.getFacilityFromKeyboard();
+        FacilitiesService facilitiesService = new FacilitiesService((FacilitiesRepository) di.getService(FacilitiesRepository.class.getName()), (FacilitiesReadModelDbRepository) di.getService(FacilitiesReadModelDbRepository.class.getName()));
+        try {
+            facilitiesService.delete(new FacilityDeleteCommand(facility));
+        }catch (FacilitiesException e){
+        }
     }
 
 }
