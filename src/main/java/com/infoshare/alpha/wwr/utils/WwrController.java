@@ -144,6 +144,7 @@ public class WwrController {
                         break;
                     case 5:
                         System.out.println("Delete facility");
+                        this.exampleGetAllFacilities();
                         this.deleteFacility();
                     case 0:
                         facilityMenuEnd = true;
@@ -230,11 +231,11 @@ public class WwrController {
 
     private static FacilitiesReadModel getFacilitiesReadModel() {
 
-        return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
+        return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName());
     }
 
     public static void exampleGetAllPatients() {
-        PatientsReadModelDbRepository patientsReadModelDbRepository = (PatientsReadModelDbRepository) di.getService(PatientsReadModelDbRepository.class.toString());
+        PatientsReadModelDbRepository patientsReadModelDbRepository = (PatientsReadModelDbRepository) di.getService(PatientsReadModelDbRepository.class.getName());
 
         Patients patients = patientsReadModelDbRepository.getAll();
         patients.printAllPatients();
