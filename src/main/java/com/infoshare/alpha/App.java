@@ -1,21 +1,20 @@
 package com.infoshare.alpha;
 
+import com.infoshare.alpha.wwr.utils.WwrController;
+
 /**
- * Hello world!
- *
- *
+ * This class is main entry for wwr program
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        /*
-        1. install maven in your system ( ubuntu : sudo apt install mvn )
-        2. build project go to project dir where is pom.xml file, then : mvn install
-        3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
-        */
+    	String facilitiesRepoPath = args[0];
+    	String patientsRepoPath = args[1];
 
+		WwrController controller = new WwrController(facilitiesRepoPath, patientsRepoPath);
 
-        System.out.println( "Hello World!" );
+		controller.wwrPlay();
     }
 }
+

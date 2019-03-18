@@ -1,3 +1,5 @@
 .idea/
 target/
 .childDevelopmentSupportSystem.iml
+/bin/
+childDevelopmentSupportSystem.iml
