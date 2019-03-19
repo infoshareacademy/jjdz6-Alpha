@@ -50,18 +50,8 @@ public class FacilitiesService implements DI{
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {
 
-        // funkcja do edycji placowki
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-        if(facilities.getFacilities().contains(command.getOldFacility())){
-            facilities.getFacilities().remove(command.getOldFacility());
-        }else{
-            throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
-        }if(!(facilities.getFacilities().contains(command.getEditedFacility()))){
-            facilities.getFacilities().add(command.getEditedFacility());
-        }else{
-            throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
-        }
-        this.facilitiesDbRepository.persist(facilities);
+        this.delete(new FacilityDeleteCommand(command.getOldFacility()));
+        this.add(new FacilityAddCommand(command.getEditedFacility()));
         // 1. sprawdz czy taka placowka istnieje w kolekcji
         // 2. jesli nie itnieje rzuc wyjatek:
         // 2. jesli nie itnieje rzuc wyjatek :
