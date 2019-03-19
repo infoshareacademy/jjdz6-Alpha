@@ -5,7 +5,12 @@
     "city": "Gdynia",
     "postalCode": "81-425",
     "telephoneNumber": "58 622-07-48",
-    "isPrivate": false
+    "isPrivate": false,
+    "specialist": {
+      "name": "Marta",
+      "lastName": "Spych",
+      "specialization": "neurologopeda"
+    }
   },
   {
     "name": "NZOZ Ośrodek Wczesnej Interwencji, filia nr 1",
@@ -13,7 +18,12 @@
     "city": "Gdynia",
     "postalCode": "81-377",
     "telephoneNumber": "58 621-74-40",
-    "isPrivate": false
+    "isPrivate": false,
+    "specialist": {
+      "name": "Joanna",
+      "lastName": "Węglarz",
+      "specialization": "psycholog"
+    }
   },
   {
     "name": "Ośrodek Wczesnej Interwencji i Wspomagania Rozwoju w Gdańsku",
@@ -21,6 +31,11 @@
     "city": "Gdańsk",
     "postalCode": "80-371",
     "telephoneNumber": "58 553-41-36",
-    "isPrivate": false
+    "isPrivate": false,
+    "specialist": {
+      "name": "Małgorzata",
+      "lastName": "Jeszczerska",
+      "specialization": "pedagog"
+    }
   }
 ]

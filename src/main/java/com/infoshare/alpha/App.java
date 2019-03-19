@@ -1,8 +1,7 @@
 package com.infoshare.alpha;
 
 import static com.infoshare.alpha.HealthFacility.deserializeHealthFacility;
-import static com.infoshare.alpha.HealthFacility.serializeHealthFacility;
-
+import static com.infoshare.alpha.HealthFacility.serializeSpecialistInHealthFacility;
 
 /**
  * Hello world!
@@ -15,7 +14,7 @@ public class App {
         3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
         */
 
-        serializeHealthFacility();
+        serializeSpecialistInHealthFacility();
         deserializeHealthFacility();
 
         Menu.menu();
