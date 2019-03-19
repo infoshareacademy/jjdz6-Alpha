@@ -40,11 +40,13 @@ public final class AppDI {
 		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository = new FacilitiesReadModelDbRepository(facilitiesJsonStorage);
 		FacilitiesReadModel facilitiesReadModel = new FacilitiesReadModel(facilitiesReadModelDbRepository);
 		FacilitiesRepository facilitiesRepository = new FacilitiesDbRepository(facilitiesJsonStorage);
+		FacilitiesService facilitiesService = new FacilitiesService(facilitiesRepository, facilitiesReadModelDbRepository);
 		
 		this.di.put(FacilitiesJsonStorage.class.getName(), facilitiesJsonStorage);
 		this.di.put(FacilitiesReadModelDbRepository.class.getName(), facilitiesReadModelDbRepository);
 		this.di.put(FacilitiesReadModel.class.getName(), facilitiesReadModel);
 		this.di.put(FacilitiesService.class.getName(), new FacilitiesService(facilitiesRepository, facilitiesReadModelDbRepository));
+		this.di.put(FacilitiesService.class.getName(), facilitiesService);
 	
 	
 		PatientsJsonStorage patientsJsonStorage = new PatientsJsonStorage(this.patientsFilePath);

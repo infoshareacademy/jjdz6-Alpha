@@ -6,6 +6,7 @@ import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.di.DI;
@@ -38,17 +39,12 @@ public class FacilitiesService implements DI{
 
     public void delete(FacilityDeleteCommand command) throws FacilitiesException {
 
-        // funckcja do usuwania placówki
-        // 1. sprawdz czy taka placowka istnieje w kolekcji
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-        if(!(facilities.getFacilities().contains(command.getFacility()))){
-            // 2. jesli nie itnieje rzuc wyjatek : throw FacilitiesException.facilityNotFound());
-            throw FacilitiesException.facilityNotFound(command.getFacility().getName());
-            // 3. jesli istnieje to usun z kolekcji
-        }else{
+        if(facilities.getFacilities().contains(command.getFacility())){
             facilities.getFacilities().remove(command.getFacility());
-            // 4. zapisz kolekcje do repo
             this.facilitiesDbRepository.persist(facilities);
+        }else{
+            throw FacilitiesException.facilityNotFound(command.getFacility().getName());
         }
     }
 

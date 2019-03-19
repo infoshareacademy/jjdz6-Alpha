@@ -308,11 +308,18 @@ public class WwrController {
     }
 
     public void deleteFacility() {
-        Facility facility = InputForms.getFacilityFromKeyboard();
-        FacilitiesService facilitiesService = new FacilitiesService((FacilitiesRepository) di.getService(FacilitiesRepository.class.getName()), (FacilitiesReadModelDbRepository) di.getService(FacilitiesReadModelDbRepository.class.getName()));
-        try {
-            facilitiesService.delete(new FacilityDeleteCommand(facility));
-        }catch (FacilitiesException e){
+        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+        System.out.println("Enter facility name:");
+        String facilityName = Menu.getConsoleStringInput();
+        for(Facility facility : facilitiesReadModel.getAll().getFacilities()) {
+            if (facility.getName().equals(facilityName)) {
+                FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+                try {
+                    facilitiesService.delete(new FacilityDeleteCommand(facility));
+                } catch (FacilitiesException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
     }
 
