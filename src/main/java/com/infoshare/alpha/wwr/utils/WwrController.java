@@ -6,6 +6,7 @@ import com.infoshare.alpha.wwr.common.PeselException;
 import com.infoshare.alpha.wwr.di.AppDI;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
@@ -140,16 +141,23 @@ public class WwrController {
                         break;
                     case 4:
                         System.out.println("Edit facility -> not implemented yet");
+                        this.exampleGetAllFacilities();
+                        try{
+                            this.editFacility();
+                        }catch(FacilitiesException e){
+                            System.out.println(e.getMessage());
+                        }
                         Menu.printFacilitiesMenu();
                         break;
                     case 5:
-                        System.out.println("Delete facility");
                         this.exampleGetAllFacilities();
                         try {
                             this.deleteFacility();
                         } catch (FacilitiesException e) {
                             System.out.println(e.getMessage());
                         }
+                        Menu.printFacilitiesMenu();
+                        break;
                     case 0:
                         facilityMenuEnd = true;
                         break;
@@ -321,6 +329,25 @@ public class WwrController {
                 facilityNotFound = false;
                 FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
                 facilitiesService.delete(new FacilityDeleteCommand(facility));
+            }
+        }
+        if(facilityNotFound){
+            throw FacilitiesException.facilityNotFound(facilityName);
+        }
+    }
+
+    public void editFacility() throws FacilitiesException{
+        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+        System.out.println("Enter facility name:");
+        String facilityName = Menu.getConsoleStringInput();
+        Boolean facilityNotFound = true;
+        for(Facility oldFacility : facilitiesReadModel.getAll().getFacilities()){
+            if(oldFacility.getName().equals(facilityName)){
+                facilityNotFound = false;
+                System.out.println("Enter the facility's new details:");
+                Facility editedFacility = InputForms.getFacilityFromKeyboard();
+                FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+                facilitiesService.edit(new FacilityEditCommand(oldFacility, editedFacility));
             }
         }
         if(facilityNotFound){
