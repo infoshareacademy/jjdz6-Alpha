@@ -145,7 +145,11 @@ public class WwrController {
                     case 5:
                         System.out.println("Delete facility");
                         this.exampleGetAllFacilities();
-                        this.deleteFacility();
+                        try {
+                            this.deleteFacility();
+                        } catch (FacilitiesException e) {
+                            System.out.println(e.getMessage());
+                        }
                     case 0:
                         facilityMenuEnd = true;
                         break;
@@ -307,20 +311,20 @@ public class WwrController {
 
     }
 
-    public void deleteFacility() {
+    public void deleteFacility() throws FacilitiesException {
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
         System.out.println("Enter facility name:");
         String facilityName = Menu.getConsoleStringInput();
+        Boolean facilityNotFound = true;
         for(Facility facility : facilitiesReadModel.getAll().getFacilities()) {
             if (facility.getName().equals(facilityName)) {
+                facilityNotFound = false;
                 FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
-                try {
-                    facilitiesService.delete(new FacilityDeleteCommand(facility));
-                } catch (FacilitiesException e) {
-                    System.out.println(e.getMessage());
-                }
+                facilitiesService.delete(new FacilityDeleteCommand(facility));
             }
         }
+        if(facilityNotFound){
+            throw FacilitiesException.facilityNotFound(facilityName);
+        }
     }
-
 }
