@@ -1,8 +1,24 @@
 package com.infoshare.alpha;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class HealthFacility {
+
+    private static final String HEALTH_FACILITIES_JSON_PATH = "scr/main/resources/HealthFacilities.json";
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private String name;
     private String street;
@@ -22,7 +38,6 @@ public class HealthFacility {
         this.telephoneNumber = telephoneNumber;
         this.isPrivate = isPrivate;
         this.specialist = specialist;
-
     }
 
     public HealthFacility() {
@@ -42,24 +57,13 @@ public class HealthFacility {
     }
 
     public static void deserializeHealthFacility() {
-        String HealthFacility1 = "{'name': 'NZOZ Ośrodek Wczesnej Interwencji','street': 'Harcerska 4', 'city': 'Gdynia','postalCode': '81-425','telephoneNumber': '58 622-07-48','isPrivate': false, 'specialist':{ 'name':'Marta', 'lastName': 'Spych', 'specialization': 'neurologopeda'}";
-
-        Gson gson1 = new Gson();
-        HealthFacility healthFacility1 = gson1.fromJson(HealthFacility1, HealthFacility.class);
-
-        String HealthFacility2 = "{'name': 'NZOZ Ośrodek Wczesnej Interwencji, filia nr 1','street': 'Necla 11', 'city': 'Gdynia','postalCode': '81-377','telephoneNumber': '58 621-74-40','isPrivate': false, 'specialist':{ 'name':'Joanna', 'lastName': 'Węglarz', 'specialization': 'psycholog'}";
-
-        Gson gson2 = new Gson();
-        HealthFacility healthFacility2 = gson2.fromJson(HealthFacility2, HealthFacility.class);
-
-        String HealthFacility3 = "{'name': 'Ośrodek Wczesnej Interwencji i Wspomagania Rozwoju w Gdańsku','street': 'Jagiellońska 11', 'city': 'Gdańsk','postalCode': '80-371','telephoneNumber': '58 553-41-36','isPrivate': false, 'specialist':{ 'name':'Małgorzata', 'lastName': 'Jeszczerska', 'specialization': 'pedagog'}";
-
-        Gson gson3 = new Gson();
-        HealthFacility healthFacility3 = gson3.fromJson(HealthFacility3, HealthFacility.class);
-
+        List<HealthFacility> healthFacilities = readListFromJsonFile(HEALTH_FACILITIES_JSON_PATH);
+        for (HealthFacility healthFacility : healthFacilities) {
+            System.out.println(GSON.toJson(healthFacility));
+        }
     }
 
-    public static void serializeSpecialistInHealthFacility() {
+    public static void serializeHealthFacility() {
         Specialist specialist1 = new Specialist(
                 "Marta",
                 "Spych",
@@ -75,8 +79,6 @@ public class HealthFacility {
                 false,
                 specialist1
         );
-
-        String json1 = new Gson().toJson(healthFacility1);
 
         Specialist specialist2 = new Specialist(
                 "Joanna",
@@ -94,8 +96,6 @@ public class HealthFacility {
                 specialist2
         );
 
-        String json2 = new Gson().toJson(healthFacility2);
-
         Specialist specialist3 = new Specialist(
                 "Małgorzata",
                 "Jeszczerska",
@@ -112,6 +112,31 @@ public class HealthFacility {
                 specialist3
         );
 
-        String json3 = new Gson().toJson(healthFacility3);
+        //Dodanie osrodkow do listy i zapisanie listy do pliku json
+        List<HealthFacility> healthFacilities = Arrays.asList(healthFacility1, healthFacility2, healthFacility3);
+        saveListToJsonFile(healthFacilities, HEALTH_FACILITIES_JSON_PATH);
+    }
+
+    private static void saveListToJsonFile(List<HealthFacility> list, String path) {
+        try (Writer writer = new FileWriter(path)) {
+            GSON.toJson(list, writer);
+            System.out.println("Saved to json file: " + path);
+        } catch (IOException e) {
+            System.out.println("Exception during saving json file: " + e.getMessage());
+        }
+    }
+
+    private static List<HealthFacility> readListFromJsonFile(String path) {
+        try (Reader reader = new FileReader(path)) {
+            System.out.println("Reading from json file: " + path);
+            Type listType = new TypeToken<ArrayList<HealthFacility>>() {
+            }.getType();
+            List<HealthFacility> collection = GSON.fromJson(reader, listType);
+            System.out.println("List successfully uploaded. Number of elements: " + collection.size());
+            return collection;
+        } catch (IOException e) {
+            System.out.println("File not found or broken: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 }
