@@ -10,6 +10,7 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.di.DI;
+import com.infoshare.alpha.wwr.utils.Menu;
 
 public class FacilitiesService implements DI{
 
