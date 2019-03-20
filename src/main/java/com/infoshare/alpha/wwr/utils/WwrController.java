@@ -5,6 +5,7 @@ import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
 import com.infoshare.alpha.wwr.di.AppDI;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
@@ -133,7 +134,7 @@ public class WwrController {
                         Menu.printFacilitiesMenu();
                         break;
                     case 3:
-                        System.out.println("Add facility -> not implement yet");
+                        this.addFacility();
                         Menu.printFacilitiesMenu();
                         break;
                     case 4:
@@ -307,6 +308,17 @@ public class WwrController {
 
         patientsDbRepository.persist(patients);
 
+    }
+
+    public void addFacility(){
+        try{
+            Facility newFacility = InputForms.getFacilityFromKeyboard();
+            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+            facilitiesService.add(new FacilityAddCommand(newFacility));
+            System.out.println("Facility " + newFacility.getName() + " has been added to the database" + "\n");
+        }catch(FacilitiesException e){
+            System.out.println(e.getMessage() + "\n");
+        }
     }
 
     public void deleteFacility() {
