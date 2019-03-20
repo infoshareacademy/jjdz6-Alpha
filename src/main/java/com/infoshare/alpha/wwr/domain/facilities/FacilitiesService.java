@@ -51,14 +51,21 @@ public class FacilitiesService implements DI{
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {
 
-        this.delete(new FacilityDeleteCommand(command.getOldFacility()));
-        this.add(new FacilityAddCommand(command.getEditedFacility()));
-        // 1. sprawdz czy taka placowka istnieje w kolekcji
-        // 2. jesli nie itnieje rzuc wyjatek:
-        // 2. jesli nie itnieje rzuc wyjatek :
-        // 3. jesli istnieje to podmien w kolekcji
-        // 4. zapisz cala kolekcje do repo
-
+        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        Integer oldFacilityIndex;
+        if(facilities.getFacilities().contains(command.getOldFacility())){
+            oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
+        }else{
+            throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
+        }
+        for(Facility facility : facilities.getFacilities()){
+            if(facility.equals(command.getEditedFacility())){
+                throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
+            }
+        }
+        facilities.getFacilities().remove(command.getOldFacility());
+        facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
+        this.facilitiesDbRepository.persist(facilities);
     }
     
     public void upload(UploadCommand uploadCommand) {

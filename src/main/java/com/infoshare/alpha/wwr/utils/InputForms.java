@@ -32,7 +32,7 @@ public class InputForms {
     }
 
     public static Facility getEditedFacilityFromKeyboard(Facility facilityToBeEdited){
-        System.out.println("Enter facility's new name or press 'ENTER' to keep the existing name");
+        System.out.println("Enter facility's new name or press 'ENTER' to keep the existing name:");
         String editedFacilityName = Menu.getConsoleStringInput();
         if(editedFacilityName.equals("")){
             editedFacilityName = facilityToBeEdited.getName();

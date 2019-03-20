@@ -140,7 +140,6 @@ public class WwrController {
                         Menu.printFacilitiesMenu();
                         break;
                     case 4:
-                        System.out.println("Edit facility -> not implemented yet");
                         this.exampleGetAllFacilities();
                         try{
                             this.editFacility();
@@ -344,7 +343,7 @@ public class WwrController {
         for(Facility oldFacility : facilitiesReadModel.getAll().getFacilities()){
             if(oldFacility.getName().equals(facilityName)){
                 facilityNotFound = false;
-                System.out.println("Enter the facility's new details:");
+                System.out.println("Facility's new details");
                 Facility editedFacility = InputForms.getEditedFacilityFromKeyboard(oldFacility);
                 FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
                 facilitiesService.edit(new FacilityEditCommand(oldFacility, editedFacility));

@@ -49,13 +49,12 @@ public class Facility {
         if (this == o) return true;
         if (!(o instanceof Facility)) return false;
         Facility facility = (Facility) o;
-        return Objects.equals(getId(), facility.getId()) &&
-                Objects.equals(getName(), facility.getName()) &&
+        return Objects.equals(getName(), facility.getName()) &&
                 Objects.equals(getAddress(), facility.getAddress());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getAddress());
+        return Objects.hash(getName(), getAddress());
     }
 }
