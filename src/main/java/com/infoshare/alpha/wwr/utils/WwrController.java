@@ -20,6 +20,7 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
+
 import java.util.*;
 
 public class WwrController {
@@ -36,7 +37,7 @@ public class WwrController {
 
         Menu.printMainMenu();
 
-        while(!programEnd) {
+        while (!programEnd) {
             try {
                 Menu.clearConsole();
                 mainMenuOption = Menu.getConsoleStringInput();
@@ -70,12 +71,12 @@ public class WwrController {
 
         Menu.printPatientMenu();
 
-        while(!patientMenuEnd) {
+        while (!patientMenuEnd) {
             try {
                 Menu.clearConsole();
                 patientMenuOption = Menu.getConsoleNumberInput();
 
-                switch(patientMenuOption) {
+                switch (patientMenuOption) {
                     case 1:
                         this.showAllPatients();
                         Menu.shouldContinue();
@@ -121,10 +122,10 @@ public class WwrController {
 
         Menu.printFacilitiesMenu();
 
-        while(!facilityMenuEnd) {
+        while (!facilityMenuEnd) {
             try {
                 facilityMenuOption = Menu.getConsoleNumberInput();
-                switch(facilityMenuOption) {
+                switch (facilityMenuOption) {
                     case 1:
                         System.out.println("Show all facilities:");
                         this.showAllFacilities();
@@ -137,20 +138,12 @@ public class WwrController {
                         break;
                     case 4:
                         this.getAllFacilitiesInDb();
-                        try{
-                            this.editFacility();
-                        }catch(FacilitiesException e){
-                            System.out.println(e.getMessage() + "\n");
-                        }
+                        this.editFacility();
                         Menu.printFacilitiesMenu();
                         break;
                     case 5:
                         this.getAllFacilitiesInDb();
-                        try {
-                            this.deleteFacility();
-                        } catch (FacilitiesException e) {
-                            System.out.println(e.getMessage() + "\n");
-                        }
+                        this.deleteFacility();
                         Menu.printFacilitiesMenu();
                         break;
                     case 0:
@@ -206,7 +199,7 @@ public class WwrController {
         System.out.println("Select patient id: ");
         Map<Integer, Patient> patientMap = new HashMap<>();
         Integer ids = 0;
-        for(Patient patient : patientList) {
+        for (Patient patient : patientList) {
             System.out.println(" [ " + ids + " ] " + patient.getName() + " " + patient.getSurname() + " " + patient.getPesel() + " " + patient.getAddress());
             patientMap.put(ids, patient);
             ids++;
@@ -217,7 +210,7 @@ public class WwrController {
 
         List<FacilityQueryField> facilityQueryFields = new ArrayList<>();
         facilityQueryFields.add(FacilityQueryField.CITY);
-        List <Facility> facilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
+        List<Facility> facilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
 
 
         System.out.println("-------------------------------------------------");
@@ -316,41 +309,43 @@ public class WwrController {
 
     }
 
-    public void deleteFacility() throws FacilitiesException {
-        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
-        System.out.println("Enter facility name:");
-        String facilityName = Menu.getConsoleStringInput();
-        Boolean facilityNotFound = true;
-        for(Facility facility : facilitiesReadModel.getAll().getFacilities()) {
-            if (facility.getName().equals(facilityName)) {
-                facilityNotFound = false;
-                FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
-                facilitiesService.delete(new FacilityDeleteCommand(facility));
-            }
+    public void deleteFacility() {
+        try {
+            Facility facilityToBeDeleted = getFacilityById();
+            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+            facilitiesService.delete(new FacilityDeleteCommand(facilityToBeDeleted));
+            System.out.println("Facility " + facilityToBeDeleted.getName() + " has been deleted from the database" + "\n");
+        } catch (FacilitiesException e) {
+            System.out.println(e.getMessage() + "\n");
         }
-        if(facilityNotFound){
-            throw FacilitiesException.facilityNotFound(facilityName);
-        }
-        System.out.println("Facility " + facilityName + " has been deleted from the database" + "\n");
     }
 
-    public void editFacility() throws FacilitiesException{
+    public void editFacility() {
+        try {
+            Facility oldFacility = getFacilityById();
+            System.out.println("Edit facility's " + oldFacility.getName() + " details");
+            Facility editedFacility = InputForms.getEditedFacilityFromKeyboard(oldFacility);
+            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+            facilitiesService.edit(new FacilityEditCommand(oldFacility, editedFacility));
+            System.out.println("Facility's detail change has been saved" + "\n");
+        } catch (FacilitiesException e) {
+            System.out.println(e.getMessage() + "\n");
+        }
+    }
+
+    public static Facility getFacilityById() throws FacilitiesException {
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
-        System.out.println("Enter facility name:");
-        String facilityName = Menu.getConsoleStringInput();
-        Boolean facilityNotFound = true;
-        for(Facility oldFacility : facilitiesReadModel.getAll().getFacilities()){
-            if(oldFacility.getName().equals(facilityName)){
-                facilityNotFound = false;
-                System.out.println("Facility's new details");
-                Facility editedFacility = InputForms.getEditedFacilityFromKeyboard(oldFacility);
-                FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
-                facilitiesService.edit(new FacilityEditCommand(oldFacility, editedFacility));
+        System.out.println("Enter facility Id's 4 last characters:");
+        String facilityId = Menu.getConsoleStringInput().trim();
+        while (facilityId.length() != 4) {
+            System.out.println("4 last characters must be entered - try again:");
+            facilityId = Menu.getConsoleStringInput().trim();
+        }
+        for (Facility facility : facilitiesReadModel.getAll().getFacilities()) {
+            if (facility.getId().toString().endsWith(facilityId)) {
+                return facility;
             }
         }
-        if(facilityNotFound){
-            throw FacilitiesException.facilityNotFound(facilityName);
-        }
-        System.out.println("Facility's " + facilityName + " detail change has been saved" + "\n");
+        throw FacilitiesException.facilityNotFound("with Id: " + facilityId);
     }
 }
