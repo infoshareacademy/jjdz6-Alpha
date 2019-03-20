@@ -14,13 +14,9 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
-import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesDbRepository;
-import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
-import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
@@ -140,20 +136,20 @@ public class WwrController {
                         Menu.printFacilitiesMenu();
                         break;
                     case 4:
-                        this.exampleGetAllFacilities();
+                        this.getAllFacilitiesInDb();
                         try{
                             this.editFacility();
                         }catch(FacilitiesException e){
-                            System.out.println(e.getMessage());
+                            System.out.println(e.getMessage() + "\n");
                         }
                         Menu.printFacilitiesMenu();
                         break;
                     case 5:
-                        this.exampleGetAllFacilities();
+                        this.getAllFacilitiesInDb();
                         try {
                             this.deleteFacility();
                         } catch (FacilitiesException e) {
-                            System.out.println(e.getMessage());
+                            System.out.println(e.getMessage() + "\n");
                         }
                         Menu.printFacilitiesMenu();
                         break;
@@ -252,10 +248,12 @@ public class WwrController {
         patients.printAllPatients();
     }
 
-    public static void exampleGetAllFacilities() {
+    public static void getAllFacilitiesInDb() {
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
         Facilities facilities = facilitiesReadModel.getAll();
+        System.out.println("-------------Facilities in database---------------------------------------------------");
         facilities.printAllFacilities();
+        System.out.println("--------------------------------------------------------------------------------------");
     }
 
     public static void exampleGetPatientFacilitiesByQuery() {
@@ -333,6 +331,7 @@ public class WwrController {
         if(facilityNotFound){
             throw FacilitiesException.facilityNotFound(facilityName);
         }
+        System.out.println("Facility " + facilityName + " has been deleted from the database" + "\n");
     }
 
     public void editFacility() throws FacilitiesException{
@@ -352,5 +351,6 @@ public class WwrController {
         if(facilityNotFound){
             throw FacilitiesException.facilityNotFound(facilityName);
         }
+        System.out.println("Facility's " + facilityName + " detail change has been saved" + "\n");
     }
 }
