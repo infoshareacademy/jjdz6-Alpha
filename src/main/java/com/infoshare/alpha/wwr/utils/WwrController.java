@@ -135,16 +135,19 @@ public class WwrController {
                         break;
                     case 3:
                         this.addFacility();
+                        Menu.shouldContinue();
                         Menu.printFacilitiesMenu();
                         break;
                     case 4:
-                        this.getAllFacilitiesInDb();
+//                        this.showAllFacilities();
                         this.editFacility();
+                        Menu.shouldContinue();
                         Menu.printFacilitiesMenu();
                         break;
                     case 5:
-                        this.getAllFacilitiesInDb();
+//                        this.showAllFacilities();
                         this.deleteFacility();
+                        Menu.shouldContinue();
                         Menu.printFacilitiesMenu();
                         break;
                     case 0:
@@ -242,14 +245,6 @@ public class WwrController {
         patients.printAllPatients();
     }
 
-    public static void getAllFacilitiesInDb() {
-        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
-        Facilities facilities = facilitiesReadModel.getAll();
-        System.out.println("-------------Facilities in database---------------------------------------------------");
-        facilities.printAllFacilities();
-        System.out.println("--------------------------------------------------------------------------------------");
-    }
-
     public static void exampleGetPatientFacilitiesByQuery() {
         try {
             FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
@@ -310,13 +305,13 @@ public class WwrController {
 
     }
 
-    public void addFacility(){
-        try{
+    public void addFacility() {
+        try {
             Facility newFacility = InputForms.getFacilityFromKeyboard();
             FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
             facilitiesService.add(new FacilityAddCommand(newFacility));
             System.out.println("Facility " + newFacility.getName() + " has been added to the database" + "\n");
-        }catch(FacilitiesException e){
+        } catch (FacilitiesException e) {
             System.out.println(e.getMessage() + "\n");
         }
     }
@@ -345,19 +340,47 @@ public class WwrController {
         }
     }
 
+//    public static Facility getFacilityById() throws FacilitiesException {
+//        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+//        System.out.println("Enter facility Id's 4 last characters:");
+//        String facilityId = Menu.getConsoleStringInput().trim();
+//        while (facilityId.length() != 4) {
+//            System.out.println("4 last characters must be entered - try again:");
+//            facilityId = Menu.getConsoleStringInput().trim();
+//        }
+//        for (Facility facility : facilitiesReadModel.getAll().getFacilities()) {
+//            if (facility.getId().toString().endsWith(facilityId)) {
+//                return facility;
+//            }
+//        }
+//        throw FacilitiesException.facilityNotFound("with Id: " + facilityId);
+//    }
+
     public static Facility getFacilityById() throws FacilitiesException {
+
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
-        System.out.println("Enter facility Id's 4 last characters:");
-        String facilityId = Menu.getConsoleStringInput().trim();
-        while (facilityId.length() != 4) {
-            System.out.println("4 last characters must be entered - try again:");
-            facilityId = Menu.getConsoleStringInput().trim();
+        Facilities facilities = facilitiesReadModel.getAll();
+        List<Facility> facilityList = facilities.getFacilities();
+        System.out.println("Select facility id: ");
+        Map<Integer, Facility> searchById = new HashMap<>();
+        Integer ids = 0;
+        for (Facility facility : facilityList) {
+            Address facilityAddress = facility.getAddress();
+            System.out.println(" [ " + ids + " ] " + facility.getName() + " " + facilityAddress.getCity() + " " + facilityAddress.getStreet() + " " + facilityAddress.getPhone());
+            searchById.put(ids, facility);
+            ids++;
         }
-        for (Facility facility : facilitiesReadModel.getAll().getFacilities()) {
-            if (facility.getId().toString().endsWith(facilityId)) {
-                return facility;
+        Integer selectFacilityId = null;
+        do {
+            try {
+                selectFacilityId = Menu.getConsoleNumberInput();
+            } catch (InputMismatchException e) {
+                System.out.println("Select one of the id's above:");
             }
+        } while (selectFacilityId == null);
+        if(searchById.get(selectFacilityId) == null){
+            throw FacilitiesException.facilityNotFound(" under id: " + selectFacilityId);
         }
-        throw FacilitiesException.facilityNotFound("with Id: " + facilityId);
+        return searchById.get(selectFacilityId);
     }
 }

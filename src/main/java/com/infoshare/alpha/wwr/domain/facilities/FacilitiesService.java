@@ -10,7 +10,6 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.di.DI;
-import com.infoshare.alpha.wwr.utils.Menu;
 
 public class FacilitiesService implements DI{
 
@@ -41,10 +40,10 @@ public class FacilitiesService implements DI{
     public void delete(FacilityDeleteCommand command) throws FacilitiesException {
 
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-        if(facilities.getFacilities().contains(command.getFacility())){
+        if (facilities.getFacilities().contains(command.getFacility())) {
             facilities.getFacilities().remove(command.getFacility());
             this.facilitiesDbRepository.persist(facilities);
-        }else{
+        } else {
             throw FacilitiesException.facilityNotFound(command.getFacility().getName());
         }
     }
@@ -53,13 +52,13 @@ public class FacilitiesService implements DI{
 
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         Integer oldFacilityIndex;
-        if(facilities.getFacilities().contains(command.getOldFacility())){
+        if (facilities.getFacilities().contains(command.getOldFacility())) {
             oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
-        }else{
+        } else {
             throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
         }
-        for(Facility facility : facilities.getFacilities()){
-            if(facility.equals(command.getEditedFacility())){
+        for (Facility facility : facilities.getFacilities()) {
+            if (facility.equals(command.getEditedFacility())) {
                 throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
             }
         }
