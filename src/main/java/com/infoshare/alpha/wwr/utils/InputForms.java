@@ -57,16 +57,19 @@ public class InputForms {
     }
 
     public static Address getEditedAddressFromKeyboard(Address address){
+        System.out.println("Current city is: " + address.getCity());
         System.out.println("Enter new city or press 'ENTER' to keep the existing city");
         String newCity = Menu.getConsoleStringInput();
         if(newCity.equals("")){
             newCity = address.getCity();
         }
+        System.out.println("Current street is: " + address.getStreet());
         System.out.println("Enter new street or press 'ENTER' to keep the existing street");
         String newStreet = Menu.getConsoleStringInput();
         if(newStreet.equals("")){
             newStreet = address.getStreet();
         }
+        System.out.println("Current phone is: " + address.getPhone());
         System.out.println("Enter new phone or press 'ENTER' to keep the existing phone");
         String newPhone = Menu.getConsoleStringInput();
         if(newPhone.equals("")){
