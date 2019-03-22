@@ -318,7 +318,7 @@ public class WwrController {
 
     public void deleteFacility() {
         try {
-            Facility facilityToBeDeleted = getFacilityById();
+            Facility facilityToBeDeleted = chooseFacilityFromList();
             FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
             facilitiesService.delete(new FacilityDeleteCommand(facilityToBeDeleted));
             System.out.println("Facility " + facilityToBeDeleted.getName() + " has been deleted from the database" + "\n");
@@ -329,7 +329,7 @@ public class WwrController {
 
     public void editFacility() {
         try {
-            Facility oldFacility = getFacilityById();
+            Facility oldFacility = chooseFacilityFromList();
             System.out.println("Edit facility's " + oldFacility.getName() + " details");
             Facility editedFacility = InputForms.getEditedFacilityFromKeyboard(oldFacility);
             FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
@@ -340,30 +340,14 @@ public class WwrController {
         }
     }
 
-//    public static Facility getFacilityById() throws FacilitiesException {
-//        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
-//        System.out.println("Enter facility Id's 4 last characters:");
-//        String facilityId = Menu.getConsoleStringInput().trim();
-//        while (facilityId.length() != 4) {
-//            System.out.println("4 last characters must be entered - try again:");
-//            facilityId = Menu.getConsoleStringInput().trim();
-//        }
-//        for (Facility facility : facilitiesReadModel.getAll().getFacilities()) {
-//            if (facility.getId().toString().endsWith(facilityId)) {
-//                return facility;
-//            }
-//        }
-//        throw FacilitiesException.facilityNotFound("with Id: " + facilityId);
-//    }
-
-    public static Facility getFacilityById() throws FacilitiesException {
+    public static Facility chooseFacilityFromList() {
 
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
         Facilities facilities = facilitiesReadModel.getAll();
         List<Facility> facilityList = facilities.getFacilities();
         System.out.println("Select facility id: ");
         Map<Integer, Facility> searchById = new HashMap<>();
-        Integer ids = 0;
+        Integer ids = 1;
         for (Facility facility : facilityList) {
             Address facilityAddress = facility.getAddress();
             System.out.println(" [ " + ids + " ] " + facility.getName() + " " + facilityAddress.getCity() + " " + facilityAddress.getStreet() + " " + facilityAddress.getPhone());
@@ -374,13 +358,14 @@ public class WwrController {
         do {
             try {
                 selectFacilityId = Menu.getConsoleNumberInput();
+                if (!searchById.containsKey(selectFacilityId)) {
+                    System.out.println("Select one of the id's above:");
+                    selectFacilityId = null;
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Select one of the id's above:");
             }
         } while (selectFacilityId == null);
-        if(searchById.get(selectFacilityId) == null){
-            throw FacilitiesException.facilityNotFound(" under id: " + selectFacilityId);
-        }
         return searchById.get(selectFacilityId);
     }
 }
