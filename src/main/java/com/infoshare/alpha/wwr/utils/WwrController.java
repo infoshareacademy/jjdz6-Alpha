@@ -139,13 +139,11 @@ public class WwrController {
                         Menu.printFacilitiesMenu();
                         break;
                     case 4:
-//                        this.showAllFacilities();
                         this.editFacility();
                         Menu.shouldContinue();
                         Menu.printFacilitiesMenu();
                         break;
                     case 5:
-//                        this.showAllFacilities();
                         this.deleteFacility();
                         Menu.shouldContinue();
                         Menu.printFacilitiesMenu();
