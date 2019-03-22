@@ -1,7 +1,11 @@
 package com.infoshare.alpha.wwr.domain.facilities.entity;
 
 import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Service;
+import com.infoshare.alpha.wwr.common.Services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Facility {
@@ -11,6 +15,15 @@ public class Facility {
 	private String name;
     
 	private Address address;
+
+	private List<Service> services = new ArrayList<>();
+
+
+	public Facility(String name, Address address, List<Service> services) {
+        this.address = address;
+        this.name = name;
+        this.services = services;
+    }
 
     public Facility(String name, Address address) {
         this(name, address, UUID.randomUUID());
@@ -37,10 +50,13 @@ public class Facility {
     	return id;
     }
 
+    public List<Service> getServices() {
+        return this.services;
+    }
+
     @Override
     public String toString() {
-
-    	return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString();
+    	return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services) ;
     }
 
 }

@@ -207,9 +207,22 @@ public class WwrController {
         System.out.println("Patients nearest facilities");
         System.out.println("-------------------------------------------------");
         if (facilities.size() > 0) {
+
+            ids = 0;
+            Map<Integer, Facility> patientFacilitiesMap = new HashMap<>();
             for (Facility facility : facilities) {
-                System.out.println(facility);
+                System.out.println(" [ " + ids + " ] " + facility.getName());
+                patientFacilitiesMap.put(ids, facility);
+                ids++;
+                //System.out.println(facility);
             }
+            System.out.println("Select facility to show details: ");
+            int selectedFacilityId = Menu.getConsoleNumberInput(); // TODO: dodac lapanie wyjatkow
+            Facility selectedFacility = patientFacilitiesMap.get(selectedFacilityId);
+            System.out.println("------------Facility details : ------------------------");
+            System.out.println(selectedFacility);
+
+
         } else {
             System.out.println("[!] [ No facilities found. ]");
         }
