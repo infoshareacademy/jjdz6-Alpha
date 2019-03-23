@@ -4,11 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +13,8 @@ import java.util.List;
 
 public class HealthFacility {
 
-    private static final String HEALTH_FACILITIES_JSON_PATH = "scr/main/resources/HealthFacilities.json";
+    private static final String HEALTH_FACILITIES_JSON_PATH = new File("HealthFacilities.json").getAbsolutePath();
+
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private String name;
@@ -39,6 +36,7 @@ public class HealthFacility {
         this.isPrivate = isPrivate;
         this.specialist = specialist;
     }
+
 
     public HealthFacility() {
     }

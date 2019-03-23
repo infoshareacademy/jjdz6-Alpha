@@ -39,7 +39,7 @@ public class Menu {
                     break;
                 default:
                     System.out.println("Error.");
-                    System.out.println("Please try again and reeneter a number from the given list of MENU options: ");
+                    System.out.println("Please try again and reenter a number from the given list of MENU options: ");
                     menu();
             }
         }
