@@ -1,22 +1,26 @@
-package com.infoshare.alpha;
+package com.infoshare.alpha.wwr.utils.Menu;
 
 import java.util.Scanner;
 
-public class Menu {
+import static com.infoshare.alpha.wwr.utils.Menu.HealthFacilitySubMenu.healthFacilitySubMenu;
+import static com.infoshare.alpha.wwr.utils.Menu.PatientSubMenu.patientSubMenu;
+
+public class MainMenu {
+
     public Integer choice;
 
-    public static void menu() {
+    public static void mainMenu() {
         System.out.println();
         System.out.println("                            MENU                      ");
-        System.out.println("     *   Please choose an adequate option:            *");
+        System.out.println("     *   Please choose an adequate option:           *");
         System.out.println("     *************************************************");
-        System.out.println("     1. Patient                                       ");
+        System.out.println("     1. PatientSubMenu                                ");
         System.out.println("     2. Health facility                               ");
         System.out.println();
         System.out.println("     Enter your selection: _                          ");
     }
 
-    private int getConsoleInput() {
+    public int getConsoleInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
@@ -25,24 +29,21 @@ public class Menu {
         boolean exit = false;
 
         while (!exit) {
-            Menu menu = new Menu();
+            MainMenu menu = new MainMenu();
             menu.choice = menu.getConsoleInput();
             System.out.println();
             switch (menu.choice) {
                 case 1:
-                    // wykona sie tu funkcja przenoszaca nas w sub-menu pacjenta
-                    Patient.patientSubMenu();
+                    patientSubMenu();
                     break;
                 case 2:
-                    // wykona sie tu funkcja przenoszaca nas w sub-menu placowki (health facility)
-                    HealthFacility.healthFacilitySubMenu();
+                    healthFacilitySubMenu();
                     break;
                 default:
                     System.out.println("Error.");
                     System.out.println("Please try again and reeneter a number from the given list of MENU options: ");
-                    menu();
+                    mainMenu();
             }
         }
     }
 }
-

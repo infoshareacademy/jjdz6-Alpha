@@ -13,10 +13,11 @@ import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
-import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
+import com.infoshare.alpha.wwr.utils.Menu.MainMenu;
+
 import java.util.*;
 
 public class WwrController {
@@ -31,22 +32,22 @@ public class WwrController {
         boolean programEnd = false;
         String mainMenuOption;
 
-        Menu.printMainMenu();
+        MainMenu.printMainMenu();
 
         while(!programEnd) {
             try {
-                Menu.clearConsole();
-                mainMenuOption = Menu.getConsoleStringInput();
+                MainMenu.clearConsole();
+                mainMenuOption = MainMenu.getConsoleStringInput();
                 switch (mainMenuOption) {
                     case "p":
                         this.patientOption();
-                        Menu.clearConsole();
-                        Menu.printMainMenu();
+                        MainMenu.clearConsole();
+                        MainMenu.printMainMenu();
                         break;
                     case "f":
                         this.facilityOption();
-                        Menu.clearConsole();
-                        Menu.printMainMenu();
+                        MainMenu.clearConsole();
+                        MainMenu.printMainMenu();
                         break;
                     case "x":
                         programEnd = true;
@@ -65,38 +66,38 @@ public class WwrController {
         boolean patientMenuEnd = false;
         int patientMenuOption;
 
-        Menu.printPatientMenu();
+        MainMenu.printPatientMenu();
 
         while(!patientMenuEnd) {
             try {
-                Menu.clearConsole();
-                patientMenuOption = Menu.getConsoleNumberInput();
+                MainMenu.clearConsole();
+                patientMenuOption = MainMenu.getConsoleNumberInput();
 
                 switch(patientMenuOption) {
                     case 1:
                         this.showAllPatients();
-                        Menu.shouldContinue();
-                        Menu.clearConsole();
-                        Menu.printPatientMenu();
+                        MainMenu.shouldContinue();
+                        MainMenu.clearConsole();
+                        MainMenu.printPatientMenu();
                         break;
                     case 3:
                         this.findPatientsFacilities();
-                        Menu.shouldContinue();
-                        Menu.clearConsole();
-                        Menu.printPatientMenu();
+                        MainMenu.shouldContinue();
+                        MainMenu.clearConsole();
+                        MainMenu.printPatientMenu();
                         break;
                     case 4:
                         System.out.println("Add patient. -> not implemented yet");
                         this.addPatient();
-                        Menu.shouldContinue();
-                        Menu.clearConsole();
-                        Menu.printPatientMenu();
+                        MainMenu.shouldContinue();
+                        MainMenu.clearConsole();
+                        MainMenu.printPatientMenu();
                         break;
                     case 5:
                         System.out.println("Edit patient -> not implemented yet");
-                        Menu.clearConsole();
-                        Menu.printPatientMenu();
-                        Menu.shouldContinue();
+                        MainMenu.clearConsole();
+                        MainMenu.printPatientMenu();
+                        MainMenu.shouldContinue();
                         break;
                     case 0:
                         patientMenuEnd = true;
@@ -116,25 +117,25 @@ public class WwrController {
         boolean facilityMenuEnd = false;
         int facilityMenuOption;
 
-        Menu.printFacilitiesMenu();
+        MainMenu.printFacilitiesMenu();
 
         while(!facilityMenuEnd) {
             try {
-                facilityMenuOption = Menu.getConsoleNumberInput();
+                facilityMenuOption = MainMenu.getConsoleNumberInput();
                 switch(facilityMenuOption) {
                     case 1:
                         System.out.println("Show all facilities:");
                         this.showAllFacilities();
-                        Menu.shouldContinue();
-                        Menu.printFacilitiesMenu();
+                        MainMenu.shouldContinue();
+                        MainMenu.printFacilitiesMenu();
                         break;
                     case 3:
                         System.out.println("Add facility -> not implement yet");
-                        Menu.printFacilitiesMenu();
+                        MainMenu.printFacilitiesMenu();
                         break;
                     case 4:
                         System.out.println("Edit facility -> not implemented yet");
-                        Menu.printFacilitiesMenu();
+                        MainMenu.printFacilitiesMenu();
                         break;
                     case 0:
                         facilityMenuEnd = true;
@@ -195,7 +196,7 @@ public class WwrController {
             ids++;
         }
 
-        int selectedPatientId = Menu.getConsoleNumberInput();
+        int selectedPatientId = MainMenu.getConsoleNumberInput();
         Patient selectedPatient = patientMap.get(selectedPatientId);
 
         List<FacilityQueryField> facilityQueryFields = new ArrayList<>();

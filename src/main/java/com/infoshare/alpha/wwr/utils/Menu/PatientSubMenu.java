@@ -1,6 +1,7 @@
-package com.infoshare.alpha;
+package com.infoshare.alpha.wwr.utils.Menu;
 
-public class Patient {
+public class PatientSubMenu {
+
     public static void patientSubMenu() {
         System.out.println();
         System.out.println("                   bHEALTH FACILITY subMENU            ");
