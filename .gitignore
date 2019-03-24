@@ -1,3 +1,8 @@
 .idea/
 target/
+<<<<<<< HEAD
+=======
+.childDevelopmentSupportSystem.iml
+/bin/
+>>>>>>> develop
 childDevelopmentSupportSystem.iml
