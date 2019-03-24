@@ -1,5 +1,6 @@
 package com.infoshare.alpha;
 
+<<<<<<< HEAD
 import static com.infoshare.alpha.HealthFacility.*;
 
 /**
@@ -18,5 +19,23 @@ public class App {
 
         // Menu.menu();
         // Menu.choiceOfMenuOption();
+=======
+import com.infoshare.alpha.wwr.utils.WwrController;
+
+/**
+ * This class is main entry for wwr program
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	String facilitiesRepoPath = args[0];
+    	String patientsRepoPath = args[1];
+
+		WwrController controller = new WwrController(facilitiesRepoPath, patientsRepoPath);
+
+		controller.wwrPlay();
+>>>>>>> develop
     }
 }
+

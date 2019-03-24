@@ -1,0 +1,40 @@
+{
+  "patients": [
+    {
+      "address": {
+        "city": "Gdańsk",
+        "street": "Pilotow ",
+        "phone": "444 444 444"
+      },
+      "pesel": {
+        "pesel": "84101411122"
+      },
+      "name": "Piotr",
+      "surname": "Kowerzanow"
+    },
+    {
+      "address": {
+        "city": "Gdansk",
+        "street": "pppppp",
+        "phone": "444555666"
+      },
+      "pesel": {
+        "pesel": "84101533444"
+      },
+      "name": "test",
+      "surname": "test"
+    },
+    {
+      "address": {
+        "city": "Gdańsk",
+        "street": "Grunwaldzka",
+        "phone": "444 444 444"
+      },
+      "pesel": {
+        "pesel": "85101112123"
+      },
+      "name": "Kroko",
+      "surname": "Kroko 222"
+    }
+  ]
+}
