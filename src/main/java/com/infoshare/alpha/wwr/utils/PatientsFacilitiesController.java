@@ -53,11 +53,23 @@ public class PatientsFacilitiesController {
     }
 
     private void showSelectedFacilityDetails(Map<Integer, Facility> patientFacilitiesMap) {
-        System.out.println("Select facility to show details: ");
-        int selectedFacilityId = Menu.getConsoleNumberInput(); // TODO: dodac lapanie wyjatkow
-        Facility selectedFacility = patientFacilitiesMap.get(selectedFacilityId);
-        System.out.println("------------Facility details : ------------------------");
-        System.out.println(selectedFacility);
+        boolean facilityDetailsDisplayed = false;
+        while (!facilityDetailsDisplayed) {
+            System.out.println("Select facility to show details: ");
+            try {
+                int selectedFacilityId = Menu.getConsoleNumberInput();
+                if (patientFacilitiesMap.containsKey(selectedFacilityId)) {
+                    Facility selectedFacility = patientFacilitiesMap.get(selectedFacilityId);
+                    System.out.println("------------Facility details : ------------------------");
+                    System.out.println(selectedFacility);
+                    facilityDetailsDisplayed = true;
+                } else {
+                    System.out.println("Wrong facility number selected. Try again.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Wrong facility number selected. Try again.");
+            }
+        }
     }
 
     private List<Facility> getFacilitiesBySelectedPatient(Patient selectedPatient) {
@@ -76,8 +88,19 @@ public class PatientsFacilitiesController {
             patientMap.put(ids, patient);
             ids++;
         }
-        int selectedPatientId = Menu.getConsoleNumberInput();
+        int selectedPatientId;
 
-        return patientMap.get(selectedPatientId);
+        while (true) {
+            try {
+                selectedPatientId = Menu.getConsoleNumberInput();
+                if (patientMap.containsKey(selectedPatientId)) {
+                    return patientMap.get(selectedPatientId);
+                } else {
+                    System.out.println("Wrong patient number selected. Try select again.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Wrong patient number selected. Try select again.");
+            }
+        }
     }
 }
