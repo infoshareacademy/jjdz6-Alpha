@@ -1,7 +1,5 @@
 package com.infoshare.alpha.wwr.domain.facilities.entity;
 
-import com.infoshare.alpha.Specialist;
-
 public class Facility {
 
     private String name;

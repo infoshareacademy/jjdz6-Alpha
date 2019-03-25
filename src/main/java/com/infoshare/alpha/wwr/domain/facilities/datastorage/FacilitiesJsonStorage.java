@@ -1,8 +1,5 @@
 package com.infoshare.alpha.wwr.domain.facilities.datastorage;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -10,13 +7,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.infoshare.alpha.Specialist;
-
 import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
-
+import com.infoshare.alpha.wwr.domain.facilities.entity.Specialist;
 
 public class FacilitiesJsonStorage implements DI {
 
