@@ -5,7 +5,7 @@
       "name": "WWR1",
       "address": {
         "city": "Gdańsk",
-        "street": "Nowe Ogroady 23",
+        "street": "Nowe Ogrody 23",
         "phone": "+48 564 123 123"
       }
     },
@@ -14,7 +14,7 @@
       "name": "WWR2",
       "address": {
         "city": "Gdańsk",
-        "street": "Al. Gruwaldzka 223",
+        "street": "Al. Grunwaldzka 223",
         "phone": "+48 564 123 555"
       }
     },

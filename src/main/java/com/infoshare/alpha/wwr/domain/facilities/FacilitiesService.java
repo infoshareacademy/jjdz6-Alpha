@@ -6,6 +6,7 @@ import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.di.DI;
@@ -36,25 +37,34 @@ public class FacilitiesService implements DI{
         this.facilitiesDbRepository.persist(facilities);
     }
 
-    public void delete(FacilityDeleteCommand command) {
+    public void delete(FacilityDeleteCommand command) throws FacilitiesException {
 
-        // funckcja do usuwania placówki
-        // 1. sprawdz czy taka placowka istnieje w kolekcji
-        // 2. jesli nie itnieje rzuc wyjatek : throw FacilitiesException.facilityNotFound());
-        // 3. jesli istnieje to usun z kolekcji
-        // 4. zapisz kolekcje do repo
-
+        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        if (facilities.getFacilities().contains(command.getFacility())) {
+            facilities.getFacilities().remove(command.getFacility());
+            this.facilitiesDbRepository.persist(facilities);
+        } else {
+            throw FacilitiesException.facilityNotFound(command.getFacility().getName());
+        }
     }
 
-    public void edit(FacilityEditCommand command) {
+    public void edit(FacilityEditCommand command) throws FacilitiesException {
 
-        // funkcja do edycji placowki
-        // 1. sprawdz czy taka placowka istnieje w kolekcji
-        // 2. jesli nie itnieje rzuc wyjatek:
-        // 2. jesli nie itnieje rzuc wyjatek :
-        // 3. jesli istnieje to podmien w kolekcji
-        // 4. zapisz cala kolekcje do repo
-
+        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        Integer oldFacilityIndex;
+        if (facilities.getFacilities().contains(command.getOldFacility())) {
+            oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
+        } else {
+            throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
+        }
+        for (Facility facility : facilities.getFacilities()) {
+            if (facility.equals(command.getEditedFacility())) {
+                throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
+            }
+        }
+        facilities.getFacilities().remove(command.getOldFacility());
+        facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
+        this.facilitiesDbRepository.persist(facilities);
     }
     
     public void upload(UploadCommand uploadCommand) {
