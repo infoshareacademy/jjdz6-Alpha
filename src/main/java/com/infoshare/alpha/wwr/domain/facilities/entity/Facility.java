@@ -1,46 +1,55 @@
 package com.infoshare.alpha.wwr.domain.facilities.entity;
 
-import com.infoshare.alpha.wwr.common.Address;
-
-import java.util.UUID;
+import com.infoshare.alpha.Specialist;
 
 public class Facility {
 
-    private UUID id;
+    private String name;
+    private String street;
+    private String city;
+    private String postalCode;
+    private String telephoneNumber;
+    private boolean isPrivate;
+    private Specialist specialist;
 
-	private String name;
-    
-	private Address address;
-
-    public Facility(String name, Address address) {
-        this(name, address, UUID.randomUUID());
+    public Facility() {
     }
 
-    public Facility(String name, Address address, UUID id) {
-        this.address = address;
+    public Facility(String name, String street, String city, String postalCode, String telephoneNumber, boolean isPrivate, Specialist specialist) {
         this.name = name;
-        this.id = id;
+        this.street = street;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.telephoneNumber = telephoneNumber;
+        this.isPrivate = isPrivate;
+        this.specialist = specialist;
     }
 
     public String getName() {
- 
-    	return name;
-    }
-    
-    public Address getAddress() {
-
-    	return address;
+        return name;
     }
 
-    public UUID getId() {
- 
-    	return id;
+    public String getStreet() {
+        return street;
     }
 
-    @Override
-    public String toString() {
-
-    	return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString();
+    public String getCity() {
+        return city;
     }
 
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public Specialist getSpecialist() {
+        return specialist;
+    }
 }
