@@ -31,6 +31,17 @@ public class InputForms {
         return new Facility(name, address);
     }
 
+    public static Facility getEditedFacilityFromKeyboard(Facility facilityToBeEdited){
+        System.out.println("Enter facility's new name or press 'ENTER' to keep the existing name:");
+        String editedFacilityName = Menu.getConsoleStringInput();
+        if(editedFacilityName.equals("")){
+            editedFacilityName = facilityToBeEdited.getName();
+        }
+        Address editedFacilityAddress = InputForms.getEditedAddressFromKeyboard(facilityToBeEdited.getAddress());
+
+        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId());
+    }
+
     public static Address getAddressFromKeyboard() {
 
         System.out.println("Enter city: ");
@@ -43,6 +54,29 @@ public class InputForms {
         String phone = Menu.getConsoleStringInput();
 
         return new Address(city, street, phone);
+    }
+
+    public static Address getEditedAddressFromKeyboard(Address address){
+        System.out.println("Current city is: " + address.getCity());
+        System.out.println("Enter new city or press 'ENTER' to keep the existing city");
+        String newCity = Menu.getConsoleStringInput();
+        if(newCity.equals("")){
+            newCity = address.getCity();
+        }
+        System.out.println("Current street is: " + address.getStreet());
+        System.out.println("Enter new street or press 'ENTER' to keep the existing street");
+        String newStreet = Menu.getConsoleStringInput();
+        if(newStreet.equals("")){
+            newStreet = address.getStreet();
+        }
+        System.out.println("Current phone is: " + address.getPhone());
+        System.out.println("Enter new phone or press 'ENTER' to keep the existing phone");
+        String newPhone = Menu.getConsoleStringInput();
+        if(newPhone.equals("")){
+            newPhone = address.getPhone();
+        }
+
+        return new Address(newCity, newStreet, newPhone);
     }
 
 
