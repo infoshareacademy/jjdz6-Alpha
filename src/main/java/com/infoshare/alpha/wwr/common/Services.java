@@ -42,7 +42,6 @@ public class Services {
 
     @Override
     public String toString() {
-        return "services= { " + this.getAllServices() +
-                '}';
+        return "services: " + this.getAllServices() + "";
     }
 }
