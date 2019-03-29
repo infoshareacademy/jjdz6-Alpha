@@ -16,6 +16,7 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
+import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
@@ -91,7 +92,7 @@ public class WwrController {
                         Menu.printPatientMenu();
                         break;
                     case 4:
-                        System.out.println("Add patient. -> not implemented yet");
+                        System.out.println("Add patient");
                         this.addPatient();
                         Menu.shouldContinue();
                         Menu.clearConsole();
@@ -169,6 +170,7 @@ public class WwrController {
             Patient patient = InputForms.getPatientFromKeyboard();
             PatientsService patientsService = (PatientsService) di.getService(PatientsService.class.getName());
             patientsService.add(patient);
+
 
         } catch (PeselException e) {
             System.out.println("Pesel number is invalid.");

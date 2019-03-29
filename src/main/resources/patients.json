@@ -2,39 +2,27 @@
   "patients": [
     {
       "address": {
-        "city": "Gdańsk",
-        "street": "Pilotow ",
-        "phone": "444 444 444"
+        "city": "gd",
+        "street": "gd",
+        "phone": "5555"
       },
       "pesel": {
-        "pesel": "84101411122"
+        "pesel": "55555555555"
       },
-      "name": "Piotr",
-      "surname": "Kowerzanow"
+      "name": "ja",
+      "surname": "ja"
     },
     {
       "address": {
-        "city": "Gdansk",
-        "street": "pppppp",
-        "phone": "444555666"
+        "city": "aa",
+        "street": "aa",
+        "phone": "333"
       },
       "pesel": {
-        "pesel": "84101533444"
+        "pesel": "66666666666"
       },
-      "name": "test",
-      "surname": "test"
-    },
-    {
-      "address": {
-        "city": "Gdańsk",
-        "street": "Grunwaldzka",
-        "phone": "444 444 444"
-      },
-      "pesel": {
-        "pesel": "85101112123"
-      },
-      "name": "Kroko",
-      "surname": "Kroko 222"
+      "name": "ty",
+      "surname": "ty"
     }
   ]
 }

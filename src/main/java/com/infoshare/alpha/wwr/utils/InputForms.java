@@ -13,7 +13,7 @@ public class InputForms {
         System.out.println("Enter patient name: ");
         String name = Menu.getConsoleStringInput();
 
-        System.out.println("Enter pateitn surname: ");
+        System.out.println("Enter patient surname: ");
         String surname = Menu.getConsoleStringInput();
 
 
