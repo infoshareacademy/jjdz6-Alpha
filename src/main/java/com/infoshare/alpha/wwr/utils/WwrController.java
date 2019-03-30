@@ -24,7 +24,7 @@ public class WwrController {
     private static AppDI di;
 
     public WwrController(String facilitiesRepoPath, String patientsRepoPath) {
-        di = new AppDI(facilitiesRepoPath, patientsRepoPath);
+        this.di = new AppDI(facilitiesRepoPath, patientsRepoPath);
     }
 
     public void wwrPlay() {
@@ -102,7 +102,6 @@ public class WwrController {
                         patientMenuEnd = true;
                         break;
                     default:
-                        Menu.clearConsole();
                         System.out.println("<<Option not implemented.exit>>");
                         patientMenuEnd = true;
                         break;
@@ -196,7 +195,7 @@ public class WwrController {
         controller.findPatientsFacilities();
     }
 
-    private void addFacility() {
+    public void addFacility() {
         try {
             Facility newFacility = InputForms.getFacilityFromKeyboard();
             FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
@@ -207,7 +206,7 @@ public class WwrController {
         }
     }
 
-    private void deleteFacility() {
+    public void deleteFacility() {
         try {
             Facility facilityToBeDeleted = chooseFacilityFromList();
             FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
@@ -218,7 +217,7 @@ public class WwrController {
         }
     }
 
-    private void editFacility() {
+    public void editFacility() {
         try {
             Facility oldFacility = chooseFacilityFromList();
             System.out.println("Edit facility's " + oldFacility.getName() + " details");
@@ -231,7 +230,7 @@ public class WwrController {
         }
     }
 
-    private static Facility chooseFacilityFromList() {
+    public static Facility chooseFacilityFromList() {
 
         FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
         Facilities facilities = facilitiesReadModel.getAll();

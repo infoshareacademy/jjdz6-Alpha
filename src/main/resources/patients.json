@@ -3,38 +3,34 @@
     {
       "address": {
         "city": "Gdańsk",
-        "street": "Pilotow ",
-        "phone": "444 444 444"
+        "street": "Gdańska",
+        "phone": "555 555 555"
       },
       "pesel": {
-        "pesel": "84101411122"
+        "pesel": "55555555555"
       },
-      "name": "Piotr",
-      "surname": "Kowerzanow"
-    },
-    {
-      "address": {
-        "city": "Gdansk",
-        "street": "pppppp",
-        "phone": "444555666"
+      "parent": {
+        "name": "Michał",
+        "surname": "Łukaszewski"
       },
-      "pesel": {
-        "pesel": "84101533444"
-      },
-      "name": "test",
-      "surname": "test"
+      "name": "Łukasz",
+      "surname": "Łukaszewski"
     },
     {
       "address": {
         "city": "Gdańsk",
-        "street": "Grunwaldzka",
-        "phone": "444 444 444"
+        "street": "Gdańska",
+        "phone": "555 555 555"
       },
       "pesel": {
-        "pesel": "85101112123"
+        "pesel": "55555555555"
       },
-      "name": "Kroko",
-      "surname": "Kroko 222"
+      "parent": {
+        "name": "Henryk",
+        "surname": "Jankowski"
+      },
+      "name": "Jan",
+      "surname": "Jankowski"
     }
   ]
 }
