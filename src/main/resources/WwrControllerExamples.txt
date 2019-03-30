@@ -1,0 +1,79 @@
+           // ------- DI usage examples -----------------
+
+           private static FacilitiesReadModel getFacilitiesReadModel() {
+
+               return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.toString());
+           }
+
+       public static void exampleGetAllPatients() {
+           PatientsReadModelDbRepository patientsReadModelDbRepository = (PatientsReadModelDbRepository) di.getService(PatientsReadModelDbRepository.class.toString());
+
+           Patients patients = patientsReadModelDbRepository.getAll();
+           patients.printAllPatients();
+       }
+
+       public static void exampleGetAllFacilities() {
+           FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+           Facilities facilities = facilitiesReadModel.getAll();
+           facilities.printAllFacilities();
+       }
+
+       public static void exampleGetPatientFacilitiesByQuery() {
+           try {
+               FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+
+               List<FacilityQueryField> facilityQueryFields = new ArrayList<>();
+               facilityQueryFields.add(FacilityQueryField.CITY);
+   //        facilityQueryFields.add(FacilityQueryField.STREET);
+
+               FacilityPatientQuery facilityPatientQuery = new FacilityPatientQuery(
+                       new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdynia", "Kolejowa 23", "+48 123 345 334")),
+                       facilityQueryFields
+               );
+
+               List<Facility> facilities = facilitiesReadModel.getByPatient(facilityPatientQuery);
+               Facilities f = new Facilities();
+               f.setFacilities(facilities);
+               f.printAllFacilities();
+           } catch (PeselException e) {
+               System.out.println("Pesel number is invalid");
+           }
+       }
+
+    public static void exampleGetFacilitiesByQuery() {
+        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+
+        Map<FacilityQueryField, String> searchBy = new HashMap<FacilityQueryField, String>();
+        searchBy.put(FacilityQueryField.CITY, "Gdańsk");
+        FacilityQuery facilityQuery = new FacilityQuery(searchBy);
+
+        List<Facility> facilities = facilitiesReadModel.getByQuery(facilityQuery);
+        Facilities f = new Facilities();
+        f.setFacilities(facilities);
+        f.printAllFacilities();
+    }
+
+    public static void exampleAddPatients() throws PeselException {
+        Patient patient = new Patient(
+                "Jan",
+                "Kowalski",
+                new Pesel("84101713234"),
+                new Address("Gdańsk", "Pilotów 23e", "345 33 333")
+        );
+
+        Patient patient2 = new Patient(
+                "Jan",
+                "Kowalski",
+                new Pesel("84101713234"),
+                new Address("Gdańsk", "Pilotów 23e", "345 33 333")
+        );
+
+        Patients patients = new Patients();
+        patients.add(patient);
+        patients.add(patient2);
+
+        PatientsRepository patientsDbRepository = (PatientsRepository) di.getService(PatientsRepository.class.getName());
+
+        patientsDbRepository.persist(patients);
+
+    }
