@@ -24,6 +24,7 @@ public class Facility {
         this.address = address;
         this.name = name;
         this.services = services;
+        this.id = UUID.randomUUID();
     }
 
     public Facility(String name, Address address) {
@@ -73,11 +74,12 @@ public class Facility {
         if (!(o instanceof Facility)) return false;
         Facility facility = (Facility) o;
         return Objects.equals(getName(), facility.getName()) &&
-                Objects.equals(getAddress(), facility.getAddress());
+                Objects.equals(getAddress(), facility.getAddress()) &&
+                Objects.equals(getServices(), facility.getServices());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress());
+        return Objects.hash(getName(), getAddress(), getServices());
     }
 }

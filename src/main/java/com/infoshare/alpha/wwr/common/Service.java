@@ -1,5 +1,7 @@
 package com.infoshare.alpha.wwr.common;
 
+import java.util.Objects;
+
 public class Service {
 
     private String name;
@@ -17,5 +19,18 @@ public class Service {
         return " " +
                 "service name: '" + name + '\'' +
                 " ";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Service)) return false;
+        Service service = (Service) o;
+        return Objects.equals(getName(), service.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }
