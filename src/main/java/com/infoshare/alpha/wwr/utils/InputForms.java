@@ -40,8 +40,12 @@ public class InputForms {
             editedFacilityName = facilityToBeEdited.getName();
         }
         Address editedFacilityAddress = InputForms.getEditedAddressFromKeyboard(facilityToBeEdited.getAddress());
-
-        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId());
+        List<Service> editedServices = InputForms.getServicesFromKeyboard();
+        if(editedServices.isEmpty()){
+            editedServices = facilityToBeEdited.getServices();
+            System.out.println("Facility services have not been changed.");
+        }
+        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId(), editedServices);
     }
 
     public static Address getAddressFromKeyboard() {

@@ -36,6 +36,13 @@ public class Facility {
         this.id = id;
     }
 
+    public Facility(String name, Address address, UUID id, List<Service> services) {
+        this.address = address;
+        this.name = name;
+        this.id = id;
+        this.services = services;
+    }
+
     public String getName() {
  
     	return name;
