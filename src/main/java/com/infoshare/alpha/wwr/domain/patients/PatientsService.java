@@ -1,6 +1,7 @@
 package com.infoshare.alpha.wwr.domain.patients;
 
 import com.infoshare.alpha.wwr.di.DI;
+import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
@@ -11,6 +12,7 @@ public class PatientsService implements DI{
 
 	private PatientsReadModelDb patientsReadModelDbRepository;
 	private PatientsRepository patientsRepository;
+
 	
 	public PatientsService(
 			PatientsReadModelDb patientsReadModelDbRepository,
