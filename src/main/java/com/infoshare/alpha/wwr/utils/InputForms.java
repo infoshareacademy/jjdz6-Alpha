@@ -4,6 +4,7 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.domain.patients.entity.Caretaker;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
 public class InputForms {
@@ -20,8 +21,13 @@ public class InputForms {
         Pesel pesel = InputForms.getPeselFromKeyboard();
         Address address = InputForms.getAddressFromKeyboard();
 
-        return new Patient(name, surname, pesel, address);
+        Caretaker caretaker = InputForms.getCaretakerFromKeyboard();
+
+
+        return new Patient(name, surname, pesel, address, caretaker);
     }
+
+
 
     public static Facility getFacilityFromKeyboard() {
         System.out.println("Enter facility name: ");
@@ -54,6 +60,16 @@ public class InputForms {
         String phone = Menu.getConsoleStringInput();
 
         return new Address(city, street, phone);
+    }
+
+    private static Caretaker getCaretakerFromKeyboard() {
+        System.out.println("Enter caretaker name: ");
+        String nameCaretaker = Menu.getConsoleStringInput();
+
+        System.out.println("Enter caretaker surname: ");
+        String surnameCaretaker = Menu.getConsoleStringInput();
+
+        return new Caretaker(nameCaretaker, surnameCaretaker);
     }
 
     public static Address getEditedAddressFromKeyboard(Address address){

@@ -8,11 +8,13 @@ public class Patient extends User {
 
     private Address address;
     private Pesel pesel;
+    private Caretaker caretaker;
 
-    public Patient(String name, String surname, Pesel pesel, Address address) {
+    public Patient(String name, String surname, Pesel pesel, Address address, Caretaker caretaker) {
         super(name, surname);
         this.pesel = pesel;
         this.address = address;
+        this.caretaker = caretaker;
     }
 
     public Patient() {
@@ -26,10 +28,14 @@ public class Patient extends User {
     public Pesel getPesel() {
     		return this.pesel;
     }
-    
+
+    public Caretaker getCaretaker() {
+        return caretaker;
+    }
+
     @Override
     public String toString() {
 
-    	return "Name: " + this.getName() + " Surname : " + this.getSurname() + this.address.toString() + this.pesel;
+    	return "Name: " + this.getName() + " Surname : " + this.getSurname() + this.address.toString() + this.pesel + this.caretaker.toString();
     }
 }

@@ -17,6 +17,7 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
+import com.infoshare.alpha.wwr.domain.patients.entity.Caretaker;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
@@ -254,7 +255,7 @@ public class WwrController {
 //        facilityQueryFields.add(FacilityQueryField.STREET);
 
             FacilityPatientQuery facilityPatientQuery = new FacilityPatientQuery(
-                    new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdynia", "Kolejowa 23", "+48 123 345 334")),
+                    new Patient("Adam", "Kowalski", new Pesel("87101812435"), new Address("Gdynia", "Kolejowa 23", "+48 123 345 334"), new Caretaker("Edward", "Kowalski")),
                     facilityQueryFields
             );
 
@@ -285,14 +286,16 @@ public class WwrController {
                 "Jan",
                 "Kowalski",
                 new Pesel("84101713234"),
-                new Address("Gdańsk", "Pilotów 23e", "345 33 333")
+                new Address("Gdańsk", "Pilotów 23e", "345 33 333"),
+                new Caretaker("Edward", "Kowalski")
         );
 
         Patient patient2 = new Patient(
                 "Jan",
                 "Kowalski",
                 new Pesel("84101713234"),
-                new Address("Gdańsk", "Pilotów 23e", "345 33 333")
+                new Address("Gdańsk", "Pilotów 23e", "345 33 333"),
+                new Caretaker("Janina", "Kowalska")
         );
 
         Patients patients = new Patients();

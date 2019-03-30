@@ -2,27 +2,31 @@
   "patients": [
     {
       "address": {
-        "city": "gd",
-        "street": "gd",
-        "phone": "5555"
+        "city": "Gdańsk",
+        "street": "Gdańska 1",
+        "phone": "555 555 555"
       },
       "pesel": {
-        "pesel": "55555555555"
+        "pesel": "88010103030"
       },
-      "name": "ja",
-      "surname": "ja"
+      "name": "Jan",
+      "surname": "Kowalski"
     },
     {
       "address": {
-        "city": "aa",
-        "street": "aa",
-        "phone": "333"
+        "city": "Gdańsk",
+        "street": "Gdańska 1",
+        "phone": "555 555 555"
       },
       "pesel": {
-        "pesel": "66666666666"
+        "pesel": "44444444444"
       },
-      "name": "ty",
-      "surname": "ty"
+      "caretaker": {
+        "name": "Czesława",
+        "surname": "Zygmuntowska"
+      },
+      "name": "Zygmunt",
+      "surname": "Zygmuntowski"
     }
   ]
 }
