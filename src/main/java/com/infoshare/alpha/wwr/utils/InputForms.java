@@ -1,10 +1,11 @@
 package com.infoshare.alpha.wwr.utils;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.common.*;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputForms {
 
@@ -27,8 +28,9 @@ public class InputForms {
         System.out.println("Enter facility name: ");
         String name = Menu.getConsoleStringInput();
         Address address = InputForms.getAddressFromKeyboard();
+        List<Service> services = InputForms.getServicesFromKeyboard();
 
-        return new Facility(name, address);
+        return new Facility(name, address, services);
     }
 
     public static Facility getEditedFacilityFromKeyboard(Facility facilityToBeEdited){
@@ -54,6 +56,17 @@ public class InputForms {
         String phone = Menu.getConsoleStringInput();
 
         return new Address(city, street, phone);
+    }
+
+    public static List<Service> getServicesFromKeyboard(){
+        System.out.println("Enter service(s) or press 'x' to cancel:");
+        List<Service> services = new ArrayList<>();
+        String userInput = Menu.getConsoleStringInput();
+        while(!userInput.equals("x")){
+            services.add(new Service(userInput));
+            userInput = Menu.getConsoleStringInput();
+        }
+        return services;
     }
 
     public static Address getEditedAddressFromKeyboard(Address address){
