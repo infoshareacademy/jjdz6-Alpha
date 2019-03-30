@@ -3,30 +3,34 @@
     {
       "address": {
         "city": "Gdańsk",
-        "street": "Gdańska 1",
+        "street": "Gdańska",
         "phone": "555 555 555"
       },
       "pesel": {
-        "pesel": "88010103030"
+        "pesel": "55555555555"
       },
-      "name": "Jan",
-      "surname": "Kowalski"
+      "parent": {
+        "name": "Michał",
+        "surname": "Łukaszewski"
+      },
+      "name": "Łukasz",
+      "surname": "Łukaszewski"
     },
     {
       "address": {
         "city": "Gdańsk",
-        "street": "Gdańska 1",
+        "street": "Gdańska",
         "phone": "555 555 555"
       },
       "pesel": {
-        "pesel": "44444444444"
+        "pesel": "55555555555"
       },
-      "caretaker": {
-        "name": "Czesława",
-        "surname": "Zygmuntowska"
+      "parent": {
+        "name": "Henryk",
+        "surname": "Jankowski"
       },
-      "name": "Zygmunt",
-      "surname": "Zygmuntowski"
+      "name": "Jan",
+      "surname": "Jankowski"
     }
   ]
 }
