@@ -8,6 +8,7 @@ public class Menu {
 
     public static void printMainMenu() {
 
+
         System.out.println();
         System.out.println("                          MAIN MENU                     ");
         System.out.println("     *       Please choose an adequate option:         *");
