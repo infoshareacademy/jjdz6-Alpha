@@ -3,9 +3,13 @@ package com.infoshare.alpha.wwr.utils;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputForms {
 
@@ -33,8 +37,9 @@ public class InputForms {
         System.out.println("Enter facility name: ");
         String name = Menu.getConsoleStringInput();
         Address address = InputForms.getAddressFromKeyboard();
+        List<Service> services = InputForms.getServicesFromKeyboard();
 
-        return new Facility(name, address);
+        return new Facility(name, address, services);
     }
 
     public static Facility getEditedFacilityFromKeyboard(Facility facilityToBeEdited){
@@ -44,8 +49,12 @@ public class InputForms {
             editedFacilityName = facilityToBeEdited.getName();
         }
         Address editedFacilityAddress = InputForms.getEditedAddressFromKeyboard(facilityToBeEdited.getAddress());
-
-        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId());
+        List<Service> editedServices = InputForms.getServicesFromKeyboard();
+        if(editedServices.isEmpty()){
+            editedServices = facilityToBeEdited.getServices();
+            System.out.println("Facility services have not been changed.");
+        }
+        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId(), editedServices);
     }
 
     public static Address getAddressFromKeyboard() {
@@ -60,6 +69,20 @@ public class InputForms {
         String phone = Menu.getConsoleStringInput();
 
         return new Address(city, street, phone);
+    }
+
+    public static List<Service> getServicesFromKeyboard(){
+        System.out.println("Enter next service name and press 'ENTER'");
+        System.out.println("In order to leave this entry, press press 'x' and 'ENTER'.");
+        List<Service> services = new ArrayList<>();
+        String userInput = Menu.getConsoleStringInput();
+        while(!userInput.equals("x")){
+            System.out.println("Enter next service name and press 'ENTER'");
+            System.out.println("In order to leave this entry, press press 'x' and 'ENTER'.");
+            services.add(new Service(userInput));
+            userInput = Menu.getConsoleStringInput();
+        }
+        return services;
     }
 
     private static Parent getParentFromKeyboard() {
