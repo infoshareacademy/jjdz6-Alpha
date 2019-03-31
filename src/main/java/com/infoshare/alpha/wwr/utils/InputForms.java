@@ -86,10 +86,10 @@ public class InputForms {
     }
 
     private static Parent getParentFromKeyboard() {
-        System.out.println("Enter caretaker name: ");
+        System.out.println("Enter parent name: ");
         String nameCaretaker = Menu.getConsoleStringInput();
 
-        System.out.println("Enter caretaker surname: ");
+        System.out.println("Enter parent surname: ");
         String surnameCaretaker = Menu.getConsoleStringInput();
 
         return new Parent(nameCaretaker, surnameCaretaker);
