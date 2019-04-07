@@ -10,3 +10,10 @@
         1. initialize DI: 
         2. print initialized services
         3. use service from di
+        
+## Maven targets
+
+        1. mvn clean package dependency:copy-dependencies
+        2.mvn clean package
+  <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
+<!-- mvn clean compile assembly:single -->
