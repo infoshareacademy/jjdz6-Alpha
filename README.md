@@ -14,6 +14,6 @@
 ## Maven targets
 
         1. mvn clean package dependency:copy-dependencies
-        2.mvn clean package
+        2. mvn clean package
         3. mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib
         4. mvn clean compile assembly:single
