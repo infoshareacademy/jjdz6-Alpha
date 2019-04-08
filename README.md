@@ -15,5 +15,5 @@
 
         1. mvn clean package dependency:copy-dependencies
         2.mvn clean package
-  <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
-<!-- mvn clean compile assembly:single -->
+        3. mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib
+        4. mvn clean compile assembly:single
