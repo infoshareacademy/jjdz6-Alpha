@@ -11,9 +11,13 @@
         2. print initialized services
         3. use service from di
         
-## Maven targets
+## Maven targets (experimental)
 
         1. mvn clean package dependency:copy-dependencies
-        2.mvn clean package
+        2. mvn clean package (build war package with jar dependencies)
+        3. mvn dependency:resolve (download external packages to .m2 )
+        4. mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib (build jar file with dependencies as one package)
+        5. mvn clean compile assembly:single (build jar file with dependencies as one package)
+        
   <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
 <!-- mvn clean compile assembly:single -->
