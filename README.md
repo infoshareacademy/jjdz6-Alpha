@@ -20,4 +20,5 @@
         5. mvn clean compile assembly:single (build jar file with dependencies as one package)
         
   <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
-<!-- mvn clean compile assembly:single -->
+  <!-- mvn clean compile assembly:single -->
+
