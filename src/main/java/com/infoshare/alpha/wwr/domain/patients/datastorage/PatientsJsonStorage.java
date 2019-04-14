@@ -5,20 +5,17 @@ import com.google.gson.GsonBuilder;
 import java.io.*;
 
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
-import com.infoshare.alpha.wwr.di.DI;
 
-public class PatientsJsonStorage implements DI {
+import javax.enterprise.context.RequestScoped;
 
-	private String patientsRepoFilePath;
-	private Gson gson;
+@RequestScoped
+public class PatientsJsonStorage {
 
-	public PatientsJsonStorage(String patientsRepoFilePath) {
-		this.patientsRepoFilePath = patientsRepoFilePath;
-		this.gson = new GsonBuilder().setPrettyPrinting().create();
-	}
-	
+	private static final String PATIENTS_REPO_FILE_PATH = "src/main/resources/"; //TODO refactor to get path from customizable parameter
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
 	public Patients load() {
-        try (Reader reader = new FileReader(this.patientsRepoFilePath)){
+        try (Reader reader = new FileReader(this.PATIENTS_REPO_FILE_PATH)){
 
             Patients patients = this.gson.fromJson(reader, Patients.class);
 
@@ -31,7 +28,7 @@ public class PatientsJsonStorage implements DI {
 	}
 		
 	public void save(Patients patients) {
-		try (Writer writer = new FileWriter(this.patientsRepoFilePath)) {
+		try (Writer writer = new FileWriter(this.PATIENTS_REPO_FILE_PATH)) {
 			this.gson.toJson(patients, writer);
 		} catch (IOException e) {
 			System.out.println("Exception during saving json file: " + e.getMessage());

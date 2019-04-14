@@ -3,25 +3,35 @@ package com.infoshare.alpha.wwr.utils;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+//import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+//import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
+import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
-import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+//import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
+//import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+import javax.inject.Inject;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class PatientsFacilitiesController {
 
-    private FacilitiesReadModel facilitiesReadModel;
-    private PatientsReadModel patientsReadModel;
+//    private FacilitiesReadModel facilitiesReadModel;
+//    private PatientsReadModel patientsReadModel;
 
-    public PatientsFacilitiesController(FacilitiesReadModel facilitiesReadModel, PatientsReadModel patientsReadModel) {
-        this.facilitiesReadModel = facilitiesReadModel;
-        this.patientsReadModel = patientsReadModel;
-    }
+    @Inject
+    private FacilitiesReadModelDbRepository facilitiesReadModelDb;
+    @Inject
+    private PatientsReadModelDbRepository patientsReadModelDb;
+
+//    public PatientsFacilitiesController(FacilitiesReadModel facilitiesReadModel, PatientsReadModel patientsReadModel) {
+//        this.facilitiesReadModel = facilitiesReadModel;
+//        this.patientsReadModel = patientsReadModel;
+//    }
 
     public void findPatientsFacilities() {
         try {
-            Patient selectedPatient = this.getSelectedPatient(this.patientsReadModel.getAll().getPatients());
+            Patient selectedPatient = this.getSelectedPatient(this.patientsReadModelDb.getAll().getPatients());
             List<Facility> nearestPatientFacilities = this.getFacilitiesBySelectedPatient(selectedPatient);
 
             this.showPatientFacilities(nearestPatientFacilities);
@@ -82,7 +92,7 @@ public class PatientsFacilitiesController {
         List<FacilityQueryField> facilityQueryFields = new ArrayList<>();
         facilityQueryFields.add(FacilityQueryField.CITY);
 
-        return this.facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
+        return this.facilitiesReadModelDb.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
     }
 
     private Patient getSelectedPatient(List<Patient> patientList) {

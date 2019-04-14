@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.utils;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.PeselException;
-import com.infoshare.alpha.wwr.di.AppDI;
+//import com.infoshare.alpha.wwr.di.AppDI;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
@@ -10,10 +10,15 @@ import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+//import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+//import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
+import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
-import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+//import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
+//import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -21,11 +26,20 @@ import java.util.Map;
 
 public class WwrController {
 
-    private static AppDI di;
+//    private static AppDI di;
 
-    public WwrController(String facilitiesRepoPath, String patientsRepoPath) {
-        this.di = new AppDI(facilitiesRepoPath, patientsRepoPath);
-    }
+    @Inject
+    private PatientsService patientsService;
+    @Inject
+    private PatientsReadModelDbRepository patientsReadModelDb;
+    @Inject
+    private FacilitiesService facilitiesService;
+    @Inject
+    private FacilitiesReadModelDbRepository facilitiesReadModelDb;
+
+//    public WwrController(String facilitiesRepoPath, String patientsRepoPath) {
+//        this.di = new AppDI(facilitiesRepoPath, patientsRepoPath);
+//    }
 
     public void wwrPlay() {
         boolean programEnd = false;
@@ -162,7 +176,7 @@ public class WwrController {
     private void addPatient() {
         try {
             Patient patient = InputForms.getPatientFromKeyboard();
-            PatientsService patientsService = (PatientsService) di.getService(PatientsService.class.getName());
+//            PatientsService patientsService = (PatientsService) di.getService(PatientsService.class.getName());
             patientsService.add(patient);
 
         } catch (PeselException e) {
@@ -171,34 +185,34 @@ public class WwrController {
     }
 
     private void showAllPatients() {
-        PatientsReadModel patientsReadModel = (PatientsReadModel) di.getService(PatientsReadModel.class.getName());
+//        PatientsReadModel patientsReadModel = (PatientsReadModel) di.getService(PatientsReadModel.class.getName());
         System.out.println("---------------Patients in system--------------------------");
-        patientsReadModel.getAll().printAllPatients();
+        patientsReadModelDb.getAll().printAllPatients();
         System.out.println("-----------------------------------------------------------");
     }
 
     private void showAllFacilities() {
 
-        FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName());
+//        FacilitiesReadModel facilitiesReadModel = (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName());
         System.out.println("-------------All facilities in system-------------------------------------------------");
-        facilitiesReadModel.getAll().printAllFacilities();
+        facilitiesReadModelDb.getAll().printAllFacilities();
         System.out.println("--------------------------------------------------------------------------------------");
 
     }
 
     private void findPatientsFacilities() {
         PatientsFacilitiesController controller =
-                new PatientsFacilitiesController(
-                        (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName()),
-                        (PatientsReadModel) di.getService(PatientsReadModel.class.getName())
-                );
+                new PatientsFacilitiesController();
+//                        (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName()),
+//                        (PatientsReadModel) di.getService(PatientsReadModel.class.getName())
+//                );
         controller.findPatientsFacilities();
     }
 
     public void addFacility() {
         try {
             Facility newFacility = InputForms.getFacilityFromKeyboard();
-            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+//            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
             facilitiesService.add(new FacilityAddCommand(newFacility));
             System.out.println("Facility " + newFacility.getName() + " has been added to the database" + "\n");
         } catch (FacilitiesException e) {
@@ -209,7 +223,7 @@ public class WwrController {
     public void deleteFacility() {
         try {
             Facility facilityToBeDeleted = chooseFacilityFromList();
-            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+//            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
             facilitiesService.delete(new FacilityDeleteCommand(facilityToBeDeleted));
             System.out.println("Facility " + facilityToBeDeleted.getName() + " has been deleted from the database" + "\n");
         } catch (FacilitiesException e) {
@@ -222,7 +236,7 @@ public class WwrController {
             Facility oldFacility = chooseFacilityFromList();
             System.out.println("Edit facility's " + oldFacility.getName() + " details");
             Facility editedFacility = InputForms.getEditedFacilityFromKeyboard(oldFacility);
-            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
+//            FacilitiesService facilitiesService = (FacilitiesService) di.getService(FacilitiesService.class.getName());
             facilitiesService.edit(new FacilityEditCommand(oldFacility, editedFacility));
             System.out.println("Facility's detail change has been saved" + "\n");
         } catch (FacilitiesException e) {
@@ -230,10 +244,10 @@ public class WwrController {
         }
     }
 
-    public static Facility chooseFacilityFromList() {
+    public Facility chooseFacilityFromList() {
 
-        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
-        Facilities facilities = facilitiesReadModel.getAll();
+//        FacilitiesReadModel facilitiesReadModel = getFacilitiesReadModel();
+        Facilities facilities = facilitiesReadModelDb.getAll();
         List<Facility> facilityList = facilities.getFacilities();
         System.out.println("Select facility id: ");
         Map<Integer, Facility> searchById = new HashMap<>();
@@ -259,8 +273,8 @@ public class WwrController {
         return searchById.get(selectFacilityId);
     }
 
-    private static FacilitiesReadModel getFacilitiesReadModel() {
-
-        return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName());
-    }
+//    private static FacilitiesReadModel getFacilitiesReadModel() {
+//
+//        return (FacilitiesReadModel) di.getService(FacilitiesReadModel.class.getName());
+//    }
 }

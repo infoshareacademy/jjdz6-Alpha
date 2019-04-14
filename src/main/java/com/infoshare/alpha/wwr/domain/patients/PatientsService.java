@@ -1,27 +1,31 @@
 package com.infoshare.alpha.wwr.domain.patients;
 
-import com.infoshare.alpha.wwr.di.DI;
+//import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
-import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
-import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
+//import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
-public class PatientsService implements DI{
+@RequestScoped
+public class PatientsService {
 
-	private PatientsReadModelDb patientsReadModelDbRepository;
-	private PatientsRepository patientsRepository;
+	@Inject
+	private PatientsReadModelDbRepository patientsReadModelDbRepository;
+//	private PatientsRepository patientsRepository;
 
 	
-	public PatientsService(
-			PatientsReadModelDb patientsReadModelDbRepository,
-			PatientsRepository patientsRepository
-			) 
-	{
-		this.patientsReadModelDbRepository = patientsReadModelDbRepository;
-		this.patientsRepository = patientsRepository;
-	}
+//	public PatientsService(
+//			PatientsReadModelDb patientsReadModelDbRepository,
+//			PatientsRepository patientsRepository
+//			)
+//	{
+//		this.patientsReadModelDbRepository = patientsReadModelDbRepository;
+//		this.patientsRepository = patientsRepository;
+//	}
 	
 	public void add(Patient patient) {
 
@@ -29,7 +33,7 @@ public class PatientsService implements DI{
 
 		patients.add(patient);
 
-		this.patientsRepository.persist(patients);
+		this.patientsReadModelDbRepository.persist(patients);
 
 		System.out.println(patient.toString() + " added. ");
 	}

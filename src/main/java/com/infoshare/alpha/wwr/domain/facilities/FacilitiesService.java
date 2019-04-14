@@ -7,26 +7,29 @@ import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+//import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
-import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
-import com.infoshare.alpha.wwr.di.DI;
 
-public class FacilitiesService implements DI{
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
-    private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
-    private FacilitiesRepository facilitiesDbRepository;
+@RequestScoped
+public class FacilitiesService {
 
-    public FacilitiesService(
-    		FacilitiesRepository facilitiesDbRepository,
-    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
-    		) {
-    		this.facilitiesDbRepository = facilitiesDbRepository;
-    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;   		
-    }
+    @Inject
+    private FacilitiesReadModelDbRepository repository;
+
+//    public FacilitiesService(
+//    		FacilitiesRepository facilitiesDbRepository,
+//    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
+//    		) {
+//    		this.facilitiesDbRepository = facilitiesDbRepository;
+//    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;
+//    }
 
     public void add(FacilityAddCommand command) throws FacilitiesException {
 
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        Facilities facilities = this.repository.getAll();
 
         if (facilities.getFacilities().contains(command.getFacility())) {
 
@@ -34,15 +37,15 @@ public class FacilitiesService implements DI{
         }
 
         facilities.add(command.getFacility());
-        this.facilitiesDbRepository.persist(facilities);
+        this.repository.persist(facilities);
     }
 
     public void delete(FacilityDeleteCommand command) throws FacilitiesException {
 
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        Facilities facilities = this.repository.getAll();
         if (facilities.getFacilities().contains(command.getFacility())) {
             facilities.getFacilities().remove(command.getFacility());
-            this.facilitiesDbRepository.persist(facilities);
+            this.repository.persist(facilities);
         } else {
             throw FacilitiesException.facilityNotFound(command.getFacility().getName());
         }
@@ -50,7 +53,7 @@ public class FacilitiesService implements DI{
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {
 
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        Facilities facilities = this.repository.getAll();
         Integer oldFacilityIndex;
         if (facilities.getFacilities().contains(command.getOldFacility())) {
             oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
@@ -64,7 +67,7 @@ public class FacilitiesService implements DI{
         }
         facilities.getFacilities().remove(command.getOldFacility());
         facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
-        this.facilitiesDbRepository.persist(facilities);
+        this.repository.persist(facilities);
     }
     
     public void upload(UploadCommand uploadCommand) {

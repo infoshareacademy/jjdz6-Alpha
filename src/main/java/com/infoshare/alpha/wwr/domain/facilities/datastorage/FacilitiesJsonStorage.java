@@ -2,23 +2,19 @@ package com.infoshare.alpha.wwr.domain.facilities.datastorage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+
+import javax.enterprise.context.RequestScoped;
 import java.io.*;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.di.DI;
+@RequestScoped
+public class FacilitiesJsonStorage {
 
-public class FacilitiesJsonStorage implements DI {
+	private static final String FACILITIES_REPO_FILE_PATH = "/src/main/resources/facilities.json"; //TODO refactor to get path from customizable parameter
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	private String facilitiesRepoFilePath;
-	private Gson gson;
-
-	public FacilitiesJsonStorage(String facilitiesRepoFilePath) {
-		this.facilitiesRepoFilePath = facilitiesRepoFilePath;
-		this.gson = new GsonBuilder().setPrettyPrinting().create();
-	}
-	
 	public Facilities load() {
-        try (Reader reader = new FileReader(this.facilitiesRepoFilePath)) {
+        try (Reader reader = new FileReader(FACILITIES_REPO_FILE_PATH)) {
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
 
             return facilities == null ? new Facilities() : facilities;
@@ -30,7 +26,7 @@ public class FacilitiesJsonStorage implements DI {
 	}
 		
 	public void save(Facilities facilities) {
-		try (Writer writer = new FileWriter(this.facilitiesRepoFilePath)){
+		try (Writer writer = new FileWriter(FACILITIES_REPO_FILE_PATH)){
 			this.gson.toJson(facilities, writer);
 		} catch (IOException e) {
 			e.printStackTrace();

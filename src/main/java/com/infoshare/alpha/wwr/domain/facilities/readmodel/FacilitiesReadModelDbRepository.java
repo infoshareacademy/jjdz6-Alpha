@@ -3,37 +3,37 @@ package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.di.DI;
+//import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, DI {
+@RequestScoped
+public class FacilitiesReadModelDbRepository {
 
+    @Inject
     private FacilitiesJsonStorage storage;
 
-    public FacilitiesReadModelDbRepository(FacilitiesJsonStorage storage) {
-        try {
-            this.storage = storage;
-        } catch (NullPointerException e) {
-            System.out.println(e.toString());
-            e.printStackTrace();
-        }
+//    @Override
+    public void persist(Facilities facilities) {
+        this.storage.save(facilities);
     }
 
-    @Override
+//    @Override
     public Facilities getAll() {
         
         return this.storage.load();
     }
 
-    @Override
+//    @Override
     public List<Facility> getByName(String name) {
     	Facilities facilities = this.storage.load();
     	
@@ -43,7 +43,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
                 .collect(Collectors.toList());
     }
 
-    @Override
+//    @Override
     public List<Facility> getByCity(String city) {
     	Facilities facilities = this.storage.load();
     	
@@ -54,7 +54,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
     }
     
 
-    @Override
+//    @Override
     public List<Facility> getByAddress(Address address) {
     	
     	Facilities facilities = this.storage.load();    	
@@ -70,7 +70,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
     			.collect(Collectors.toList());
     }
 
-    @Override
+//    @Override
     public List<Facility> getByPatient(FacilityPatientQuery query) {
 
         List<FacilityQueryField> facilityQueryFields = query.getQueryFields();
@@ -99,7 +99,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, D
         return filteredFacilities;
     }
 
-    @Override
+//    @Override
     public List<Facility> getByQuery(FacilityQuery query) {
         Map<FacilityQueryField, String> facilityQueryFields = query.getQueryFields();
 

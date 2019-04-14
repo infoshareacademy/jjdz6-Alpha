@@ -4,25 +4,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import com.infoshare.alpha.wwr.di.DI;
+//import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
 
-public class PatientsReadModelDbRepository implements DI, PatientsReadModelDb {
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
+@RequestScoped
+public class PatientsReadModelDbRepository {
+
+	@Inject
 	private PatientsJsonStorage storage;
-	
-	public PatientsReadModelDbRepository(PatientsJsonStorage storage) {	
-        try {
-            this.storage = storage;
-        } catch (NullPointerException e) {
-            System.out.println(e.toString());
-            e.printStackTrace();
-        }
-	}
+
+	public void persist(Patients patients) {
+        this.storage.save(patients);
+    }
 	
 	public Patients getAll() {
 		
