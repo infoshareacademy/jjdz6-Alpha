@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"}, initParams={
         @WebInitParam(name="name", value="Not provided"),
         @WebInitParam(name="email", value="Not provided")})
-public class FacilititServlet extends HttpServlet{
+public class FacilityServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,14 +24,12 @@ public class FacilititServlet extends HttpServlet{
 
     	// mvn dependency:resolve -> get external packages to .m2
     	// from web.xml props.
-        resp.getWriter().println("Hello World from my first Servlet!!!!!!");
-
+        resp.getWriter().println("Facility servlet");
         ServletConfig sc = this.getServletConfig();
 
-        resp.getWriter().println(sc.getInitParameter("name"));
-        
-        resp.getWriter().println("name : " + getRequestParameter(req,"name"));
-        resp.getWriter().println("email : " + getRequestParameter(req,"email"));
+        //resp.getWriter().println(sc.getInitParameter("name"));
+        //resp.getWriter().println("name : " + getRequestParameter(req,"name"));
+        //resp.getWriter().println("email : " + getRequestParameter(req,"email"));
         
         // system properties set -> http://127.0.0.1:9990/console/index.html#system-properties
         /*
