@@ -90,7 +90,6 @@ public class WwrController {
                         Menu.printPatientMenu();
                         break;
                     case 4:
-                        System.out.println("Add patient. -> not implemented yet");
                         this.addPatient();
                         Menu.shouldContinue();
                         Menu.clearConsole();

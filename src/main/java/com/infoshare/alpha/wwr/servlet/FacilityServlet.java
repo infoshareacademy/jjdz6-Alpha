@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/facilities")
+@WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
