@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/facilities")
-public class FacilityServlet extends CustomizedServlet {
+public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
     FacilitiesJsonStorage facilitiesJsonStorage;
