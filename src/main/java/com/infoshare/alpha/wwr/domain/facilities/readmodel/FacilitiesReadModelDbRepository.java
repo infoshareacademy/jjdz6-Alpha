@@ -3,7 +3,6 @@ package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.common.Address;
-//import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
@@ -22,18 +21,15 @@ public class FacilitiesReadModelDbRepository {
     @Inject
     private FacilitiesJsonStorage storage;
 
-//    @Override
     public void persist(Facilities facilities) {
         this.storage.save(facilities);
     }
 
-//    @Override
     public Facilities getAll() {
         
         return this.storage.load();
     }
 
-//    @Override
     public List<Facility> getByName(String name) {
     	Facilities facilities = this.storage.load();
     	
@@ -43,7 +39,6 @@ public class FacilitiesReadModelDbRepository {
                 .collect(Collectors.toList());
     }
 
-//    @Override
     public List<Facility> getByCity(String city) {
     	Facilities facilities = this.storage.load();
     	
@@ -52,9 +47,7 @@ public class FacilitiesReadModelDbRepository {
                 filter(s->city.equals(s.getAddress().getCity()))
                 .collect(Collectors.toList());
     }
-    
 
-//    @Override
     public List<Facility> getByAddress(Address address) {
     	
     	Facilities facilities = this.storage.load();    	
@@ -70,7 +63,6 @@ public class FacilitiesReadModelDbRepository {
     			.collect(Collectors.toList());
     }
 
-//    @Override
     public List<Facility> getByPatient(FacilityPatientQuery query) {
 
         List<FacilityQueryField> facilityQueryFields = query.getQueryFields();
@@ -99,7 +91,6 @@ public class FacilitiesReadModelDbRepository {
         return filteredFacilities;
     }
 
-//    @Override
     public List<Facility> getByQuery(FacilityQuery query) {
         Map<FacilityQueryField, String> facilityQueryFields = query.getQueryFields();
 

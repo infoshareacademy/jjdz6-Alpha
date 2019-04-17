@@ -10,7 +10,7 @@ import java.io.*;
 @RequestScoped
 public class FacilitiesJsonStorage {
 
-	private static final String FACILITIES_REPO_FILE_PATH = "/src/main/resources/facilities.json"; //TODO refactor to get path from customizable parameter
+	private static final String FACILITIES_REPO_FILE_PATH = "/src/main/resources/facilities.json";
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	public Facilities load() {

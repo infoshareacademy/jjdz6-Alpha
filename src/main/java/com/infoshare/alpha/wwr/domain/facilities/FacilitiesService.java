@@ -7,7 +7,6 @@ import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
-//import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 
 import javax.enterprise.context.RequestScoped;
@@ -18,14 +17,6 @@ public class FacilitiesService {
 
     @Inject
     private FacilitiesReadModelDbRepository repository;
-
-//    public FacilitiesService(
-//    		FacilitiesRepository facilitiesDbRepository,
-//    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
-//    		) {
-//    		this.facilitiesDbRepository = facilitiesDbRepository;
-//    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;
-//    }
 
     public void add(FacilityAddCommand command) throws FacilitiesException {
 
