@@ -10,3 +10,21 @@
         1. initialize DI: 
         2. print initialized services
         3. use service from di
+        
+## Maven targets (experimental)
+
+        1. mvn clean package dependency:copy-dependencies
+        2. mvn clean package (build war package with jar dependencies)
+        3. mvn dependency:resolve (download external packages to .m2 )
+        4. mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib (build jar file with dependencies as one package)
+        5. mvn clean compile assembly:single (build jar file with dependencies as one package)
+        
+  <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
+  <!-- mvn clean compile assembly:single -->
+
+### Pytania do trenara j2ee
+ * jak przygotowac build ktory bedzie sie skladal z budowanej paczki jar ktora bedzie uzywana w war ? 
+ * czy biblioteki w depencencies przekopiowuja sie same do lib w paczce war ?
+ * jak przekazywać konfigurację z pliku web.xml do serwleta (przyklad) i co to jest configuracja kontekstowa?
+ * gdzie powinno sie przechowywac konfiguracje serwleta ( w projektach komercyjnych ) 
+ 

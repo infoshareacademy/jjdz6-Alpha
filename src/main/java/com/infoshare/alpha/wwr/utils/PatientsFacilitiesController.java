@@ -7,6 +7,7 @@ import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PatientsFacilitiesController {
 
@@ -33,6 +34,11 @@ public class PatientsFacilitiesController {
         System.out.println("-------------------------------------------------");
         System.out.println("Patients nearest facilities");
         System.out.println("-------------------------------------------------");
+
+        /*
+            Map<UUID, String> collect = facilities.stream()
+                .collect(Collectors.toMap(facility -> facility.getId(), facility -> facility.getName()));
+        */
 
         if (facilities.size() > 0) {
             int ids = 0;
