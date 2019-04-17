@@ -13,6 +13,6 @@ ten plik jest po to zeby w adresie nie musiec wpisywac
 
 <!-- 
 endpoints: 
- - http://127.0.0.1:8080/wwr/facilities  (exists basic) 
- - http://127.0.0.1:8080/wwr/patients (todo)
+ - http://127.0.0.1:8080/wwr/facility  (exists basic)
+ - http://127.0.0.1:8080/wwr/patient (todo)
   -->
