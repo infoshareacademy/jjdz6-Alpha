@@ -73,12 +73,12 @@ public class InputForms {
 
     public static List<Service> getServicesFromKeyboard(){
         System.out.println("Enter next service name and press 'ENTER'");
-        System.out.println("In order to leave this entry, press press 'x' and 'ENTER'.");
+        System.out.println("In order to leave this entry, press 'x' and 'ENTER'.");
         List<Service> services = new ArrayList<>();
         String userInput = Menu.getConsoleStringInput();
         while(!userInput.equals("x")){
             System.out.println("Enter next service name and press 'ENTER'");
-            System.out.println("In order to leave this entry, press press 'x' and 'ENTER'.");
+            System.out.println("In order to leave this entry, press 'x' and 'ENTER'.");
             services.add(new Service(userInput));
             userInput = Menu.getConsoleStringInput();
         }
@@ -86,10 +86,10 @@ public class InputForms {
     }
 
     private static Parent getParentFromKeyboard() {
-        System.out.println("Enter caretaker name: ");
+        System.out.println("Enter parent name: ");
         String nameCaretaker = Menu.getConsoleStringInput();
 
-        System.out.println("Enter caretaker surname: ");
+        System.out.println("Enter parent surname: ");
         String surnameCaretaker = Menu.getConsoleStringInput();
 
         return new Parent(nameCaretaker, surnameCaretaker);
