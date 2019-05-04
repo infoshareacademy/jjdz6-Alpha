@@ -4,6 +4,7 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,5 +28,6 @@ public class FacilityServlet extends HttpServlet{
 	    Facility facility = new Facility();
         Address address = new Address();
 
+        facility.setId(UUID.);
     }
 }
