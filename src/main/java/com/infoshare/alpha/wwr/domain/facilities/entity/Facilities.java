@@ -1,8 +1,10 @@
 package com.infoshare.alpha.wwr.domain.facilities.entity;
 
+import javax.ejb.Local;
 import java.util.ArrayList;
 import java.util.List;
 
+@Local
 public class Facilities {
 
     private List<Facility> facilities = new ArrayList<>();

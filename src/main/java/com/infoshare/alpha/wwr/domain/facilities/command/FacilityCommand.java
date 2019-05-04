@@ -11,7 +11,6 @@ public abstract class FacilityCommand {
     }
 
     public FacilityCommand() {
-
     }
 
     public Facility getFacility() {
