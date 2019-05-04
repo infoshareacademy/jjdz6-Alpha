@@ -12,11 +12,8 @@ import java.util.UUID;
 public class Facility {
 
     private UUID id;
-
 	private String name;
-    
 	private Address address;
-
 	private List<Service> services = new ArrayList<>();
 
 
@@ -45,17 +42,14 @@ public class Facility {
     }
 
     public String getName() {
- 
     	return name;
     }
     
     public Address getAddress() {
-
     	return address;
     }
 
     public UUID getId() {
- 
     	return id;
     }
 

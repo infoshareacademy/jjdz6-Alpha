@@ -7,7 +7,6 @@ import java.util.List;
 public class FacilityPatientQuery {
 
 	private Patient patient;
-
     private List<FacilityQueryField> queryFields;
 	
 	public FacilityPatientQuery(Patient patient, List<FacilityQueryField> queryFields) {
@@ -16,12 +15,10 @@ public class FacilityPatientQuery {
 	}
 	
 	public Patient getPatient() {
-		
 		return this.patient;
 	}
 
 	public List<FacilityQueryField> getQueryFields() {
-
 	    return this.queryFields;
     }
 

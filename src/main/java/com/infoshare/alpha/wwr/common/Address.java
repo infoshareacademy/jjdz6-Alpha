@@ -22,7 +22,8 @@ public class Address {
         this.phone = phone;
     }
 
-    public String getCity() {
+    public Strin
+    g getCity() {
         return city;
     }
 

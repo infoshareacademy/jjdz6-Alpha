@@ -11,22 +11,18 @@ public class Facilities {
     }
 
     public void setFacilities(List<Facility> facilities) {
-
         this.facilities = facilities;
     }
 
     public List<Facility> getFacilities() {
-
         return facilities;
     }
 
     public void add(Facility facility) {
-
         this.facilities.add(facility);
     }
 
     public void printAllFacilities() {
-
         for (Facility facility : this.facilities) {
             System.out.println(facility.toString());
         }
