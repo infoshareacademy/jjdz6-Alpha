@@ -12,12 +12,12 @@ import java.util.UUID;
 public class Facility {
 
     private UUID id;
-	private String name;
-	private Address address;
-	private List<Service> services = new ArrayList<>();
+    private String name;
+    private Address address;
+    private List<Service> services = new ArrayList<>();
 
 
-	public Facility(String name, Address address, List<Service> services) {
+    public Facility(String name, Address address, List<Service> services) {
         this.address = address;
         this.name = name;
         this.services = services;
@@ -42,7 +42,7 @@ public class Facility {
     }
 
     public String getName() {
-    	return name;
+        return name;
     }
 
     public void setName(String name) {
@@ -50,7 +50,7 @@ public class Facility {
     }
 
     public Address getAddress() {
-    	return address;
+        return address;
     }
 
     public void setAddress(Address address) {
@@ -58,7 +58,7 @@ public class Facility {
     }
 
     public UUID getId() {
-    	return id;
+        return id;
     }
 
     public List<Service> getServices() {
@@ -67,7 +67,7 @@ public class Facility {
 
     @Override
     public String toString() {
-    	return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services) ;
+        return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services);
     }
 
     @Override
