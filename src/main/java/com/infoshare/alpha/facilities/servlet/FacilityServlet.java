@@ -26,6 +26,6 @@ public class FacilityServlet extends HttpServlet{
 
 	    Facility facility = new Facility();
         Address address = new Address();
-        
+
     }
 }

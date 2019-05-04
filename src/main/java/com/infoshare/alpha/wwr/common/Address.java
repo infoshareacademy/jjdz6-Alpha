@@ -22,19 +22,30 @@ public class Address {
         this.phone = phone;
     }
 
-    public Strin
-    g getCity() {
+    public String getCity() {
         return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getStreet() {
         return street;
     }
 
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
     public String getPhone() {
         return phone;
     }
-    
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
     		return " City : " + this.city + " Street : " + this.street + " Phone: " + this.phone;
