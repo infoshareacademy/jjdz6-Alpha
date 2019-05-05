@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
-public class FacilityServlet extends HttpServlet{
+public class FacilityServlet extends HttpServlet {
 
     @Inject
     FacilityService facilityService;
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.getWriter().println("Facility servlet");
     }
@@ -28,7 +28,7 @@ public class FacilityServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-	    Facility facility = new Facility();
+        Facility facility = new Facility();
         Address address = new Address();
 
         facility.setName(String.valueOf(req.getParameter("name")));
@@ -38,6 +38,6 @@ public class FacilityServlet extends HttpServlet{
 
         facilityService.saveFacility(facility);
 
-        resp.getWriter().println("Facility added successfully")
+        resp.getWriter().println("Facility added successfully");
     }
 }

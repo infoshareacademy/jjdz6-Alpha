@@ -14,6 +14,6 @@ public class FacilityService {
 
     public void saveFacility(Facility facility) {
         facilities.add(facility);
-
     }
 }
+

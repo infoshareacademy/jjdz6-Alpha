@@ -24,7 +24,7 @@ public class Facility {
         this.id = UUID.randomUUID();
     }
 
-    public Facility(String name, Address address) {
+    public Facility() {
         this(name, address, UUID.randomUUID());
     }
 

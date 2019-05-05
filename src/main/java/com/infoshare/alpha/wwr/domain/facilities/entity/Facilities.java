@@ -1,11 +1,12 @@
 package com.infoshare.alpha.wwr.domain.facilities.entity;
 
 import javax.ejb.Local;
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @Local
-public class Facilities {
+public class Facilities extends Facility{
 
     private List<Facility> facilities = new ArrayList<>();
 
