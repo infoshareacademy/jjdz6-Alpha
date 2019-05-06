@@ -1,7 +1,7 @@
-package com.infoshare.alpha.wwr.domain.facilities.readmodel;
+package com.infoshare.alpha.wwr.domain.facilities.dao;
 
-import com.infoshare.alpha.wwr.common.Facilities;
-import com.infoshare.alpha.wwr.common.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.utils.FacilitiesException;
 
@@ -9,7 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 @RequestScoped
-public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
+public class FacilitiesRepositoryDaoBean implements FacilitiesRepositoryDao {
 
     @Inject
     private FacilitiesJsonStorage storage;

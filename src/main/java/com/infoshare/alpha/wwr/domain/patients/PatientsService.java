@@ -4,7 +4,7 @@ package com.infoshare.alpha.wwr.domain.patients;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
-//import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
+//import com.infoshare.alpha.wwr.domain.patients.dao.PatientsReadModelDb;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 
 import javax.enterprise.context.RequestScoped;

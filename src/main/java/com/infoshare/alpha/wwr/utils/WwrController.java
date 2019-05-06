@@ -1,10 +1,10 @@
 package com.infoshare.alpha.wwr.utils;
 
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Facilities;
-import com.infoshare.alpha.wwr.common.Facility;
-import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.dao.FacilitiesRepositoryDaoBean;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
@@ -24,7 +24,7 @@ public class WwrController {
     @Inject
     private FacilitiesService facilitiesService;
     @Inject
-    private FacilitiesReadModelDbRepository facilitiesReadModelDb;
+    private FacilitiesRepositoryDaoBean facilitiesReadModelDb;
 
     public void wwrPlay() {
         boolean programEnd = false;

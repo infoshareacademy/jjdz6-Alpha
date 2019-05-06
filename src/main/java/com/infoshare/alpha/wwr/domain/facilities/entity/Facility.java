@@ -1,4 +1,8 @@
-package com.infoshare.alpha.wwr.common;
+package com.infoshare.alpha.wwr.domain.facilities.entity;
+
+import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Service;
+import com.infoshare.alpha.wwr.common.Services;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.common;
+package com.infoshare.alpha.wwr.domain.facilities.entity;
 
 import java.util.ArrayList;
 import java.util.List;

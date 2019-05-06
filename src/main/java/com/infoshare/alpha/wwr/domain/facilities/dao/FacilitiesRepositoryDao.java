@@ -1,10 +1,10 @@
-package com.infoshare.alpha.wwr.domain.facilities.readmodel;
+package com.infoshare.alpha.wwr.domain.facilities.dao;
 
-import com.infoshare.alpha.wwr.common.Facilities;
-import com.infoshare.alpha.wwr.common.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.utils.FacilitiesException;
 
-public interface FacilitiesReadModelDb {
+public interface FacilitiesRepositoryDao {
 
     void persist(Facilities facilities);
 

@@ -1,4 +1,4 @@
-//package com.infoshare.alpha.wwr.domain.patients.readmodel;
+//package com.infoshare.alpha.wwr.domain.patients.dao;
 //
 //import com.infoshare.alpha.wwr.di.DI;
 //import com.infoshare.alpha.wwr.domain.patients.entity.Patients;

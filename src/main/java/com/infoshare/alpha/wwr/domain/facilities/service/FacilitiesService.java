@@ -1,12 +1,12 @@
-package com.infoshare.alpha.wwr.domain.facilities;
+package com.infoshare.alpha.wwr.domain.facilities.service;
 
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Facilities;
-import com.infoshare.alpha.wwr.common.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
+import com.infoshare.alpha.wwr.domain.facilities.dao.FacilitiesRepositoryDao;
 import com.infoshare.alpha.wwr.utils.FacilitiesException;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,15 +20,15 @@ import java.util.stream.Stream;
 public class FacilitiesService {
 
     @Inject
-    private FacilitiesReadModelDb facilitiesReadModelDb;
+    private FacilitiesRepositoryDao facilitiesRepositoryDao;
 
     public Facilities getAll() {
 
-        return facilitiesReadModelDb.getAll();
+        return facilitiesRepositoryDao.getAll();
     }
 
     public List<Facility> getByName(String name) {
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesRepositoryDao.getAll();
 
         return facilities.getFacilities().
                 stream().
@@ -37,7 +37,7 @@ public class FacilitiesService {
     }
 
     public List<Facility> getByCity(String city) {
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesRepositoryDao.getAll();
 
         return facilities.getFacilities().
                 stream().
@@ -47,7 +47,7 @@ public class FacilitiesService {
 
     public List<Facility> getByAddress(Address address) {
 
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesRepositoryDao.getAll();
         String filterCity = address.getCity();
         String filterStreet = address.getStreet();
         String filterPhone = address.getPhone();
@@ -64,7 +64,7 @@ public class FacilitiesService {
 
         List<FacilityQueryField> facilityQueryFields = query.getQueryFields();
 
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesRepositoryDao.getAll();
         List<Facility> filteredFacilities = facilities.getFacilities();
 
         if (facilityQueryFields.contains(FacilityQueryField.CITY)) {
@@ -92,7 +92,7 @@ public class FacilitiesService {
         Map<FacilityQueryField, String> facilityQueryFields = query.getQueryFields();
 
 
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesRepositoryDao.getAll();
         List<Facility> filteredFacilities = facilities.getFacilities();
 
         if (facilityQueryFields.containsKey(FacilityQueryField.FACILITY_NAME)) {
@@ -125,7 +125,7 @@ public class FacilitiesService {
 
     public void add(Facility facility) throws FacilitiesException {
 
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesRepositoryDao.getAll();
 
         if (facilities.getFacilities().contains(facility)) {
 
@@ -133,17 +133,17 @@ public class FacilitiesService {
         }
 
         facilities.add(facility);
-        facilitiesReadModelDb.persist(facilities);
+        facilitiesRepositoryDao.persist(facilities);
     }
 
     public void delete(Facility facility) throws FacilitiesException {
 
-        facilitiesReadModelDb.delete(facility);
+        facilitiesRepositoryDao.delete(facility);
     }
 
     public void edit(Facility oldFacility, Facility editedFacility) throws FacilitiesException {
 
-        facilitiesReadModelDb.edit(oldFacility, editedFacility);
+        facilitiesRepositoryDao.edit(oldFacility, editedFacility);
     }
     
     public void upload(Facilities facilities) {

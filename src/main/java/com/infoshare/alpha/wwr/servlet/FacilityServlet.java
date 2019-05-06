@@ -1,7 +1,6 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
+import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
