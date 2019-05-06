@@ -1,5 +1,7 @@
 package com.infoshare.alpha.wwr.common;
 
+import com.infoshare.alpha.wwr.utils.PeselException;
+
 public class Pesel {
 
     private String pesel;

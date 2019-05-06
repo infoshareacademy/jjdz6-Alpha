@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RequestScoped
-public class FacilitiesReadModelDbRepository {
+public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
     @Inject
     private FacilitiesJsonStorage storage;
