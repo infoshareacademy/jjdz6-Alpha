@@ -4,8 +4,8 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 
 public interface PatientsRepositoryDao {
 
-	void persist(Patients patients);
+    void persist(Patients patients);
 
-	Patients getAll();
+    Patients getAll();
 
 }

@@ -9,17 +9,17 @@ import javax.inject.Inject;
 @RequestScoped
 public class PatientsRepositoryDaoBean implements PatientsRepositoryDao {
 
-	@Inject
-	private PatientsJsonStorage storage;
+    @Inject
+    private PatientsJsonStorage storage;
 
-	@Override
-	public void persist(Patients patients) {
+    @Override
+    public void persist(Patients patients) {
         this.storage.save(patients);
     }
 
     @Override
-	public Patients getAll() {
+    public Patients getAll() {
 
-		return this.storage.load();
-	}
+        return this.storage.load();
+    }
 }

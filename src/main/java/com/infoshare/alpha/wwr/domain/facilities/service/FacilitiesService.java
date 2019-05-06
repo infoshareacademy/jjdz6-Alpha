@@ -32,7 +32,7 @@ public class FacilitiesService {
 
         return facilities.getFacilities().
                 stream().
-                filter(s->name.equals(s.getName()))
+                filter(s -> name.equals(s.getName()))
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +41,7 @@ public class FacilitiesService {
 
         return facilities.getFacilities().
                 stream().
-                filter(s->city.equals(s.getAddress().getCity()))
+                filter(s -> city.equals(s.getAddress().getCity()))
                 .collect(Collectors.toList());
     }
 
@@ -54,9 +54,9 @@ public class FacilitiesService {
 
         return facilities.getFacilities().
                 stream().
-                filter(s->filterCity.equals(s.getAddress().getCity()))
-                .filter(s->filterStreet.equals(s.getAddress().getStreet()))
-                .filter(s->filterPhone.equals(s.getAddress().getPhone()))
+                filter(s -> filterCity.equals(s.getAddress().getCity()))
+                .filter(s -> filterStreet.equals(s.getAddress().getStreet()))
+                .filter(s -> filterPhone.equals(s.getAddress().getPhone()))
                 .collect(Collectors.toList());
     }
 
@@ -69,19 +69,19 @@ public class FacilitiesService {
 
         if (facilityQueryFields.contains(FacilityQueryField.CITY)) {
             String filterCity = query.getPatient().getAddress().getCity();
-            Stream facilitiesStream = facilities.getFacilities().stream().filter(s->filterCity.equals(s.getAddress().getCity()));
+            Stream facilitiesStream = facilities.getFacilities().stream().filter(s -> filterCity.equals(s.getAddress().getCity()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
         if (facilityQueryFields.contains(FacilityQueryField.STREET)) {
             String filterStreet = query.getPatient().getAddress().getStreet();
-            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterStreet.equals(s.getAddress().getStreet()));
+            Stream facilitiesStream = filteredFacilities.stream().filter(s -> filterStreet.equals(s.getAddress().getStreet()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
         if (facilityQueryFields.contains(FacilityQueryField.PHONE)) {
             String filterPhone = query.getPatient().getAddress().getPhone();
-            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterPhone.equals(s.getAddress().getPhone()));
+            Stream facilitiesStream = filteredFacilities.stream().filter(s -> filterPhone.equals(s.getAddress().getPhone()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
@@ -97,25 +97,25 @@ public class FacilitiesService {
 
         if (facilityQueryFields.containsKey(FacilityQueryField.FACILITY_NAME)) {
             String filterName = facilityQueryFields.get(FacilityQueryField.FACILITY_NAME);
-            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterName.equals(s.getName()));
+            Stream facilitiesStream = filteredFacilities.stream().filter(s -> filterName.equals(s.getName()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
         if (facilityQueryFields.containsKey(FacilityQueryField.CITY)) {
             String filterCity = facilityQueryFields.get(FacilityQueryField.CITY);
-            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterCity.equals(s.getAddress().getCity()));
+            Stream facilitiesStream = filteredFacilities.stream().filter(s -> filterCity.equals(s.getAddress().getCity()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
         if (facilityQueryFields.containsKey(FacilityQueryField.STREET)) {
             String filterStreet = facilityQueryFields.get(FacilityQueryField.STREET);
-            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterStreet.equals(s.getAddress().getStreet()));
+            Stream facilitiesStream = filteredFacilities.stream().filter(s -> filterStreet.equals(s.getAddress().getStreet()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
         if (facilityQueryFields.containsKey(FacilityQueryField.PHONE)) {
             String filterPhone = facilityQueryFields.get(FacilityQueryField.PHONE);
-            Stream facilitiesStream = filteredFacilities.stream().filter(s->filterPhone.equals(s.getAddress().getPhone()));
+            Stream facilitiesStream = filteredFacilities.stream().filter(s -> filterPhone.equals(s.getAddress().getPhone()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
@@ -145,13 +145,13 @@ public class FacilitiesService {
 
         facilitiesRepositoryDao.edit(oldFacility, editedFacility);
     }
-    
+
     public void upload(Facilities facilities) {
-    	
-    	// funkcja ktora wrzuca do repozutorium dodatkowe placowki 
-    	// 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-    	// 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
-    	// 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
-    	// 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.persist(facilities);
+
+        // funkcja ktora wrzuca do repozutorium dodatkowe placowki
+        // 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        // 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
+        // 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
+        // 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.persist(facilities);
     }
 }

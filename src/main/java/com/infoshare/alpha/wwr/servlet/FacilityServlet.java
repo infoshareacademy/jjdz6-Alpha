@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
 public class FacilityServlet extends BaseWwrServlet {
@@ -17,12 +18,11 @@ public class FacilityServlet extends BaseWwrServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("Hello world");
-        if (facilitiesService.getAll().getFacilities().isEmpty()){
-            resp.getWriter().println("error!");
-        } else {
-            resp.getWriter().println("success!");
-        }
+        PrintWriter writer = resp.getWriter();
+        writer.println("Hello world");
+        facilitiesService.getAll().getFacilities()
+                .stream()
+                .forEach(writer::println);
 
     }
 

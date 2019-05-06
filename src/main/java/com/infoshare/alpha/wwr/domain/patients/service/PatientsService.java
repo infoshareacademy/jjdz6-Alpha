@@ -17,77 +17,77 @@ import java.util.stream.Stream;
 @RequestScoped
 public class PatientsService {
 
-	@Inject
-	private PatientsRepositoryDao patientsRepositoryDao;
-	
-	public void add(Patient patient) {
+    @Inject
+    private PatientsRepositoryDao patientsRepositoryDao;
 
-		Patients patients = this.patientsRepositoryDao.getAll();
+    public void add(Patient patient) {
 
-		patients.add(patient);
+        Patients patients = this.patientsRepositoryDao.getAll();
 
-		this.patientsRepositoryDao.persist(patients);
+        patients.add(patient);
 
-		System.out.println(patient.toString() + " added. ");
-	}
+        this.patientsRepositoryDao.persist(patients);
 
-	public Patients getAll(){
+        System.out.println(patient.toString() + " added. ");
+    }
 
-		return patientsRepositoryDao.getAll();
-	}
+    public Patients getAll() {
 
-	public Patients getByQuery(PatientQuery patientQuery) {
+        return patientsRepositoryDao.getAll();
+    }
 
-		List<Patient> filteredPatients = (this.patientsRepositoryDao.getAll().getPatients());
+    public Patients getByQuery(PatientQuery patientQuery) {
 
-		Map<PatientQueryFields, String> queryFields = patientQuery.getQueryField();
+        List<Patient> filteredPatients = (this.patientsRepositoryDao.getAll().getPatients());
 
-		if (queryFields.containsKey(PatientQueryFields.NAME)) {
-			String filterName = queryFields.get(PatientQueryFields.NAME);
-			Stream<Patient> stream  = filteredPatients.stream().filter(s->filterName.equals(s.getName()));
-			filteredPatients = (List<Patient>) stream.collect(Collectors.toList());
-		}
+        Map<PatientQueryFields, String> queryFields = patientQuery.getQueryField();
 
-
-		if (queryFields.containsKey(PatientQueryFields.SURNAME)) {
-			//TODO: to implement
-		}
-
-		if (queryFields.containsKey(PatientQueryFields.PESEL)) {
-			//TODO: to implement
-		}
-
-		if (queryFields.containsKey(PatientQueryFields.CITY)) {
-			//TODO: to implement
-		}
+        if (queryFields.containsKey(PatientQueryFields.NAME)) {
+            String filterName = queryFields.get(PatientQueryFields.NAME);
+            Stream<Patient> stream = filteredPatients.stream().filter(s -> filterName.equals(s.getName()));
+            filteredPatients = (List<Patient>) stream.collect(Collectors.toList());
+        }
 
 
-		if (queryFields.containsKey(PatientQueryFields.STREET)) {
-			//TODO: to implement
-		}
+        if (queryFields.containsKey(PatientQueryFields.SURNAME)) {
+            //TODO: to implement
+        }
+
+        if (queryFields.containsKey(PatientQueryFields.PESEL)) {
+            //TODO: to implement
+        }
+
+        if (queryFields.containsKey(PatientQueryFields.CITY)) {
+            //TODO: to implement
+        }
 
 
-		if (queryFields.containsKey(PatientQueryFields.PHONE)) {
-			//TODO: to implement
-		}
+        if (queryFields.containsKey(PatientQueryFields.STREET)) {
+            //TODO: to implement
+        }
 
-		Patients patients = new Patients();
-		patients.setPatients(filteredPatients);
 
-		return patients;
-	}
-	
-	public void edit(Patient patient) {
-		// TODO: to implement
-	}
-	
-	public void delete(Patient patient) {
-		//TODO: to implement
-	}
-	
-	public void load(String filePath) {
-		// TODO: to implement
-	}
+        if (queryFields.containsKey(PatientQueryFields.PHONE)) {
+            //TODO: to implement
+        }
+
+        Patients patients = new Patients();
+        patients.setPatients(filteredPatients);
+
+        return patients;
+    }
+
+    public void edit(Patient patient) {
+        // TODO: to implement
+    }
+
+    public void delete(Patient patient) {
+        //TODO: to implement
+    }
+
+    public void load(String filePath) {
+        // TODO: to implement
+    }
 
 
 }
