@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.utils;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.common.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;

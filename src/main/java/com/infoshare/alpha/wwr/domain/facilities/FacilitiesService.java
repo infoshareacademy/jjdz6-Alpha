@@ -4,9 +4,9 @@ import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
-import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.utils.FacilitiesException;
+import com.infoshare.alpha.wwr.common.Facilities;
+import com.infoshare.alpha.wwr.common.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 
 import javax.enterprise.context.RequestScoped;

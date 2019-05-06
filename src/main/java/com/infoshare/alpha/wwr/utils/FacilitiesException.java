@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.domain.facilities.common;
+package com.infoshare.alpha.wwr.utils;
 
 public class FacilitiesException extends Throwable {
 

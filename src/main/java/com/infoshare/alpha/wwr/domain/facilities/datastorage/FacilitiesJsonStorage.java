@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.domain.facilities.datastorage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.common.Facilities;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.*;

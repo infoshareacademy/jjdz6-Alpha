@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.domain.facilities.command;
 
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.common.Facility;
 
 /**
  * 
