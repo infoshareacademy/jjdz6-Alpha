@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.utils;
+package com.infoshare.alpha.wwr.utils.exceptions;
 
 public class PeselException extends Throwable {
 

@@ -11,7 +11,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class PatientsJsonStorage {
 
-	private static final String PATIENTS_REPO_FILE_PATH = "src/main/resources/"; //TODO refactor to get path from customizable parameter
+	private static final String PATIENTS_REPO_FILE_PATH = "/home/szymon/Desktop/jjdz6-Alpha/src/main/webapp/WEB-INF/json-repository/facilities.json"; //TODO
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	public Patients load() {

@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.common;
 
-import com.infoshare.alpha.wwr.utils.PeselException;
+import com.infoshare.alpha.wwr.utils.exceptions.PeselException;
 
 public class Pesel {
 

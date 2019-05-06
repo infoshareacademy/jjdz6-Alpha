@@ -7,7 +7,7 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.dao.FacilitiesRepositoryDao;
-import com.infoshare.alpha.wwr.utils.FacilitiesException;
+import com.infoshare.alpha.wwr.utils.exceptions.FacilitiesException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

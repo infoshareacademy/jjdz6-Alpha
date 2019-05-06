@@ -6,6 +6,7 @@ import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+import com.infoshare.alpha.wwr.utils.exceptions.PeselException;
 
 import java.util.ArrayList;
 import java.util.List;

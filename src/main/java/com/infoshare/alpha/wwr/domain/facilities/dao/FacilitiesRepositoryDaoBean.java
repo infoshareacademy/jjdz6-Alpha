@@ -3,7 +3,7 @@ package com.infoshare.alpha.wwr.domain.facilities.dao;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
-import com.infoshare.alpha.wwr.utils.FacilitiesException;
+import com.infoshare.alpha.wwr.utils.exceptions.FacilitiesException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

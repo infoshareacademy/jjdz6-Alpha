@@ -5,9 +5,11 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.dao.FacilitiesRepositoryDaoBean;
-import com.infoshare.alpha.wwr.domain.patients.PatientsService;
+import com.infoshare.alpha.wwr.domain.patients.dao.PatientsRepositoryDaoBean;
+import com.infoshare.alpha.wwr.domain.patients.service.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
-import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
+import com.infoshare.alpha.wwr.utils.exceptions.FacilitiesException;
+import com.infoshare.alpha.wwr.utils.exceptions.PeselException;
 
 import javax.inject.Inject;
 import java.util.HashMap;
@@ -20,7 +22,7 @@ public class WwrController {
     @Inject
     private PatientsService patientsService;
     @Inject
-    private PatientsReadModelDbRepository patientsReadModelDb;
+    private PatientsRepositoryDaoBean patientsReadModelDb;
     @Inject
     private FacilitiesService facilitiesService;
     @Inject

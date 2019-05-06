@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.domain.patients.entity;
 
 import com.infoshare.alpha.wwr.common.User;
-//
+
 public class Parent extends User {
 
 

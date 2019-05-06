@@ -5,7 +5,7 @@ import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
-import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
+import com.infoshare.alpha.wwr.domain.patients.dao.PatientsRepositoryDaoBean;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -16,7 +16,7 @@ public class PatientsFacilitiesController {
     @Inject
     private FacilitiesService facilitiesService;
     @Inject
-    private PatientsReadModelDbRepository patientsReadModelDb;
+    private PatientsRepositoryDaoBean patientsReadModelDb;
 
     public void findPatientsFacilities() {
         try {

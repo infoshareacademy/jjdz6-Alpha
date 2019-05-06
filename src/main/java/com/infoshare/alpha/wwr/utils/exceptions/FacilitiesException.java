@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.domain.patients.common;
+package com.infoshare.alpha.wwr.utils.exceptions;
 
 public class FacilitiesException extends Throwable {
 
@@ -23,11 +23,11 @@ public class FacilitiesException extends Throwable {
 
     public static FacilitiesException facilityNotFound(String name) {
 
-        return new FacilitiesException("Facility :" + name + " not found " , FacilitiesException.FACILITY_NOT_FOUND_ERROR_CODE);
+        return new FacilitiesException("Facility " + name + " not found " , FacilitiesException.FACILITY_NOT_FOUND_ERROR_CODE);
     }
 
     public static FacilitiesException facilityExists(String name) {
 
-        return new FacilitiesException("Facility :" + name + " already exists " , FacilitiesException.FACILITY_EXISTS_ERROR_CODE);
+        return new FacilitiesException("Facility " + name + " already exists " , FacilitiesException.FACILITY_EXISTS_ERROR_CODE);
     }
 }
