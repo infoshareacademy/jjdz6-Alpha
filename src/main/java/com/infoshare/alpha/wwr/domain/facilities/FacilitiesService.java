@@ -3,7 +3,6 @@ package com.infoshare.alpha.wwr.domain.facilities;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Facilities;
 import com.infoshare.alpha.wwr.common.Facility;
-import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
@@ -147,7 +146,7 @@ public class FacilitiesService {
         facilitiesReadModelDb.edit(oldFacility, editedFacility);
     }
     
-    public void upload(UploadCommand uploadCommand) {
+    public void upload(Facilities facilities) {
     	
     	// funkcja ktora wrzuca do repozutorium dodatkowe placowki 
     	// 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();

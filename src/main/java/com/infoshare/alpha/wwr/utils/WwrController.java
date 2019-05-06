@@ -1,12 +1,9 @@
 package com.infoshare.alpha.wwr.utils;
 
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.common.Facilities;
 import com.infoshare.alpha.wwr.common.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
