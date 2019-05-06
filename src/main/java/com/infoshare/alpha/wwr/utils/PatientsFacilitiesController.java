@@ -1,9 +1,9 @@
 package com.infoshare.alpha.wwr.utils;
 
 import com.infoshare.alpha.wwr.common.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDbRepository;
 
@@ -14,7 +14,7 @@ public class PatientsFacilitiesController {
 
 
     @Inject
-    private FacilitiesReadModelDbRepository facilitiesReadModelDb;
+    private FacilitiesService facilitiesService;
     @Inject
     private PatientsReadModelDbRepository patientsReadModelDb;
 
@@ -81,7 +81,7 @@ public class PatientsFacilitiesController {
         List<FacilityQueryField> facilityQueryFields = new ArrayList<>();
         facilityQueryFields.add(FacilityQueryField.CITY);
 
-        return this.facilitiesReadModelDb.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
+        return facilitiesService.getByPatient(new FacilityPatientQuery(selectedPatient, facilityQueryFields));
     }
 
     private Patient getSelectedPatient(List<Patient> patientList) {

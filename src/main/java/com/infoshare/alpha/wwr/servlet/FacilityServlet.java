@@ -1,5 +1,6 @@
 package com.infoshare.alpha.wwr.servlet;
 
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb;
 
 import javax.inject.Inject;
@@ -13,12 +14,12 @@ import java.io.IOException;
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
-    FacilitiesReadModelDb facilitiesReadModelDb;
+    FacilitiesService facilitiesService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().println("Hello world");
-        if (facilitiesReadModelDb.getAll().getFacilities().isEmpty()){
+        if (facilitiesService.getAll().getFacilities().isEmpty()){
             resp.getWriter().println("error!");
         } else {
             resp.getWriter().println("success!");
