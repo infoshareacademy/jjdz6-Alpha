@@ -192,7 +192,7 @@ public class WwrController {
     public void addFacility() {
         try {
             Facility newFacility = InputForms.getFacilityFromKeyboard();
-            facilitiesService.add(new FacilityAddCommand(newFacility));
+            facilitiesService.add(newFacility);
             System.out.println("Facility " + newFacility.getName() + " has been added to the database" + "\n");
         } catch (FacilitiesException e) {
             System.out.println(e.getMessage() + "\n");
@@ -202,7 +202,7 @@ public class WwrController {
     public void deleteFacility() {
         try {
             Facility facilityToBeDeleted = chooseFacilityFromList();
-            facilitiesService.delete(new FacilityDeleteCommand(facilityToBeDeleted));
+            facilitiesService.delete(facilityToBeDeleted);
             System.out.println("Facility " + facilityToBeDeleted.getName() + " has been deleted from the database" + "\n");
         } catch (FacilitiesException e) {
             System.out.println(e.getMessage() + "\n");
@@ -214,7 +214,7 @@ public class WwrController {
             Facility oldFacility = chooseFacilityFromList();
             System.out.println("Edit facility's " + oldFacility.getName() + " details");
             Facility editedFacility = InputForms.getEditedFacilityFromKeyboard(oldFacility);
-            facilitiesService.edit(new FacilityEditCommand(oldFacility, editedFacility));
+            facilitiesService.edit(oldFacility, editedFacility);
             System.out.println("Facility's detail change has been saved" + "\n");
         } catch (FacilitiesException e) {
             System.out.println(e.getMessage() + "\n");

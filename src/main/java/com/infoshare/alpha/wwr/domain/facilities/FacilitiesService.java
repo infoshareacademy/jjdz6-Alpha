@@ -3,9 +3,6 @@ package com.infoshare.alpha.wwr.domain.facilities;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Facilities;
 import com.infoshare.alpha.wwr.common.Facility;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
@@ -127,47 +124,27 @@ public class FacilitiesService {
 
     }
 
-    public void add(FacilityAddCommand command) throws FacilitiesException {
+    public void add(Facility facility) throws FacilitiesException {
 
         Facilities facilities = facilitiesReadModelDb.getAll();
 
-        if (facilities.getFacilities().contains(command.getFacility())) {
+        if (facilities.getFacilities().contains(facility)) {
 
-            throw FacilitiesException.facilityExists(command.getFacility().getName());
+            throw FacilitiesException.facilityExists(facility.getName());
         }
 
-        facilities.add(command.getFacility());
+        facilities.add(facility);
         facilitiesReadModelDb.persist(facilities);
     }
 
-    public void delete(FacilityDeleteCommand command) throws FacilitiesException {
+    public void delete(Facility facility) throws FacilitiesException {
 
-        Facilities facilities = facilitiesReadModelDb.getAll();
-        if (facilities.getFacilities().contains(command.getFacility())) {
-            facilities.getFacilities().remove(command.getFacility());
-            facilitiesReadModelDb.persist(facilities);
-        } else {
-            throw FacilitiesException.facilityNotFound(command.getFacility().getName());
-        }
+        facilitiesReadModelDb.delete(facility);
     }
 
-    public void edit(FacilityEditCommand command) throws FacilitiesException {
+    public void edit(Facility oldFacility, Facility editedFacility) throws FacilitiesException {
 
-        Facilities facilities = facilitiesReadModelDb.getAll();
-        Integer oldFacilityIndex;
-        if (facilities.getFacilities().contains(command.getOldFacility())) {
-            oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
-        } else {
-            throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
-        }
-        for (Facility facility : facilities.getFacilities()) {
-            if (facility.equals(command.getEditedFacility())) {
-                throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
-            }
-        }
-        facilities.getFacilities().remove(command.getOldFacility());
-        facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
-        facilitiesReadModelDb.persist(facilities);
+        facilitiesReadModelDb.edit(oldFacility, editedFacility);
     }
     
     public void upload(UploadCommand uploadCommand) {
