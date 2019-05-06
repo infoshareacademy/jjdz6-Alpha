@@ -12,12 +12,14 @@ public class PatientsRepositoryDaoBean implements PatientsRepositoryDao {
 	@Inject
 	private PatientsJsonStorage storage;
 
+	@Override
 	public void persist(Patients patients) {
         this.storage.save(patients);
     }
-	
+
+    @Override
 	public Patients getAll() {
-		
+
 		return this.storage.load();
 	}
 }

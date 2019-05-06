@@ -4,10 +4,8 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
-import com.infoshare.alpha.wwr.domain.facilities.dao.FacilitiesRepositoryDaoBean;
-import com.infoshare.alpha.wwr.domain.patients.dao.PatientsRepositoryDaoBean;
-import com.infoshare.alpha.wwr.domain.patients.service.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+import com.infoshare.alpha.wwr.domain.patients.service.PatientsService;
 import com.infoshare.alpha.wwr.utils.exceptions.FacilitiesException;
 import com.infoshare.alpha.wwr.utils.exceptions.PeselException;
 
@@ -22,11 +20,7 @@ public class WwrController {
     @Inject
     private PatientsService patientsService;
     @Inject
-    private PatientsRepositoryDaoBean patientsReadModelDb;
-    @Inject
     private FacilitiesService facilitiesService;
-    @Inject
-    private FacilitiesRepositoryDaoBean facilitiesReadModelDb;
 
     public void wwrPlay() {
         boolean programEnd = false;
@@ -171,13 +165,13 @@ public class WwrController {
 
     private void showAllPatients() {
         System.out.println("---------------Patients in system--------------------------");
-        patientsReadModelDb.getAll().printAllPatients();
+        patientsService.getAll().printAllPatients();
         System.out.println("-----------------------------------------------------------");
     }
 
     private void showAllFacilities() {
         System.out.println("-------------All facilities in system-------------------------------------------------");
-        facilitiesReadModelDb.getAll().printAllFacilities();
+        facilitiesService.getAll().printAllFacilities();
         System.out.println("--------------------------------------------------------------------------------------");
 
     }
@@ -221,7 +215,7 @@ public class WwrController {
     }
 
     public Facility chooseFacilityFromList() {
-        Facilities facilities = facilitiesReadModelDb.getAll();
+        Facilities facilities = facilitiesService.getAll();
         List<Facility> facilityList = facilities.getFacilities();
         System.out.println("Select facility id: ");
         Map<Integer, Facility> searchById = new HashMap<>();

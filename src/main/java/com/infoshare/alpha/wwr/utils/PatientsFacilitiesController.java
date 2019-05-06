@@ -1,11 +1,11 @@
 package com.infoshare.alpha.wwr.utils;
 
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
-import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
+import com.infoshare.alpha.wwr.domain.facilities.service.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
-import com.infoshare.alpha.wwr.domain.patients.dao.PatientsRepositoryDaoBean;
+import com.infoshare.alpha.wwr.domain.patients.service.PatientsService;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -16,11 +16,11 @@ public class PatientsFacilitiesController {
     @Inject
     private FacilitiesService facilitiesService;
     @Inject
-    private PatientsRepositoryDaoBean patientsReadModelDb;
+    private PatientsService patientsService;
 
     public void findPatientsFacilities() {
         try {
-            Patient selectedPatient = this.getSelectedPatient(this.patientsReadModelDb.getAll().getPatients());
+            Patient selectedPatient = this.getSelectedPatient(this.patientsService.getAll().getPatients());
             List<Facility> nearestPatientFacilities = this.getFacilitiesBySelectedPatient(selectedPatient);
 
             this.showPatientFacilities(nearestPatientFacilities);

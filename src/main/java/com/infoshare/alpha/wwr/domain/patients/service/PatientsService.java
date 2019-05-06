@@ -30,17 +30,10 @@ public class PatientsService {
 
 		System.out.println(patient.toString() + " added. ");
 	}
-	
-	public void edit(Patient patient) {
-		// TODO: to implement
-	}
-	
-	public void delete(Patient patient) {
-		//TODO: to implement
-	}
-	
-	public void load(String filePath) {
-		// TODO: to implement
+
+	public Patients getAll(){
+
+		return patientsRepositoryDao.getAll();
 	}
 
 	public Patients getByQuery(PatientQuery patientQuery) {
@@ -83,4 +76,18 @@ public class PatientsService {
 
 		return patients;
 	}
+	
+	public void edit(Patient patient) {
+		// TODO: to implement
+	}
+	
+	public void delete(Patient patient) {
+		//TODO: to implement
+	}
+	
+	public void load(String filePath) {
+		// TODO: to implement
+	}
+
+
 }
