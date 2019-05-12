@@ -27,4 +27,14 @@ public abstract class BaseWwrServlet extends HttpServlet {
             resp.sendError(400, msg);
         }
     }
+
+    protected HttpServletResponse setResponseHeaders(HttpServletResponse response) {
+        response.setHeader("Content-type", "application/json");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with ");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+
+        return response;
+    }
 }
