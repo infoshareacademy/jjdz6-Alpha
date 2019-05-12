@@ -1,67 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="main.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Facility form</title>
-</head>
-<body>
-<header id ="my-header">
-    <h1>Add-facility form</h1>
-</header>
-<main>
-    <form method="post" action="/facility-added">
-        <p>Add facility details by filling in the add-facility-form.html</p>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Private facility</label>
-        <label>
-            <input type ="radio" name="title"/>
-            Private facility
-        </label>
-        <label>
-            <input type="radio" name="title"/>
-            NFZ facility
-        </label>
-        <div>
-            <label class ="block-element" for="name">
-                Name:
-            </label>
-            <input type="text" id=name name= "name"/>
-        </div>
-        <div>
-            <label>City:</label>
-            <select>
-                <option>choose city</option>
-                <option>Gdansk</option>
-                <option>Gdynia</option>
-            </select>
-            <input type="text" id=city name="city"/>
-        </div>
-        <div>
-            <label for="street">
-                Street:
-            </label>
-            <input type="text" id="street" name="street" placeholder="e.g. Grunwaldzka 4/5"/>
-        </div>
-        <div>
-            <label for="phoneNumber">
-                Phone number:
-            </label>
-            <input type="number" id=phoneNumber name="phoneNumber" placeholder="e.g. 666-666-666"/>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary btn-sm">
-                Submit
-            </button>
-            <button type="reset" class="btn btn-secondary btn-sm">
-                Reset
-            </button>
-        </div>
-    </form>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Facility form</title>
+    </head>
+    <body>
+    <header id ="my-header">
+    </header>
+    <main>
+    <div class="container">
+        <h1>Add-facility form</h1>
+        <form method="post" action="/facility-added">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">
+                    NFZ facility
+                </label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">
+                    Private facility
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="Name">
+                    Name
+                </label>
+                <input type="name" class="form-control" id="Name" placeholder="name of Facility eg. OWI in Gdynia, filia nr 1">
+            </div>
+            <div class="form-group">
+                <label for="street">
+                    Street:
+                </label>
+                <input type="text" id="street" name="street" placeholder=" e.g. Grunwaldzka 4/5"/>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">
+                    Phone number:
+                </label>
+                <input type="number" id=phoneNumber name="phoneNumber" placeholder=" e.g. 555555555"/>
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                <select class="form-control form-control-sm">
+                    <option>Select city</option>
+                    <option>Gdansk</option>
+                    <option>Gdynia</option>
+                </select>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="submit">
+                    Submit information
+                </label>
+                <button type="reset" class="btn btn-secondary btn-sm">
+                    Reset
+                </button>
+            </div>
+            <button type="submit" class="btn btn-info">Submit Information</button>
+        </form>
+    </div>
 </main>
 <script src ="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
