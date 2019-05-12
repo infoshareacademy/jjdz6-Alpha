@@ -9,9 +9,9 @@
         "phone": "+48 564 123 123"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"},
-        {"name": "abc"}
+        {"name" : "rehabilitacja"},
+        {"name": "terapia SI"},
+        {"name": "psycholog specialny"}
       ]
     },
     {
@@ -23,8 +23,8 @@
         "phone": "+48 564 123 555"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "rehabilitacja"},
+        {"name": "neurologopedia"}
       ]
     },
     {
@@ -36,8 +36,8 @@
         "phone": "+48 754 123 123"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "pedagog specjalny"},
+        {"name": "neurolog"}
       ]
     },
     {
@@ -49,8 +49,8 @@
         "phone": "+48 112 123 123"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "neurologopedia"},
+        {"name": "rehabilitacja"}
       ]
     },
     {
@@ -62,8 +62,8 @@
         "phone": "+48 456 123 123"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "pedagog specjalny"},
+        {"name": "psycholog specjalny"}
       ]
     },
     {
@@ -75,8 +75,8 @@
         "phone": "+48 543 234 123"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "psycholog specjalny"},
+        {"name": "terapia SI"}
       ]
     },
     {
@@ -88,8 +88,8 @@
         "phone": "+48 112 234 123"
       },
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "terapia SI"},
+        {"name": "neurologopedia"}
       ]
     }
   ]
