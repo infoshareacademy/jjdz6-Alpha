@@ -14,7 +14,7 @@ public class Facility {
     private UUID id;
     private String name;
     private Address address;
-    private Boolean NFZfacility;
+    private Boolean NFZ;
     private List<Service> services = new ArrayList<>();
 
 
@@ -71,11 +71,11 @@ public class Facility {
         this.services = services;
     }
 
-    public Boolean getNFZfacility() {
+    public Boolean getNFZ() {
         return NFZfacility;
     }
 
-    public void setNFZfacility(Boolean NFZfacility) {
+    public void setNFZ(Boolean NFZfacility) {
         this.NFZfacility = NFZfacility;
     }
 
@@ -92,11 +92,11 @@ public class Facility {
         return Objects.equals(getName(), facility.getName()) &&
                 Objects.equals(getAddress(), facility.getAddress()) &&
                 Objects.equals(getServices(), facility.getServices()) &&
-                Objects.equals(getNFZfacility(), facility.NFZfacility());
+                Objects.equals(getNFZ(), facility.getNFZ());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress(), getServices()),getNFZfacility();
+        return Objects.hash(getName(), getAddress(), getServices(), getNFZ());
     }
 }
