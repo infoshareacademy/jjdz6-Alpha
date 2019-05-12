@@ -9,11 +9,13 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 
+import javax.ejb.Stateless;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Stateless
 public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, DI {
 
     private FacilitiesJsonStorage storage;

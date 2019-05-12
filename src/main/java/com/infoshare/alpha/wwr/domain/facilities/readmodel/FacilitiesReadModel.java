@@ -8,21 +8,15 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 
-/**
- * Class read data from facilities repository also eg. nearest patients facilities or by query
- * 
- * @author pkowerzanow
- *
- */
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+
+@RequestScoped
 public class FacilitiesReadModel implements DI {
-	
+
+    @Inject
 	private FacilitiesReadModelDb repository;
 
-	public FacilitiesReadModel(FacilitiesReadModelDb repository) {
-
-		this.repository = repository;
-	}
-	
     public Facilities getAll() {
     	
     		return this.repository.getAll();
