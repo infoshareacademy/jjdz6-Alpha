@@ -14,6 +14,7 @@ public class Facility {
     private UUID id;
     private String name;
     private Address address;
+    private Boolean NFZfacility;
     private List<Service> services = new ArrayList<>();
 
 
@@ -34,10 +35,11 @@ public class Facility {
         this.id = id;
     }
 
-    public Facility(String name, Address address, UUID id, List<Service> services) {
+    public Facility(String name, Address address, UUID id, Boolean NFZfacility, <Service> services) {
         this.address = address;
         this.name = name;
         this.id = id;
+        this.NFZfacility = NFZfacility;
         this.services = services;
     }
 
@@ -63,6 +65,18 @@ public class Facility {
 
     public List<Service> getServices() {
         return this.services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
+    public Boolean getNFZfacility() {
+        return NFZfacility;
+    }
+
+    public void setNFZfacility(Boolean NFZfacility) {
+        this.NFZfacility = NFZfacility;
     }
 
     @Override
