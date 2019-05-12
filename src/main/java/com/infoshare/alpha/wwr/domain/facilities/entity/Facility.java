@@ -35,7 +35,7 @@ public class Facility {
         this.id = id;
     }
 
-    public Facility(String name, Address address, UUID id, Boolean NFZfacility, <Service> services) {
+    public Facility(String name, Address address, UUID id, Boolean NFZfacility, <Service>services) {
         this.address = address;
         this.name = name;
         this.id = id;
@@ -91,11 +91,12 @@ public class Facility {
         Facility facility = (Facility) o;
         return Objects.equals(getName(), facility.getName()) &&
                 Objects.equals(getAddress(), facility.getAddress()) &&
-                Objects.equals(getServices(), facility.getServices());
+                Objects.equals(getServices(), facility.getServices()) &&
+                Objects.equals(getNFZfacility(), facility.NFZfacility());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress(), getServices());
+        return Objects.hash(getName(), getAddress(), getServices()),getNFZfacility();
     }
 }

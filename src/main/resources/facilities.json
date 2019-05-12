@@ -10,7 +10,7 @@
       },
       "NFZfacility" : true,
       "services" : [
-        {"name" : "rehabilitacja"},
+        {"name": "rehabilitacja"},
         {"name": "terapia SI"},
         {"name": "psycholog specialny"}
       ]
@@ -25,7 +25,7 @@
       },
       "NFZfacility" : false,
       "services" : [
-        {"name" : "rehabilitacja"},
+        {"name": "rehabilitacja"},
         {"name": "neurologopedia"}
       ]
     },
@@ -38,8 +38,8 @@
         "phone": "+48 754 123 123"
       },
       "NFZfacility" : true,
-      "services" : [
-        {"name" : "pedagog specjalny"},
+      "services": [
+        {"name": "pedagog specjalny"},
         {"name": "neurolog"}
       ]
     },
@@ -53,7 +53,7 @@
       },
       "NFZfacility" : true,
       "services" : [
-        {"name" : "neurologopedia"},
+        {"name": "neurologopedia"},
         {"name": "rehabilitacja"}
       ]
     },
@@ -95,7 +95,7 @@
       },
       "NFZfacility" : true,
       "services" : [
-        {"name" : "terapia SI"},
+        {"name": "terapia SI"},
         {"name": "neurologopedia"}
       ]
     }
