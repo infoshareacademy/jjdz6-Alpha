@@ -3,9 +3,4 @@ target/
 .childDevelopmentSupportSystem.iml
 /bin/
 childDevelopmentSupportSystem.iml
-
-.idea/
-target/
-.child-developmentSupportSystem.iml
-/bin/
-child-developmentSupportSystem.iml
+child-development-support-system.iml
