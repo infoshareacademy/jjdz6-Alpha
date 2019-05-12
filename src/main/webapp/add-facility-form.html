@@ -1,12 +1,66 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css"/>
+
+    <title>Facility form</title>
+</head>
 <body>
-<h1>Add facility details by filling in the add-facility-form.html</h1>
-<form method="post" action="/facility-added">
-    Name: <input type="text" name="name"/><br/><br/>
-    City: <input type="text" name="city"/><br/><br/>
-    Street: <input type="text" name="street"/><br/><br/>
-    Phone: <input type="text" name="phone"/><br/><br/>
-    <input type="submit" name="save" value="add"/><br/><br/>
-</form>
+<header id ="my-header">
+    <h1>Add-facility form</h1>
+</header>
+<main>
+    <form method="post" action="/facility-added">
+        <p>Add facility details by filling in the add-facility-form.html</p>
+        <label>
+            <input type ="radio" name="title"/>
+            Private facility
+        </label>
+        <label>
+            <input type="radio" name="title"/>
+            NFZ facility
+        </label>
+        <div>
+            <label class ="block-element" for="name">
+                Name:
+            </label>
+            <input type="text" id=name name= "name"/>
+        </div>
+        <div>
+            <label>City:</label>
+            <select>
+                <option>choose city</option>
+                <option>Gdansk</option>
+                <option>Gdynia</option>
+            </select>
+            <input type="text" id=city name="city"/>
+        </div>
+        <div>
+            <label for="street">
+                Street:
+            </label>
+            <input type="text" id="street" name="street" placeholder="e.g. Grunwaldzka 4/5"/>
+        </div>
+        <div>
+            <label for="phoneNumber">
+                Phone number:
+            </label>
+            <input type="number" id=phoneNumber name="phoneNumber" placeholder="e.g. 666-666-666"/>
+        </div>
+        <div>
+            <button>
+                Submit form
+                <input type="submit" id="submitButton" value="primary" name="submit_button"/>
+            </button>
+            <button type="reset" id="submit-button">Reset form
+                <input type="reset" id="resetButton" name="resetButton"/>
+            </button>
+        </div>
+    </form>
+</main>
+<script src ="script.js"></script>
 </body>
 </html>
