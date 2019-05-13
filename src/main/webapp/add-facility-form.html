@@ -1,72 +1,79 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="main.css"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>Facility form</title>
-    </head>
-    <body>
-    <header id ="my-header">
-    </header>
-    <main>
-    <div class="container">
-        <h1>Add-facility form</h1>
-        <form method="post" action="/facility-added">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline1">
-                    NFZ facility
-                </label>
+<html lang="en">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head><div class="container">
+        <div id="signupbox" style=" margin-top:40px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Add-facility form</div>
+                </div>
+                <div class="panel-body" >
+                    <form method="post" action=".">
+                        <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+
+                        <form  class="form-horizontal" method="post" >
+                            <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+                            <div id="div_id_select" class="form-group required">
+                                <label for="id_select"  class="control-label col-md-4  requiredField"> Select<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 "  style="margin-bottom: 10px">
+                                    <label class="radio-inline"><input type="radio" checked="checked" name="select" id="id_select_1" value="S"  style="margin-bottom: 10px">  NFZ facility  </label>
+                                    <label class="radio-inline"> <input type="radio" name="select" id="id_select_2" value="P"  style="margin-bottom: 10px">  Private facility </label>
+                                </div>
+                            </div>
+                            <div id="div_id_username" class="form-group required">
+                                <label for="id_name" class="control-label col-md-4  requiredField"> Name of facility <span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md  textinput textInput form-control" id="id_name" maxlength="30" name="name" placeholder="eg. OWI in Gdynia, filia nr2" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+                            <div id="div_id_street" class="form-group required">
+                                <label for="id_street" class="control-label col-md-4  requiredField"> Street <span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput textInput form-control" id="id_street" name="street" placeholder="eg. Grunwaldzka 5/5" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+                            <div id="div_id_city" class="form-group required">
+                                <label for="id_city" class="control-label col-md-4  requiredField"> City <span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput textInput form-control" id="id_city" name="city" placeholder="provide city" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+                            <div id="div_id_number" class="form-group required">
+                                <label for="id_number" class="control-label col-md-4  requiredField"> Contact number <span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput textInput form-control" id="id_number" name="number" placeholder="provide phone number" style="margin-bottom: 10px" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls col-md-offset-4 col-md-8 ">
+                                    <div id="div_id_terms" class="checkbox required">
+                                        <label for="id_terms" class=" requiredField">
+                                            <input class="input-ms checkboxinput" id="id_terms" name="terms" style="margin-bottom: 10px" type="checkbox" />
+                                            Agree to add given facility information to database
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="aab controls col-md-4 "></div>
+                                <div class="controls col-md-8 ">
+                                    <input type="submit" name="Submit" value="Submit" class="btn btn-primary btn btn-info" id="submit-id-information" />
+                                    <input type="reset" name="Reset" value="Reset" class="btn btn-secondary btn btn-sm" id="reset--id-information" />
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </form>
+                </div>
             </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="customRadioInline2">
-                    Private facility
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="Name">
-                    Name
-                </label>
-                <input type="name" class="form-control" id="Name" placeholder="name of Facility eg. OWI in Gdynia, filia nr 1">
-            </div>
-            <div class="form-group">
-                <label for="street">
-                    Street:
-                </label>
-                <input type="text" id="street" name="street" placeholder=" e.g. Grunwaldzka 4/5"/>
-            </div>
-            <div class="form-group">
-                <label for="phoneNumber">
-                    Phone number:
-                </label>
-                <input type="number" id=phoneNumber name="phoneNumber" placeholder=" e.g. 555555555"/>
-            </div>
-            <div class="form-group">
-                <label>City:</label>
-                <select class="form-control form-control-sm">
-                    <option>Select city</option>
-                    <option>Gdansk</option>
-                    <option>Gdynia</option>
-                </select>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="submit">
-                    Submit information
-                </label>
-                <button type="reset" class="btn btn-secondary btn-sm">
-                    Reset
-                </button>
-            </div>
-            <button type="submit" class="btn btn-info">Submit Information</button>
-        </form>
+        </div>
     </div>
-</main>
-<script src ="script.js"></script>
+    <script src ="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
