@@ -26,7 +26,7 @@
       "NFZ" : false,
       "services" : [
         {"name": "rehabilitacja"},
-        {"name": "neurologopedia"}
+        {"name": "neurologopeda"}
       ]
     },
     {
@@ -96,7 +96,7 @@
       "NFZ" : true,
       "services" : [
         {"name": "terapia SI"},
-        {"name": "neurologopedia"}
+        {"name": "neurologopeda"}
       ]
     }
   ]
