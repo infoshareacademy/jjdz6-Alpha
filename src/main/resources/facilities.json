@@ -2,55 +2,59 @@
   "facilities": [
     {
       "id": "95af228a-9da5-4074-bfc3-c4cc2377755b",
-      "name": "WWR1",
+      "name": "OWI in Gdynia, filia nr 2",
       "address": {
-        "city": "Gdańsk",
-        "street": "Nowe Ogrody 23",
+        "city": "Gdynia",
+        "street": "Necla 23",
         "phone": "+48 564 123 123"
       },
+      "nfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"},
-        {"name": "abc"}
+        {"name": "rehabilitacja"},
+        {"name": "terapia SI"},
+        {"name": "psycholog specialny"}
       ]
     },
     {
       "id": "ad499fcf-d0ed-4ede-aa89-83fa4b7dfff3",
-      "name": "WWR2",
+      "name": "Wyspa",
       "address": {
         "city": "Gdańsk",
         "street": "Al. Grunwaldzka 223",
         "phone": "+48 564 123 555"
       },
+      "nfz" : false,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name": "rehabilitacja"},
+        {"name": "neurologopeda"}
       ]
     },
     {
       "id": "dd205405-1f8c-4d44-9eb0-06e0ca3f02bf",
-      "name": "WWR3",
+      "name": "Poradnia psychologiczno-pedagogiczna, filia nr 6",
       "address": {
         "city": "Sopot",
         "street": "Zwyciestwa 17",
         "phone": "+48 754 123 123"
       },
-      "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+      "nfz" : true,
+      "services": [
+        {"name": "pedagog specjalny"},
+        {"name": "neurolog"}
       ]
     },
     {
       "id": "a3387df6-cfbb-4135-b6a8-ab872ea214ce",
-      "name": "WWR4",
+      "name": "Poradnia psychologiczno-pedagogiczna, filia nr 7",
       "address": {
         "city": "Gdynia",
         "street": "Kolejowa 23",
         "phone": "+48 112 123 123"
       },
+      "nfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name": "neurologopedia"},
+        {"name": "rehabilitacja"}
       ]
     },
     {
@@ -61,35 +65,38 @@
         "street": "Swietojanska 110",
         "phone": "+48 456 123 123"
       },
+      "nfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "pedagog specjalny"},
+        {"name": "psycholog specjalny"}
       ]
     },
     {
       "id": "f2eca580-bca5-41fd-80a9-766ff2760091",
-      "name": "WWR-Oliva",
+      "name": "ODiTiS",
       "address": {
         "city": "Gdańsk-Oliwa",
         "street": "Krzywoustego 123",
         "phone": "+48 543 234 123"
       },
+      "nfz" : false,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "psycholog specjalny"},
+        {"name": "terapia SI"}
       ]
     },
     {
       "id": "0d765811-73d3-4b19-886f-e524164762bd",
-      "name": "WWR-Gdynia-Port",
+      "name": "Poradnia psychologiczno-pedagogiczna, filia nr 4",
       "address": {
         "city": "Gdynia",
         "street": "Portowa 1",
         "phone": "+48 112 234 123"
       },
+      "nfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name": "terapia SI"},
+        {"name": "neurologopeda"}
       ]
     }
   ]
