@@ -7,37 +7,36 @@ import com.infoshare.alpha.wwr.common.Services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Facility {
 
-    private UUID id;
+    private int id;
 
-	private String name;
-    
-	private Address address;
+    private String name;
 
-	private List<Service> services = new ArrayList<>();
+    private Address address;
+
+    private List<Service> services = new ArrayList<>();
 
 
-	public Facility(String name, Address address, List<Service> services) {
+    public Facility(String name, Address address, List<Service> services) {
         this.address = address;
         this.name = name;
         this.services = services;
-        this.id = UUID.randomUUID();
+        this.id = 0;
     }
 
     public Facility(String name, Address address) {
-        this(name, address, UUID.randomUUID());
+        this(name, address, 0);
     }
 
-    public Facility(String name, Address address, UUID id) {
+    public Facility(String name, Address address, int id) {
         this.address = address;
         this.name = name;
         this.id = id;
     }
 
-    public Facility(String name, Address address, UUID id, List<Service> services) {
+    public Facility(String name, Address address, int id, List<Service> services) {
         this.address = address;
         this.name = name;
         this.id = id;
@@ -45,18 +44,18 @@ public class Facility {
     }
 
     public String getName() {
- 
-    	return name;
+
+        return name;
     }
-    
+
     public Address getAddress() {
 
-    	return address;
+        return address;
     }
 
-    public UUID getId() {
- 
-    	return id;
+    public int getId() {
+
+        return id;
     }
 
     public List<Service> getServices() {
@@ -65,7 +64,7 @@ public class Facility {
 
     @Override
     public String toString() {
-    	return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services) ;
+        return "Id: " + this.id + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services);
     }
 
     @Override
@@ -73,9 +72,7 @@ public class Facility {
         if (this == o) return true;
         if (!(o instanceof Facility)) return false;
         Facility facility = (Facility) o;
-        return Objects.equals(getName(), facility.getName()) &&
-                Objects.equals(getAddress(), facility.getAddress()) &&
-                Objects.equals(getServices(), facility.getServices());
+        return Objects.equals(getName(), facility.getName()) && Objects.equals(getAddress(), facility.getAddress()) && Objects.equals(getServices(), facility.getServices());
     }
 
     @Override

@@ -1,5 +1,10 @@
 package com.infoshare.alpha.wwr.servlet;
 
+import com.google.gson.Gson;
+import com.infoshare.alpha.wwr.utils.Config;
+import com.infoshare.alpha.wwr.utils.ResponsePrinter;
+
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +13,14 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public abstract class BaseWwrServlet extends HttpServlet {
+
+    protected Gson gson = new Gson();
+
+    @Inject
+    protected ResponsePrinter responsePrinter;
+
+    @Inject
+    protected Config config;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

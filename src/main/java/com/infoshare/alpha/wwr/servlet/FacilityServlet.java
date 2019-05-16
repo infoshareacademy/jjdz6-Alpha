@@ -1,39 +1,48 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.google.gson.Gson;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
-import com.infoshare.alpha.wwr.utils.ResponsePrinter;
-
+import com.infoshare.alpha.wwr.utils.ErrorResponse;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
-    ResponsePrinter responsePrinter;
-
-    @Inject
     FacilitiesReadModel facilitiesReadModel;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         HttpServletResponse response = this.setResponseHeaders(resp);
 
-        List<Facility> facilities = facilitiesReadModel.getByCity("Gdańsk");
+        try {
+            String id = req.getParameter("id");
+            config.register(this.getServletContext());
 
+            if (null == id) {
+                throw new IOException("Id param missing.");
+            }
 
-        Gson gson = new Gson();
-        resp.setStatus(HttpServletResponse.SC_OK);
+            Facility facility = facilitiesReadModel.getById(Integer.valueOf(id));
 
-        responsePrinter.print(response, gson.toJson(facilities));
+            if (null == facility) {
+                throw new IOException("Facility id: " + id + " not found.");
+            }
+
+            response.setStatus(HttpServletResponse.SC_OK);
+            responsePrinter.print(response, gson.toJson(facility));
+
+        } catch (IOException e) {
+
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            responsePrinter.print(response, gson.toJson(new ErrorResponse(e.getMessage(), HttpServletResponse.SC_BAD_REQUEST)));
+        }
     }
 
     @Override
