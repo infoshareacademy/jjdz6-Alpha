@@ -23,10 +23,12 @@
                     </div>
                     <div class="panel-body">
                         <form class="form-horizontal"method="post" action="WEB-INF">
-                            <input type='hidden' name='csrfmiddlewaretoken' value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S'/>
+                            <input type='hidden' name='selection' value='selectOne'/>
                                 <div id="div_id_select" class="form-group required">
-                                    <label for="id_select" class="control-label col-md-4  requiredField"> Select <span
-                                            class="asteriskField">*</span> </label>
+                                    <label for="div_id_select" class="control-label col-md-4  requiredField">
+                                        Select
+                                        <span class="asteriskField">*</span>
+                                    </label>
                                     <div class="controls col-md-8 " style="margin-bottom: 10px">
                                         <label class="radio-inline">
                                             <input type="radio" checked="checked" name="select" id="id_select_1" aria-describedby="helpId" value="S" style="margin-bottom: 10px">
@@ -39,8 +41,9 @@
                                 </div>
                                 <div id="div_id_name" class="form-group required">
                                     <label for="id_name" class="control-label col-md-4  requiredField">
-                                        Name of facility
+                                        Name
                                         <span class="asteriskField">*</span>
+                                        <small id="helpId" class="form-text text-muted">Insert full name of the facility</small>
                                     </label>
                                     <div class="controls col-md-8 ">
                                         <input class="input-md  textinput textInput form-control" id="id_name" aria-describedby="helpId" maxlength="30"
@@ -52,6 +55,7 @@
                                     <label for="id_street" class="control-label col-md-4  requiredField">
                                         Street
                                         <span class="asteriskField">*</span>
+                                        <small id="helpId" class="form-text text-muted">Insert street</small>
                                     </label>
                                     <div class="controls col-md-8 ">
                                         <input class="input-md textinput textInput form-control" id="id_street" aria-describedby="helpId" name="street"
@@ -62,62 +66,64 @@
                                     <label for="id_city" class="control-label col-md-4  requiredField">
                                         City
                                         <span class="asteriskField">*</span>
+                                        <small id="helpId" class="form-text text-muted">Insert city</small>
                                     </label>
                                     <div class="controls col-md-8 ">
                                         <input class="input-md textinput textInput form-control" id="id_city" aria-describedby="helpId" name="city"
-                                               placeholder="provide city" style="margin-bottom: 10px" type="text"/>
+                                               placeholder="eg. Gdynia " style="margin-bottom: 10px" type="text"/>
                                     </div>
                                 </div>
                                 <div id="div_id_number" class="form-group required">
                                     <label for="id_number" class="control-label col-md-4  requiredField">
                                         Contact number
                                         <span class="asteriskField">*</span>
-                                        <small id="helpId" class="form-text text-muted">Help text</small>
+                                        <small id="helpId" class="form-text text-muted">Insert telephone number</small>
                                     </label>
                                     <div class="controls col-md-8 ">
                                         <input class="input-md textinput textInput form-control" id="id_number" aria-describedby="helpId" name="number"
-                                               placeholder="provide phone number" style="margin-bottom: 20px" type="text"/>
+                                               placeholder="eg. 555444333" style="margin-bottom: 20px" type="text"/>
                                     </div>
                                 </div>
                                 <fieldset class="form-group">
-                                <div id="div_id_service" class="row">
-                                    <legend for="id_service" class="control-label col-md-4  requiredField">
+                                <div id="div_id_service" class="row" style="margin-bottom: 20px">
+                                    <label for="id_service" class="control-label col-md-4  requiredField">
                                         Services
                                         <span class="asteriskField">*</span>
-                                    </legend>
+                                        <small id="helpId" class="form-text text-muted">Choose services provided within the facility</small>
+                                    </label>
                                     <div class="controls col-md-8">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_neurolog" aria-describedby="helpId" value="option1" aria-checked="false">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_neurolog" value="option1" aria-checked="false">
                                             <label class="form-check-label" for="check_id_neurolog">
                                                  Neurolog
                                             </label>
                                          </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_neurologopeda" aria-describedby="helpId" value="option2" aria-checked="false">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_neurologopeda" value="option2" aria-checked="false">
                                             <label class="form-check-label" for="check_id_neurologopeda">
                                                 Neurologopeda
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_psycholog" aria-describedby="helpId" value="option3" aria-checked="false">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_psycholog" value="option3" aria-checked="false">
                                             <label class="form-check-label" for="check_id_psycholog">
                                                 Psycholog specjalny
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_pedagog" aria-describedby="helpId" value="option4" aria-checked="false">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_pedagog" value="option4" aria-checked="false">
                                             <label class="form-check-label" for="check_id_pedagog">
                                                 Pedagog specjalny
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_rehabilitacja" aria-describedby="helpId" value="option5" aria-checked="false">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_rehabilitacja" value="option5" aria-checked="false">
                                             <label class="form-check-label" for="check_id_rehabilitacja">
                                                 Rehabilitacja
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_terapiaSI" aria-describedby="helpId" value="option6" aria-checked="false">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_terapiaSI" value="option6" aria-checked="false">
                                             <label class="form-check-label" for="check_id_terapiaSI">
                                                 Terapia SI
                                             </label>
