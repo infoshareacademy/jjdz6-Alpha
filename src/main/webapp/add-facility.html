@@ -29,7 +29,7 @@
                                             class="asteriskField">*</span> </label>
                                     <div class="controls col-md-8 " style="margin-bottom: 10px">
                                         <label class="radio-inline">
-                                            <input type="radio" checked="checked" name="select" id="id_select_1" value="S" style="margin-bottom: 10px">
+                                            <input type="radio" checked="checked" name="select" id="id_select_1" aria-describedby="helpId" value="S" style="margin-bottom: 10px">
                                             NFZ facility
                                         </label>
                                         <label class="radio-inline"> <input type="radio" name="select" id="id_select_2" value="P" style="margin-bottom: 10px">
@@ -43,26 +43,28 @@
                                         <span class="asteriskField">*</span>
                                     </label>
                                     <div class="controls col-md-8 ">
-                                        <input class="input-md  textinput textInput form-control" id="id_name" maxlength="30"
+                                        <input class="input-md  textinput textInput form-control" id="id_name" aria-describedby="helpId" maxlength="30"
                                                name="name" placeholder="eg. OWI in Gdynia, filia nr2"
                                                style="margin-bottom: 10px" type="text"/>
                                     </div>
                                 </div>
                                 <div id="div_id_street" class="form-group required">
                                     <label for="id_street" class="control-label col-md-4  requiredField">
-                                        Street <span class="asteriskField">*</span>
+                                        Street
+                                        <span class="asteriskField">*</span>
                                     </label>
                                     <div class="controls col-md-8 ">
-                                        <input class="input-md textinput textInput form-control" id="id_street" name="street"
+                                        <input class="input-md textinput textInput form-control" id="id_street" aria-describedby="helpId" name="street"
                                                placeholder="eg. Grunwaldzka 5/5" style="margin-bottom: 10px" type="text"/>
                                     </div>
                                 </div>
                                 <div id="div_id_city" class="form-group required">
                                     <label for="id_city" class="control-label col-md-4  requiredField">
-                                        City <span class="asteriskField">*</span>
+                                        City
+                                        <span class="asteriskField">*</span>
                                     </label>
                                     <div class="controls col-md-8 ">
-                                        <input class="input-md textinput textInput form-control" id="id_city" name="city"
+                                        <input class="input-md textinput textInput form-control" id="id_city" aria-describedby="helpId" name="city"
                                                placeholder="provide city" style="margin-bottom: 10px" type="text"/>
                                     </div>
                                 </div>
@@ -70,51 +72,53 @@
                                     <label for="id_number" class="control-label col-md-4  requiredField">
                                         Contact number
                                         <span class="asteriskField">*</span>
+                                        <small id="helpId" class="form-text text-muted">Help text</small>
                                     </label>
                                     <div class="controls col-md-8 ">
-                                        <input class="input-md textinput textInput form-control" id="id_number" name="number"
+                                        <input class="input-md textinput textInput form-control" id="id_number" aria-describedby="helpId" name="number"
                                                placeholder="provide phone number" style="margin-bottom: 20px" type="text"/>
                                     </div>
                                 </div>
                                 <fieldset class="form-group">
                                 <div id="div_id_service" class="row">
                                     <legend for="id_service" class="control-label col-md-4  requiredField">
-                                        Services <span class="asteriskField">*</span>
+                                        Services
+                                        <span class="asteriskField">*</span>
                                     </legend>
-<!--                                    <div class="controls col-md-8 ">-->
-                                    <div class="col-sm-10">
+                                    <div class="controls col-md-8">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios1">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_neurolog" aria-describedby="helpId" value="option1" aria-checked="false">
+                                            <label class="form-check-label" for="check_id_neurolog">
                                                  Neurolog
                                             </label>
                                          </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios2">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_neurologopeda" aria-describedby="helpId" value="option2" aria-checked="false">
+                                            <label class="form-check-label" for="check_id_neurologopeda">
                                                 Neurologopeda
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios3">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_psycholog" aria-describedby="helpId" value="option3" aria-checked="false">
+                                            <label class="form-check-label" for="check_id_psycholog">
                                                 Psycholog specjalny
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios3">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_pedagog" aria-describedby="helpId" value="option4" aria-checked="false">
+                                            <label class="form-check-label" for="check_id_pedagog">
                                                 Pedagog specjalny
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios3">
-                                                Rehabilitacja                                            </label>
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_rehabilitacja" aria-describedby="helpId" value="option5" aria-checked="false">
+                                            <label class="form-check-label" for="check_id_rehabilitacja">
+                                                Rehabilitacja
+                                            </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios3">
+                                            <input class="form-check-input" type="checkbox" name="gridRadios" id="check_id_terapiaSI" aria-describedby="helpId" value="option6" aria-checked="false">
+                                            <label class="form-check-label" for="check_id_terapiaSI">
                                                 Terapia SI
                                             </label>
                                         </div>
