@@ -12,7 +12,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class PatientsJsonStorage {
 
-    private static final String PATIENTS_REPO_FILE_PATH = "/home/szymon/Desktop/jjdz6-Alpha/src/main/webapp/WEB-INF/json-repository/patients.json"; //TODO
+    private static final String PATIENTS_REPO_FILE_PATH = "/opt/alpha/patients.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public Patients load() {
