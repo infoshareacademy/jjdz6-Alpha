@@ -1,8 +1,7 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityService;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -15,7 +14,8 @@ import java.io.IOException;
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
-    FacilityService facilityService;
+    FacilitiesService facilitiesService;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,16 +25,16 @@ public class FacilityServlet extends BaseWwrServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Facility facility = new Facility();
-        Address address = new Address();
 
-        facility.setName(String.valueOf(req.getParameter("name")));
-        address.setStreet(String.valueOf(req.getParameter("street")));
-        address.setCity(String.valueOf(req.getParameter("city")));
-        address.setPhone(String.valueOf(req.getParameter("phone")));
+        String name = req.getParameter("name");
+        String address = req.getParameter("street");
+        String city = req.getParameter("city");
+        String phone = req.getParameter("phone");
+        Boolean nfz = Boolean.valueOf(req.getParameter("nfz"));
 
+        FacilityAddCommand facility = new FacilityAddCommand(name, address, city, phone, nfz);
 
-        facilityService.saveFacility(facility);
+        facilitiesService.add(facility);
 
         resp.getWriter().println("Facility added successfully");
     }

@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.domain.facilities.common;
 
-public class FacilitiesException extends Throwable {
+public class FacilitiesException extends RuntimeException {
 
     public static final int FACILITY_NOT_FOUND_ERROR_CODE = 1000;
     public static final int FACILITY_EXISTS_ERROR_CODE = 1001;

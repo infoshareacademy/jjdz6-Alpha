@@ -11,7 +11,12 @@ import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDb
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
 import com.infoshare.alpha.wwr.di.DI;
 
+import javax.enterprise.context.RequestScoped;
+
+@RequestScoped
 public class FacilitiesService implements DI{
+
+
 
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
     private FacilitiesRepository facilitiesDbRepository;
