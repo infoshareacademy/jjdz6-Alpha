@@ -7,8 +7,7 @@ import com.infoshare.alpha.wwr.utils.WwrController;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) {
     	String facilitiesRepoPath = args[0];
     	String patientsRepoPath = args[1];
 

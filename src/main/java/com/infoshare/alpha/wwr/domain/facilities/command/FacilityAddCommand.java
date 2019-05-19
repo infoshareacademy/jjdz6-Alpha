@@ -16,9 +16,9 @@ public class FacilityAddCommand extends FacilityCommand{
         super(facility);
     }
 
-    public FacilityAddCommand(String name, String city, String street, String phone) {
-        Address address = new Address(city,street, phone);
-        Facility facility = new Facility(name, address);
+    public FacilityAddCommand(String name, String city, String street, String phone, Boolean nfz) {
+        Address address = new Address(city, street, phone);
+        Facility facility = new Facility(name, address, nfz);
         this.set(facility);
     }
 

@@ -4,6 +4,7 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityService;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

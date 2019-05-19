@@ -42,6 +42,13 @@ public class Facility {
         this.services = services;
     }
 
+    public Facility(String name, Address address, Boolean nfz) {
+        this.address = address;
+        this.name = name;
+        this.nfz = nfz;
+    }
+
+
     public String getName() {
         return name;
     }

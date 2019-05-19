@@ -54,7 +54,7 @@ public class InputForms {
             editedServices = facilityToBeEdited.getServices();
             System.out.println("Facility services have not been changed.");
         }
-        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId(), editedServices);
+        return new Facility(editedFacilityName, editedFacilityAddress, facilityToBeEdited.getId(), true, editedServices);
     }
 
     public static Address getAddressFromKeyboard() {
