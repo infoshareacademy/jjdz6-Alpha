@@ -6,7 +6,7 @@ import com.infoshare.alpha.wwr.utils.exceptions.FacilitiesException;
 
 public interface FacilitiesRepositoryDao {
 
-    void persist(Facilities facilities);
+    void save(Facilities facilities);
 
     Facilities getAll();
 

@@ -26,7 +26,7 @@ public class PatientsService {
 
         patients.add(patient);
 
-        this.patientsRepositoryDao.persist(patients);
+        this.patientsRepositoryDao.save(patients);
 
         System.out.println(patient.toString() + " added. ");
     }

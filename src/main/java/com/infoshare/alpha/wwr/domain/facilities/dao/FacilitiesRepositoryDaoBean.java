@@ -15,7 +15,7 @@ public class FacilitiesRepositoryDaoBean implements FacilitiesRepositoryDao {
     private FacilitiesJsonStorage storage;
 
     @Override
-    public void persist(Facilities facilities) {
+    public void save(Facilities facilities) {
         this.storage.save(facilities);
     }
 

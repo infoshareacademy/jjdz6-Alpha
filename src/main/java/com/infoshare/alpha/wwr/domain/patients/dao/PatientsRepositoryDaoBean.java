@@ -13,7 +13,7 @@ public class PatientsRepositoryDaoBean implements PatientsRepositoryDao {
     private PatientsJsonStorage storage;
 
     @Override
-    public void persist(Patients patients) {
+    public void save(Patients patients) {
         this.storage.save(patients);
     }
 

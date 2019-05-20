@@ -133,7 +133,7 @@ public class FacilitiesService {
         }
 
         facilities.add(facility);
-        facilitiesRepositoryDao.persist(facilities);
+        facilitiesRepositoryDao.save(facilities);
     }
 
     public void delete(Facility facility) throws FacilitiesException {
@@ -152,6 +152,6 @@ public class FacilitiesService {
         // 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         // 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
         // 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
-        // 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.persist(facilities);
+        // 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.save(facilities);
     }
 }
