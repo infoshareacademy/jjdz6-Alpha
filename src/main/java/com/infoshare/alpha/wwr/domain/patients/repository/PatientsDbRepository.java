@@ -1,10 +1,9 @@
 package com.infoshare.alpha.wwr.domain.patients.repository;
 
-import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 
-public class PatientsDbRepository implements PatientsRepository, DI {
+public class PatientsDbRepository implements PatientsRepository {
 
 	PatientsJsonStorage storage;
 	

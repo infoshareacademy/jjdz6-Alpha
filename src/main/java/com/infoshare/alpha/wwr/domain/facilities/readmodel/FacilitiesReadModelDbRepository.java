@@ -8,23 +8,27 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@RequestScoped
 public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
+    @Inject
     private FacilitiesJsonStorage storage;
 
-    public FacilitiesReadModelDbRepository(FacilitiesJsonStorage storage) {
-        try {
-            this.storage = storage;
-        } catch (NullPointerException e) {
-            System.out.println(e.toString());
-            e.printStackTrace();
-        }
-    }
+//    public FacilitiesReadModelDbRepository() {
+//        try {
+//            this.storage = storage;
+//        } catch (NullPointerException e) {
+//            System.out.println(e.toString());
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public Facilities getAll() {

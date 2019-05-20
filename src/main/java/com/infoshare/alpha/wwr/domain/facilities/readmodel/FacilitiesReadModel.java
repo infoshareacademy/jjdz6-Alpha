@@ -5,6 +5,8 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -13,14 +15,16 @@ import java.util.List;
  * @author pkowerzanow
  */
 
+@RequestScoped
 public class FacilitiesReadModel {
 
+    @Inject
     private FacilitiesReadModelDb repository;
 
-    public FacilitiesReadModel(FacilitiesReadModelDb repository) {
-
-        this.repository = repository;
-    }
+//    public FacilitiesReadModel(FacilitiesReadModelDb repository) {
+//
+//        this.repository = repository;
+//    }
 
     public Facilities getAll() {
 
