@@ -17,7 +17,7 @@ public class PatientsDbRepository implements PatientsRepository {
 //    }
 
     @Override
-    public void persist(Patients patients) {
+    public void add(Patients patients) {
         this.storage.save(patients);
     }
 }

@@ -32,7 +32,7 @@ public class PatientsService {
 
 		patients.add(patient);
 
-		this.patientsRepository.persist(patients);
+		this.patientsRepository.add(patients);
 
 		System.out.println(patient.toString() + " added. ");
 	}

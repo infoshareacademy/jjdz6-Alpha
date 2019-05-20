@@ -16,7 +16,7 @@ public class FacilitiesDbRepository implements FacilitiesRepository {
 //        this.storage = storage;
 //    }
 
-    public void persist(Facilities facilities) {
+    public void add(Facilities facilities) {
         this.storage.save(facilities);
     }
 }
