@@ -12,7 +12,7 @@ import java.net.URL;
 @RequestScoped
 public class FacilitiesJsonStorage {
 
-    private static final URL FACILITIES_REPO_URL = Resources.getResource("facilities.json");
+    private static final URL FACILITIES_REPO_URL = Resources.getResource("/facilities.json");
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public Facilities load() {
