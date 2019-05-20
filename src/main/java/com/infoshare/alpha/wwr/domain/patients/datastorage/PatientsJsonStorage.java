@@ -1,22 +1,22 @@
 package com.infoshare.alpha.wwr.domain.patients.datastorage;
 
+import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.*;
-
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 
 import javax.enterprise.context.RequestScoped;
+import java.io.*;
+import java.net.URL;
 
 @RequestScoped
 public class PatientsJsonStorage {
 
-    private static final String PATIENTS_REPO_FILE_PATH = "/opt/alpha/patients.json";
+    private static final URL PATIENTS_REPO_URL = Resources.getResource("/patients.json");
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public Patients load() {
-        try (Reader reader = new FileReader(this.PATIENTS_REPO_FILE_PATH)) {
+        try (Reader reader = new FileReader(PATIENTS_REPO_URL.getPath())) {
 
             Patients patients = this.gson.fromJson(reader, Patients.class);
 
@@ -29,7 +29,7 @@ public class PatientsJsonStorage {
     }
 
     public void save(Patients patients) {
-        try (Writer writer = new FileWriter(this.PATIENTS_REPO_FILE_PATH)) {
+        try (Writer writer = new FileWriter(PATIENTS_REPO_URL.getPath())) {
             this.gson.toJson(patients, writer);
         } catch (IOException e) {
             System.out.println("Exception during saving json file: " + e.getMessage());
