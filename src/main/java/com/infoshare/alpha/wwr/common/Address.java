@@ -33,10 +33,10 @@ public class Address {
     public String getPhone() {
         return phone;
     }
-    
+
     @Override
     public String toString() {
-    		return " City : " + this.city + " Street : " + this.street + " Phone: " + this.phone;
+        return " City : " + this.city + " Street : " + this.street + " Phone: " + this.phone;
     }
 
     @Override

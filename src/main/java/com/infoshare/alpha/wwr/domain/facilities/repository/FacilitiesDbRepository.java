@@ -10,11 +10,7 @@ import javax.inject.Inject;
 public class FacilitiesDbRepository implements FacilitiesRepository {
 
     @Inject
-	private FacilitiesJsonStorage storage;
-	
-//    public FacilitiesDbRepository(){
-//        this.storage = storage;
-//    }
+    private FacilitiesJsonStorage storage;
 
     public void add(Facilities facilities) {
         this.storage.save(facilities);

@@ -10,11 +10,7 @@ import javax.inject.Inject;
 public class PatientsDbRepository implements PatientsRepository {
 
     @Inject
-	private PatientsJsonStorage storage;
-	
-//    public PatientsDbRepository(PatientsJsonStorage storage){
-//        this.storage = storage;
-//    }
+    private PatientsJsonStorage storage;
 
     @Override
     public void add(Patients patients) {

@@ -21,14 +21,6 @@ public class FacilitiesService {
     @Inject
     private FacilitiesRepository facilitiesDbRepository;
 
-//    public FacilitiesService(
-//    		FacilitiesRepository facilitiesDbRepository,
-//    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
-//    		) {
-//    		this.facilitiesDbRepository = facilitiesDbRepository;
-//    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;
-//    }
-
     public void add(FacilityAddCommand command) throws FacilitiesException {
 
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
@@ -71,13 +63,13 @@ public class FacilitiesService {
         facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
         this.facilitiesDbRepository.add(facilities);
     }
-    
+
     public void upload(UploadCommand uploadCommand) {
-    	
-    	// funkcja ktora wrzuca do repozutorium dodatkowe placowki 
-    	// 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-    	// 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
-    	// 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
-    	// 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.add(facilities);
+
+        // funkcja ktora wrzuca do repozutorium dodatkowe placowki
+        // 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        // 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
+        // 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
+        // 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.add(facilities);
     }
 }

@@ -9,19 +9,15 @@ import javax.inject.Inject;
 @RequestScoped
 public class PatientsReadModel {
 
-	@Inject
-	private PatientsReadModelDb patientsReadModelDb;
-	
-//	public PatientsReadModel(PatientsReadModelDb patientsReadModelDb) {
-//		this.patientsReadModelDb = patientsReadModelDb;
-//	}
-	
-	public Patients getAll() {
-		return this.patientsReadModelDb.getAll();
-	}
-	
-	public Patients getByQuery(PatientQuery query) {
-		return this.patientsReadModelDb.getByQuery(query);
-	}
+    @Inject
+    private PatientsReadModelDb patientsReadModelDb;
+
+    public Patients getAll() {
+        return this.patientsReadModelDb.getAll();
+    }
+
+    public Patients getByQuery(PatientQuery query) {
+        return this.patientsReadModelDb.getByQuery(query);
+    }
 
 }
