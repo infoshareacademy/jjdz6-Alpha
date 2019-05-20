@@ -6,23 +6,27 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@RequestScoped
 public class PatientsReadModelDbRepository implements PatientsReadModelDb {
 
+	@Inject
 	private PatientsJsonStorage storage;
 	
-	public PatientsReadModelDbRepository(PatientsJsonStorage storage) {	
-        try {
-            this.storage = storage;
-        } catch (NullPointerException e) {
-            System.out.println(e.toString());
-            e.printStackTrace();
-        }
-	}
+//	public PatientsReadModelDbRepository(PatientsJsonStorage storage) {
+//        try {
+//            this.storage = storage;
+//        } catch (NullPointerException e) {
+//            System.out.println(e.toString());
+//            e.printStackTrace();
+//        }
+//	}
 	
 	public Patients getAll() {
 		

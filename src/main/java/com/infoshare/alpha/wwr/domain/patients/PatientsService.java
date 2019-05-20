@@ -5,21 +5,26 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
+@RequestScoped
 public class PatientsService {
 
+	@Inject
 	private PatientsReadModelDb patientsReadModelDbRepository;
+	@Inject
 	private PatientsRepository patientsRepository;
 
 	
-	public PatientsService(
-			PatientsReadModelDb patientsReadModelDbRepository,
-			PatientsRepository patientsRepository
-			) 
-	{
-		this.patientsReadModelDbRepository = patientsReadModelDbRepository;
-		this.patientsRepository = patientsRepository;
-	}
+//	public PatientsService(
+//			PatientsReadModelDb patientsReadModelDbRepository,
+//			PatientsRepository patientsRepository
+//			)
+//	{
+//		this.patientsReadModelDbRepository = patientsReadModelDbRepository;
+//		this.patientsRepository = patientsRepository;
+//	}
 	
 	public void add(Patient patient) {
 
