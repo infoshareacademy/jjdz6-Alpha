@@ -1,10 +1,9 @@
 package com.infoshare.alpha.wwr.domain.patients.readmodel;
 
-import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 
-public class PatientsReadModel implements DI {
+public class PatientsReadModel {
 	
 	
 	private PatientsReadModelDb patientsReadModelDb;

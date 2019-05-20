@@ -1,9 +1,8 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
+import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
@@ -14,7 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb, DI {
+public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
     private FacilitiesJsonStorage storage;
 

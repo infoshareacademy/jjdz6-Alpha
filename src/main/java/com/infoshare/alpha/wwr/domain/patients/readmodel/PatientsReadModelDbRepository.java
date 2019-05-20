@@ -1,17 +1,17 @@
 package com.infoshare.alpha.wwr.domain.patients.readmodel;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
 
-public class PatientsReadModelDbRepository implements DI, PatientsReadModelDb {
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class PatientsReadModelDbRepository implements PatientsReadModelDb {
 
 	private PatientsJsonStorage storage;
 	

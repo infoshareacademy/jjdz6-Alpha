@@ -9,9 +9,8 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
-import com.infoshare.alpha.wwr.di.DI;
 
-public class FacilitiesService implements DI{
+public class FacilitiesService {
 
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
     private FacilitiesRepository facilitiesDbRepository;
