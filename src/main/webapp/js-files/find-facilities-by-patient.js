@@ -2,7 +2,7 @@ $(document).ready(function () {
     var request=new XMLHttpRequest();
     function searchInfo(){
         var name=document.patientsFacilities.name.value;
-        var url="/wwr/facility?id="+name;
+        var url="/wwr/facility?searchBy="+name;
 
         try{
             request.onreadystatechange=function(){

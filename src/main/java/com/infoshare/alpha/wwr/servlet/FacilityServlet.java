@@ -1,12 +1,15 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
-import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
-import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
+import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
+import com.infoshare.alpha.wwr.servlet.freemarker.TemplateProvider;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -14,7 +17,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
 public class FacilityServlet extends BaseWwrServlet {
@@ -23,36 +30,40 @@ public class FacilityServlet extends BaseWwrServlet {
     private FacilitiesService facilitiesService;
     @Inject
     private FacilitiesReadModel facilitiesReadModel;
+    @Inject
+    private PatientsReadModelDb patientsReadModelDb;
+    @Inject
+    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        facilitiesReadModel.getAll().getFacilities()
-                .forEach(facility -> {
-                    try {
-                        resp.getWriter().println(facility);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+        String searchByParam = req.getParameter("searchBy");
+        PrintWriter writer = resp.getWriter();
 
-        Facility newFacility = new Facility("test", new Address("test", "test", "test"), new ArrayList<Service>());
-
-        try {
-            facilitiesService.add(new FacilityAddCommand(newFacility));
-        } catch (FacilitiesException e) {
-            e.printStackTrace();
+        if (searchByParam == null || searchByParam.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
         }
 
-        facilitiesReadModel.getAll().getFacilities()
-                .forEach(facility -> {
-                    try {
-                        resp.getWriter().println(facility);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+        Patient selectedPatient = patientsReadModelDb.getAll().getPatients()
+                .stream()
+                .filter(p -> p.getPesel().toString().contains(searchByParam)) // TODO wyszukiwanie po innym parametrze, by nie przekazywać peselu w URL?
+                .findAny()
+                .orElse(null); // TODO .get() też zwróci null jeśli Optional będzie pusty?
+        // TODO przechwycić nulla lub zwrócić co innego
+        List<Facility> selectedPatientsFacilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, Arrays.asList(FacilityQueryField.CITY)));
 
+        Map<String, Object> model = new HashMap<>();
+        model.put("selectedPatient", selectedPatient);
+        model.put("selectedPatientsFacilities", selectedPatientsFacilities);
+
+        Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
+        try {
+            template.process(model, writer);
+        } catch (TemplateException e) {
+            e.getMessage();
+        }
     }
 
     @Override
