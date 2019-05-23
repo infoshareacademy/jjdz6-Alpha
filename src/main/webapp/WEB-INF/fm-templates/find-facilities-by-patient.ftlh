@@ -10,15 +10,22 @@
 
 <span id="mylocation"></span>
 
-<#if selectedPatientsFacilities?size == 0>Nie znaleziono placówek rehabilitacyjnych dla pacjenta ${selectedPatient.pesel.pesel}
-<#else>Najbliższe placówki rehabilitacyjne pacjenta ${selectedPatient.pesel.pesel}
-    <#list selectedPatientsFacilities>
-        <ul>
-            <#items as facility>
-            <li>${facility}
-                </#items>
-        </ul>
-    </#list>
+<p><#if selectedPatientsFacilities?size == 0>Nie znaleziono placówek rehabilitacyjnych dla pacjenta
+    <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>
+    <#else>Najbliższe placówki rehabilitacyjne pacjenta
+    <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>:</p>
+<#list selectedPatientsFacilities>
+    <ul>
+        <#items as facility>
+            <li>${facility.name}
+                <ul>
+                    <li>${facility.address}</li>
+                    <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
+                </ul>
+            </li>
+        </#items>
+    </ul>
+</#list>
 </#if>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"

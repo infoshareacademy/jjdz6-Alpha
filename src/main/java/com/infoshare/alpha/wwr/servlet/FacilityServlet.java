@@ -40,25 +40,24 @@ public class FacilityServlet extends BaseWwrServlet {
 
         String searchByParam = req.getParameter("searchBy");
         PrintWriter writer = resp.getWriter();
+        Map<String, Object> model = new HashMap<>();
+        Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
 
-        if (searchByParam == null || searchByParam.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
+
+        if (searchByParam != null) {
+
+            Patient selectedPatient = patientsReadModelDb.getAll().getPatients()
+                    .stream()
+                    .filter(p -> p.getPesel().toString().contains(searchByParam)) // TODO wyszukiwanie po innym parametrze, by nie przekazywać peselu w URL?
+                    .findAny()
+                    .orElse(null); // TODO .get() też zwróci null jeśli Optional będzie pusty?
+            // TODO przechwycić nulla lub zwrócić co innego
+            List<Facility> selectedPatientsFacilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, Arrays.asList(FacilityQueryField.CITY)));
+
+            model.put("selectedPatient", selectedPatient);
+            model.put("selectedPatientsFacilities", selectedPatientsFacilities);
         }
 
-        Patient selectedPatient = patientsReadModelDb.getAll().getPatients()
-                .stream()
-                .filter(p -> p.getPesel().toString().contains(searchByParam)) // TODO wyszukiwanie po innym parametrze, by nie przekazywać peselu w URL?
-                .findAny()
-                .orElse(null); // TODO .get() też zwróci null jeśli Optional będzie pusty?
-        // TODO przechwycić nulla lub zwrócić co innego
-        List<Facility> selectedPatientsFacilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, Arrays.asList(FacilityQueryField.CITY)));
-
-        Map<String, Object> model = new HashMap<>();
-        model.put("selectedPatient", selectedPatient);
-        model.put("selectedPatientsFacilities", selectedPatientsFacilities);
-
-        Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
         try {
             template.process(model, writer);
         } catch (TemplateException e) {
