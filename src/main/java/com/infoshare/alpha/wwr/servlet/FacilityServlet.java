@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,17 +48,29 @@ public class FacilityServlet extends BaseWwrServlet {
             model.put("facility", facility);
             this.renderView(model, "/facility/editFacility.ftlh");
 
-        } catch (IOException | TemplateException e) {
+        } catch (IOException | TemplateException | NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            responsePrinter.print(response, gson.toJson(new ErrorResponse(e.getMessage(), HttpServletResponse.SC_BAD_REQUEST)));
+            if (e instanceof NumberFormatException) {
+                responsePrinter.print(response, gson.toJson(new ErrorResponse("Id not found.", HttpServletResponse.SC_BAD_REQUEST)));
+            } else {
+                responsePrinter.print(response, gson.toJson(new ErrorResponse(e.getMessage(), HttpServletResponse.SC_BAD_REQUEST)));
+            }
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        logger.severe(req.getParameterMap());
 
         Map<String, String[]> parameterMap = req.getParameterMap();
+        String facilityId = parameterMap.get("facility_id")[0];
+        String facilityName = parameterMap.get("facility_name")[0];
+        String facilityAddressCity = parameterMap.get("facility_address_city")[0];
+        String facilityAddressStreet = parameterMap.get("facility_address_street")[0];
+        String[] services = parameterMap.get("service[]");
+
+
+        parameterMap.keySet().stream().forEach(k -> {logger.severe(k);});
+        logger.severe("Facility name: " + facilityName);
         parameterMap.forEach((k,v)->{
             logger.severe("Key :" + k + " Value: " + v.toString());
         });
