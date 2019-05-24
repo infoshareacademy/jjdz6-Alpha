@@ -17,8 +17,8 @@
 <#list selectedPatientsFacilities>
     <ul>
         <#items as facility>
-            <li>${facility.name}
-                <ul>
+            <li class="facility">${facility.name}
+                <ul class="facility-details">
                     <li>${facility.address}</li>
                     <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
                 </ul>
@@ -30,7 +30,7 @@
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"
         type="text/javascript"></script>
-<script src="/find-facilities-by-patient.js"></script>
+<script src="js-files/find-facilities-by-patient.js"></script>
 
 </body>
 </html>
