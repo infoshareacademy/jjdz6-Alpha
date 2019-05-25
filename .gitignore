@@ -4,7 +4,5 @@ target/
 /bin/
 childDevelopmentSupportSystem.iml
 child-development-support-system.iml
-main.iml
-test.iml
 *.iml
 **/*.iml
