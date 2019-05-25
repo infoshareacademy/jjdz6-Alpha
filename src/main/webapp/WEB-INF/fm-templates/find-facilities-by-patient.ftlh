@@ -8,7 +8,31 @@
     <input type="text" name="searchBy" onkeyup="searchInfo()">
 </form>
 
-<span id="mylocation"></span>
+
+<script>
+    var request = new XMLHttpRequest();
+
+    function searchInfo() {
+        var name = document.patientsFacilities.searchBy.value;
+        var url = "/wwr/facility?searchBy=" + name;
+
+        try {
+            request.onreadystatechange = function () {
+                if (request.readyState === 4) {
+                    // var val = request.responseText;
+                    request.responseText = document.getElementById('mylocation').innerHTML;
+                }
+            }//end of function
+            request.open("GET", url, true);
+            request.send();
+        } catch (e) {
+            alert("Unable to connect to server");
+        }
+    }
+</script>
+
+<span id="mylocation">${selectedPatient.name}</span>
+
 
 <p><#if selectedPatientsFacilities?size == 0>Nie znaleziono placówek rehabilitacyjnych dla pacjenta
     <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>
