@@ -85,11 +85,15 @@ public class Facility {
         this.isNfz = isNfz;
     }
 
+    public static String valueOf(boolean isNfz) {
+        return isNfz ? "placowka publiczna" : "placowka prywatnase";
+    }
+
     @Override
     public String toString() {
         return " Id : " + this.id.toString() +
                 " Name :  " + this.name + this.address.toString() +
-                " Nfz : " + this.isNfz.toString() +
+                " Nfz : " + valueOf(isNfz) +
                 " Services : " + Services.fromList(this.services);
     }
 
