@@ -8,7 +8,7 @@
         "street": "Necla 23",
         "phone": "+48 564 123 123"
       },
-      "nfz" : true,
+      "isNfz" : true,
       "services" : [
         {"name": "rehabilitacja"},
         {"name": "terapia SI"},
@@ -23,7 +23,7 @@
         "street": "Al. Grunwaldzka 223",
         "phone": "+48 564 123 555"
       },
-      "nfz" : false,
+      "isNfz" : false,
       "services" : [
         {"name": "rehabilitacja"},
         {"name": "neurologopeda"}
@@ -37,7 +37,7 @@
         "street": "Zwyciestwa 17",
         "phone": "+48 754 123 123"
       },
-      "nfz" : true,
+      "isNfz" : true,
       "services": [
         {"name": "pedagog specjalny"},
         {"name": "neurolog"}
@@ -51,7 +51,7 @@
         "street": "Kolejowa 23",
         "phone": "+48 112 123 123"
       },
-      "nfz" : true,
+      "isNfz" : true,
       "services" : [
         {"name": "neurologopedia"},
         {"name": "rehabilitacja"}
@@ -65,7 +65,7 @@
         "street": "Swietojanska 110",
         "phone": "+48 456 123 123"
       },
-      "nfz" : true,
+      "isNfz" : true,
       "services" : [
         {"name" : "pedagog specjalny"},
         {"name": "psycholog specjalny"}
@@ -79,7 +79,7 @@
         "street": "Krzywoustego 123",
         "phone": "+48 543 234 123"
       },
-      "nfz" : false,
+      "isNfz" : false,
       "services" : [
         {"name" : "psycholog specjalny"},
         {"name": "terapia SI"}
@@ -93,7 +93,7 @@
         "street": "Portowa 1",
         "phone": "+48 112 234 123"
       },
-      "nfz" : true,
+      "isNfz" : true,
       "services" : [
         {"name": "terapia SI"},
         {"name": "neurologopeda"}

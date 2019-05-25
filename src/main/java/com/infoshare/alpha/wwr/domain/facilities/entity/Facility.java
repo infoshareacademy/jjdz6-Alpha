@@ -14,7 +14,7 @@ public class Facility {
     private UUID id;
     private String name;
     private Address address;
-    private Boolean nfz;
+    private Boolean isNfz;
     private List<Service> services = new ArrayList<>();
 
     public Facility(String name, Address address, List<Service> services) {
@@ -34,18 +34,18 @@ public class Facility {
         this.id = id;
     }
 
-    public Facility(String name, Address address, UUID id, Boolean nfz, List<Service> services) {
+    public Facility(String name, Address address, UUID id, Boolean isNfz, List<Service> services) {
         this.address = address;
         this.name = name;
         this.id = id;
-        this.nfz = nfz;
+        this.isNfz = isNfz;
         this.services = services;
     }
 
-    public Facility(String name, Address address, Boolean nfz) {
+    public Facility(String name, Address address, Boolean isNfz) {
         this.address = address;
         this.name = name;
-        this.nfz = nfz;
+        this.isNfz = isNfz;
     }
 
 
@@ -77,19 +77,19 @@ public class Facility {
         this.services = services;
     }
 
-    public Boolean getNfz() {
-        return nfz;
+    public Boolean getIsNfz() {
+        return isNfz;
     }
 
-    public void setNfz(Boolean nfz) {
-        this.nfz = nfz;
+    public void setIsNfz(Boolean isNfz) {
+        this.isNfz = isNfz;
     }
 
     @Override
     public String toString() {
         return " Id : " + this.id.toString() +
                 " Name :  " + this.name + this.address.toString() +
-                " Nfz : " + this.nfz.toString() +
+                " Nfz : " + this.isNfz.toString() +
                 " Services : " + Services.fromList(this.services);
     }
 
@@ -100,12 +100,12 @@ public class Facility {
         Facility facility = (Facility) o;
         return Objects.equals(getName(), facility.getName()) &&
                 Objects.equals(getAddress(), facility.getAddress()) &&
-                Objects.equals(getNfz(), facility.getNfz()) &&
+                Objects.equals(getIsNfz(), facility.getIsNfz()) &&
                 Objects.equals(getServices(), facility.getServices());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress(), getNfz(), getServices());
+        return Objects.hash(getName(), getAddress(), getIsNfz(), getServices());
     }
 }

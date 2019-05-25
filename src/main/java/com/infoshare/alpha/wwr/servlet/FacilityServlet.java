@@ -30,9 +30,9 @@ public class FacilityServlet extends BaseWwrServlet {
         String address = req.getParameter("street");
         String city = req.getParameter("city");
         String phone = req.getParameter("phone");
-        Boolean nfz = Boolean.valueOf(req.getParameter("nfz"));
+        Boolean isNfz = Boolean.valueOf(req.getParameter("isNfz"));
 
-        FacilityAddCommand facility = new FacilityAddCommand(name, address, city, phone, nfz);
+        FacilityAddCommand facility = new FacilityAddCommand(name, address, city, phone, isNfz);
 
         facilitiesService.add(facility);
 
