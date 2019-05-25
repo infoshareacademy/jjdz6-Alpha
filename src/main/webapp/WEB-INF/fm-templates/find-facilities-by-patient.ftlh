@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-<h1>Znajdź najbliższe placówki rehabilitacyjne pacjenta</h1>
+<h1>Znajdź najbliższe placówki rehabilitacyjne dla pacjenta</h1>
 <form name="patientsFacilities">
     <input type="text" name="searchBy" onkeyup="searchInfo()">
 </form>
@@ -12,13 +12,13 @@
 
 <p><#if selectedPatientsFacilities?size == 0>Nie znaleziono placówek rehabilitacyjnych dla pacjenta
     <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>
-    <#else>Najbliższe placówki rehabilitacyjne pacjenta
+    <#else>Najbliższe placówki rehabilitacyjne dla pacjenta
     <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>:</p>
 <#list selectedPatientsFacilities>
     <ul>
         <#items as facility>
-            <li class="facility">${facility.name}
-                <ul class="facility-details">
+            <li class="facility"><strong>${facility.name}</strong>
+                <ul class="facility-details" style="display: none">
                     <li>${facility.address}</li>
                     <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
                 </ul>
