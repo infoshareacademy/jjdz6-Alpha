@@ -53,17 +53,10 @@ public class Facility {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public UUID getId() {
         return id;
@@ -73,20 +66,14 @@ public class Facility {
         return this.services;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
-    }
 
-    public Boolean getIsNfz() {
+    public Boolean isNfz() {
         return isNfz;
     }
 
-    public void setIsNfz(Boolean isNfz) {
-        this.isNfz = isNfz;
-    }
 
-    public static String valueOf(boolean isNfz) {
-        return isNfz ? "placowka publiczna" : "placowka prywatnase";
+    private String valueOf(boolean isNfz) {
+        return isNfz ? "placowka publiczna" : "placwka prywatna";
     }
 
     @Override
@@ -104,12 +91,12 @@ public class Facility {
         Facility facility = (Facility) o;
         return Objects.equals(getName(), facility.getName()) &&
                 Objects.equals(getAddress(), facility.getAddress()) &&
-                Objects.equals(getIsNfz(), facility.getIsNfz()) &&
+                Objects.equals(isNfz(), facility.isNfz()) &&
                 Objects.equals(getServices(), facility.getServices());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress(), getIsNfz(), getServices());
+        return Objects.hash(getName(), getAddress(), isNfz(), getServices());
     }
 }
