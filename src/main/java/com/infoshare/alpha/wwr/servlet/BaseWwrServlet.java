@@ -39,6 +39,8 @@ public abstract class BaseWwrServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getMethod().equalsIgnoreCase("PATCH")) {
             doPatch(req, resp);
+        } else if(req.getMethod().equalsIgnoreCase("POST") &&  req.getParameter("_method").equalsIgnoreCase("PUT")) {
+            doPut(req, resp);
         } else {
             super.service(req, resp);
         }

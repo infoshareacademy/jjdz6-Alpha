@@ -43,7 +43,6 @@ public class FacilityServlet extends BaseWwrServlet {
             }
 
             response.setStatus(HttpServletResponse.SC_OK);
-//            this.renderJson(facility);
             Map<String, Object> model = new HashMap<>();
             model.put("facility", facility);
             this.renderView(model, "/facility/editFacility.ftlh");
@@ -61,6 +60,13 @@ public class FacilityServlet extends BaseWwrServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Map<String, String[]> parameterMap = req.getParameterMap();
         String facilityId = parameterMap.get("facility_id")[0];
         String facilityName = parameterMap.get("facility_name")[0];
@@ -74,11 +80,6 @@ public class FacilityServlet extends BaseWwrServlet {
         parameterMap.forEach((k,v)->{
             logger.severe("Key :" + k + " Value: " + v.toString());
         });
-
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 

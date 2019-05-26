@@ -25,13 +25,14 @@
 
 <div class="container">
 
-    <form action="/wwr/facility" method="post">
+    <form action="/wwr/facility" method="POST">
 
         <div>
             <label for="facility_name">Nazwa placówki</label>
             <p>
                 <input type="text" name="facility_name" value="${facility.name}">
                 <input type="hidden" name="facility_id" value="${facility.id}">
+                <input type="hidden" name="_method" value="PUT">
             </p>
         </div>
 
