@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
+@WebServlet(name = "FacilityServlet", urlPatterns = {"/facility", "/find-facilities"})
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
