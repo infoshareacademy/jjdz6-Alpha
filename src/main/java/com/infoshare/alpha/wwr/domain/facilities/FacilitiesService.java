@@ -16,8 +16,6 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class FacilitiesService implements DI{
 
-
-
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
     private FacilitiesRepository facilitiesDbRepository;
 
