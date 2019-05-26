@@ -67,7 +67,7 @@
 
 </header>
 <main>
-    <form method="post" action="/wwr/patient" class="needs-validation" novalidate>
+    <form method="post" action="/patient" class="needs-validation" novalidate>
         <div>
             <h2>DANE PACJENTA</h2>
         </div>
@@ -76,7 +76,7 @@
                 <label for="validationCustom01">Imię</label>
                 <input type="text" class="form-control" id="validationCustom01" placeholder="imię" required>
                 <div class="valid-feedback">
-                Prawidłowo!
+                    Prawidłowo!
                 </div>
                 <div class="invalid-feedback">
                     Podaj wartość!
@@ -105,7 +105,8 @@
         </div>
         <div class="form-group">
             <label for="validationCustom04">Ulica</label>
-            <input type="text" class="form-control" id="validationCustom04" placeholder="ulica, nr domu / nr mieszkania" required>
+            <input type="text" class="form-control" id="validationCustom04" placeholder="ulica, nr domu / nr mieszkania"
+                   required>
             <div class="valid-feedback">
                 Prawidłowo!
             </div>
@@ -163,14 +164,14 @@
 </main>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
+    (function () {
         'use strict';
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.getElementsByClassName('needs-validation');
             // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
