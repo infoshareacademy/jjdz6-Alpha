@@ -18,10 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility", "/find-facilities"})
 public class FacilityServlet extends BaseWwrServlet {
@@ -38,24 +36,28 @@ public class FacilityServlet extends BaseWwrServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String searchByParam = req.getParameter("searchBy");
+        String patientName = req.getParameter("patient");
         PrintWriter writer = resp.getWriter();
         Map<String, Object> model = new HashMap<>();
         Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
 
 
-        if (searchByParam != null) {
+        if (patientName != null) {
+            String formattedPatientName = patientName.toLowerCase();
 
-            Patient selectedPatient = patientsReadModelDb.getAll().getPatients()
+            List<Patient> selectedPatients = patientsReadModelDb.getAll().getPatients()
                     .stream()
-                    .filter(p -> p.getPesel().toString().contains(searchByParam)) // TODO wyszukiwanie po innym parametrze, by nie przekazywać peselu w URL?
-                    .findAny()
-                    .orElse(null); // TODO .get() też zwróci null jeśli Optional będzie pusty?
-            // TODO przechwycić nulla lub zwrócić co innego
-            List<Facility> selectedPatientsFacilities = facilitiesReadModel.getByPatient(new FacilityPatientQuery(selectedPatient, Arrays.asList(FacilityQueryField.CITY)));
+                    .filter(p -> p.getName().toLowerCase().contains(formattedPatientName) || p.getSurname().toLowerCase().contains(formattedPatientName))
+                    .sorted(Comparator.comparing(Patient::getSurname))
+                    .collect(Collectors.toList());
 
-            model.put("selectedPatient", selectedPatient);
-            model.put("selectedPatientsFacilities", selectedPatientsFacilities);
+            Map<Patient, List<Facility>> facilitiesByPatient = selectedPatients
+                    .stream()
+                    .collect(Collectors.toMap(patient -> patient,
+                            patientsFacilities -> facilitiesReadModel.getByPatient(new FacilityPatientQuery(patientsFacilities, Arrays.asList(FacilityQueryField.CITY)))));
+            // TODO w przypadku braku placówek doda pustą listę placówek?
+            model.put("selectedPatients", selectedPatients);
+            model.put("selectedPatientsFacilities", facilitiesByPatient);
         }
 
         try {

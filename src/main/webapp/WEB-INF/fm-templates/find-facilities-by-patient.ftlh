@@ -5,49 +5,28 @@
 <body>
 <h1>Znajdź najbliższe placówki rehabilitacyjne dla pacjenta</h1>
 <form name="patientsFacilities">
-    <input type="text" name="searchBy" onkeyup="searchInfo()">
+    <input type="text" name="patient" placeholder="Imię lub nazwisko pacjenta">
 </form>
 
-
-<script>
-    var request = new XMLHttpRequest();
-
-    function searchInfo() {
-        var name = document.patientsFacilities.searchBy.value;
-        var url = "/wwr/facility?searchBy=" + name;
-
-        try {
-            request.onreadystatechange = function () {
-                if (request.readyState === 4) {
-                    // var val = request.responseText;
-                    request.responseText = document.getElementById('mylocation').innerHTML;
-                }
-            }//end of function
-            request.open("GET", url, true);
-            request.send();
-        } catch (e) {
-            alert("Unable to connect to server");
-        }
-    }
-</script>
-
-<span id="mylocation">${selectedPatient.name}</span>
-
-
-<p><#if selectedPatientsFacilities?size == 0>Nie znaleziono placówek rehabilitacyjnych dla pacjenta
-    <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>
-    <#else>Najbliższe placówki rehabilitacyjne dla pacjenta
-    <strong>${selectedPatient.name} ${selectedPatient.surname}</strong>:</p>
-<#list selectedPatientsFacilities>
+<p>
+    <#if selectedPatients?size == 0>Nie znaleziono takiego pacjenta.
+    <#elseif selectedPatientsFacilities?size == 0>Nie znaleziono placówek rehabilitacyjnych dla
+        <#if selectedPatients?size == 1> pacjenta <strong>${selectedPatients.name} ${selectedPatients.surname}</strong>
+        <#else> pacjentów <#list selectedPatients.surname as surname><strong>${surname}</strong></#list>
+        </#if>
+    <#else>Najbliższe placówki rehabilitacyjne dla pacjenta:
+</p>
+<#list selectedPatientsFacilities as patient, facilities>
+    <strong>${patient.name} ${patient.surname}</strong>
     <ul>
-        <#items as facility>
+        <#list facilities as facility>
             <li class="facility"><strong>${facility.name}</strong>
                 <ul class="facility-details" style="display: none">
                     <li>${facility.address}</li>
                     <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
                 </ul>
             </li>
-        </#items>
+        </#list>
     </ul>
 </#list>
 </#if>
