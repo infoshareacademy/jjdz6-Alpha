@@ -39,7 +39,7 @@ public class InputForms {
         Address address = InputForms.getAddressFromKeyboard();
         List<Service> services = InputForms.getServicesFromKeyboard();
 
-        return new Facility(name, address, services);
+        return new Facility(1, name, address, services);
     }
 
     public static Facility getEditedFacilityFromKeyboard(Facility facilityToBeEdited){

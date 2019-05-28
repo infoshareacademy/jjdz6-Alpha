@@ -1,10 +1,12 @@
 package com.infoshare.alpha.wwr.servlet;
 
+import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
+import com.infoshare.alpha.wwr.servlet.validators.FacilityValidationException;
 import com.infoshare.alpha.wwr.utils.ErrorResponse;
-import com.infoshare.alpha.wwr.utils.freemaker.TemplateProvider;
-import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
@@ -15,13 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
     FacilitiesReadModel facilitiesReadModel;
+
+    @Inject
+    FacilityServletValidator facilityServletValidator;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -65,22 +72,38 @@ public class FacilityServlet extends BaseWwrServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        Map<String, String[]> parameterMap = req.getParameterMap();
-        String facilityId = parameterMap.get("facility_id")[0];
-        String facilityName = parameterMap.get("facility_name")[0];
-        String facilityAddressCity = parameterMap.get("facility_address_city")[0];
-        String facilityAddressStreet = parameterMap.get("facility_address_street")[0];
-        String[] services = parameterMap.get("service[]");
+        try {
+
+            facilityServletValidator.validatePutRequest(req.getParameterMap());
 
 
-        parameterMap.keySet().stream().forEach(k -> {logger.severe(k);});
-        logger.severe("Facility name: " + facilityName);
-        parameterMap.forEach((k,v)->{
-            logger.severe("Key :" + k + " Value: " + v.toString());
-        });
 
+//            Map<String, String[]> parameterMap = req.getParameterMap();
+//            String facilityId = parameterMap.get("facility_id")[0];
+//            String facilityName = parameterMap.get("facility_name")[0];
+//            String facilityAddressCity = parameterMap.get("facility_address_city")[0];
+//            String facilityAddressStreet = parameterMap.get("facility_address_street")[0];
+//            String[] services = parameterMap.get("service[]");
+
+
+//            parameterMap.keySet().stream().forEach(k -> {logger.severe(k);});
+//            logger.severe("Facility name: " + facilityName);
+//            parameterMap.forEach((k,v)->{
+//                logger.severe("Key :" + k + " Value: " + v.toString());
+//            });
+        } catch (FacilityValidationException e) {
+            logger.severe("Error: " + e.getMessage());
+            logger.severe("Error code: " + e.getCode());
+
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("validationError", e);
+            model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
+            this.renderView(model, "/facility/editFacility.ftlh");
+        }
     }
 
     @Override
@@ -90,6 +113,27 @@ public class FacilityServlet extends BaseWwrServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {
+
+        int id = Integer.valueOf(requestData.get("facility_id")[0]);
+        String name = requestData.get("facility_name")[0];
+        String city = requestData.get("facility_address_city")[0];
+        String street = requestData.get("facility_address_street")[0];
+        String phone = requestData.get("facility_address_phone")[0];
+
+        //String[] services = requestData.get("service[]");
+
+        List<Service> services = Arrays.stream(requestData.get("service[]")).map(s->{new Service(s);}).collect(Collectors.toList());
+
+        return new Facility(
+                id,
+                name,
+                new Address(city, street, phone),
+                services
+        );
 
     }
 

@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -69,11 +67,15 @@ public abstract class BaseWwrServlet extends HttpServlet {
         return response;
     }
 
-    protected void renderView(Object model, String templatePath) throws IOException, TemplateException {
+    protected void renderView(Object model, String templatePath) throws IOException {
         response.setHeader("Content-type", "text/html");
         response.setContentType("text/html");
-        Template template = templateProvider.getTemplate(getServletContext(), templatePath);
-        template.process(model, response.getWriter());
+        try {
+            Template template = templateProvider.getTemplate(getServletContext(), templatePath);
+            template.process(model, response.getWriter());
+        } catch (TemplateException e) {
+            throw new IOException(e.getMessage());
+        }
     }
 
     protected void renderJson(Object model) throws IOException {

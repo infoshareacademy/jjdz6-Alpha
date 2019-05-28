@@ -19,11 +19,11 @@ public class Facility {
     private List<Service> services = new ArrayList<>();
 
 
-    public Facility(String name, Address address, List<Service> services) {
-        this.address = address;
+    public Facility(int id, String name, Address address, List<Service> services) {
+        this.id = id;
         this.name = name;
+        this.address = address;
         this.services = services;
-        this.id = 0;
     }
 
     public Facility(String name, Address address) {
@@ -41,6 +41,9 @@ public class Facility {
         this.name = name;
         this.id = id;
         this.services = services;
+    }
+
+    public Facility(String id, String name, Address address, List<Service> services) {
     }
 
     public String getName() {

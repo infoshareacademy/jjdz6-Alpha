@@ -2,24 +2,71 @@ package com.infoshare.alpha.wwr.servlet.validators;
 
 public class FacilityValidationException extends Throwable {
 
+    public static final String FACILITY_ID_VALIDATION_ERROR_MSG = "Id missing error.";
+    public static final int FACILITY_ID_VALIDATION_ERROR_CODE = 1000;
 
-    public static final int FACILITY_EMPTY_NAME_ERROR_CODE = 1000;
-    public static final String FACILITY_EMPTY_NAME_ERROR_MSG = "Empty facility name.";
+    public static final String FACILITY_NAME_VALIDATION_ERROR_MSG = "Name validation error";
+    public static final int FACILITY_NAME_VALIDATION_ERROR_CODE = 1001;
 
-    private String message;
+    public static final String FACILITY_CITY_VALIDATION_ERROR_MSG = "City validation error.";
+    public static final int FACILITY_CITY_VALIDATION_ERROR_CODE = 1002;
 
-    private  int code;
+    public static final String FACILITY_STREET_VALIDATION_ERROR_MSG = "Street validation error";
+    public static final int FACILITY_STREET_VALIDATION_ERROR_CODE = 1003;
+
+    public static final String FACILITY_KEYS_VALIDATION_ERROR_MSG = "Request keys are invalid";
+    public static final int FACILITY_KEYS_VALIDATION_ERROR_CODE = 1004;
+
+    private final String message;
+
+    private final int code;
 
     private FacilityValidationException(String message, int code) {
         this.message = message;
         this.code = code;
     }
 
-    public static FacilityValidationException emptyName() {
+    public static FacilityValidationException id() {
         return new FacilityValidationException(
-                FacilityValidationException.FACILITY_EMPTY_NAME_ERROR_MSG,
-                FacilityValidationException.FACILITY_EMPTY_NAME_ERROR_CODE
+                FacilityValidationException.FACILITY_ID_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_ID_VALIDATION_ERROR_CODE
         );
     }
 
+    public static FacilityValidationException name() {
+        return new FacilityValidationException(
+                FacilityValidationException.FACILITY_NAME_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_NAME_VALIDATION_ERROR_CODE
+        );
+    }
+
+    public static FacilityValidationException city() {
+        return new FacilityValidationException(
+                FacilityValidationException.FACILITY_CITY_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_CITY_VALIDATION_ERROR_CODE
+        );
+    }
+
+    public static FacilityValidationException street() {
+        return new FacilityValidationException(
+                FacilityValidationException.FACILITY_STREET_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_STREET_VALIDATION_ERROR_CODE
+        );
+    }
+
+    public static FacilityValidationException keys() {
+        return new FacilityValidationException(
+                FacilityValidationException.FACILITY_KEYS_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_KEYS_VALIDATION_ERROR_CODE
+        );
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public int getCode() {
+        return code;
+    }
 }
