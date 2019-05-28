@@ -16,8 +16,8 @@
     <ul>
         <#if facilities?has_content>
             <#list facilities as facility>
-                <li class="facility"><strong>${facility.name}</strong>
-                    <#--dodać przycisk/podświetlenie na niebiesko?-->
+                <li class="facility"><span title="Kliknij, aby zobaczyć szczegóły"><strong>${facility.name}</strong></span>
+                    <#--span nie znika po rozwinięciu szczegółów-->
                     <ul class="facility-details" style="display: none">
                         <li>${facility.address}</li>
                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
