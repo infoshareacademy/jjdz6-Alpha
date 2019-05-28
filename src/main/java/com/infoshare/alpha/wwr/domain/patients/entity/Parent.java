@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.domain.patients.entity;
 
 import com.infoshare.alpha.wwr.common.User;
-//
+
 public class Parent extends User {
 
 
@@ -11,9 +11,7 @@ public class Parent extends User {
 
     @Override
     public String toString() {
-        return " Parent name: " + this.getName() +" ,Parent surname: " + this.getSurname();
+        return " Parent name: " + this.getName() + " ,Parent surname: " + this.getSurname();
     }
-
-
 
 }
