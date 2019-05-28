@@ -11,7 +11,7 @@ public class FacilityQuery {
         this.queryFields = queryFields;
     }
 
-    public Map<FacilityQueryField, String > getQueryFields() {
+    public Map<FacilityQueryField, String> getQueryFields() {
         return queryFields;
     }
 

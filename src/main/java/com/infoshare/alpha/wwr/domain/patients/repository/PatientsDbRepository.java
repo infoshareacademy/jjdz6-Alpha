@@ -1,19 +1,19 @@
 package com.infoshare.alpha.wwr.domain.patients.repository;
 
-import com.infoshare.alpha.wwr.di.DI;
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 
-public class PatientsDbRepository implements PatientsRepository, DI {
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
-	PatientsJsonStorage storage;
-	
-    public PatientsDbRepository(PatientsJsonStorage storage){
-        this.storage = storage;
-    }
+@RequestScoped
+public class PatientsDbRepository implements PatientsRepository {
+
+    @Inject
+    private PatientsJsonStorage storage;
 
     @Override
-    public void persist(Patients patients) {
+    public void add(Patients patients) {
         this.storage.save(patients);
     }
 }

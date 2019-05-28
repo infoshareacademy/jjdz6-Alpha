@@ -1,39 +1,37 @@
 package com.infoshare.alpha.wwr.domain.facilities.datastorage;
 
+import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.*;
-
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.di.DI;
 
-public class FacilitiesJsonStorage implements DI {
+import javax.ejb.Stateful;
+import java.io.*;
+import java.net.URL;
 
-	private String facilitiesRepoFilePath;
-	private Gson gson;
+@Stateful
+public class FacilitiesJsonStorage {
 
-	public FacilitiesJsonStorage(String facilitiesRepoFilePath) {
-		this.facilitiesRepoFilePath = facilitiesRepoFilePath;
-		this.gson = new GsonBuilder().setPrettyPrinting().create();
-	}
-	
-	public Facilities load() {
-        try (Reader reader = new FileReader(this.facilitiesRepoFilePath)) {
+    private static final URL FACILITIES_REPO_URL = Resources.getResource("facilities.json");
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    public Facilities load() {
+        try (Reader reader = new FileReader(FACILITIES_REPO_URL.getPath())) {
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
 
             return facilities == null ? new Facilities() : facilities;
         } catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-		return new Facilities();
-	}
-		
-	public void save(Facilities facilities) {
-		try (Writer writer = new FileWriter(this.facilitiesRepoFilePath)){
-			this.gson.toJson(facilities, writer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            e.printStackTrace();
+        }
+
+        return new Facilities();
+    }
+
+    public void save(Facilities facilities) {
+        try (Writer writer = new FileWriter(FACILITIES_REPO_URL.getPath())) {
+            this.gson.toJson(facilities, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
