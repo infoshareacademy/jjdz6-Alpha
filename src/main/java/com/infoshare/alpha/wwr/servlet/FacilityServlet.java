@@ -37,6 +37,7 @@ public class FacilityServlet extends BaseWwrServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String patientName = req.getParameter("patient");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         Map<String, Object> model = new HashMap<>();
         Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
