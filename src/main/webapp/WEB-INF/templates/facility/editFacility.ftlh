@@ -20,11 +20,19 @@
 <header>
     <h1>Edycja placówki : ${facility.name}</h1>
     <nav>
-        <a href="/">Main page</a>
+        <a href="/wwr/">Main page</a>
     </nav>
 </header>
 
 <div class="container">
+
+    <#if serviceError??>
+        <div id="servicesErrors">
+            <#if serviceError.code == 10000><p>Nie znaleziono edytowanej placówki</p></#if>
+        </div>
+    </#if>
+
+    <#if editSuccess??> Dane placówki zostały uaktualnione. </#if>
 
     <form action="/wwr/facility" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
 
@@ -62,7 +70,6 @@
                 <#else>
                     <input type="text" name="facility_address_street" value="${facility.address.street}">
                 </#if>
-
             </p>
         </div>
         <div>
@@ -80,11 +87,11 @@
         </div>
 
         <div id="facility_services">
-
             <#list facility.services as service>
-                <p>
+                <div>
                     <input type="text" name="service[]" value="${service.name}">
-                </p>
+                    <p id="remove_service_item">(Usun)</p>
+                </div>
             </#list>
         </div>
         <div>

@@ -91,4 +91,9 @@ public abstract class BaseWwrServlet extends HttpServlet {
         response.setContentType("application/json");
         responsePrinter.print(response, gson.toJson(model));
     }
+
+    protected void logError(String msg, int code) {
+        logger.severe("Error: " + msg);
+        logger.severe("Error code: " + code);
+    }
 }

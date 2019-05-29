@@ -2,6 +2,9 @@ package com.infoshare.alpha.wwr.servlet;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Service;
+import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
+import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
@@ -30,6 +33,9 @@ public class FacilityServlet extends BaseWwrServlet {
     @Inject
     FacilityServletValidator facilityServletValidator;
 
+    @Inject
+    FacilitiesService facilitiesService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
@@ -53,7 +59,6 @@ public class FacilityServlet extends BaseWwrServlet {
             Map<String, Object> model = new HashMap<>();
             model.put("facility", facility);
             this.renderView(model, "/facility/editFacility.ftlh");
-
         } catch (IOException | NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             if (e instanceof NumberFormatException) {
@@ -66,14 +71,10 @@ public class FacilityServlet extends BaseWwrServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
         try {
             req.setCharacterEncoding("UTF-8");
             resp.setCharacterEncoding("UTF-8");
@@ -82,65 +83,52 @@ public class FacilityServlet extends BaseWwrServlet {
             facilityServletValidator.validatePutRequest(req.getParameterMap());
 
             Facility facility = getFacilityFromRequestData(req.getParameterMap());
+            Facility oldFacility = facilitiesReadModel.getById(facility.getId());
 
+            facilitiesService.edit(new FacilityEditCommand(oldFacility, facility));
 
-
-
-
-//            Map<String, String[]> parameterMap = req.getParameterMap();
-//            String facilityId = parameterMap.get("facility_id")[0];
-//            String facilityName = parameterMap.get("facility_name")[0];
-//            String facilityAddressCity = parameterMap.get("facility_address_city")[0];
-//            String facilityAddressStreet = parameterMap.get("facility_address_street")[0];
-//            String[] services = parameterMap.get("service[]");
-
-
-//            parameterMap.keySet().stream().forEach(k -> {logger.severe(k);});
-//            logger.severe("Facility name: " + facilityName);
-//            parameterMap.forEach((k,v)->{
-//                logger.severe("Key :" + k + " Value: " + v.toString());
-//            });
+            response.setStatus(HttpServletResponse.SC_OK);
+            Map<String, Object> model = new HashMap<>();
+            model.put("editSuccess", true);
+            model.put("facility", facility);
+            this.renderView(model, "/facility/editFacility.ftlh");
         } catch (FacilityValidationException e) {
-            logger.severe("Error: " + e.getMessage());
-            logger.severe("Error code: " + e.getCode());
+            this.logError(e.getMessage(), e.getCode());
 
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-
             Map<String, Object> model = new HashMap<>();
-            model.put("errors", true);
             model.put("validationError", e);
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
+            this.renderView(model, "/facility/editFacility.ftlh");
+        } catch (FacilitiesException e) {
+            this.logError(e.getMessage(), e.getCode());
+
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            Map<String, Object> model = new HashMap<>();
+            model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
+            model.put("serviceError", e);
             this.renderView(model, "/facility/editFacility.ftlh");
         }
     }
 
     @Override
     protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 
     private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {
-
         int id = Integer.valueOf(requestData.get("facility_id")[0]);
         String name = requestData.get("facility_name")[0];
         String city = requestData.get("facility_address_city")[0];
-
         String street = requestData.get("facility_address_street")[0];
         String phone = requestData.get("facility_address_phone")[0];
         String[] servicesData = requestData.get("service[]");
         List<Service> services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
 
-        return new Facility(
-                id,
-                name,
-                new Address(city, street, phone),
-                services
-        );
+        return new Facility(id, name, new Address(city, street, phone), services);
     }
 
 }
