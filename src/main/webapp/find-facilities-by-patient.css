@@ -1,0 +1,4 @@
+.facility-span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
