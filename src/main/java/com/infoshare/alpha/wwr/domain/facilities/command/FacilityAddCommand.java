@@ -6,7 +6,6 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 /**
  * @author pkowerzanow
  */
-
 public class FacilityAddCommand extends FacilityCommand {
 
     // klasa polecenie - command która bedzie parametrem serwisu podczas dodawania nowej placowki

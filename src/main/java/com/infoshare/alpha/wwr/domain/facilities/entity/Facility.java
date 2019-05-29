@@ -12,13 +12,9 @@ import java.util.UUID;
 public class Facility {
 
     private UUID id;
-
     private String name;
-
     private Address address;
-
     private List<Service> services = new ArrayList<>();
-
 
     public Facility(String name, Address address, List<Service> services) {
         this.address = address;
