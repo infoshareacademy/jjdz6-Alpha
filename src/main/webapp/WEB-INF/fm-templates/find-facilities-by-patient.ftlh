@@ -23,7 +23,6 @@
                        aria-haspopup="true" aria-expanded="false">Opcje dostępne dla pacjenta</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Znajdź pacjenta</a>
-                        <#--<a class="dropdown-item" href="find-facilities">Pokaż placówki dla pacjenta</a>-->
                         <a class="dropdown-item" href="#">Dodaj pacjenta</a>
                         <a class="dropdown-item" href="#">Edytuj pacjenta</a>
                         <a class="dropdown-item" href="#">Usuń pacjenta</a>
@@ -76,9 +75,6 @@
                             <#list facilities as facility>
                                 <li class="facility"><span class="facility-span"
                                             title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
-                                    <#--dodać zamianę kursora na rękę-->
-                                    <#--podać podkreślenie przy mouseover-->
-                                    <#--span nie znika po rozwinięciu szczegółów-->
                                     <ul class="facility-details" style="display: none">
                                         <li>${facility.address}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
