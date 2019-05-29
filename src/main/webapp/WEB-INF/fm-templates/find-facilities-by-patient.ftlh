@@ -62,7 +62,7 @@
             <h1 class="display-4">Znajdź najbliższe placówki rehabilitacyjne dla pacjenta</h1>
             <div class="lead">
                 <form name="patientsFacilities">
-                    <p><input type="text" name="patient" placeholder="Wpisz imię lub nazwisko pacjenta"></p>
+                    <p><input class="patientNameInput" type="text" name="patient" placeholder="Wpisz imię lub nazwisko pacjenta"></p>
                 </form>
                 <p>
                     <#if selectedPatients??>
