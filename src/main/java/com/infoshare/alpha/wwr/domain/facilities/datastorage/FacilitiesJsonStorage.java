@@ -1,28 +1,22 @@
 package com.infoshare.alpha.wwr.domain.facilities.datastorage;
 
+import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.*;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.utils.Config;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.Stateful;
+import java.io.*;
+import java.net.URL;
 
-@RequestScoped
+@Stateful
 public class FacilitiesJsonStorage {
 
-    private Gson gson;
-
-    @Inject
-    private Config config;
+    private static final URL FACILITIES_REPO_URL = Resources.getResource("facilities.json");
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public Facilities load() {
-
-        String facilitiesRepoFilePath = config.getServletContext().getRealPath("/WEB-INF/json-repository/facilities.json");
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try (Reader reader = new FileReader(facilitiesRepoFilePath)) {
+        try (Reader reader = new FileReader(FACILITIES_REPO_URL.getPath())) {
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
 
             return facilities == null ? new Facilities() : facilities;
@@ -34,8 +28,7 @@ public class FacilitiesJsonStorage {
     }
 
     public void save(Facilities facilities) {
-        String facilitiesRepoFilePath = config.getServletContext().getRealPath("/WEB-INF/json-repository/facilities.json");
-        try (Writer writer = new FileWriter(facilitiesRepoFilePath)) {
+        try (Writer writer = new FileWriter(FACILITIES_REPO_URL.getPath())) {
             this.gson.toJson(facilities, writer);
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,8 +1,8 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
+import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
@@ -39,7 +39,8 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
         return facilities.getFacilities().
                 stream().
-                filter(s -> name.equals(s.getName())).collect(Collectors.toList());
+                filter(s -> name.equals(s.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -48,7 +49,8 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
         return facilities.getFacilities().
                 stream().
-                filter(s -> city.equals(s.getAddress().getCity())).collect(Collectors.toList());
+                filter(s -> city.equals(s.getAddress().getCity()))
+                .collect(Collectors.toList());
     }
 
 
@@ -56,13 +58,11 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
     public List<Facility> getByAddress(Address address) {
 
         Facilities facilities = this.storage.load();
-        String filterCity = address.getCity();
-        String filterStreet = address.getStreet();
-        String filterPhone = address.getPhone();
 
         return facilities.getFacilities().
                 stream().
-                filter(s -> filterCity.equals(s.getAddress().getCity())).filter(s -> filterStreet.equals(s.getAddress().getStreet())).filter(s -> filterPhone.equals(s.getAddress().getPhone())).collect(Collectors.toList());
+                filter(facility -> facility.getAddress().equals(address))
+                .collect(Collectors.toList());
     }
 
     @Override

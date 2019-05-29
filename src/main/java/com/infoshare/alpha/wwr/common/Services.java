@@ -27,14 +27,14 @@ public class Services {
     }
 
     public void printAllServices() {
-        for(Service service : this.services) {
+        for (Service service : this.services) {
             System.out.println(service);
         }
     }
 
     private String getAllServices() {
         StringBuilder sb = new StringBuilder();
-        for(Service service : this.services) {
+        for (Service service : this.services) {
             sb.append(service.toString());
         }
 

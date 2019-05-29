@@ -6,23 +6,23 @@ import java.util.List;
 
 public class FacilityPatientQuery {
 
-	private Patient patient;
+    private Patient patient;
 
     private List<FacilityQueryField> queryFields;
-	
-	public FacilityPatientQuery(Patient patient, List<FacilityQueryField> queryFields) {
-		this.patient = patient;
-		this.queryFields = queryFields;
-	}
-	
-	public Patient getPatient() {
-		
-		return this.patient;
-	}
 
-	public List<FacilityQueryField> getQueryFields() {
+    public FacilityPatientQuery(Patient patient, List<FacilityQueryField> queryFields) {
+        this.patient = patient;
+        this.queryFields = queryFields;
+    }
 
-	    return this.queryFields;
+    public Patient getPatient() {
+
+        return this.patient;
+    }
+
+    public List<FacilityQueryField> getQueryFields() {
+
+        return this.queryFields;
     }
 
 }

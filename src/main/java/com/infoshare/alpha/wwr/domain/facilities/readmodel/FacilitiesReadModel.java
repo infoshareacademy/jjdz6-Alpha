@@ -9,25 +9,31 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * Class read data from facilities repository also eg. nearest patients facilities or by query
+ *
+ * @author pkowerzanow
+ */
+
 @RequestScoped
 public class FacilitiesReadModel {
 
     @Inject
-    private FacilitiesReadModelDbRepository repository;
+    private FacilitiesReadModelDb repository;
 
     public Facilities getAll() {
 
         return this.repository.getAll();
     }
 
-    public List<Facility> getByName(String name) {
-
-        return this.repository.getByName(name);
-    }
-
     public Facility getById(int id) {
 
         return repository.getById(id);
+    }
+
+    public List<Facility> getByName(String name) {
+
+        return this.repository.getByName(name);
     }
 
     public List<Facility> getByCity(String city) {

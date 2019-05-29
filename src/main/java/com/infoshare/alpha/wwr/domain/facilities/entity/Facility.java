@@ -11,11 +11,8 @@ import java.util.Objects;
 public class Facility {
 
     private int id;
-
     private String name;
-
     private Address address;
-
     private List<Service> services = new ArrayList<>();
 
 

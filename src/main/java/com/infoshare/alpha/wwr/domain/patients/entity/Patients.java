@@ -5,26 +5,26 @@ import java.util.List;
 
 public class Patients {
 
-	private List<Patient> patients = new ArrayList<>();
+    private List<Patient> patients = new ArrayList<>();
 
-	public void setPatients(List<Patient> patients) {
+    public void setPatients(List<Patient> patients) {
 
-		this.patients = patients;
-	}
+        this.patients = patients;
+    }
 
-	public List<Patient> getPatients() {
+    public List<Patient> getPatients() {
 
-		return patients;
-	}
+        return patients;
+    }
 
-	public void add(Patient patient) {
+    public void add(Patient patient) {
 
-		this.patients.add(patient);
-	}
+        this.patients.add(patient);
+    }
 
-	public void printAllPatients() {
-		for (Patient patient : this.patients) {
-			System.out.println(patient.toString());
-		}
-	}
+    public void printAllPatients() {
+        for (Patient patient : this.patients) {
+            System.out.println(patient.toString());
+        }
+    }
 }

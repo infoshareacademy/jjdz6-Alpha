@@ -1,41 +1,39 @@
 package com.infoshare.alpha.wwr.domain.patients.datastorage;
 
+import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.*;
-
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
-import com.infoshare.alpha.wwr.di.DI;
 
-public class PatientsJsonStorage implements DI {
+import javax.ejb.Stateful;
+import java.io.*;
+import java.net.URL;
 
-	private String patientsRepoFilePath;
-	private Gson gson;
+@Stateful
+public class PatientsJsonStorage {
 
-	public PatientsJsonStorage(String patientsRepoFilePath) {
-		this.patientsRepoFilePath = patientsRepoFilePath;
-		this.gson = new GsonBuilder().setPrettyPrinting().create();
-	}
-	
-	public Patients load() {
-        try (Reader reader = new FileReader(this.patientsRepoFilePath)){
+    private static final URL PATIENTS_REPO_URL = Resources.getResource("patients.json");
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    public Patients load() {
+        try (Reader reader = new FileReader(PATIENTS_REPO_URL.getPath())) {
 
             Patients patients = this.gson.fromJson(reader, Patients.class);
 
             return patients == null ? new Patients() : patients;
         } catch (IOException e) {
-			System.out.println("Exception during reading json file: " + e.getMessage());
-		}
-        
-		return new Patients();
-	}
-		
-	public void save(Patients patients) {
-		try (Writer writer = new FileWriter(this.patientsRepoFilePath)) {
-			this.gson.toJson(patients, writer);
-		} catch (IOException e) {
-			System.out.println("Exception during saving json file: " + e.getMessage());
-		}
-	}
-	
+            System.out.println("Exception during reading json file: " + e.getMessage());
+        }
+
+        return new Patients();
+    }
+
+    public void save(Patients patients) {
+        try (Writer writer = new FileWriter(PATIENTS_REPO_URL.getPath())) {
+            this.gson.toJson(patients, writer);
+        } catch (IOException e) {
+            System.out.println("Exception during saving json file: " + e.getMessage());
+        }
+    }
+
 }

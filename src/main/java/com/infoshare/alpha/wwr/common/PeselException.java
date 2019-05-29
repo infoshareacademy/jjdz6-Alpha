@@ -2,8 +2,8 @@ package com.infoshare.alpha.wwr.common;
 
 public class PeselException extends Throwable {
 
-	private static final long serialVersionUID = 1L;
-	
+    private static final long serialVersionUID = 1L;
+
     public static final int PESEL_VALIDATION_ERROR_CODE = 2000;
 
     private String message;
