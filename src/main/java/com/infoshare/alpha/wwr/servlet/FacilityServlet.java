@@ -51,12 +51,13 @@ public class FacilityServlet extends BaseWwrServlet {
                     .filter(p -> p.getName().toLowerCase().contains(formattedPatientName) || p.getSurname().toLowerCase().contains(formattedPatientName))
                     .collect(Collectors.toList());
 
-            Map<Patient, List<Facility>> facilitiesByPatient = selectedPatients
-                    .stream()
-                    .collect(Collectors.toMap(patient -> patient,
-                            patientsFacilities -> facilitiesReadModel.getByPatient(new FacilityPatientQuery(patientsFacilities, Arrays.asList(FacilityQueryField.CITY)))));
+            Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
+            selectedPatients.forEach(patient -> facilitiesByPatient.put(
+                    patient,
+                    facilitiesReadModel.getByPatient(new FacilityPatientQuery(patient, Arrays.asList(FacilityQueryField.CITY)))
+            ));
+
             // TODO w przypadku braku placówek doda pustą listę placówek?
-            // TODO sortowanie po nazwisku pacjenta
             model.put("selectedPatients", selectedPatients);
             model.put("selectedPatientsFacilities", facilitiesByPatient);
         }
