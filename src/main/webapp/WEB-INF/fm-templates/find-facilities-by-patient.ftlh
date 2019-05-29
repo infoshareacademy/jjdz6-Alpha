@@ -71,9 +71,9 @@
                     <p><input type="text" name="patient" placeholder="Wpisz imię lub nazwisko pacjenta"></p>
                 </form>
                 <p>
+                    <#if selectedPatients??>
                     <#if selectedPatients?size == 0>Nie znaleziono takiego pacjenta.
                     <#else>Najbliższe placówki rehabilitacyjne dla pacjenta:
-                    </#if>
                 </p>
                 <#list selectedPatientsFacilities as patient, facilities>
                     <p class="font-weight-bold">${patient.name} ${patient.surname}</p>
@@ -97,6 +97,8 @@
                         </#if>
                     </ul>
                 </#list>
+                </#if>
+                </#if>
             </div>
         </div>
     </div>
@@ -105,7 +107,6 @@
 <footer class="container">
     <p class="float-right"><a href="#" class="text-dark">Back to top</a></p>
     <p>&copy; 2019 Alpha-Team &middot;</p>
-    <#--obecnie nie jest wyświetlane po pierwszym przejsciu na stronę & navbar dropdown nie działa-->
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
