@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 @RequestScoped
 public class FacilityServletValidator {
 
-
-    protected final String[] requiredFacilityFields = {"facility_id", "facility_name", "facility_address_city", "facility_address_street", "service[]", "_method"};
+    private final String[] requiredFacilityFields = {"facility_id", "facility_name", "facility_address_city", "facility_address_street", "facility_address_phone", "service[]", "_method"};
 
     public void validatePutRequest(Map<String, String[]> requestData) throws FacilityValidationException{
         this.validateRequiredFields(requestData.keySet());
@@ -18,6 +17,7 @@ public class FacilityServletValidator {
         this.validateName(requestData.get("facility_name")[0]);
         this.validateCity(requestData.get("facility_address_city")[0]);
         this.validateStreet(requestData.get("facility_address_street")[0]);
+        this.validatePhone(requestData.get("facility_address_phone")[0]);
     }
 
     private void validateRequiredFields(Set<String> keySet) throws FacilityValidationException {
@@ -59,8 +59,16 @@ public class FacilityServletValidator {
         if (city.isEmpty()) {
             throw FacilityValidationException.city();
         }
+    }
 
+    private void validatePhone(String phone) throws FacilityValidationException {
+        if (phone == null) {
+            throw FacilityValidationException.phone();
+        }
 
+        if (phone.isEmpty()) {
+            throw FacilityValidationException.phone();
+        }
     }
 
     private void validateName(String name) throws FacilityValidationException {
@@ -73,5 +81,4 @@ public class FacilityServletValidator {
             throw FacilityValidationException.name();
         }
     }
-
 }

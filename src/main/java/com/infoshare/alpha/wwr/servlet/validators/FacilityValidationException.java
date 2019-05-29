@@ -14,8 +14,11 @@ public class FacilityValidationException extends Throwable {
     public static final String FACILITY_STREET_VALIDATION_ERROR_MSG = "Street validation error";
     public static final int FACILITY_STREET_VALIDATION_ERROR_CODE = 1003;
 
+    public static final String FACILITY_PHONE_VALIDATION_ERROR_MSG = "Phone validation error";
+    public static final int FACILITY_PHONE_VALIDATION_ERROR_CODE = 1004;
+
     public static final String FACILITY_KEYS_VALIDATION_ERROR_MSG = "Request keys are invalid";
-    public static final int FACILITY_KEYS_VALIDATION_ERROR_CODE = 1004;
+    public static final int FACILITY_KEYS_VALIDATION_ERROR_CODE = 1005;
 
     private final String message;
 
@@ -51,6 +54,13 @@ public class FacilityValidationException extends Throwable {
         return new FacilityValidationException(
                 FacilityValidationException.FACILITY_STREET_VALIDATION_ERROR_MSG,
                 FacilityValidationException.FACILITY_STREET_VALIDATION_ERROR_CODE
+        );
+    }
+
+    public static FacilityValidationException phone() {
+        return new FacilityValidationException(
+                FacilityValidationException.FACILITY_PHONE_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_PHONE_VALIDATION_ERROR_CODE
         );
     }
 

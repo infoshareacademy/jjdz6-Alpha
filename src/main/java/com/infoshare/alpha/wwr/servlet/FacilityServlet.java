@@ -54,7 +54,7 @@ public class FacilityServlet extends BaseWwrServlet {
             model.put("facility", facility);
             this.renderView(model, "/facility/editFacility.ftlh");
 
-        } catch (IOException | TemplateException | NumberFormatException e) {
+        } catch (IOException | NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             if (e instanceof NumberFormatException) {
                 responsePrinter.print(response, gson.toJson(new ErrorResponse("Id not found.", HttpServletResponse.SC_BAD_REQUEST)));
@@ -72,11 +72,18 @@ public class FacilityServlet extends BaseWwrServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         try {
+            req.setCharacterEncoding("UTF-8");
+            resp.setCharacterEncoding("UTF-8");
+            super.doPut(req, resp);
 
             facilityServletValidator.validatePutRequest(req.getParameterMap());
+
+            Facility facility = getFacilityFromRequestData(req.getParameterMap());
+
+
 
 
 
@@ -100,6 +107,7 @@ public class FacilityServlet extends BaseWwrServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
             Map<String, Object> model = new HashMap<>();
+            model.put("errors", true);
             model.put("validationError", e);
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
             this.renderView(model, "/facility/editFacility.ftlh");
@@ -121,12 +129,11 @@ public class FacilityServlet extends BaseWwrServlet {
         int id = Integer.valueOf(requestData.get("facility_id")[0]);
         String name = requestData.get("facility_name")[0];
         String city = requestData.get("facility_address_city")[0];
+
         String street = requestData.get("facility_address_street")[0];
         String phone = requestData.get("facility_address_phone")[0];
-
-        //String[] services = requestData.get("service[]");
-
-        List<Service> services = Arrays.stream(requestData.get("service[]")).map(s->{new Service(s);}).collect(Collectors.toList());
+        String[] servicesData = requestData.get("service[]");
+        List<Service> services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
 
         return new Facility(
                 id,
@@ -134,7 +141,6 @@ public class FacilityServlet extends BaseWwrServlet {
                 new Address(city, street, phone),
                 services
         );
-
     }
 
 }

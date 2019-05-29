@@ -35,6 +35,9 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
         if (req.getMethod().equalsIgnoreCase("PATCH")) {
             doPatch(req, resp);
         } else if(req.getMethod().equalsIgnoreCase("POST") &&  req.getParameter("_method").equalsIgnoreCase("PUT")) {
@@ -49,6 +52,11 @@ public abstract class BaseWwrServlet extends HttpServlet {
         this.response = this.setResponseHeaders(resp);
     }
 
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.response = this.setResponseHeaders(resp);
+    }
+
     protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
         String msg = ResourceBundle.getBundle("javax.servlet.http.LocalStrings").getString("http.method_patch_not_supported");
@@ -60,6 +68,8 @@ public abstract class BaseWwrServlet extends HttpServlet {
     }
 
     protected HttpServletResponse setResponseHeaders(HttpServletResponse response) {
+        response.setHeader("Content-type", "text/html");
+        response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         response.setCharacterEncoding("UTF-8");
@@ -68,8 +78,6 @@ public abstract class BaseWwrServlet extends HttpServlet {
     }
 
     protected void renderView(Object model, String templatePath) throws IOException {
-        response.setHeader("Content-type", "text/html");
-        response.setContentType("text/html");
         try {
             Template template = templateProvider.getTemplate(getServletContext(), templatePath);
             template.process(model, response.getWriter());

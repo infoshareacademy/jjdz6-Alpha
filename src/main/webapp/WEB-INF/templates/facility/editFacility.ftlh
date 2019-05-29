@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Edycja placówki ${facility.name}</title>
@@ -25,46 +26,67 @@
 
 <div class="container">
 
-    <form action="/wwr/facility" method="POST">
+    <form action="/wwr/facility" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
 
         <div>
             <label for="facility_name">Nazwa placówki</label>
             <p>
-                <input type="text" name="facility_name" value="${facility.name}">
-                <input type="hidden" name="facility_id" value="${facility.id}">
-                <input type="hidden" name="_method" value="PUT">
+                <#if validationError?? && validationError.code == 1001>
+                    <b>Błędna nazwa placówki: </b>
+                    <input class="input-error" type="text" name="facility_name" value="${facility.name}">
+                <#else>
+                    <input type="text" name="facility_name" value="${facility.name}">
+                </#if>
             </p>
+
+            <input type="hidden" name="facility_id" value="${facility.id}">
+            <input type="hidden" name="_method" value="PUT">
+
         </div>
 
         <div>
             <label for="facility_address_city">Adres placówki : miasto </label>
             <p>
-                <input type="text" name="facility_address_city" value="${facility.address.city}">
+                <#if validationError?? && validationError.code == 1002>
+                    <b>Błędna nazwa miasta: </b><input type="text" name="facility_address_city" value="${facility.address.city}">
+                <#else>
+                    <input type="text" name="facility_address_city" value="${facility.address.city}">
+                </#if>
             </p>
         </div>
         <div>
             <label for="facility_address_street">Adres placówki : ulica </label>
             <p>
-                <input type="text" name="facility_address_street" value="${facility.address.street}">
+                <#if validationError?? && validationError.code == 1003>
+                    <b>Błędna nazwa ulicy: </b><input type="text" name="facility_address_street" value="${facility.address.street}">
+                <#else>
+                    <input type="text" name="facility_address_street" value="${facility.address.street}">
+                </#if>
+
             </p>
         </div>
         <div>
             <label for="facility_address_phone">Adres placówki : telefon </label>
             <p>
-                <input type="text" name="facility_address_street" value="${facility.address.phone}">
+                <#if validationError?? && validationError.code == 1004>
+                    <b>Błędny nr. telefonu: </b><input type="text" name="facility_address_phone" value="${facility.address.phone}">
+                <#else>
+                    <input type="text" name="facility_address_phone" value="${facility.address.phone}">
+                </#if>
             </p>
         </div>
         <div>
             <label for="facility_services">Usługi oferowane przez placówkę : </label>
         </div>
+
         <div id="facility_services">
+
             <#list facility.services as service>
                 <p>
                     <input type="text" name="service[]" value="${service.name}">
                 </p>
             </#list>
         </div>
-
         <div>
             <p><button id="add_service">Dodaj usługę</button></p>
         </div>
