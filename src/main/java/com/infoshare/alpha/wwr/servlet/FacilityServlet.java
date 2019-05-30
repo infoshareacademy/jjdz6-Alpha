@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
 public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
-    private FacilitiesService facilitiesService;
-    @Inject
     private FacilitiesReadModel facilitiesReadModel;
     @Inject
     private PatientsReadModelDb patientsReadModelDb;
@@ -54,10 +52,9 @@ public class FacilityServlet extends BaseWwrServlet {
             Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
             selectedPatients.forEach(patient -> facilitiesByPatient.put(
                     patient,
-                    facilitiesReadModel.getByPatient(new FacilityPatientQuery(patient, Arrays.asList(FacilityQueryField.CITY)))
+                    facilitiesReadModel.getByPatient(new FacilityPatientQuery(patient, Arrays.asList(FacilityQueryField.POSTAL_CODE)))
             ));
 
-            // TODO w przypadku braku placówek doda pustą listę placówek?
             model.put("selectedPatients", selectedPatients);
             model.put("selectedPatientsFacilities", facilitiesByPatient);
         }
