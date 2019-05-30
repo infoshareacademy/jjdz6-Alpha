@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.PostalCodeComparator;
+import com.infoshare.alpha.wwr.domain.facilities.common.PostalCodeComparator;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;

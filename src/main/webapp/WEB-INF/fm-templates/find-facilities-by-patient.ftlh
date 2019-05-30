@@ -76,7 +76,7 @@
                                 <li class="facility"><span class="facility-span"
                                             title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
                                     <ul class="facility-details" style="display: none">
-                                        <li>Adres: ul. ${facility.address.street}, ${facility.address.postalCode} ${facility.address.city}</li>
+                                        <li>Adres: ul. ${facility.address.street}, ${facility.address.postalCode?substring(0,2)}-${facility.address.postalCode?substring(2)} ${facility.address.city}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>Usługi: ${facility.services?join(", ")}</#if></li>
                                         <li>Kontakt: tel. ${facility.address.phone}</li>
                                     </ul>
