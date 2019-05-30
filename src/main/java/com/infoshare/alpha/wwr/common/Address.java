@@ -5,9 +5,7 @@ import java.util.Objects;
 public class Address {
 
     private String city;
-
     private String street;
-
     private String phone;
     private String postalCode;
 
