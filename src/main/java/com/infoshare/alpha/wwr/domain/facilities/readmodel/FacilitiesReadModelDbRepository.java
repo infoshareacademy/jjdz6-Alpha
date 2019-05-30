@@ -87,7 +87,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
         }
 
         if (facilityQueryFields.contains(FacilityQueryField.POSTAL_CODE)) {
-            filteredFacilities.sort(new PostalCodeComparator(Integer.parseInt(query.getPatient().getAddress().getPostalCode())));
+            filteredFacilities.sort(new PostalCodeComparator(query.getPatient().getAddress().getPostalCode()));
         }
 
         return filteredFacilities;

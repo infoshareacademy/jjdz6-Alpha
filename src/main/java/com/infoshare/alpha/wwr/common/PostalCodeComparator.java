@@ -6,18 +6,21 @@ import java.util.Comparator;
 
 public class PostalCodeComparator implements Comparator<Facility> {
 
-    private Integer postalCode;
+    private String postalCode;
 
-    public PostalCodeComparator(Integer postalCode) {
+    public PostalCodeComparator(String postalCode) {
         this.postalCode = postalCode;
     }
 
     @Override
     public int compare(Facility facility, Facility comparedFacility) {
-        if ((Math.abs(postalCode - Integer.parseInt(facility.getAddress().getPostalCode()))) > (Math.abs(postalCode - Integer.parseInt(comparedFacility.getAddress().getPostalCode())))) {
-            return 1;
-        } else if (Math.abs((postalCode - Integer.parseInt(facility.getAddress().getPostalCode()))) < (Math.abs(postalCode - Integer.parseInt(comparedFacility.getAddress().getPostalCode())))) {
+        int parsedPostalCode = Integer.parseInt(postalCode); // TODO throws Exception
+        int facilityDifference = Math.abs(parsedPostalCode - Integer.parseInt(facility.getAddress().getPostalCode()));
+        int comparedFacilityDifference = Math.abs(parsedPostalCode - Integer.parseInt(comparedFacility.getAddress().getPostalCode()));
+        if (facilityDifference < comparedFacilityDifference) {
             return -1;
+        } else if (facilityDifference > comparedFacilityDifference) {
+            return 1;
         } else {
             return 0;
         }
