@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="find-facilities-by-patient.css">
+    <link rel="stylesheet" href="css-files/find-facilities-by-patient.css">
 </head>
 <body class="bg-light">
 <header>
@@ -78,7 +78,6 @@
                                     <ul class="facility-details" style="display: none">
                                         <li>${facility.address}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>${facility.services?join(", ")}</#if></li>
-                                        <#--przetestować brak serwisów-->
                                     </ul>
                                 </li>
                             </#list>
