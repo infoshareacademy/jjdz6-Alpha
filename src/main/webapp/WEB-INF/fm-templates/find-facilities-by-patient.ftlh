@@ -69,19 +69,20 @@
                     <#else>Najbliższe placówki rehabilitacyjne dla pacjenta:
                 </p>
                 <#list selectedPatientsFacilities as patient, facilities>
-                    <p class="font-weight-bold">${patient.name} ${patient.surname}</p>
+                    <p class="font-weight-bold">${patient.surname}, ${patient.name}</p>
                     <ul>
                         <#if facilities?has_content>
                             <#list facilities as facility>
                                 <li class="facility"><span class="facility-span"
                                             title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
-                                    <ul class="facility-details" style="display: none">
+                                    <ul class="facility-details">
                                         <li>Adres: ul. ${facility.address.street}, ${facility.address.postalCode?substring(0,2)}-${facility.address.postalCode?substring(2)} ${facility.address.city}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>Usługi: ${facility.services?join(", ")}</#if></li>
                                         <li>Kontakt: tel. ${facility.address.phone}</li>
                                     </ul>
                                 </li>
                             </#list>
+                            <span class="facility-span display-all-facilities" title="Kliknij, aby wyświetlić wszystkie placówki">Pokaż wszystkie placówki</span>
                         <#else>
                             <li>Brak placówek w mieście zamieszkania</li>
                         </#if>

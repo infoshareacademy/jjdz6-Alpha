@@ -4,4 +4,7 @@ $(document).ready(function () {
     }).on("click", "ul", function (e) {
         e.stopPropagation();
     })
+
+    // TODO poprawić - wyświetlenie szczegółów tylko po kliknięciu na nazwę placówki
+    // TODO jquery dla span-u display-all-facilities
 });
