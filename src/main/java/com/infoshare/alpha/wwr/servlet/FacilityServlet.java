@@ -1,6 +1,5 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
@@ -36,32 +35,32 @@ public class FacilityServlet extends BaseWwrServlet {
 
         String patientName = req.getParameter("patient");
         resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
         Map<String, Object> model = new HashMap<>();
-        Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
-
-
-        if (patientName != null) {
-            String formattedPatientName = patientName.toLowerCase();
-
-            List<Patient> selectedPatients = patientsReadModelDb.getAll().getPatients()
-                    .stream()
-                    .filter(p -> p.getName().toLowerCase().contains(formattedPatientName) || p.getSurname().toLowerCase().contains(formattedPatientName))
-                    .collect(Collectors.toList());
-
-            Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
-            selectedPatients.forEach(patient -> facilitiesByPatient.put(
-                    patient,
-                    facilitiesReadModel.getByPatient(new FacilityPatientQuery(patient, Arrays.asList(FacilityQueryField.POSTAL_CODE)))
-            ));
-
-            model.put("selectedPatients", selectedPatients);
-            model.put("selectedPatientsFacilities", facilitiesByPatient);
-        }
 
         try {
+            PrintWriter writer = resp.getWriter();
+            Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
+
+            if (patientName != null && !Objects.equals(patientName, "")) {
+                String formattedPatientName = patientName.toLowerCase();
+
+                List<Patient> selectedPatients = patientsReadModelDb.getAll().getPatients()
+                        .stream()
+                        .filter(p -> p.getName().toLowerCase().contains(formattedPatientName) || p.getSurname().toLowerCase().contains(formattedPatientName))
+                        .collect(Collectors.toList());
+
+                Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
+                selectedPatients.forEach(patient -> facilitiesByPatient.put(
+                        patient,
+                        facilitiesReadModel.getByPatient(new FacilityPatientQuery(patient, Collections.singletonList(FacilityQueryField.POSTAL_CODE)))
+                ));
+
+                model.put("selectedPatients", selectedPatients);
+                model.put("selectedPatientsFacilities", facilitiesByPatient);
+            }
             template.process(model, writer);
-        } catch (TemplateException e) {
+        } catch (IOException | TemplateException e) {
+            // TODO send response to user
             e.getMessage();
         }
     }

@@ -5,6 +5,7 @@ $(document).ready(function () {
         e.stopPropagation();
     })
 
-    // TODO poprawić - wyświetlenie szczegółów tylko po kliknięciu na nazwę placówki
-    // TODO jquery dla span-u display-all-facilities
+    // TODO display facility details only after click on facility name (not the whole row)
+    // TODO implement jquery for span display-all-facilities
+    // TODO minlength in patientNameInput
 });

@@ -82,7 +82,8 @@
                                     </ul>
                                 </li>
                             </#list>
-                            <span class="facility-span display-all-facilities" title="Kliknij, aby wyświetlić wszystkie placówki">Pokaż wszystkie placówki</span>
+                            <#--TODO-- display all facilities only for given patient>
+                            <#--<span class="facility-span display-all-facilities" title="Kliknij, aby wyświetlić wszystkie placówki">Pokaż wszystkie placówki</span>-->
                         <#else>
                             <li>Brak placówek w mieście zamieszkania</li>
                         </#if>
