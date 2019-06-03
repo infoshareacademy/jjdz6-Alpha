@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.utils.freemaker;
+package com.infoshare.alpha.wwr.servlet.freemaker;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

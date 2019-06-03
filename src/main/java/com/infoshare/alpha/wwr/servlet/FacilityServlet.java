@@ -9,8 +9,6 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityValidationException;
-import com.infoshare.alpha.wwr.utils.ErrorResponse;
-import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -26,6 +24,8 @@ import java.util.stream.Collectors;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
 public class FacilityServlet extends BaseWwrServlet {
+
+    private final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";
 
     @Inject
     FacilitiesReadModel facilitiesReadModel;
@@ -43,7 +43,6 @@ public class FacilityServlet extends BaseWwrServlet {
             super.doGet(req, resp);
 
             String id = req.getParameter("id");
-            config.register(this.getServletContext());
 
             if (null == id) {
                 throw new IOException("Id param missing.");
@@ -58,19 +57,19 @@ public class FacilityServlet extends BaseWwrServlet {
             response.setStatus(HttpServletResponse.SC_OK);
             Map<String, Object> model = new HashMap<>();
             model.put("facility", facility);
-            this.renderView(model, "/facility/editFacility.ftlh");
-        } catch (IOException | NumberFormatException e) {
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+
+        } catch (NumberFormatException | IOException e) {
+            this.logError(e.getMessage(), e.hashCode());
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            if (e instanceof NumberFormatException) {
-                responsePrinter.print(response, gson.toJson(new ErrorResponse("Id not found.", HttpServletResponse.SC_BAD_REQUEST)));
-            } else {
-                responsePrinter.print(response, gson.toJson(new ErrorResponse(e.getMessage(), HttpServletResponse.SC_BAD_REQUEST)));
-            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("notFoundError", true);
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
     }
 
     @Override
@@ -91,32 +90,33 @@ public class FacilityServlet extends BaseWwrServlet {
             Map<String, Object> model = new HashMap<>();
             model.put("editSuccess", true);
             model.put("facility", facility);
-            this.renderView(model, "/facility/editFacility.ftlh");
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+
         } catch (FacilityValidationException e) {
             this.logError(e.getMessage(), e.getCode());
-
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             Map<String, Object> model = new HashMap<>();
             model.put("validationError", e);
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
-            this.renderView(model, "/facility/editFacility.ftlh");
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+
         } catch (FacilitiesException e) {
             this.logError(e.getMessage(), e.getCode());
-
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             Map<String, Object> model = new HashMap<>();
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
             model.put("serviceError", e);
-            this.renderView(model, "/facility/editFacility.ftlh");
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+
         }
     }
 
     @Override
-    protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPatch(HttpServletRequest req, HttpServletResponse resp) {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
     }
 
     private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {

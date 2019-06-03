@@ -1,9 +1,8 @@
 package com.infoshare.alpha.wwr.servlet;
 
 import com.google.gson.Gson;
-import com.infoshare.alpha.wwr.utils.Config;
 import com.infoshare.alpha.wwr.utils.ResponsePrinter;
-import com.infoshare.alpha.wwr.utils.freemaker.TemplateProvider;
+import com.infoshare.alpha.wwr.servlet.freemaker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -26,9 +25,6 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
     @Inject
     protected ResponsePrinter responsePrinter;
-
-    @Inject
-    protected Config config;
 
     @Inject
     TemplateProvider templateProvider;

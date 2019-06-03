@@ -5,102 +5,112 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Edycja placówki ${facility.name}</title>
+    <title>Edycja placówki <#if notFoundError??>nie znaleziono placówki<#else>${facility.name}</#if></title>
     <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="main.css" />
-    <title>Edycja placówki : ${facility.name}</title>
+    <#--<link rel="stylesheet" href="main.css" />-->
+    <title>Edycja placówki : <#if notFoundError??>nie znaleziono placówki<#else>${facility.name}</#if></title>
 </head>
 <body>
 
 <header>
-    <h1>Edycja placówki : ${facility.name}</h1>
     <nav>
         <a href="/wwr/">Main page</a>
     </nav>
+
 </header>
 
 <div class="container">
 
     <#if serviceError??>
         <div id="servicesErrors">
-            <#if serviceError.code == 10000><p>Nie znaleziono edytowanej placówki</p></#if>
+            <#if serviceError.code == 10000>
+                <div class="alert alert-danger" role="alert">Błąd servisu</div>
+            </#if>
         </div>
     </#if>
 
-    <#if editSuccess??> Dane placówki zostały uaktualnione. </#if>
+    <#if notFoundError??>
+        <div class="alert alert-warning" role="alert">Nie znaleziono placówki</div>
+    <#else>
+        <h1>Edycja placówki : ${facility.name}</h1>
 
-    <form action="/wwr/facility" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+        <#if editSuccess??>
+            <div class="alert alert-success" role="alert">Dane placówki zostały uaktualnione. </div>
+        </#if>
 
-        <div>
-            <label for="facility_name">Nazwa placówki</label>
-            <p>
-                <#if validationError?? && validationError.code == 1001>
-                    <b>Błędna nazwa placówki: </b>
-                    <input class="input-error" type="text" name="facility_name" value="${facility.name}">
-                <#else>
-                    <input type="text" name="facility_name" value="${facility.name}">
-                </#if>
-            </p>
+        <form action="/wwr/facility" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
 
-            <input type="hidden" name="facility_id" value="${facility.id}">
-            <input type="hidden" name="_method" value="PUT">
+            <div class="form-group">
+                    <label for="facility_name">Nazwa placówki</label>
+                    <#if validationError?? && validationError.code == 1001>
+                        <input class="form-control is-invalid" type="text" name="facility_name" value="${facility.name}">
+                        <div class="invalid-feedback">Błędna nazwa placówki</div>
+                    <#else>
+                        <input class="form-control" type="text" name="facility_name" value="${facility.name}">
+                    </#if>
+                <input type="hidden" name="facility_id" value="${facility.id}">
+                <input type="hidden" name="_method" value="PUT">
+            </div>
 
-        </div>
-
-        <div>
-            <label for="facility_address_city">Adres placówki : miasto </label>
-            <p>
+            <div class="form-group">
+                <label for="facility_address_city">Miasto</label>
                 <#if validationError?? && validationError.code == 1002>
-                    <b>Błędna nazwa miasta: </b><input type="text" name="facility_address_city" value="${facility.address.city}">
+                    <input class="form-control is-invalid" type="text" name="facility_address_city" value="${facility.address.city}">
+                    <div class="invalid-feedback">Błędna nazwa miasta</div>
                 <#else>
-                    <input type="text" name="facility_address_city" value="${facility.address.city}">
+                    <input class="form-control" type="text" name="facility_address_city" value="${facility.address.city}">
                 </#if>
-            </p>
-        </div>
-        <div>
-            <label for="facility_address_street">Adres placówki : ulica </label>
-            <p>
-                <#if validationError?? && validationError.code == 1003>
-                    <b>Błędna nazwa ulicy: </b><input type="text" name="facility_address_street" value="${facility.address.street}">
-                <#else>
-                    <input type="text" name="facility_address_street" value="${facility.address.street}">
-                </#if>
-            </p>
-        </div>
-        <div>
-            <label for="facility_address_phone">Adres placówki : telefon </label>
-            <p>
-                <#if validationError?? && validationError.code == 1004>
-                    <b>Błędny nr. telefonu: </b><input type="text" name="facility_address_phone" value="${facility.address.phone}">
-                <#else>
-                    <input type="text" name="facility_address_phone" value="${facility.address.phone}">
-                </#if>
-            </p>
-        </div>
-        <div>
-            <label for="facility_services">Usługi oferowane przez placówkę : </label>
-        </div>
+            </div>
 
-        <div id="facility_services">
-            <#list facility.services as service>
-                <div>
-                    <input type="text" name="service[]" value="${service.name}">
-                    <p id="remove_service_item">(Usun)</p>
+            <div class="form-group">
+                <label for="facility_address_street">Ulica</label>
+                    <#if validationError?? && validationError.code == 1003>
+                        <input class="form-control is-invalid" type="text" name="facility_address_street" value="${facility.address.street}">
+                        <div class="invalid-feedback">Błędna nazwa ulicy</div>
+                    <#else>
+                        <input class="form-control" type="text" name="facility_address_street" value="${facility.address.street}">
+                    </#if>
+            </div>
+
+            <div class="form-group">
+                <label for="facility_address_phone">Telefon:</label>
+                    <#if validationError?? && validationError.code == 1004>
+                        <input class="form-control is-invalid" type="text" name="facility_address_phone" value="${facility.address.phone}">
+                        <div class="invalid-feedback">Błędny nr. telefonuy</div>
+                    <#else>
+                        <input class="form-control" type="text" name="facility_address_phone" value="${facility.address.phone}">
+                    </#if>
+            </div>
+
+            <div class="form-group">
+                <label for="facility_services">Usługi oferowane przez placówkę : </label>
+            </div>
+
+            <div class="form-group">
+                <div id="facility_services">
+                    <#list facility.services as service>
+                        <div class="serviceItem">
+                            <input class="form-control" type="text" name="service[]" value="${service.name}">
+                            <button type="button" class="btn btn-outline-info btn-sm" onclick="$(this).parent().remove();">Usuń</button>
+                        </div>
+                    </#list>
                 </div>
-            </#list>
-        </div>
-        <div>
-            <p><button id="add_service">Dodaj usługę</button></p>
-        </div>
-        <div>
-            <button>Zapisz</button>
-        </div>
-    </form>
+            </div>
+            <div class="form-group">
+                <button id="add_service" type="button" class="btn btn-outline-info btn-sm">Dodaj usługę</button>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Zapisz</button>
+            </div>
+        </form>
+    </#if>
+
+
 </div>
 
 <!-- Optional JavaScript -->
