@@ -18,6 +18,7 @@ public class FacilitiesService {
 
     @Inject
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
+
     @Inject
     private FacilitiesRepository facilitiesDbRepository;
 
