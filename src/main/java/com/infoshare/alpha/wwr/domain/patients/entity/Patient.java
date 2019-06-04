@@ -4,6 +4,8 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.User;
 
+import javax.enterprise.context.RequestScoped;
+
 public class Patient extends User {
 
     private Address address;

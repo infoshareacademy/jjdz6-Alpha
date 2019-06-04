@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <title>WWR website</title>
-    <meta charset="utf-8">
+    <title>WWR add patient</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -15,7 +15,7 @@
 <header>
 
     <nav class="navbar navbar-expand-md navbar-dark static-top bg-dark">
-        <a class="navbar-brand" href="index.html">WWR</a>
+        <a class="navbar-brand" href="index.html">WWR home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,33 +26,8 @@
 
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="true" aria-expanded="false">Opcje dostępne dla pacjenta</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Znajdź pacjenta</a>
-                        <a class="dropdown-item" href="#">Pokaż placówki dla pacjenta</a>
-                        <a class="dropdown-item" href="#">Dodaj pacjenta</a>
-                        <a class="dropdown-item" href="#">Edytuj pacjenta</a>
-                        <a class="dropdown-item" href="#">Usuń pacjenta</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Pokaż wszystkich pacjentów</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Opcje dostępne dla placówki
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Znajdź placówkę</a>
-                        <a class="dropdown-item" href="#">Edytuj placówkę</a>
-                        <a class="dropdown-item" href="#">Usuń placówkę</a>
-                        <a class="dropdown-item" href="#">Dodaj placówkę z pliku</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Pokaż wszystkie placówki</a>
-                    </div>
-                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontakt</a>
                 </li>
@@ -67,14 +42,14 @@
 
 </header>
 <main>
-    <form method="post" action="/patient" class="needs-validation" novalidate>
+    <form method="post" action="/wwr/patient" class="needs-validation" novalidate>
         <div>
             <h2>DANE PACJENTA</h2>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="validationCustom01">Imię</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="imię" required name="name">
+                <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="imię" required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -84,7 +59,8 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="validationCustom02">Nazwisko</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="nazwisko" required name="surname">
+                <input type="text" class="form-control" id="validationCustom02" name="surname" placeholder="nazwisko"
+                       required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -94,7 +70,8 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="validationCustom03">PESEL</label>
-                <input type="number" class="form-control" id="validationCustom03" placeholder="PESEL" required name="pesel">
+                <input type="number" class="form-control" id="validationCustom03" name="pesel" placeholder="PESEL"
+                       required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -105,8 +82,9 @@
         </div>
         <div class="form-group">
             <label for="validationCustom04">Ulica</label>
-            <input type="text" class="form-control" id="validationCustom04" placeholder="ulica, nr domu / nr mieszkania"
-                   required name="street">
+            <input type="text" class="form-control" id="validationCustom04" name="street"
+                   placeholder="ulica, nr domu / nr mieszkania"
+                   required>
             <div class="valid-feedback">
                 Prawidłowo!
             </div>
@@ -117,7 +95,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="validationCustom05">Miasto</label>
-                <input type="text" class="form-control" id="validationCustom05" required name="city">
+                <input type="text" class="form-control" id="validationCustom05" name="city" required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -127,7 +105,8 @@
             </div>
             <div class="form-group col-md-2">
                 <label for="validationCustom06">Telefon</label>
-                <input type="number" class="form-control" id="validationCustom06" placeholder="123-123-123" required name="phone">
+                <input type="number" class="form-control" id="validationCustom06" name="phone" placeholder="123-123-123"
+                       required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -139,7 +118,8 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="validationCustom07">Imię rodzica / opiekuna</label>
-                <input type="text" class="form-control" id="validationCustom07" placeholder="imię" required name="parentName">
+                <input type="text" class="form-control" id="validationCustom07" name="parentName" placeholder="imię"
+                       required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -149,7 +129,8 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="validationCustom08">Nazwisko rodzica / opiekuna</label>
-                <input type="text" class="form-control" id="validationCustom08" placeholder="nazwisko" required name="parentSurname">
+                <input type="text" class="form-control" id="validationCustom08" name="parentSurname"
+                       placeholder="nazwisko" required>
                 <div class="valid-feedback">
                     Prawidłowo!
                 </div>
@@ -158,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Wyślij formularz</button>
+        <button type="submit" class="btn btn-primary" name="save" value="save">Wyślij formularz</button>
     </form>
 
 </main>
