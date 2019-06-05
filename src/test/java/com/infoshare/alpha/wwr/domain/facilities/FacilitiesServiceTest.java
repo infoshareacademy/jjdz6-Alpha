@@ -19,6 +19,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 @ExtendWith(MockitoExtension.class)
 class FacilitiesServiceTest {
 
@@ -73,9 +75,57 @@ class FacilitiesServiceTest {
     }
 
     @Test
-    @DisplayName("Should not edit facility when not found")
+    @DisplayName("Should not edit facility when not found in source")
     void shouldNotEditFacilityWhenNotFound() {
+        //given
+        List<Service> services = getFacilityServices();
 
+        Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
+        Facility facility2 = new Facility(2, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
+        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"), services);
+
+        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
+
+        List<Facility> facilitiesList = new ArrayList<>();
+        facilitiesList.add(facility1);
+
+        Facilities facilities = Mockito.mock(Facilities.class);
+
+        // when/then
+        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
+        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+
+        assertThatThrownBy(() -> testObj.edit(facilityEditCommand))
+                .isInstanceOf(FacilitiesException.class)
+                .hasMessage("Facility " + facility2.getName() + " not found ");
+    }
+
+    @Test
+    @DisplayName("Should not edit facility when already exists")
+    void shouldNotEditWhenEditedFacilityAlreadyExists() {
+        //given
+        List<Service> services = getFacilityServices();
+
+        Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
+        Facility facility2 = new Facility(2, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
+        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"), services);
+
+        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
+
+        List<Facility> facilitiesList = new ArrayList<>();
+        facilitiesList.add(facility1);
+        facilitiesList.add(facility2);
+        facilitiesList.add(editedFacility);
+
+        Facilities facilities = Mockito.mock(Facilities.class);
+
+        // when/then
+        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
+        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+
+        assertThatThrownBy(() -> testObj.edit(facilityEditCommand))
+                .isInstanceOf(FacilitiesException.class)
+                .hasMessage("Facility " + editedFacility.getName() + " already exists ");
     }
 
 }

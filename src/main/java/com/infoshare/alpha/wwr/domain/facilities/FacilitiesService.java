@@ -62,6 +62,7 @@ public class FacilitiesService {
                 throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
             }
         }
+
         facilities.getFacilities().remove(command.getOldFacility());
         facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
         this.facilitiesDbRepository.add(facilities);
