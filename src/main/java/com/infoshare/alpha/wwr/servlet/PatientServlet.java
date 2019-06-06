@@ -33,26 +33,27 @@ public class PatientServlet extends BaseWwrServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        String nameParam = req.getParameter("name");
-        String surnameParam = req.getParameter("surname");
-        String peselParam = req.getParameter("pesel");
-        String streetParam = req.getParameter("street");
-        String cityParam = req.getParameter("city");
-        String phoneParam = req.getParameter("phone");
-        String parentNameParam = req.getParameter("parentName");
-        String parentSurnameParam = req.getParameter("parentSurname");
-
-
         try {
+            resp.setContentType("text/html;charset=UTF-8");
+            req.setCharacterEncoding("UTF-8");
+
+            String nameParam = req.getParameter("name");
+            String surnameParam = req.getParameter("surname");
+            String peselParam = req.getParameter("pesel");
+            String streetParam = req.getParameter("street");
+            String cityParam = req.getParameter("city");
+            String phoneParam = req.getParameter("phone");
+            String parentNameParam = req.getParameter("parentName");
+            String parentSurnameParam = req.getParameter("parentSurname");
 
 
             Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam), new Parent(parentNameParam, parentSurnameParam));
 
             patientsService.add(patient);
 
-            resp.setContentType("text/html;charset=UTF-8");
             resp.getWriter().println("Pomyślnie dodano pacjenta: " + patient.toString() + "\n");
+
+            //poniższe testowo
             resp.getWriter().println(patientsReadModel.getAll().getPatients());
 
         } catch (IOException | PeselException e) {
