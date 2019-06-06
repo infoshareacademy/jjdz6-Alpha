@@ -81,13 +81,32 @@ class FacilitiesServiceTest {
 
     @Test
     @DisplayName("Should not add facility when facility already exists")
-    void shouldNotAddWhenFacilityExists() {
+    void shouldNotAddWhenFacilityAlreadyExists() {
 
         // given
 
-        // when
+        List<Service> services = getFacilityServices();
+        Facility facility1 = new Facility(
+                1,
+                "old_facility",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                services
+        );
 
-        // then
+        List<Facility> facilitiesList = new ArrayList<>();
+        facilitiesList.add(facility1);
+        Facilities facilities = Mockito.mock(Facilities.class);
+
+        FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility1);
+
+        // when/then
+
+        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
+        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+
+        assertThatThrownBy(() -> testObj.add(facilityAddCommand))
+                .isInstanceOf(FacilitiesException.class)
+                .hasMessage("Facility " + facility1.getName() + " already exists ");
 
     }
 
