@@ -2,6 +2,7 @@ package com.infoshare.alpha.wwr.domain.facilities;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Service;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
@@ -34,14 +35,83 @@ class FacilitiesServiceTest {
     private FacilitiesRepository facilitiesDbRepository;
 
     @Test
-    @DisplayName("Should edit facility")
-    void edit() {
+    @DisplayName("Should add facility")
+    void shouldAdd() {
 
         // given
+
+        List<Service> services = getFacilityServices();
+        Facility facility1 = new Facility(
+                1,
+                "old_facility",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                services
+        );
+
+        Facility facility2 = new Facility(
+                2,
+                "facility1",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                services
+        );
+
+        List<Facility> facilitiesList = new ArrayList<>();
+        facilitiesList.add(facility1);
+        Facilities facilities = Mockito.mock(Facilities.class);
+
+        FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility2);
+
+        // when
+
+        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
+        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+
+        try {
+            testObj.add(facilityAddCommand);
+        } catch (FacilitiesException e) {
+            e.printStackTrace();
+        }
+
+        // then
+
+        Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getAll();
+        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
+        Mockito.verify(facilities, Mockito.times(1)).add(facility2);
+    }
+
+    @Test
+    @DisplayName("Should not add facility when facility already exists")
+    void shouldNotAddWhenFacilityExists() {
+
+        // given
+
+        // when
+
+        // then
+
+    }
+
+    @Test
+    @DisplayName("Should edit facility")
+    void shouldEdit() {
+
+        // given
+
         List<Service> services = getFacilityServices();
 
-        Facility oldFacility = new Facility(1, "old_facility", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
-        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"), services);
+        Facility oldFacility = new Facility(
+                1,
+                "old_facility",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                services
+        );
+
+        Facility editedFacility = new Facility(
+                1,
+                "edited_facility",
+                new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"),
+                services
+        );
 
         FacilityEditCommand facilityEditCommand = new FacilityEditCommand(oldFacility, editedFacility);
 
@@ -51,6 +121,7 @@ class FacilitiesServiceTest {
         Facilities facilities = Mockito.mock(Facilities.class);
 
         // when
+
         Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
         Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
 
@@ -61,6 +132,7 @@ class FacilitiesServiceTest {
         }
 
         // then
+
         Mockito.verify(facilities, Mockito.times(5)).getFacilities();
         Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getAll();
         Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
@@ -77,11 +149,13 @@ class FacilitiesServiceTest {
     @Test
     @DisplayName("Should not edit facility when not found in source")
     void shouldNotEditFacilityWhenNotFound() {
-        //given
+
+        // given
+
         List<Service> services = getFacilityServices();
 
         Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
-        Facility facility2 = new Facility(2, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
+        Facility facility2 = new Facility(3, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
         Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"), services);
 
         FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
@@ -92,6 +166,7 @@ class FacilitiesServiceTest {
         Facilities facilities = Mockito.mock(Facilities.class);
 
         // when/then
+
         Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
         Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
 
@@ -103,12 +178,31 @@ class FacilitiesServiceTest {
     @Test
     @DisplayName("Should not edit facility when already exists")
     void shouldNotEditWhenEditedFacilityAlreadyExists() {
-        //given
+
+        // given
+
         List<Service> services = getFacilityServices();
 
-        Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
-        Facility facility2 = new Facility(2, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
-        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"), services);
+        Facility facility1 = new Facility(
+                2,
+                "facility1",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                services
+        );
+
+        Facility facility2 = new Facility(
+                2,
+                "facility2",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                services
+        );
+
+        Facility editedFacility = new Facility(
+                1,
+                "edited_facility",
+                new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"),
+                services
+        );
 
         FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
 
@@ -120,6 +214,7 @@ class FacilitiesServiceTest {
         Facilities facilities = Mockito.mock(Facilities.class);
 
         // when/then
+
         Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
         Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
 
