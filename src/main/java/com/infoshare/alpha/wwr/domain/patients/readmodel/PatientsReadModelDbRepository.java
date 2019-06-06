@@ -42,7 +42,10 @@ public class PatientsReadModelDbRepository implements PatientsReadModelDb {
         }
 
         if (queryFields.containsKey(PatientQueryFields.PESEL)) {
-            //TODO: to implement
+            filteredPatients = filteredPatients
+                    .stream()
+                    .filter(patient -> patient.getPesel().getPesel().equals(queryFields.get(PatientQueryFields.PESEL)))
+                    .collect(Collectors.toList());
         }
 
         if (queryFields.containsKey(PatientQueryFields.CITY)) {

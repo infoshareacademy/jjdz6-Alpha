@@ -5,7 +5,9 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
-import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
+import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
+import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
+import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -18,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @WebServlet("/find-facilities")
 public class PatientsFacilitiesServlet extends BaseWwrServlet {
@@ -26,14 +27,14 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
     @Inject
     private FacilitiesReadModel facilitiesReadModel;
     @Inject
-    private PatientsReadModelDb patientsReadModelDb;
+    private PatientsReadModel patientsReadModel;
     @Inject
     private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String patientName = req.getParameter("patient");
+        String patientsPesel = req.getParameter("patient");
         resp.setContentType("text/html;charset=UTF-8");
         Map<String, Object> model = new HashMap<>();
 
@@ -41,13 +42,10 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
             PrintWriter writer = resp.getWriter();
             Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
 
-            if (patientName != null && !Objects.equals(patientName, "")) {
-                String formattedPatientName = patientName.toLowerCase();
-
-                List<Patient> selectedPatients = patientsReadModelDb.getAll().getPatients()
-                        .stream()
-                        .filter(p -> p.getName().toLowerCase().contains(formattedPatientName) || p.getSurname().toLowerCase().contains(formattedPatientName))
-                        .collect(Collectors.toList());
+            if (patientsPesel != null && !Objects.equals(patientsPesel, "")) {
+                Map<PatientQueryFields, String> patientPeselQueryMap = new EnumMap<>(PatientQueryFields.class);
+                patientPeselQueryMap.put(PatientQueryFields.PESEL, patientsPesel);
+                List<Patient> selectedPatients = patientsReadModel.getByQuery(new PatientQuery(patientPeselQueryMap)).getPatients();
 
                 Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
                 selectedPatients.forEach(patient -> facilitiesByPatient.put(
