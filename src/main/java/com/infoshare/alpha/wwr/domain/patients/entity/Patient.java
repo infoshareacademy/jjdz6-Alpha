@@ -54,13 +54,13 @@ public class Patient extends User implements Comparable<Patient> {
         return Objects.equals(getAddress(), patient.getAddress()) &&
                 Objects.equals(getPesel(), patient.getPesel()) &&
                 Objects.equals(getParent(), patient.getParent()) &&
-                Objects.equals(getName(), patient.getName()) && // TODO koniecznie?
-                Objects.equals(getSurname(), patient.getSurname()); // TODO koniecznie
+                Objects.equals(getName(), patient.getName()) &&
+                Objects.equals(getSurname(), patient.getSurname());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAddress(), getPesel(), getParent(), getName(), getSurname()); // TODO konieczne?
+        return Objects.hash(getAddress(), getPesel(), getParent(), getName(), getSurname());
     }
 }
 

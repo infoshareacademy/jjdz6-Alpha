@@ -58,8 +58,8 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
             }
             template.process(model, writer);
         } catch (IOException | TemplateException e) {
-            // TODO send response to user
-            e.getMessage();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().println(resp.getStatus() + "Internal Server Error");
         }
     }
 }
