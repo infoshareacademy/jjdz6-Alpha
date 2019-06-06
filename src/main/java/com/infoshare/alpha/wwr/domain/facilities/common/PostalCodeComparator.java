@@ -6,27 +6,22 @@ import java.util.Comparator;
 
 public class PostalCodeComparator implements Comparator<Facility> {
 
-    private String postalCode;
+    private Integer postalCode;
 
-    public PostalCodeComparator(String postalCode) {
+    public PostalCodeComparator(Integer postalCode) {
         this.postalCode = postalCode;
     }
 
     @Override
     public int compare(Facility facility, Facility comparedFacility) {
-        try {
-            int parsedPostalCode = Integer.parseInt(postalCode);
-            int facilityDifference = Math.abs(parsedPostalCode - Integer.parseInt(facility.getAddress().getPostalCode()));
-            int comparedFacilityDifference = Math.abs(parsedPostalCode - Integer.parseInt(comparedFacility.getAddress().getPostalCode()));
-            if (facilityDifference < comparedFacilityDifference) {
-                return -1;
-            } else if (facilityDifference > comparedFacilityDifference) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (NumberFormatException e) {
+        int facilityDifference = Math.abs(postalCode - facility.getAddress().getPostalCode());
+        int comparedFacilityDifference = Math.abs(postalCode - comparedFacility.getAddress().getPostalCode());
+        if (facilityDifference < comparedFacilityDifference) {
+            return -1;
+        } else if (facilityDifference > comparedFacilityDifference) {
             return 1;
+        } else {
+            return 0;
         }
     }
 }
