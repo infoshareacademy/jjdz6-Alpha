@@ -48,7 +48,7 @@ public class FacilityServlet extends BaseWwrServlet {
                 throw new IOException("Id param missing.");
             }
 
-            Facility facility = facilitiesReadModel.getById(Integer.valueOf(id));
+            Facility facility = facilitiesReadModel.getById(Integer.parseInt(id));
 
             if (null == facility) {
                 throw new IOException("Facility id: " + id + " not found.");

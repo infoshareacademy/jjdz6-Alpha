@@ -81,7 +81,7 @@
                 <label for="facility_address_phone">Telefon:</label>
                     <#if validationError?? && validationError.code == 1004>
                         <input class="form-control is-invalid" type="text" name="facility_address_phone" value="${facility.address.phone}">
-                        <div class="invalid-feedback">Błędny nr. telefonuy</div>
+                        <div class="invalid-feedback">Błędny nr. telefonu</div>
                     <#else>
                         <input class="form-control" type="text" name="facility_address_phone" value="${facility.address.phone}">
                     </#if>
