@@ -93,6 +93,9 @@
 
             <div class="form-group">
                 <div id="facility_services">
+                      <#if validationError?? && validationError.code == 1006>
+                        <div class="invalid-feedback">Błędny wpis w usługach: </div>
+                      </#if>
                     <#list facility.services as service>
                         <div class="serviceItem">
                             <input class="form-control" type="text" name="service[]" value="${service.name}">
