@@ -3,7 +3,6 @@ package com.infoshare.alpha.wwr.domain.patients;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
-import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
@@ -17,9 +16,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ExtendWith(MockitoExtension.class)
 class PatientsServiceTest {
 
@@ -30,7 +26,7 @@ class PatientsServiceTest {
     private PatientsRepository patientsRepository;
 
     @InjectMocks
-    private FacilitiesService testObj;
+    private PatientsService testObj;
 
     @Test
     @DisplayName("Should add patient")
@@ -51,22 +47,18 @@ class PatientsServiceTest {
             e.printStackTrace();
         }
 
-
-        List<Patient> patientsList = new ArrayList<>();
-        patientsList.add(patient);
-
         Patients patients = Mockito.mock(Patients.class);
 
-
         // when
-        Mockito.when(patients.getPatients()).thenReturn(patientsList);
-        Mockito.when(patientsReadModelDbRepository.getAll()).thenReturn(patients);
 
+        Mockito.when(patientsReadModelDbRepository.getAll()).thenReturn(patients);
 
         //then
 
-        Mockito.verify(patientsReadModelDbRepository, Mockito.times(1)).getAll();
-        Mockito.verify(patientsRepository, Mockito.times(1)).add(patients);
+        testObj.add(patient);
 
+        Mockito.verify(patientsReadModelDbRepository, Mockito.times(1)).getAll();
+        Mockito.verify(patients, Mockito.times(1)).add(patient);
+        Mockito.verify(patientsRepository, Mockito.times(1)).add(patients);
     }
 }
