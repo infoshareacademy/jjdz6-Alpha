@@ -43,7 +43,13 @@ public class Patient extends User implements Comparable<Patient> {
 
     @Override
     public int compareTo(Patient patient) {
-        return getSurname().compareTo(patient.getSurname());
+        if (!getSurname().equals(patient.getSurname())) {
+            return getSurname().compareTo(patient.getSurname());
+        } else if (!getName().equals(patient.getName())) {
+            return getName().compareTo(patient.getName());
+        } else {
+            return pesel.getPesel().compareTo(patient.getPesel().getPesel());
+        }
     }
 
     @Override
