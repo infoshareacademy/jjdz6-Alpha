@@ -111,10 +111,27 @@ select * from vehicles as v
   left join drivers as d on d.vehicle_id = v.id
 where d.vehicle_id is null;
 
--- uzywane pojazdy
-select d.name, v.name from vehicles as v
-join drivers as d on d.vehicle_id = v.id;
+-- uzywane pojazdy i licencje
+select d.name, v.name, dl.licence_id from vehicles as v
+join drivers as d on d.vehicle_id = v.id
+join drivers_licences as dl on dl.driver_id = d.id;
 
+-- czyszczenie danych
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE drivers;
+TRUNCATE routes;
+TRUNCATE drivers_licences;
+TRUNCATE licences;
+TRUNCATE vehicles;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+ALTER table drivers auto_increment = 1;
+ALTER table routes auto_increment = 1;
+ALTER table drivers_licences auto_increment = 1;
+ALTER table licences auto_increment = 1;
+ALTER table vehicles auto_increment = 1;
 
 
 describe routes;
