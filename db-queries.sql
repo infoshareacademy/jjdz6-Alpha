@@ -111,6 +111,10 @@ select * from vehicles as v
   left join drivers as d on d.vehicle_id = v.id
 where d.vehicle_id is null;
 
+-- uzywane pojazdy
+select d.name, v.name from vehicles as v
+join drivers as d on d.vehicle_id = v.id;
+
 
 
 describe routes;
