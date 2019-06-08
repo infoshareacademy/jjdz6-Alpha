@@ -37,6 +37,8 @@ create table routes(
 alter table routes add driver_id int;
 alter table routes add constraint fk_driver_id foreign key (driver_id) references drivers(id);
 
+alter table routes add vehicle_id int;
+alter table routes add constraint fk_vehicle_id_routes foreign key (vehicle_id) references vehicles(id);
 
 create table licences(
                       id INT PRIMARY KEY auto_increment,
@@ -58,6 +60,56 @@ alter table routes modify destination not null ;
 alter table drivers add fk_vehicle_id int;
 alter table drivers add constraint fk_vehicle_id foreign key (vehicle_id) references vehicles(id);
 -- alter table drivers add foreign key
+
+-- dane do drivers
+
+select * from drivers;
+insert into drivers (name, salary, vehicle_id) values ("Andrzej", 2500, 1);
+insert into drivers (name, salary, vehicle_id) values ("Olek", 3500, 2);
+insert into drivers (name, salary, vehicle_id) values ("Janusz", 4500, 3);
+
+-- add licences
+select * from licences;
+insert into licences (code, description) VALUES ("B", "osobowe");
+insert into licences (code, description) VALUES ("C", "ciezarowe");
+insert into licences (code, description) VALUES ("C+E", "ciezarowe+przyczepa");
+
+-- add drivers_licences
+select * from drivers_licences;
+insert into drivers_licences (driver_id, licence_id) VALUES (1,1);
+insert into drivers_licences (driver_id, licence_id) VALUES (1,2);
+insert into drivers_licences (driver_id, licence_id) VALUES (1,3);
+insert into drivers_licences (driver_id, licence_id) VALUES (2,2);
+insert into drivers_licences (driver_id, licence_id) VALUES (2,3);
+insert into drivers_licences (driver_id, licence_id) VALUES (3,3);
+
+-- add routes
+
+select * from routes;
+
+insert into routes (start, destination, date, driver_id, vehicle_id)
+VALUES ("Gdańsk", "Gdynia", '2019-05-01', 1,1);
+
+insert into routes (start, destination, date, driver_id, vehicle_id)
+VALUES ("Gdańsk", "Gdynia", '2019-05-02', 2,2);
+
+insert into routes (start, destination, date, driver_id, vehicle_id)
+VALUES ("Gdańsk", "Gdynia", '2019-05-03', 3,3);
+
+
+-- modyfakacja rekordow
+
+update drivers set name="Janusz-K" where id = 3;
+select * from  drivers;
+
+-- usun nieuzywane pojazdy
+select * from vehicles;
+insert into vehicles(name, tank_size, capacity) VALUES ("Opel", 100, 2);
+
+-- nieuzywane pojazdy 0
+select * from vehicles as v
+  left join drivers as d on d.vehicle_id = v.id
+where d.vehicle_id is null;
 
 
 
