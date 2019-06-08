@@ -16,10 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
@@ -125,8 +122,13 @@ public class FacilityServlet extends BaseWwrServlet {
         String city = requestData.get("facility_address_city")[0];
         String street = requestData.get("facility_address_street")[0];
         String phone = requestData.get("facility_address_phone")[0];
+
         String[] servicesData = requestData.get("service[]");
-        List<Service> services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
+
+        List<Service> services = new ArrayList<>();
+        if (servicesData != null && servicesData.length != 0) {
+            services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
+        }
 
         return new Facility(id, name, new Address(city, street, phone), services);
     }

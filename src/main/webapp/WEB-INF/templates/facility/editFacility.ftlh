@@ -26,6 +26,10 @@
 
 <div class="container">
 
+    <#if validationError?? && validationError.code == 1005>
+        <div class="alert alert-danger" role="alert">Błąd walidacji nie wszystkie dane zostały wysłane.</div>
+    </#if>
+
     <#if serviceError??>
         <div id="servicesErrors">
             <#if serviceError.code == 10000>
@@ -88,13 +92,19 @@
             </div>
 
             <div class="form-group">
-                <label for="facility_services">Usługi oferowane przez placówkę : </label>
+                <#if validationError?? && validationError.code == 1005>
+                    <label for="facility_services">Usługi oferowane przez placówkę: </label>
+                    <div class="alert alert-danger" role="alert">Brak usług </div>
+                <#else>
+                    <label for="facility_services">Usługi oferowane przez placówkę : </label>
+                </#if>
             </div>
+
 
             <div class="form-group">
                 <div id="facility_services">
                       <#if validationError?? && validationError.code == 1006>
-                        <div class="invalid-feedback">Błędny wpis w usługach: </div>
+                        <div class="invalid-feedback">Błędny wpis w usługach lub brak usług: </div>
                       </#if>
                     <#list facility.services as service>
                         <div class="serviceItem">
