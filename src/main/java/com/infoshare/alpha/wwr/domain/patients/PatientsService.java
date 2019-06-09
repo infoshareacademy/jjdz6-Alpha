@@ -1,48 +1,41 @@
 package com.infoshare.alpha.wwr.domain.patients;
 
-import com.infoshare.alpha.wwr.di.DI;
-import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModelDb;
 import com.infoshare.alpha.wwr.domain.patients.repository.PatientsRepository;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
-public class PatientsService implements DI{
+@RequestScoped
+public class PatientsService {
 
-	private PatientsReadModelDb patientsReadModelDbRepository;
-	private PatientsRepository patientsRepository;
+    @Inject
+    private PatientsReadModelDb patientsReadModelDbRepository;
+    @Inject
+    private PatientsRepository patientsRepository;
 
-	
-	public PatientsService(
-			PatientsReadModelDb patientsReadModelDbRepository,
-			PatientsRepository patientsRepository
-			) 
-	{
-		this.patientsReadModelDbRepository = patientsReadModelDbRepository;
-		this.patientsRepository = patientsRepository;
-	}
-	
-	public void add(Patient patient) {
+    public void add(Patient patient) {
 
-		Patients patients = this.patientsReadModelDbRepository.getAll();
+        Patients patients = this.patientsReadModelDbRepository.getAll();
 
-		patients.add(patient);
+        patients.add(patient);
 
-		this.patientsRepository.persist(patients);
+        this.patientsRepository.add(patients);
 
-		System.out.println(patient.toString() + " added. ");
-	}
-	
-	public void edit(Patient patient) {
-		// TODO: to implement
-	}
-	
-	public void delete(Patient patient) {
-		//TODO: to implement
-	}
-	
-	public void load(String filePath) {
-		// TODO: to implement
-	}
+        System.out.println(patient.toString() + " added. ");
+    }
+
+    public void edit(Patient patient) {
+        // TODO: to implement
+    }
+
+    public void delete(Patient patient) {
+        //TODO: to implement
+    }
+
+    public void load(String filePath) {
+        // TODO: to implement
+    }
 }

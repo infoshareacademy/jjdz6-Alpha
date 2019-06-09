@@ -9,23 +9,24 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
-import com.infoshare.alpha.wwr.di.DI;
-
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 @RequestScoped
-public class FacilitiesService implements DI{
+public class FacilitiesService {
 
+    @Inject
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
+    @Inject
     private FacilitiesRepository facilitiesDbRepository;
 
-    public FacilitiesService(
-    		FacilitiesRepository facilitiesDbRepository,
-    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
-    		) {
-    		this.facilitiesDbRepository = facilitiesDbRepository;
-    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;   		
-    }
+//    public FacilitiesService(
+//    		FacilitiesRepository facilitiesDbRepository,
+//    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
+//    		) {
+//    		this.facilitiesDbRepository = facilitiesDbRepository;
+//    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;
+//    }
 
     public void add(FacilityAddCommand command) throws FacilitiesException {
 
@@ -37,7 +38,7 @@ public class FacilitiesService implements DI{
         }
 
         facilities.add(command.getFacility());
-        this.facilitiesDbRepository.persist(facilities);
+        this.facilitiesDbRepository.add(facilities);
     }
 
     public void delete(FacilityDeleteCommand command) throws FacilitiesException {
@@ -45,7 +46,7 @@ public class FacilitiesService implements DI{
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         if (facilities.getFacilities().contains(command.getFacility())) {
             facilities.getFacilities().remove(command.getFacility());
-            this.facilitiesDbRepository.persist(facilities);
+            this.facilitiesDbRepository.add(facilities);
         } else {
             throw FacilitiesException.facilityNotFound(command.getFacility().getName());
         }
@@ -67,15 +68,15 @@ public class FacilitiesService implements DI{
         }
         facilities.getFacilities().remove(command.getOldFacility());
         facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
-        this.facilitiesDbRepository.persist(facilities);
+        this.facilitiesDbRepository.add(facilities);
     }
     
     public void upload(UploadCommand uploadCommand) {
-    	
-    	// funkcja ktora wrzuca do repozutorium dodatkowe placowki 
-    	// 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-    	// 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
-    	// 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
-    	// 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.persist(facilities);
+
+        // funkcja ktora wrzuca do repozutorium dodatkowe placowki
+        // 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
+        // 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage
+        // 3. po poprawnym wczytaniu zmerguj dwie kolekcje obiektow
+        // 4. zapisz zmergowana kolekcje do repozytorium -> wykorzystaj : this.facilitiesDbRepository.add(facilities);
     }
 }

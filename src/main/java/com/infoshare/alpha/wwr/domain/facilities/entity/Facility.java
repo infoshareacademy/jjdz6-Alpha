@@ -48,7 +48,6 @@ public class Facility {
         this.isNfz = isNfz;
     }
 
-
     public String getName() {
         return name;
     }
@@ -56,7 +55,6 @@ public class Facility {
     public Address getAddress() {
         return address;
     }
-
 
     public UUID getId() {
         return id;
@@ -66,20 +64,18 @@ public class Facility {
         return this.services;
     }
 
-
     public Boolean isNfz() {
         return isNfz;
     }
 
-
     private String valueOf(boolean isNfz) {
-        return isNfz ? "placowka publiczna" : "placwka prywatna";
+        return isNfz ? "placowka publiczna" : "placowka prywatna";
     }
 
     @Override
     public String toString() {
         return " Id : " + this.id.toString() +
-                " Name :  " + this.name + this.address.toString() +
+                " Name : " + this.name + this.address.toString() +
                 " Nfz : " + valueOf(isNfz) +
                 " Services : " + Services.fromList(this.services);
     }

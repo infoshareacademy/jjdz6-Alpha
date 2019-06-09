@@ -26,7 +26,6 @@ public class Address {
         return city;
     }
 
-
     public String getStreet() {
         return street;
     }
@@ -35,10 +34,9 @@ public class Address {
         return phone;
     }
 
-
     @Override
     public String toString() {
-    		return " City : " + this.city + " Street : " + this.street + " Phone: " + this.phone;
+        return " City : " + this.city + " Street : " + this.street + " Phone: " + this.phone;
     }
 
     @Override

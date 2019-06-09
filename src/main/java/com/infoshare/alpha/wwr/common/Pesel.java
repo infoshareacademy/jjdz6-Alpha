@@ -6,20 +6,20 @@ public class Pesel {
 
     public Pesel(String pesel) throws PeselException {
         if (pesel.length() != 11) {
-        	
-        	throw PeselException.validationError();
+
+            throw PeselException.validationError();
         }
         this.pesel = pesel;
     }
 
     public String getPesel() {
-    	
+
         return pesel;
     }
 
     @Override
     public String toString() {
-    	
+
         return " Pesel{ " +
                 "pesel='" + pesel + '\'' +
                 '}';
