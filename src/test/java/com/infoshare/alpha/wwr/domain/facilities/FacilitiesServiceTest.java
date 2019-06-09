@@ -43,14 +43,14 @@ class FacilitiesServiceTest {
         Facility facility1 = new Facility(
                 1,
                 "old_facility",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
                 services
         );
 
         Facility facility2 = new Facility(
                 2,
                 "facility1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
                 services
         );
 
@@ -88,7 +88,7 @@ class FacilitiesServiceTest {
         Facility facility1 = new Facility(
                 1,
                 "old_facility",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
                 services
         );
 
@@ -119,7 +119,7 @@ class FacilitiesServiceTest {
         Facility facility1 = new Facility(
                 1,
                 "facility-1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
                 services
         );
 
@@ -155,7 +155,7 @@ class FacilitiesServiceTest {
         Facility facility1 = new Facility(
                 1,
                 "facility-1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
                 services
         );
 
@@ -186,14 +186,14 @@ class FacilitiesServiceTest {
         Facility oldFacility = new Facility(
                 1,
                 "old_facility",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
                 services
         );
 
         Facility editedFacility = new Facility(
                 1,
                 "edited_facility",
-                new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"),
+                new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333", 80800),
                 services
         );
 
@@ -230,9 +230,9 @@ class FacilitiesServiceTest {
 
         List<Service> services = getFacilityServices();
 
-        Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
-        Facility facility2 = new Facility(3, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"), services);
-        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"), services);
+        Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800), services);
+        Facility facility2 = new Facility(3, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800), services);
+        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333", 80800), services);
 
         FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
 
@@ -262,14 +262,14 @@ class FacilitiesServiceTest {
         Facility facility1 = new Facility(
                 2,
                 "facility1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123",80800),
                 services
         );
 
         Facility facility2 = new Facility(
                 2,
                 "facility2",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123"),
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 8000),
                 services
         );
 
