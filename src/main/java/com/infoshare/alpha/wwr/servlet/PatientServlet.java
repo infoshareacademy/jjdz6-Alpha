@@ -43,11 +43,13 @@ public class PatientServlet extends BaseWwrServlet {
             String streetParam = req.getParameter("street");
             String cityParam = req.getParameter("city");
             String phoneParam = req.getParameter("phone");
+            String postalCodeParam = req.getParameter("postalCode");
             String parentNameParam = req.getParameter("parentName");
             String parentSurnameParam = req.getParameter("parentSurname");
 
+            Integer postalCode = Integer.parseInt(postalCodeParam);
 
-            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, 80250), new Parent(parentNameParam, parentSurnameParam));
+            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam));
 
             patientsService.add(patient);
 
