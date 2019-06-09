@@ -94,10 +94,10 @@
             <div class="form-group">
                 <label for="facility_address_phone">Kod pocztowy:</label>
                     <#if validationError?? && validationError.code == 1007>
-                        <input class="form-control is-invalid" type="text" name="facility_address_postal" value="${facility.address.postalCode}">
+                        <input class="form-control is-invalid" type="text" name="facility_address_postal" value="${facility.address.postalCode?c}">
                         <div class="invalid-feedback">Błędny kod pocztowy.</div>
                     <#else>
-                        <input class="form-control" type="text" name="facility_address_postal" value="${facility.address.postalCode}">
+                        <input class="form-control" type="text" name="facility_address_postal" value="${facility.address.postalCode?c}">
                     </#if>
             </div>
 
