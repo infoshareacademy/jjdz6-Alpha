@@ -5,7 +5,8 @@ public enum FacilityQueryField {
     CITY("city"),
     STREET("street"),
     PHONE("phone"),
-    FACILITY_NAME("facility_name");
+    FACILITY_NAME("facility_name"),
+    POSTAL_CODE("postal_code");
 
     private String allowedField;
 
