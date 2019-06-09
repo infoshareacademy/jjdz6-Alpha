@@ -16,8 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 public class PatientServlet extends BaseWwrServlet {
@@ -43,6 +41,7 @@ public class PatientServlet extends BaseWwrServlet {
         try {
             resp.setContentType("text/html;charset=UTF-8");
             req.setCharacterEncoding("UTF-8");
+
 
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
@@ -71,8 +70,8 @@ public class PatientServlet extends BaseWwrServlet {
             e.printStackTrace();
             resp.getWriter().println(e.getMessage());
         } catch (PatientValidationException e) {
-            this.logError(e.getMessage(), e.getCode());
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().println(e.getMessage());
+
         }
 
 

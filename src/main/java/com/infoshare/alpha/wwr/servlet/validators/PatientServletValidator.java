@@ -97,6 +97,9 @@ public class PatientServletValidator {
         if (phone.isEmpty()) {
             throw PatientValidationException.phone();
         }
+        if (phone.length() < 9) {
+            throw PatientValidationException.phone();
+        }
     }
 
     private void validatePostal(String postal) throws PatientValidationException {
