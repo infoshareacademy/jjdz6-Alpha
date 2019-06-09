@@ -4,7 +4,8 @@
       "address": {
         "city": "Gdańsk",
         "street": "Gdańska",
-        "phone": "555 555 555"
+        "phone": "555 555 555",
+        "postalCode": "80000"
       },
       "pesel": {
         "pesel": "55555555555"
@@ -20,7 +21,8 @@
       "address": {
         "city": "Gdańsk",
         "street": "Gdańska",
-        "phone": "555 555 555"
+        "phone": "555 555 555",
+        "postalCode": "80602"
       },
       "pesel": {
         "pesel": "55555555555"
@@ -31,6 +33,23 @@
       },
       "name": "Jan",
       "surname": "Jankowski"
+    },
+    {
+      "address": {
+        "city": "Gdynia",
+        "street": "Abrahama",
+        "phone": "555 555 555",
+        "postalCode": "81303"
+      },
+      "pesel": {
+        "pesel": "55555555555"
+      },
+      "parent": {
+        "name": "Antoni",
+        "surname": "Kowalczyk"
+      },
+      "name": "Zbigniew",
+      "surname": "Kowalczyk"
     }
   ]
 }

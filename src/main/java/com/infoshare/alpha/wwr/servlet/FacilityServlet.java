@@ -123,6 +123,20 @@ public class FacilityServlet extends BaseWwrServlet {
         String street = requestData.get("facility_address_street")[0];
         String phone = requestData.get("facility_address_phone")[0];
 
+
+        String postal = requestData.get("facility_address_postal")[0];
+
+        int postalNumber = 0;
+        try {
+            if (!postal.equals("")) {
+                postalNumber = Integer.valueOf(postal);
+            }
+        } catch (NumberFormatException e) {
+            this.logger.severe("Postal number can't be converted to int");
+        }
+
+
+
         String[] servicesData = requestData.get("service[]");
 
         List<Service> services = new ArrayList<>();
@@ -130,7 +144,6 @@ public class FacilityServlet extends BaseWwrServlet {
             services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
         }
 
-        return new Facility(id, name, new Address(city, street, phone), services);
+        return new Facility(id, name, new Address(city, street, phone, postalNumber), services);
     }
-
 }

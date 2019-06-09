@@ -23,6 +23,9 @@ public class FacilityValidationException extends Throwable {
     private static final String FACILITY_SERVICES_VALIDATION_ERROR_MSG = "Services validation error.";
     private static final int FACILITY_SERVICES_VALIDATION_ERROR_CODE = 1006;
 
+    private static final String FACILITY_POSTAL_VALIDATION_ERROR_MSG = "Postal code validation error.";
+    private static final int FACILITY_POSTAL_VALIDATION_ERROR_CODE = 1007;
+
     private final String message;
 
     private final int code;
@@ -78,6 +81,13 @@ public class FacilityValidationException extends Throwable {
         return new FacilityValidationException(
                 FacilityValidationException.FACILITY_SERVICES_VALIDATION_ERROR_MSG,
                 FacilityValidationException.FACILITY_SERVICES_VALIDATION_ERROR_CODE
+        );
+    }
+
+    public static FacilityValidationException postal() {
+        return new FacilityValidationException(
+                FacilityValidationException.FACILITY_POSTAL_VALIDATION_ERROR_MSG,
+                FacilityValidationException.FACILITY_POSTAL_VALIDATION_ERROR_CODE
         );
     }
 
