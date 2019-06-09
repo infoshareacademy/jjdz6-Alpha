@@ -110,6 +110,9 @@ public class PatientServletValidator {
         if (postal.equals("")) {
             throw PatientValidationException.postal();
         }
+        if (postal.length() > 5) {
+            throw PatientValidationException.postal();
+        }
 
         try {
             Integer.valueOf(postal);
