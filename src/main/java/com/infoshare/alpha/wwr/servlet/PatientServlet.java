@@ -11,7 +11,7 @@ public class PatientServlet extends BaseWwrServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        super.doGet(req,resp);
     }
 
     @Override

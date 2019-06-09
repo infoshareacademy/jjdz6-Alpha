@@ -26,6 +26,11 @@ public class FacilitiesReadModel {
         return this.repository.getAll();
     }
 
+    public Facility getById(int id) {
+
+        return repository.getById(id);
+    }
+
     public List<Facility> getByName(String name) {
 
         return this.repository.getByName(name);

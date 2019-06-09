@@ -7,37 +7,40 @@ import com.infoshare.alpha.wwr.common.Services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Facility {
 
-    private UUID id;
+    private int id;
     private String name;
     private Address address;
     private List<Service> services = new ArrayList<>();
 
-    public Facility(String name, Address address, List<Service> services) {
-        this.address = address;
+
+    public Facility(int id, String name, Address address, List<Service> services) {
+        this.id = id;
         this.name = name;
+        this.address = address;
         this.services = services;
-        this.id = UUID.randomUUID();
     }
 
     public Facility(String name, Address address) {
-        this(name, address, UUID.randomUUID());
+        this(name, address, 0);
     }
 
-    public Facility(String name, Address address, UUID id) {
+    public Facility(String name, Address address, int id) {
         this.address = address;
         this.name = name;
         this.id = id;
     }
 
-    public Facility(String name, Address address, UUID id, List<Service> services) {
+    public Facility(String name, Address address, int id, List<Service> services) {
         this.address = address;
         this.name = name;
         this.id = id;
         this.services = services;
+    }
+
+    public Facility(String id, String name, Address address, List<Service> services) {
     }
 
     public String getName() {
@@ -50,7 +53,7 @@ public class Facility {
         return address;
     }
 
-    public UUID getId() {
+    public int getId() {
 
         return id;
     }
@@ -61,7 +64,7 @@ public class Facility {
 
     @Override
     public String toString() {
-        return "Id: " + this.id.toString() + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services);
+        return "Id: " + this.id + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services);
     }
 
     @Override
@@ -69,9 +72,7 @@ public class Facility {
         if (this == o) return true;
         if (!(o instanceof Facility)) return false;
         Facility facility = (Facility) o;
-        return Objects.equals(getName(), facility.getName()) &&
-                Objects.equals(getAddress(), facility.getAddress()) &&
-                Objects.equals(getServices(), facility.getServices());
+        return Objects.equals(getName(), facility.getName()) && Objects.equals(getAddress(), facility.getAddress()) && Objects.equals(getServices(), facility.getServices());
     }
 
     @Override

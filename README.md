@@ -22,9 +22,16 @@
   <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
   <!-- mvn clean compile assembly:single -->
 
+## How to build and run Docker with wildfly
+
+    1. [sudo] docker build .
+    2. 
+
+
 ### Pytania do trenara j2ee
  * jak przygotowac build ktory bedzie sie skladal z budowanej paczki jar ktora bedzie uzywana w war ? 
  * czy biblioteki w depencencies przekopiowuja sie same do lib w paczce war ?
  * jak przekazywać konfigurację z pliku web.xml do serwleta (przyklad) i co to jest configuracja kontekstowa?
  * gdzie powinno sie przechowywac konfiguracje serwleta ( w projektach komercyjnych ) 
+ 
  

@@ -12,6 +12,8 @@ public interface FacilitiesReadModelDb {
 
     public Facilities getAll();
 
+    Facility getById(int id);
+
     public List<Facility> getByName(String name);
 
     public List<Facility> getByCity(String city);

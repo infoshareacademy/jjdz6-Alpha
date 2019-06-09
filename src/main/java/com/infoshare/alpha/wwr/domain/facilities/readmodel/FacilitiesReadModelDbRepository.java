@@ -29,6 +29,12 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
     }
 
     @Override
+    public Facility getById(int id) {
+
+        return this.storage.load().getFacilities().stream().filter(f -> id == f.getId()).findAny().orElse(null);
+    }
+
+    @Override
     public List<Facility> getByName(String name) {
         Facilities facilities = this.storage.load();
 
