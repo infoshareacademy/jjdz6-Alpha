@@ -53,5 +53,4 @@ public class FacilityServlet extends BaseWwrServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
-
 }

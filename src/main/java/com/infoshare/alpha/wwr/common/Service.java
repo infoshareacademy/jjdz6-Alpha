@@ -16,9 +16,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return " " +
-                "service name: '" + name + '\'' +
-                " ";
+        return name;
     }
 
     @Override

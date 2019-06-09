@@ -6,7 +6,8 @@
       "address": {
         "city": "Gdynia",
         "street": "Necla 23",
-        "phone": "+48 564 123 123"
+        "phone": "+48 564 123 123",
+        "postalCode": "80803"
       },
       "isNfz" : true,
       "services" : [
@@ -21,7 +22,8 @@
       "address": {
         "city": "Gdańsk",
         "street": "Al. Grunwaldzka 223",
-        "phone": "+48 564 123 555"
+        "phone": "+48 564 123 555",
+        "postalCode": "80266"
       },
       "isNfz" : false,
       "services" : [
@@ -35,7 +37,8 @@
       "address": {
         "city": "Sopot",
         "street": "Zwyciestwa 17",
-        "phone": "+48 754 123 123"
+        "phone": "+48 754 123 123",
+        "postalCode": "81704"
       },
       "isNfz" : true,
       "services": [
@@ -49,7 +52,8 @@
       "address": {
         "city": "Gdynia",
         "street": "Kolejowa 23",
-        "phone": "+48 112 123 123"
+        "phone": "+48 112 123 123",
+        "postalCode": "81303"
       },
       "isNfz" : true,
       "services" : [
@@ -63,7 +67,8 @@
       "address": {
         "city": "Gdynia",
         "street": "Swietojanska 110",
-        "phone": "+48 456 123 123"
+        "phone": "+48 456 123 123",
+        "postalCode": "81368"
       },
       "isNfz" : true,
       "services" : [
@@ -77,7 +82,8 @@
       "address": {
         "city": "Gdańsk-Oliwa",
         "street": "Krzywoustego 123",
-        "phone": "+48 543 234 123"
+        "phone": "+48 543 234 123",
+        "postalCode": "80360"
       },
       "isNfz" : false,
       "services" : [
@@ -91,7 +97,8 @@
       "address": {
         "city": "Gdynia",
         "street": "Portowa 1",
-        "phone": "+48 112 234 123"
+        "phone": "+48 112 234 123",
+        "postalCode": "81339"
       },
       "isNfz" : true,
       "services" : [
