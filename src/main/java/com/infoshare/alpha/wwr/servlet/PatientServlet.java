@@ -61,10 +61,11 @@ public class PatientServlet extends BaseWwrServlet {
 
             patientsService.add(patient);
 
-            resp.getWriter().println("Pomyślnie dodano pacjenta: " + patient.toString() + "\n");
+            resp.getWriter().println("<div>Dane pacjenta: " + patient.toString() + " - zostały dodane.</div>");
+
 
             //poniższe testowo
-            resp.getWriter().println(patientsReadModel.getAll().getPatients());
+//            resp.getWriter().println("<div>" + patientsReadModel.getAll().getPatients() + "</div>");
 
         } catch (IOException | PeselException e) {
             e.printStackTrace();
