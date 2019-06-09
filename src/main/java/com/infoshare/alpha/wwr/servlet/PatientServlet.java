@@ -7,6 +7,8 @@ import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
+import com.infoshare.alpha.wwr.servlet.validators.PatientValidationException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -14,6 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 public class PatientServlet extends BaseWwrServlet {
@@ -23,6 +27,9 @@ public class PatientServlet extends BaseWwrServlet {
 
     @Inject
     PatientsReadModel patientsReadModel;
+
+    @Inject
+    PatientServletValidator patientServletValidator;
 
 
     @Override
@@ -36,6 +43,8 @@ public class PatientServlet extends BaseWwrServlet {
         try {
             resp.setContentType("text/html;charset=UTF-8");
             req.setCharacterEncoding("UTF-8");
+
+            patientServletValidator.validatePutRequest(req.getParameterMap());
 
             String nameParam = req.getParameter("name");
             String surnameParam = req.getParameter("surname");
@@ -61,6 +70,9 @@ public class PatientServlet extends BaseWwrServlet {
         } catch (IOException | PeselException e) {
             e.printStackTrace();
             resp.getWriter().println(e.getMessage());
+        } catch (PatientValidationException e) {
+            this.logError(e.getMessage(), e.getCode());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
 
