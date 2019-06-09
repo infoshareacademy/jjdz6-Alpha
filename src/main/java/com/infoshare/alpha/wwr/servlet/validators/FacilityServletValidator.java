@@ -18,6 +18,21 @@ public class FacilityServletValidator {
         this.validateCity(requestData.get("facility_address_city")[0]);
         this.validateStreet(requestData.get("facility_address_street")[0]);
         this.validatePhone(requestData.get("facility_address_phone")[0]);
+        this.validatePostal(requestData.get("facility_address_postal")[0]);
+
+        this.validateServices(requestData.get("service[]"));
+    }
+
+    private void validateServices(String[] services) throws FacilityValidationException {
+        if (services.length == 0) {
+            throw FacilityValidationException.services();
+        }
+
+        for(String service : services) {
+            if (service.isEmpty()) {
+                throw FacilityValidationException.services();
+            }
+        }
     }
 
     private void validateRequiredFields(Set<String> keySet) throws FacilityValidationException {
@@ -69,6 +84,23 @@ public class FacilityServletValidator {
         if (phone.isEmpty()) {
             throw FacilityValidationException.phone();
         }
+    }
+
+    private void validatePostal(String postal) throws FacilityValidationException {
+        if (postal == null) {
+            throw FacilityValidationException.postal();
+        }
+
+        if (postal.equals("")) {
+            throw FacilityValidationException.postal();
+        }
+
+        try {
+            Integer.valueOf(postal);
+        } catch (NumberFormatException e) {
+            throw FacilityValidationException.postal();
+        }
+
     }
 
     private void validateName(String name) throws FacilityValidationException {

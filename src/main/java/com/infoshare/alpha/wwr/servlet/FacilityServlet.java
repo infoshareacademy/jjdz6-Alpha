@@ -16,10 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
@@ -48,7 +45,7 @@ public class FacilityServlet extends BaseWwrServlet {
                 throw new IOException("Id param missing.");
             }
 
-            Facility facility = facilitiesReadModel.getById(Integer.valueOf(id));
+            Facility facility = facilitiesReadModel.getById(Integer.parseInt(id));
 
             if (null == facility) {
                 throw new IOException("Facility id: " + id + " not found.");
@@ -125,10 +122,28 @@ public class FacilityServlet extends BaseWwrServlet {
         String city = requestData.get("facility_address_city")[0];
         String street = requestData.get("facility_address_street")[0];
         String phone = requestData.get("facility_address_phone")[0];
+
+
+        String postal = requestData.get("facility_address_postal")[0];
+
+        int postalNumber = 0;
+        try {
+            if (!postal.equals("")) {
+                postalNumber = Integer.valueOf(postal);
+            }
+        } catch (NumberFormatException e) {
+            this.logger.severe("Postal number can't be converted to int");
+        }
+
+
+
         String[] servicesData = requestData.get("service[]");
-        List<Service> services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
 
-        return new Facility(id, name, new Address(city, street, phone), services);
+        List<Service> services = new ArrayList<>();
+        if (servicesData != null && servicesData.length != 0) {
+            services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
+        }
+
+        return new Facility(id, name, new Address(city, street, phone, postalNumber), services);
     }
-
 }

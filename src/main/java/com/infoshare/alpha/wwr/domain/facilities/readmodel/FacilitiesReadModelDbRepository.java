@@ -1,6 +1,7 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
 import com.infoshare.alpha.wwr.common.Address;
+import com.infoshare.alpha.wwr.domain.facilities.common.PostalCodeComparator;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
@@ -91,6 +92,10 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
+        if (facilityQueryFields.contains(FacilityQueryField.POSTAL_CODE)) {
+            filteredFacilities.sort(new PostalCodeComparator(query.getPatient().getAddress().getPostalCode()));
+        }
+
         return filteredFacilities;
     }
 
@@ -127,6 +132,5 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
         }
 
         return filteredFacilities;
-
     }
 }

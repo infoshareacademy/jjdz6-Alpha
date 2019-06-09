@@ -26,6 +26,10 @@
 
 <div class="container">
 
+    <#if validationError?? && validationError.code == 1005>
+        <div class="alert alert-danger" role="alert">Błąd walidacji nie wszystkie dane zostały wysłane.</div>
+    </#if>
+
     <#if serviceError??>
         <div id="servicesErrors">
             <#if serviceError.code == 10000>
@@ -81,18 +85,39 @@
                 <label for="facility_address_phone">Telefon:</label>
                     <#if validationError?? && validationError.code == 1004>
                         <input class="form-control is-invalid" type="text" name="facility_address_phone" value="${facility.address.phone}">
-                        <div class="invalid-feedback">Błędny nr. telefonuy</div>
+                        <div class="invalid-feedback">Błędny nr. telefonu</div>
                     <#else>
                         <input class="form-control" type="text" name="facility_address_phone" value="${facility.address.phone}">
                     </#if>
             </div>
 
             <div class="form-group">
-                <label for="facility_services">Usługi oferowane przez placówkę : </label>
+                <label for="facility_address_phone">Kod pocztowy:</label>
+                    <#if validationError?? && validationError.code == 1007>
+                        <input class="form-control is-invalid" type="text" name="facility_address_postal" value="${facility.address.postalCode?c}">
+                        <div class="invalid-feedback">Błędny kod pocztowy.</div>
+                    <#else>
+                        <input class="form-control" type="text" name="facility_address_postal" value="${facility.address.postalCode?c}">
+                    </#if>
             </div>
 
             <div class="form-group">
+                <#if validationError?? && validationError.code == 1005>
+                    <label for="facility_services">Usługi oferowane przez placówkę: </label>
+                    <div class="alert alert-danger" role="alert">Brak usług </div>
+                <#else>
+                    <label for="facility_services">Usługi oferowane przez placówkę : </label>
+                </#if>
+            </div>
+
+
+            <div class="form-group">
                 <div id="facility_services">
+
+                    <#if validationError?? && validationError.code == 1006>
+                        <div class="alert alert-danger" role="alert">Błędny wpis w usługach (pusta nazwa usługi) </div>
+                      </#if>
+
                     <#list facility.services as service>
                         <div class="serviceItem">
                             <input class="form-control" type="text" name="service[]" value="${service.name}">
