@@ -47,7 +47,7 @@ public class PatientServlet extends BaseWwrServlet {
             String parentSurnameParam = req.getParameter("parentSurname");
 
 
-            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam), new Parent(parentNameParam, parentSurnameParam));
+            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, 80250), new Parent(parentNameParam, parentSurnameParam));
 
             patientsService.add(patient);
 
