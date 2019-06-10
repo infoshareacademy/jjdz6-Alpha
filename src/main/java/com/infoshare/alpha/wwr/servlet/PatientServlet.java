@@ -61,7 +61,11 @@ public class PatientServlet extends BaseWwrServlet {
 
             patientsService.add(patient);
 
-            resp.getWriter().println("<div>Dane pacjenta: " + patient.toString() + " - zostały dodane.</div>");
+
+            resp.getWriter().println("<!DOCTYPE html><html><body>");
+            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
+            resp.getWriter().println("<div><strong>Dane pacjenta:</strong> " + patient.toString() + "<strong> - zostały dodane.</strong></div>");
+            resp.getWriter().println("</body></html>\n");
 
 
             //poniższe testowo
