@@ -2,6 +2,7 @@
 target/
 .childDevelopmentSupportSystem.iml
 /bin/
+/lib/
 childDevelopmentSupportSystem.iml
 child-development-support-system.iml
 *.iml

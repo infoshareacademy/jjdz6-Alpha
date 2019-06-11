@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class FacilitiesException extends IOException {
 
-    public static final int FACILITY_NOT_FOUND_ERROR_CODE = 1000;
-    public static final int FACILITY_EXISTS_ERROR_CODE = 1001;
+    public static final int FACILITY_NOT_FOUND_ERROR_CODE = 10000;
+    public static final int FACILITY_EXISTS_ERROR_CODE = 10001;
 
     private String message;
     private int code;
