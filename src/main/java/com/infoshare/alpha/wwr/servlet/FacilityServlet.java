@@ -82,83 +82,84 @@ public class FacilityServlet extends BaseWwrServlet {
         facilitiesService.add(facility);
 
         resp.getWriter().println("Facility added successfully");
+    }
 
 
-        @Override
-        protected void doPut (HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-            try {
-                req.setCharacterEncoding("UTF-8");
-                resp.setCharacterEncoding("UTF-8");
-                super.doPut(req, resp);
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        try {
+            req.setCharacterEncoding("UTF-8");
+            resp.setCharacterEncoding("UTF-8");
+            super.doPut(req, resp);
 
-                facilityServletValidator.validatePutRequest(req.getParameterMap());
+            facilityServletValidator.validatePutRequest(req.getParameterMap());
 
-                Facility facility = getFacilityFromRequestData(req.getParameterMap());
-                Facility oldFacility = facilitiesReadModel.getById(facility.getId());
+            Facility facility = getFacilityFromRequestData(req.getParameterMap());
+            Facility oldFacility = facilitiesReadModel.getById(facility.getId());
 
-                facilitiesService.edit(new FacilityEditCommand(oldFacility, facility));
+            facilitiesService.edit(new FacilityEditCommand(oldFacility, facility));
 
-                response.setStatus(HttpServletResponse.SC_OK);
-                Map<String, Object> model = new HashMap<>();
-                model.put("editSuccess", true);
-                model.put("facility", facility);
-                this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+            response.setStatus(HttpServletResponse.SC_OK);
+            Map<String, Object> model = new HashMap<>();
+            model.put("editSuccess", true);
+            model.put("facility", facility);
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
 
-            } catch (FacilityValidationException e) {
-                this.logError(e.getMessage(), e.getCode());
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                Map<String, Object> model = new HashMap<>();
-                model.put("validationError", e);
-                model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
-                this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+        } catch (FacilityValidationException e) {
+            this.logError(e.getMessage(), e.getCode());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            Map<String, Object> model = new HashMap<>();
+            model.put("validationError", e);
+            model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
 
-            } catch (FacilitiesException e) {
-                this.logError(e.getMessage(), e.getCode());
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                Map<String, Object> model = new HashMap<>();
-                model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
-                model.put("serviceError", e);
-                this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+        } catch (FacilitiesException e) {
+            this.logError(e.getMessage(), e.getCode());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            Map<String, Object> model = new HashMap<>();
+            model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
+            model.put("serviceError", e);
+            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
 
-            }
-        }
-
-        @Override
-        protected void doPatch (HttpServletRequest req, HttpServletResponse resp){
-        }
-
-        @Override
-        protected void doDelete (HttpServletRequest req, HttpServletResponse resp){
-        }
-
-        private Facility getFacilityFromRequestData (Map < String, String[]>requestData){
-            int id = Integer.valueOf(requestData.get("facility_id")[0]);
-            String name = requestData.get("facility_name")[0];
-            String city = requestData.get("facility_address_city")[0];
-            String street = requestData.get("facility_address_street")[0];
-            String phone = requestData.get("facility_address_phone")[0];
-
-
-            String postal = requestData.get("facility_address_postal")[0];
-
-            int postalNumber = 0;
-            try {
-                if (!postal.equals("")) {
-                    postalNumber = Integer.valueOf(postal);
-                }
-            } catch (NumberFormatException e) {
-                this.logger.severe("Postal number can't be converted to int");
-            }
-
-
-            String[] servicesData = requestData.get("service[]");
-
-            List<Service> services = new ArrayList<>();
-            if (servicesData != null && servicesData.length != 0) {
-                services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
-            }
-
-            return new Facility(id, name, new Address(city, street, phone, postalNumber), services);
         }
     }
+
+    @Override
+    protected void doPatch(HttpServletRequest req, HttpServletResponse resp) {
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+    }
+
+    private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {
+        int id = Integer.valueOf(requestData.get("facility_id")[0]);
+        String name = requestData.get("facility_name")[0];
+        String city = requestData.get("facility_address_city")[0];
+        String street = requestData.get("facility_address_street")[0];
+        String phone = requestData.get("facility_address_phone")[0];
+
+
+        String postal = requestData.get("facility_address_postal")[0];
+
+        int postalNumber = 0;
+        try {
+            if (!postal.equals("")) {
+                postalNumber = Integer.valueOf(postal);
+            }
+        } catch (NumberFormatException e) {
+            this.logger.severe("Postal number can't be converted to int");
+        }
+
+
+        String[] servicesData = requestData.get("service[]");
+
+        List<Service> services = new ArrayList<>();
+        if (servicesData != null && servicesData.length != 0) {
+            services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
+        }
+
+        return new Facility(id, name, new Address(city, street, phone, postalNumber), services);
+    }
 }
+

@@ -48,14 +48,6 @@ public class Facility {
         this.isNfz = isNfz;
     }
 
-    public Facility(int id, String name, Address address, List<Service> services) {
-        this.address = address;
-        this.name = name;
-        this.id = id;
-        this.services = services;
-    }
-
-
     public String getName() {
         return name;
     }
@@ -92,6 +84,7 @@ public class Facility {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Facility)) return false;
+        Facility facility = (Facility) o;
         return Objects.equals(getName(), facility.getName()) &&
                 Objects.equals(getAddress(), facility.getAddress()) &&
                 Objects.equals(isNfz(), facility.isNfz()) &&
