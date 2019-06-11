@@ -17,7 +17,7 @@ class PostalCodeComparatorTest {
     private PostalCodeComparator testObj;
     private final List<Service> givenServicesList = Collections.singletonList(new Service("TestService"));
     private final Facility givenFacility1 = new Facility(1, "TestFacility1", new Address("TestCity", "TestStreet", "123 456 789", 80001), givenServicesList);
-    private Facility givenFacility2 = new Facility(2, "TestFacility2", new Address("TestCity2", "TestStreet2", "987 654 321", 80003), givenServicesList);
+    private final Facility givenFacility2 = new Facility(2, "TestFacility2", new Address("TestCity2", "TestStreet2", "987 654 321", 80003), givenServicesList);
 
 
     @Test
