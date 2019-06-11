@@ -36,8 +36,8 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
         if (req.getMethod().equalsIgnoreCase("PATCH")) {
             doPatch(req, resp);
-//        } else if(req.getMethod().equalsIgnoreCase("POST") &&  req.getParameter("_method").equalsIgnoreCase("PUT")) {
-//            doPut(req, resp);
+        } else if(isPut(req)) {
+            doPut(req, resp);
         } else {
             super.service(req, resp);
         }
@@ -52,7 +52,6 @@ public abstract class BaseWwrServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.response = this.setResponseHeaders(resp);
     }
-
 
     protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
@@ -92,5 +91,11 @@ public abstract class BaseWwrServlet extends HttpServlet {
     protected void logError(String msg, int code) {
         logger.severe("Error: " + msg);
         logger.severe("Error code: " + code);
+    }
+
+    private boolean isPut(HttpServletRequest req) {
+        return  req.getMethod().equalsIgnoreCase("POST") &&
+                req.getParameter("_method") != null &&
+                req.getParameter("_method").equalsIgnoreCase("PUT");
     }
 }
