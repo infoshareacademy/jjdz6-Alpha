@@ -47,7 +47,7 @@
                                     </label>
                                     <div class="controls col-md-8 ">
                                         <input class="input-md  textinput textInput form-control" id="id_name" aria-describedby="help1Id" maxlength="30"
-                                               name="facility name" placeholder="np. OWI in Gdynia, filia nr2"
+                                               name="name" placeholder="np. OWI in Gdynia, filia nr2"
                                                style="margin-bottom: 10px" type="text"/>
                                     </div>
                                 </div>
@@ -76,6 +76,12 @@
                                 <div id="div_id_postalCode" class="form-group required">
                                     <label for="div_id_postalCode" class="control-label col-md-4  requiredField">
                                         Kod pocztowy
+                                        <#if validationError?? && validationError.code == 1007>
+                                            <input class="form-control is-invalid" type="text" name="div_id_postalCode" value="${facility.address.postalCode?c}">
+                                            <div class="invalid-feedback">Błędny kod pocztowy.</div>
+                                        <#else>
+                                            <input class="form-control" type="text" name="div_id_postalCode" value="${facility.address.postalCode?c}">
+                                        </#if>
                                         <span class="asteriskField">*</span>
                                         <small id="help4Id" class="form-text text-muted">Wpisz kod pocztowy</small>
                                     </label>

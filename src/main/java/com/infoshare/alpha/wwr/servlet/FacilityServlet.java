@@ -74,7 +74,7 @@ public class FacilityServlet extends BaseWwrServlet {
         String address = req.getParameter("street");
         String city = req.getParameter("city");
         String phone = req.getParameter("phone");
-        String postalCode = req.getParameter("postalCode");
+        Integer postalCode = Integer.parseInt(req.getParameter("postalCode"));
         Boolean isNfz = Boolean.valueOf(req.getParameter("isNfz"));
 
         FacilityAddCommand facility = new FacilityAddCommand(name, city, phone, address, postalCode, isNfz);
