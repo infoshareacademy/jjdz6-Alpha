@@ -31,7 +31,11 @@
             <h1 class="display-4">Znajdź najbliższe placówki rehabilitacyjne dla pacjenta</h1>
             <div class="lead">
                 <form name="patientsFacilities">
-                    <p><input class="patientNameInput" type="text" name="patient" placeholder="Wpisz nazwisko pacjenta"></p>
+                    <p>
+                        <input class="patientNameInput" type="text" name="patient"
+                               placeholder="Wpisz nazwisko pacjenta">
+                        <button type="submit" class="patientNameInputButton btn btn-primary btn-sm my-2 my-sm-0">Szukaj</button>
+                    </p>
                 </form>
                 <p>
                     <#if selectedPatients??>
@@ -44,9 +48,11 @@
                         <#if facilities?has_content>
                             <#list facilities as facility>
                                 <li class="facility"><span class="facility-span"
-                                            title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
+                                                           title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
                                     <ul class="facility-details">
-                                        <li>Adres: ul. ${facility.address.street}, ${facility.address.postalCode?c?substring(0,2)}-${facility.address.postalCode?c?substring(2)} ${facility.address.city}</li>
+                                        <li>Adres: ul. ${facility.address.street}
+                                            , ${facility.address.postalCode?c?substring(0,2)}
+                                            -${facility.address.postalCode?c?substring(2)} ${facility.address.city}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>Usługi: ${facility.services?join(", ")}</#if></li>
                                         <li>Kontakt: tel. ${facility.address.phone}</li>
                                     </ul>
