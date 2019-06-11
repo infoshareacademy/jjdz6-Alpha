@@ -40,7 +40,7 @@ class PatientsServiceTest {
                     "patient-name",
                     "patient-surname",
                     new Pesel("90121212345"),
-                    new Address("Gdańsk", "Piwna 12/11", "+48 345 333 333"),
+                    new Address("Gdańsk", "Piwna 12/11", "+48 345 333 333", 80800),
                     new Parent("Janina", "Kowalska")
             );
         } catch (PeselException e) {

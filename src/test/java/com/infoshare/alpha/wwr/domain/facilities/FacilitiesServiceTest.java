@@ -276,7 +276,7 @@ class FacilitiesServiceTest {
         Facility editedFacility = new Facility(
                 1,
                 "edited_facility",
-                new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333"),
+                new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333", 80800),
                 services
         );
 
