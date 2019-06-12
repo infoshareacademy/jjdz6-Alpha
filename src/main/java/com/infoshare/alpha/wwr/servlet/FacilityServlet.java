@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class FacilityServlet extends BaseWwrServlet {
 
     private final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";
+    private final String FACILITY_ADD_TEMPLATE_PATH = "/facility/addFacility.ftlh";
 
     @Inject
     FacilitiesService facilitiesService;
@@ -77,11 +78,10 @@ public class FacilityServlet extends BaseWwrServlet {
         Integer postalCode = Integer.parseInt(req.getParameter("postalCode"));
         Boolean isNfz = Boolean.valueOf(req.getParameter("isNfz"));
 
-        FacilityAddCommand facility = new FacilityAddCommand(name, city, phone, address, postalCode, isNfz);
-
-        facilitiesService.add(facility);
-
-        resp.getWriter().println("Facility added successfully");
+        if(null != name && !name.isEmpty() ) {
+            facilitiesService.add(new FacilityAddCommand(name, city, phone, address, postalCode, isNfz));
+        }
+        doGet(req, resp);
     }
 
 
