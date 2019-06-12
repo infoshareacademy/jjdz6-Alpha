@@ -42,7 +42,6 @@ public class PatientServlet extends BaseWwrServlet {
             resp.setContentType("text/html;charset=UTF-8");
             req.setCharacterEncoding("UTF-8");
 
-
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
             String nameParam = req.getParameter("name");
@@ -61,25 +60,17 @@ public class PatientServlet extends BaseWwrServlet {
 
             patientsService.add(patient);
 
-
             resp.getWriter().println("<!DOCTYPE html><html><body>");
             resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println("<div><strong>Dane pacjenta:</strong> " + patient.toString() + "<strong> - zostały dodane.</strong></div>");
+            resp.getWriter().println("<div><strong>Pacjent:</strong> " + patient.getName() + " " + patient.getSurname() + "<strong> - został dodany pomyślnnie.</strong></div>");
             resp.getWriter().println("</body></html>\n");
-
-
-            //poniższe testowo
-//            resp.getWriter().println("<div>" + patientsReadModel.getAll().getPatients() + "</div>");
 
         } catch (IOException | PeselException e) {
             e.printStackTrace();
             resp.getWriter().println(e.getMessage());
         } catch (PatientValidationException e) {
             resp.getWriter().println(e.getMessage());
-
         }
-
-
     }
 
     @Override
