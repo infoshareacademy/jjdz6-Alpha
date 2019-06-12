@@ -3,6 +3,7 @@ package com.infoshare.alpha.wwr.domain.patients.entity;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,17 +11,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PatientTest {
 
-    private Pesel givenPesel;
+    private static Pesel givenPesel;
+    private final Patient testObj = new Patient("TestName", "TestSurname", givenPesel, new Address("TestCity", "TestStreet", "123 456 789", 80000), new Parent("TestParentName", "TestParentSurname"));
 
-    {
+    @BeforeAll
+    static void setGivenPesel() {
         try {
             givenPesel = new Pesel("99999999999");
         } catch (PeselException e) {
             e.printStackTrace();
         }
     }
-
-    private final Patient testObj = new Patient("TestName", "TestSurname", givenPesel, new Address("TestCity", "TestStreet", "123 456 789", 80000), new Parent("TestParentName", "TestParentSurname"));
 
     @Test
     @DisplayName("Should not return 0 when surname is different")
