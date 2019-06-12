@@ -19,8 +19,8 @@ class PostalCodeComparatorTest {
 
 
     @Test
-    @DisplayName("Should return -1 since difference of postalCode of testObj is smaller to postal code of first param")
-    void compareWhenDifferenceToFirstParamsPostalCodeIsSmaller() {
+    @DisplayName("Should return -1")
+    void shouldComparePostalCode() {
         // given
         testObj = new PostalCodeComparator(80000);
 
@@ -32,8 +32,8 @@ class PostalCodeComparatorTest {
     }
 
     @Test
-    @DisplayName("Should return 1 since difference of postalCode of testObj is smaller to postal code of second param")
-    void compareWhenDifferenceToSecondParamsPostalCodeIsSmaller() {
+    @DisplayName("Should return 1")
+    void shouldCompareSmallerCode() {
         // given
         testObj = new PostalCodeComparator(80004);
 
@@ -45,8 +45,8 @@ class PostalCodeComparatorTest {
     }
 
     @Test
-    @DisplayName("Should return 0 since difference of postalCode of testObj to both param's postal codes is equal")
-    void compareWhenDifferenceToBothParamsPostalCodesIsEqual() {
+    @DisplayName("Should return 0")
+    void shouldCompareEqualCode() {
         // given
         testObj = new PostalCodeComparator(80002);
 
@@ -58,8 +58,8 @@ class PostalCodeComparatorTest {
     }
 
     @Test
-    @DisplayName("Should sort the list of Facilities based on the difference to the given postal code in ascending order")
-    void sortListOfFacilitiesBasedOnDifferenceToPostalCodeOfPostalCodeComparator() {
+    @DisplayName("Should sort list based on postal code in ascending order")
+    void sortListBasedOnPostalCode() {
         // given
         testObj = new PostalCodeComparator(80003);
         Facility givenFacility3 = new Facility(3, "TestFacility3", new Address("TestCity3", "TestStreet3", "987 654 321", 80004), givenServicesList);
