@@ -6,6 +6,7 @@ import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
@@ -28,6 +29,9 @@ public class FacilityServlet extends BaseWwrServlet {
 
     @Inject
     FacilitiesService facilitiesService;
+
+    @Inject
+    Facilities facilities;
 
     @Inject
     FacilitiesReadModel facilitiesReadModel;
@@ -86,6 +90,7 @@ public class FacilityServlet extends BaseWwrServlet {
 
         response.setStatus(HttpServletResponse.SC_OK);
         Map<String, Object> model = new HashMap<>();
+        model.put("facilities", facilities);
         model.put("facility", facility);
         this.renderView(model, FACILITY_ADD_TEMPLATE_PATH);
 
