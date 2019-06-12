@@ -1,7 +1,5 @@
-package com.infoshare.alpha.wwr.domain.facilities.common;
+package com.infoshare.alpha.wwr.common;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
