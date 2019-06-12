@@ -34,7 +34,7 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String patientsSurname = req.getParameter("patient");
+        String patientsSurname = req.getParameter("patient-surname");
         resp.setContentType("text/html;charset=UTF-8");
         Map<String, Object> model = new HashMap<>();
 
