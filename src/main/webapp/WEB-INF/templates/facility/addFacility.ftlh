@@ -22,16 +22,16 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal"method="post" action="/facility">
+                        <form name="addFacility" class="form-horizontal"method="post" action="/facility">
                             <input type='hidden' name='selection' value='selectOne'/>
                                 <div id="div_id_select" class="form-group required">
                                     <label for="div_id_select" class="control-label col-md-4  requiredField">
-                                        Wybierz
+                                        Rodzaj placowki
                                         <span class="asteriskField">*</span>
                                     </label>
                                     <div class="controls col-md-8 " style="margin-bottom: 10px">
                                         <label class="radio-inline">
-                                            <input type="radio" checked="checked" name="select" id="id_select_1" value="S" style="margin-bottom: 10px">
+                                            <input type="radio" checked="checked" name="select facility type" id="id_select_1" value="S" style="margin-bottom: 10px">
                                             Placowka NFZ
                                         </label>
                                         <label class="radio-inline"> <input type="radio" name="select" id="id_select_2" value="P" style="margin-bottom: 10px">
@@ -171,6 +171,25 @@
                                 </div>
 
                             </form>
+
+                            <table class="datatable">
+                                <tr>
+                                    <th>Rodzaj placowki</th>
+                                    <th>Nazwa</th>
+                                    <th>Ulica</th>
+                                    <th>Miasto</th>
+                                    <th>Kod pocztowy</th>
+                                    <th>Number kontaktowy</th>
+                                    <th>Uslugi</th>
+                                </tr>
+                                <#list facilities as facility>
+                                    <tr>
+                                        <td>${facility.is}</td>
+                                        <td>${employee.name}</td>
+                                        <td>${employee.city}</td>
+                                    </tr>
+                                </#list>
+                            </table>
                     </div>
                 </div>
             </div>

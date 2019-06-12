@@ -78,9 +78,17 @@ public class FacilityServlet extends BaseWwrServlet {
         Integer postalCode = Integer.parseInt(req.getParameter("postalCode"));
         Boolean isNfz = Boolean.valueOf(req.getParameter("isNfz"));
 
+
+        FacilityAddCommand facility = new FacilityAddCommand(name, city, phone, address, postalCode, isNfz);
         if(null != name && !name.isEmpty() ) {
-            facilitiesService.add(new FacilityAddCommand(name, city, phone, address, postalCode, isNfz));
+            facilitiesService.add(facility);
         }
+
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("facility", facility);
+        this.renderView(model, FACILITY_ADD_TEMPLATE_PATH);
+
         doGet(req, resp);
     }
 
