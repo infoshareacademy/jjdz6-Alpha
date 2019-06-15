@@ -94,7 +94,7 @@ public class FacilityServlet extends BaseWwrServlet {
         model.put("facility", facility);
         this.renderView(model, FACILITY_ADD_TEMPLATE_PATH);
 
-        doGet(req, resp);
+        // doGet(req, resp);
     }
 
 

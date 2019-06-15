@@ -27,14 +27,16 @@
                                 <div id="div_id_select" class="form-group required">
                                     <label for="div_id_select" class="control-label col-md-4  requiredField">
                                         Rodzaj placowki
+                                        <input name="isNfz">
                                         <span class="asteriskField">*</span>
                                     </label>
                                     <div class="controls col-md-8 " style="margin-bottom: 10px">
                                         <label class="radio-inline">
-                                            <input type="radio" checked="checked" name="select facility type" id="id_select_1" value="S" style="margin-bottom: 10px">
+                                            <input type="radio" checked="checked" name="NFZ facility" id="id_select_1" value="S" style="margin-bottom: 10px">
                                             Placowka NFZ
                                         </label>
-                                        <label class="radio-inline"> <input type="radio" name="select" id="id_select_2" value="P" style="margin-bottom: 10px">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="private facility" id="id_select_2" value="P" style="margin-bottom: 10px">
                                             Placowka prywatna
                                         </label>
                                     </div>
@@ -184,9 +186,13 @@
                                 </tr>
                                 <#list facilities as facility>
                                     <tr>
-                                        <td>${facility.is}</td>
-                                        <td>${employee.name}</td>
-                                        <td>${employee.city}</td>
+                                        <td>${facility.isNfz}</td>
+                                        <td>${facility.name}</td>
+                                        <td>${facility.address.street}</td>
+                                        <td>${facility.address.city}</td>
+                                        <td>${facility.address.postalCode}</td>
+                                        <td>${facility.address.phone}</td>
+                                        <td>${facility.services}</td>
                                     </tr>
                                 </#list>
                             </table>
