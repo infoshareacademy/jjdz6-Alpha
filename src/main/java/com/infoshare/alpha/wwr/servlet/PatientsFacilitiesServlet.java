@@ -8,7 +8,6 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
-import com.infoshare.alpha.wwr.servlet.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -24,12 +23,13 @@ import java.util.*;
 @WebServlet("/find-facilities")
 public class PatientsFacilitiesServlet extends BaseWwrServlet {
 
+    private final String FIND_FACILITIES_BY_PATIENT_TEMPLATE_PATH = "/facility/find-facilities-by-patient.ftlh";
+
     @Inject
     private FacilitiesReadModel facilitiesReadModel;
+
     @Inject
     private PatientsReadModel patientsReadModel;
-    @Inject
-    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
 
         try {
             PrintWriter writer = resp.getWriter();
-            Template template = templateProvider.getTemplate(getServletContext(), "find-facilities-by-patient.ftlh");
+            Template template = templateProvider.getTemplate(getServletContext(), FIND_FACILITIES_BY_PATIENT_TEMPLATE_PATH);
 
             if (patientsPesel != null && !Objects.equals(patientsPesel, "")) {
                 Map<PatientQueryFields, String> patientQueryFieldsMap = new EnumMap<>(PatientQueryFields.class);
