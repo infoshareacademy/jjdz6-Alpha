@@ -13,15 +13,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "AddFacilityServlet", urlPatterns = { "/facility/add" })
+@WebServlet(name = "AddFacilityServlet", urlPatterns = {"/facility/add"})
 public class AddFacilityServlet extends BaseWwrServlet {
 
     private final String FACILITY_ADD_TEMPLATE_PATH = "/facility/addFacility.ftlh";
     private final String FACILITY_ADD_CONFIRM_TEMPLATE_PATH = "/facility/addFacilityConfirm.ftlh";
 
-    @Inject FacilitiesService facilitiesService;
+    @Inject
+    FacilitiesService facilitiesService;
 
-    @Inject FacilityServletValidator facilityServletValidator;
+    @Inject
+    FacilityServletValidator facilityServletValidator;
 
 
     @Override

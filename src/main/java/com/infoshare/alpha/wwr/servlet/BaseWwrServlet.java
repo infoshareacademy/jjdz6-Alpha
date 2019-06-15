@@ -1,8 +1,8 @@
 package com.infoshare.alpha.wwr.servlet;
 
 import com.google.gson.Gson;
-import com.infoshare.alpha.wwr.utils.ResponsePrinter;
 import com.infoshare.alpha.wwr.servlet.freemaker.TemplateProvider;
+import com.infoshare.alpha.wwr.utils.ResponsePrinter;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
