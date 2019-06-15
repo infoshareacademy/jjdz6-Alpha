@@ -58,4 +58,3 @@ public class AddFacilityServlet extends BaseWwrServlet {
         this.renderView(model, FACILITY_ADD_CONFIRM_TEMPLATE_PATH);
     }
 }
-
