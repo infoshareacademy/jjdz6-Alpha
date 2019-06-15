@@ -67,9 +67,15 @@ public class PatientServlet extends BaseWwrServlet {
 
         } catch (IOException | PeselException e) {
             e.printStackTrace();
+            resp.getWriter().println("<!DOCTYPE html><html><body>");
+            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
             resp.getWriter().println(e.getMessage());
+            resp.getWriter().println("</body></html>\n");
         } catch (PatientValidationException e) {
+            resp.getWriter().println("<!DOCTYPE html><html><body>");
+            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
             resp.getWriter().println(e.getMessage());
+            resp.getWriter().println("</body></html>\n");
         }
     }
 
