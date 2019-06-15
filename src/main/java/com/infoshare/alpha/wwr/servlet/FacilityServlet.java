@@ -5,7 +5,6 @@ import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
@@ -33,14 +32,10 @@ public class FacilityServlet extends BaseWwrServlet {
     FacilitiesService facilitiesService;
 
     @Inject
-    Facilities facilities;
-
-    @Inject
     FacilitiesReadModel facilitiesReadModel;
 
     @Inject
     FacilityServletValidator facilityServletValidator;
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -78,7 +73,6 @@ public class FacilityServlet extends BaseWwrServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
 
-
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
@@ -114,7 +108,6 @@ public class FacilityServlet extends BaseWwrServlet {
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
             model.put("serviceError", e);
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
-
         }
     }
 
@@ -156,4 +149,3 @@ public class FacilityServlet extends BaseWwrServlet {
         return new Facility(id, name, new Address(city, street, phone, postalNumber), services);
     }
 }
-
