@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 public class PatientServletValidator {
     private final String[] requiredPatientFields = {"name", "surname", "pesel", "street", "city", "phone", "postalCode", "parentName", "parentSurname"};
 
+    private static final int PESEL_LENGTH = 11;
+    private static final int PHONE_LENGTH = 9;
+    private static final int POSTAL_LENGTH = 5;
+
     public void validatePutRequest(Map<String, String[]> requestData) throws PatientValidationException{
         this.validateRequiredFields(requestData.keySet());
         this.validateName(requestData.get("name")[0]);
@@ -21,7 +25,6 @@ public class PatientServletValidator {
         this.validatePostal(requestData.get("postalCode")[0]);
         this.validateCaretakerName(requestData.get("parentName")[0]);
         this.validateCaretakerSurname(requestData.get("parentSurname")[0]);
-
     }
 
     private void validateRequiredFields(Set<String> keySet) throws PatientValidationException {
@@ -64,7 +67,7 @@ public class PatientServletValidator {
             throw PatientValidationException.pesel();
         }
 
-        if (pesel.length() != 11) {
+        if (pesel.length() != PESEL_LENGTH) {
             throw PatientValidationException.pesel();
         }
     }
@@ -97,7 +100,7 @@ public class PatientServletValidator {
         if (phone.isEmpty()) {
             throw PatientValidationException.phone();
         }
-        if (phone.length() < 9) {
+        if (phone.length() < PHONE_LENGTH) {
             throw PatientValidationException.phone();
         }
     }
@@ -110,7 +113,7 @@ public class PatientServletValidator {
         if (postal.equals("")) {
             throw PatientValidationException.postal();
         }
-        if (postal.length() > 5) {
+        if (postal.length() > POSTAL_LENGTH) {
             throw PatientValidationException.postal();
         }
 
