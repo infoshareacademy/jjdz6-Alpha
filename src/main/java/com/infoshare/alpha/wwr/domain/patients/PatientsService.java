@@ -24,7 +24,7 @@ public class PatientsService {
 
         this.patientsRepository.add(patients);
 
-        System.out.println(patient.toString() + " added. ");
+//        System.out.println(patient.toString() + " added. ");
     }
 
     public void edit(Patient patient) {
