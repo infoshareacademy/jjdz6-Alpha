@@ -36,7 +36,7 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
         if (req.getMethod().equalsIgnoreCase("PATCH")) {
             doPatch(req, resp);
-        } else if(req.getMethod().equalsIgnoreCase("POST") &&  req.getParameter("_method").equalsIgnoreCase("PUT")) {
+        } else if(req.getMethod().equalsIgnoreCase("POST") &&  null != req.getParameter("_method") && req.getParameter("_method").equalsIgnoreCase("PUT")) {
             doPut(req, resp);
         } else {
             super.service(req, resp);
@@ -46,6 +46,13 @@ public abstract class BaseWwrServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.response = this.setResponseHeaders(resp);
+        response.setContentType("text/html;charset=UTF-8");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.response = this.setResponseHeaders(resp);
+        response.setContentType("text/html;charset=UTF-8");
     }
 
     @Override

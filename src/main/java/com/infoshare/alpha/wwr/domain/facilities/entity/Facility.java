@@ -42,10 +42,11 @@ public class Facility {
         this.services = services;
     }
 
-    public Facility(String name, Address address, Boolean isNfz) {
+    public Facility(String name, Address address, Boolean isNfz, List<Service> services) {
         this.address = address;
         this.name = name;
         this.isNfz = isNfz;
+        this.services = services;
     }
 
     public String getName() {
