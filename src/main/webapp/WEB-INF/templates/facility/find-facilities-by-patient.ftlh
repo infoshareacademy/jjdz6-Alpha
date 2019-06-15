@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css-files/find-facilities-by-patient.css">
+    <link rel="stylesheet" href="/wwr/css/find-facilities-by-patient.css">
 </head>
 <body class="bg-light">
 <header>
@@ -31,7 +31,11 @@
             <h1 class="display-4">Znajdź najbliższe placówki rehabilitacyjne dla pacjenta</h1>
             <div class="lead">
                 <form name="patientsFacilities">
-                    <p><input class="patientNameInput" type="text" name="patient-surname" placeholder="Wpisz nazwisko pacjenta"></p>
+                    <p>
+                        <input class="patientNameInput" type="text" name="patient-surname"
+                               placeholder="Wpisz nazwisko pacjenta">
+                        <button type="submit" class="patientNameInputButton btn btn-primary btn-sm my-2 my-sm-0">Szukaj</button>
+                    </p>
                 </form>
                 <p>
                     <#if selectedPatients??>
@@ -44,7 +48,7 @@
                         <#if facilities?has_content>
                             <#list facilities as facility>
                                 <li class="facility"><span class="facility-span"
-                                            title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
+                                                           title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
                                     <ul class="facility-details">
                                         <li>Adres: ul. ${facility.address.street}, ${facility.address.postalCode?c?substring(0,2)}-${facility.address.postalCode?c?substring(2)} ${facility.address.city}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>Usługi: ${facility.services?join(", ")}</#if></li>
@@ -79,9 +83,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-1.10.2.js"
-        type="text/javascript"></script>
-<script src="js-files/find-facilities-by-patient.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/wwr/js/find-facilities-by-patient.js"></script>
 
 </body>
 </html>
