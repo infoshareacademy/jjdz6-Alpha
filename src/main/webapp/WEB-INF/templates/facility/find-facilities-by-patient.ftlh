@@ -32,7 +32,7 @@
             <div class="lead">
                 <form name="patientsFacilities">
                     <p>
-                        <input class="patientNameInput" type="text" name="patient"
+                        <input class="patientNameInput" type="text" name="patient-surname"
                                placeholder="Wpisz nazwisko pacjenta">
                         <button type="submit" class="patientNameInputButton btn btn-primary btn-sm my-2 my-sm-0">Szukaj</button>
                     </p>

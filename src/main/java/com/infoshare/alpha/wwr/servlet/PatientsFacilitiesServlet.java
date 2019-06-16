@@ -34,7 +34,7 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String patientsPesel = req.getParameter("patient");
+        String patientsSurname = req.getParameter("patient-surname");
         resp.setContentType("text/html;charset=UTF-8");
         Map<String, Object> model = new HashMap<>();
 
@@ -42,9 +42,9 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
             PrintWriter writer = resp.getWriter();
             Template template = templateProvider.getTemplate(getServletContext(), FIND_FACILITIES_BY_PATIENT_TEMPLATE_PATH);
 
-            if (patientsPesel != null && !Objects.equals(patientsPesel, "")) {
+            if (patientsSurname != null && !Objects.equals(patientsSurname, "")) {
                 Map<PatientQueryFields, String> patientQueryFieldsMap = new EnumMap<>(PatientQueryFields.class);
-                patientQueryFieldsMap.put(PatientQueryFields.SURNAME, patientsPesel);
+                patientQueryFieldsMap.put(PatientQueryFields.SURNAME, patientsSurname);
                 List<Patient> selectedPatients = patientsReadModel.getByQuery(new PatientQuery(patientQueryFieldsMap)).getPatients();
 
                 Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
