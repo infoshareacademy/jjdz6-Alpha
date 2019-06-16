@@ -6,5 +6,6 @@ target/
 childDevelopmentSupportSystem.iml
 child-development-support-system.iml
 test.iml
+main.iml
 *.iml
 **/*.iml
