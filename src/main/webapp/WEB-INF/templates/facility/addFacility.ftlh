@@ -102,7 +102,7 @@
                             </label>
                             <div class="controls col-md-8 ">
                                 <input class="input-md textinput textInput form-control" id="id_number" aria-describedby="help4Id" name="phone"
-                                       placeholder="eg. 555444333" style="margin-bottom: 20px" type="text"/>
+                                       placeholder="np. 555444333" style="margin-bottom: 20px" type="text"/>
                             </div>
                         </div>
                         <fieldset class="form-group">
