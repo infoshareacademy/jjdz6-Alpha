@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.utils;
+package com.infoshare.alpha.wwr.servlet.utils;
 
 public class ErrorResponse {
 

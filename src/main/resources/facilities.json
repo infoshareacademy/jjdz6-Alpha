@@ -1,7 +1,7 @@
 {
   "facilities": [
     {
-      "id": "1",
+      "id": 1,
       "name": "WWR1",
       "address": {
         "city": "Gdańsk",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "WWR2",
       "address": {
         "city": "Gdańsk",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "WWR3",
       "address": {
         "city": "Sopot",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "WWR4",
       "address": {
         "city": "Gdynia",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "WWR5",
       "address": {
         "city": "Gdynia",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "WWR-Oliva",
       "address": {
         "city": "Gdańsk-Oliwa",
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "WWR-Gdynia-Port",
       "address": {
         "city": "Gdynia",
