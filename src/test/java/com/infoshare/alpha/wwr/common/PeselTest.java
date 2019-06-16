@@ -35,6 +35,6 @@ class PeselTest {
 
         assertThatThrownBy(() -> new Pesel(invlidPeselNumber))
                 .isInstanceOf(PeselException.class)
-                .hasMessage("Pesel not valid");
+                .hasMessage("Błędny Pesel");
     }
 }
