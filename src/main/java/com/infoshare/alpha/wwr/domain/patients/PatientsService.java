@@ -18,7 +18,7 @@ public class PatientsService {
 
     public void add(Patient patient) {
 
-        Patients patients = patientsReadModelDbRepository.getAll();
+        Patients patients = this.patientsReadModelDbRepository.getAll();
 
         patients.add(patient);
 
