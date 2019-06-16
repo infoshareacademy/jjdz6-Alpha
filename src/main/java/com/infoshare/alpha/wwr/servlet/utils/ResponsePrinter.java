@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.utils;
+package com.infoshare.alpha.wwr.servlet.utils;
 
 import javax.enterprise.context.RequestScoped;
 import javax.servlet.http.HttpServletResponse;

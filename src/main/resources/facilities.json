@@ -1,7 +1,7 @@
 {
   "facilities": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Ośrodek Wczesnej Interwencji - filia nr 1 Niepubliczny Zakład Opieki Zdrowotnej",
       "address": {
         "city": "Gdynia",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Wyspa",
       "address": {
         "city": "Gdańsk",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Poradnia psychologiczno-pedagogiczna, filia nr 6",
       "address": {
         "city": "Sopot",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Poradnia psychologiczno-pedagogiczna, filia nr 7",
       "address": {
         "city": "Gdynia",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Ośrodek Wczesnej Interwencji i Wspomagania Rozwoju",
       "address": {
         "city": "Gdańsk",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "ODiTiS",
       "address": {
         "city": "Gdańsk-Oliwa",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Centrum Rehabilitacji Ośrodek Wczesnej Interwencji w Gdyni",
       "address": {
         "city": "Gdynia",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Poradnia psychologiczno-pedagogiczna, filia nr 4",
       "address": {
         "city": "Gdynia",

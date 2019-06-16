@@ -17,6 +17,7 @@ public class FacilitiesService {
 
     @Inject
     private FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
+
     @Inject
     private FacilitiesRepository facilitiesDbRepository;
 
@@ -48,16 +49,19 @@ public class FacilitiesService {
 
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         Integer oldFacilityIndex;
+
         if (facilities.getFacilities().contains(command.getOldFacility())) {
             oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
         } else {
             throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
         }
+
         for (Facility facility : facilities.getFacilities()) {
             if (facility.equals(command.getEditedFacility())) {
                 throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
             }
         }
+
         facilities.getFacilities().remove(command.getOldFacility());
         facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
         this.facilitiesDbRepository.add(facilities);
