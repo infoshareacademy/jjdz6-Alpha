@@ -20,8 +20,6 @@ public class Pesel {
     @Override
     public String toString() {
 
-        return " Pesel{ " +
-                "pesel='" + pesel + '\'' +
-                '}';
+        return " Pesel = " + pesel;
     }
 }

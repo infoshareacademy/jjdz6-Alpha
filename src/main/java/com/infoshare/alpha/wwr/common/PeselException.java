@@ -24,7 +24,7 @@ public class PeselException extends Throwable {
 
     public static PeselException validationError() {
 
-        return new PeselException("Pesel not valid", PeselException.PESEL_VALIDATION_ERROR_CODE);
+        return new PeselException("Błędny Pesel", PeselException.PESEL_VALIDATION_ERROR_CODE);
     }
 
 }

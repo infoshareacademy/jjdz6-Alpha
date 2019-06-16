@@ -1,8 +1,8 @@
 package com.infoshare.alpha.wwr.servlet;
 
 import com.google.gson.Gson;
-import com.infoshare.alpha.wwr.servlet.freemaker.TemplateProvider;
 import com.infoshare.alpha.wwr.utils.ResponsePrinter;
+import com.infoshare.alpha.wwr.servlet.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -36,7 +36,7 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
         if (req.getMethod().equalsIgnoreCase("PATCH")) {
             doPatch(req, resp);
-        } else if(req.getMethod().equalsIgnoreCase("POST") &&  null != req.getParameter("_method") && req.getParameter("_method").equalsIgnoreCase("PUT")) {
+        } else if(isPut(req)) {
             doPut(req, resp);
         } else {
             super.service(req, resp);
@@ -46,7 +46,6 @@ public abstract class BaseWwrServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.response = this.setResponseHeaders(resp);
-        response.setContentType("text/html;charset=UTF-8");
     }
 
     @Override
@@ -98,5 +97,11 @@ public abstract class BaseWwrServlet extends HttpServlet {
     protected void logError(String msg, int code) {
         logger.severe("Error: " + msg);
         logger.severe("Error code: " + code);
+    }
+
+    private boolean isPut(HttpServletRequest req) {
+        return  req.getMethod().equalsIgnoreCase("POST") &&
+                req.getParameter("_method") != null &&
+                req.getParameter("_method").equalsIgnoreCase("PUT");
     }
 }
