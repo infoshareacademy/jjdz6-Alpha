@@ -64,7 +64,7 @@ public class FacilityServlet extends BaseWwrServlet {
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
         }
     }
-    
+
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {

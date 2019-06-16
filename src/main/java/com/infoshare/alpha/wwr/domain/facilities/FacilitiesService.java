@@ -20,14 +20,6 @@ public class FacilitiesService {
     @Inject
     private FacilitiesRepository facilitiesDbRepository;
 
-//    public FacilitiesService(
-//    		FacilitiesRepository facilitiesDbRepository,
-//    		FacilitiesReadModelDbRepository facilitiesReadModelDbRepository
-//    		) {
-//    		this.facilitiesDbRepository = facilitiesDbRepository;
-//    		this.facilitiesReadModelDbRepository = facilitiesReadModelDbRepository;
-//    }
-
     public void add(FacilityAddCommand command) throws FacilitiesException {
 
         Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
