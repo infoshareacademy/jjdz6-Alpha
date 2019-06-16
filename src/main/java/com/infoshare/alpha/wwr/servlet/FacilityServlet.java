@@ -25,13 +25,13 @@ public class FacilityServlet extends BaseWwrServlet {
     private final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";
 
     @Inject
+    FacilitiesService facilitiesService;
+
+    @Inject
     FacilitiesReadModel facilitiesReadModel;
 
     @Inject
     FacilityServletValidator facilityServletValidator;
-
-    @Inject
-    FacilitiesService facilitiesService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -63,10 +63,6 @@ public class FacilityServlet extends BaseWwrServlet {
             model.put("notFoundError", true);
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
     }
 
     @Override
@@ -104,7 +100,6 @@ public class FacilityServlet extends BaseWwrServlet {
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
             model.put("serviceError", e);
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
-
         }
     }
 
@@ -134,7 +129,6 @@ public class FacilityServlet extends BaseWwrServlet {
         } catch (NumberFormatException e) {
             this.logger.severe("Postal number can't be converted to int");
         }
-
 
 
         String[] servicesData = requestData.get("service[]");

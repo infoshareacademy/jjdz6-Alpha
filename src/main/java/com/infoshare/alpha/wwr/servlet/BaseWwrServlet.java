@@ -49,6 +49,12 @@ public abstract class BaseWwrServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.response = this.setResponseHeaders(resp);
+        response.setContentType("text/html;charset=UTF-8");
+    }
+
+    @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.response = this.setResponseHeaders(resp);
     }
