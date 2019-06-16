@@ -1,6 +1,8 @@
 package com.infoshare.alpha.wwr.domain.facilities.common;
 
-public class FacilitiesException extends Throwable {
+import java.io.IOException;
+
+public class FacilitiesException extends IOException {
 
     public static final int FACILITY_NOT_FOUND_ERROR_CODE = 10000;
     public static final int FACILITY_EXISTS_ERROR_CODE = 10001;

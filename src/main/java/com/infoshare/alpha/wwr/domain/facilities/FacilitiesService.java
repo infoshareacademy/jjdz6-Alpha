@@ -9,7 +9,6 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -67,7 +66,7 @@ public class FacilitiesService {
         facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
         this.facilitiesDbRepository.add(facilities);
     }
-
+    
     public void upload(UploadCommand uploadCommand) {
 
         // funkcja ktora wrzuca do repozutorium dodatkowe placowki

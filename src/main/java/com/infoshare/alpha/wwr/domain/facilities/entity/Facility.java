@@ -13,6 +13,7 @@ public class Facility {
     private int id;
     private String name;
     private Address address;
+    private Boolean isNfz;
     private List<Service> services = new ArrayList<>();
 
 
@@ -33,28 +34,30 @@ public class Facility {
         this.id = id;
     }
 
-    public Facility(String name, Address address, int id, List<Service> services) {
+    public Facility(String name, Address address, int id, Boolean isNfz, List<Service> services) {
         this.address = address;
         this.name = name;
         this.id = id;
+        this.isNfz = isNfz;
         this.services = services;
     }
 
-    public Facility(String id, String name, Address address, List<Service> services) {
+    public Facility(String name, Address address, Boolean isNfz, List<Service> services) {
+        this.address = address;
+        this.name = name;
+        this.isNfz = isNfz;
+        this.services = services;
     }
 
     public String getName() {
-
         return name;
     }
 
     public Address getAddress() {
-
         return address;
     }
 
     public int getId() {
-
         return id;
     }
 
@@ -62,9 +65,20 @@ public class Facility {
         return this.services;
     }
 
+    public Boolean isNfz() {
+        return isNfz;
+    }
+
+    private String valueOf(boolean isNfz) {
+        return isNfz ? "placowka publiczna" : "placowka prywatna";
+    }
+
     @Override
     public String toString() {
-        return "Id: " + this.id + " Name : " + this.name + this.address.toString() + " Facilities : " + Services.fromList(this.services);
+        return " Id : " + this.id +
+                " Name : " + this.name + this.address.toString() +
+                " Nfz : " + valueOf(isNfz) +
+                " Services : " + Services.fromList(this.services);
     }
 
     @Override
@@ -72,11 +86,15 @@ public class Facility {
         if (this == o) return true;
         if (!(o instanceof Facility)) return false;
         Facility facility = (Facility) o;
-        return Objects.equals(getName(), facility.getName()) && Objects.equals(getAddress(), facility.getAddress()) && Objects.equals(getServices(), facility.getServices());
+        return Objects.equals(getName(), facility.getName()) &&
+                Objects.equals(getAddress(), facility.getAddress()) &&
+                Objects.equals(isNfz(), facility.isNfz()) &&
+                Objects.equals(getServices(), facility.getServices());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAddress(), getServices());
+        return Objects.hash(getName(), getAddress(), isNfz(), getServices());
     }
 }
+
