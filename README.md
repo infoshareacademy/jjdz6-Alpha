@@ -28,6 +28,11 @@
 ## App docker , how to stop
         1. docker-compose stop or Ctrl + Z (in main app dir )
 
+## App docker, how to reload
+        1. docker-compose stop
+        2. remove containers 
+        3. Clear db docker schema : rm -rf db/data/* 
+
 ## How to deploy app to docker wildfly
 
         1. mvn wildfly:deploy
