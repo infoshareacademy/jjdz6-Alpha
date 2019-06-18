@@ -4,7 +4,7 @@
 
         1. install maven in your system ( ubuntu : sudo apt install mvn )
         2. build project go to project dir where is pom.xml file, then : mvn install
-        3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
+        3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.2.jar
 
 ## How to use di
         1. initialize DI: 
@@ -22,16 +22,24 @@
   <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
   <!-- mvn clean compile assembly:single -->
 
-## How to build and run Docker with wildfly
+## App docker , how to up
+        1. docker-compose up -d or docker-compose up (in main app dir)
 
-    1. [sudo] docker build .
-    2. 
+## App docker , how to stop
+        1. docker-compose stop or Ctrl + Z (in main app dir )
 
+## How to deploy app to docker wildfly
 
-### Pytania do trenara j2ee
- * jak przygotowac build ktory bedzie sie skladal z budowanej paczki jar ktora bedzie uzywana w war ? 
- * czy biblioteki w depencencies przekopiowuja sie same do lib w paczce war ?
- * jak przekazywać konfigurację z pliku web.xml do serwleta (przyklad) i co to jest configuracja kontekstowa?
- * gdzie powinno sie przechowywac konfiguracje serwleta ( w projektach komercyjnych ) 
- 
- 
+        1. mvn wildfly:deploy
+        2. enter username : admin pass : admin to deploy on wildfly docker
+
+## How to redeploy app to docker wildly
+
+        1. mvn wildfly:reseploy
+        2. enter username : admin pass : admin to redeploy on wildfly docker
+
+## How to uneploy app to docker wildly
+
+        1. mvn wildfly:undeploy
+        2. enter username : admin pass : admin to undeploy on wildfly docker
+
