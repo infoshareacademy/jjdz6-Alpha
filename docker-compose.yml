@@ -1,0 +1,44 @@
+version: '3'
+services:
+  web:
+    container_name: "wwr-app"
+    build: .
+    environment:
+      - DB_NAME=wwr
+      - DB_USER=mysql
+      - DB_PASS=pass123
+      - DB_URI=db:3306
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+  phpmyadmin:
+      container_name: "wwr-phpmyadmin"
+      image: phpmyadmin/phpmyadmin
+      links:
+        - db:db
+      ports:
+        - "8000:80"
+      environment:
+        MYSQL_USER: mysql
+        MYSQL_PASSWORD: pass123
+        MYSQL_ROOT_PASSWORD: root
+  db:
+    container_name: "wwr-db"
+    image: "mysql:latest"
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    restart: always
+    environment:
+      - MYSQL_DATABASE=wwr
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=pass123
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./db/init/:/docker-entrypoint-initdb.d/ # init database
+      - ./db/data/:/var/lib/mysql/              # data storage
+    ports:
+      - "3306:3306"
+networks:
+    default:
+        driver: bridge
