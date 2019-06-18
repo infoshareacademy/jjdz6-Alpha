@@ -13,17 +13,17 @@ services:
     ports:
       - "8080:8080"
       - "9990:9990"
-  phpmyadmin:
-      container_name: "wwr-phpmyadmin"
-      image: phpmyadmin/phpmyadmin
-      links:
-        - db:db
-      ports:
-        - "8000:80"
-      environment:
-        MYSQL_USER: mysql
-        MYSQL_PASSWORD: pass123
-        MYSQL_ROOT_PASSWORD: root
+#  phpmyadmin:
+#      container_name: "wwr-phpmyadmin"
+#      image: phpmyadmin/phpmyadmin
+#      links:
+#        - db:db
+#      ports:
+#        - "8000:80"
+#      environment:
+#        MYSQL_USER: mysql
+#        MYSQL_PASSWORD: pass123
+#        MYSQL_ROOT_PASSWORD: root
   db:
     container_name: "wwr-db"
     image: "mysql:latest"
