@@ -35,16 +35,13 @@
 
 ## How to deploy app to docker wildfly
 
-        1. mvn wildfly:deploy
-        2. enter username : admin pass : admin to deploy on wildfly docker
+        1. mvn clean package wildfly:deploy
 
 ## How to redeploy app to docker wildly
 
         1. mvn wildfly:reseploy
-        2. enter username : admin pass : admin to redeploy on wildfly docker
 
 ## How to uneploy app to docker wildly
 
         1. mvn wildfly:undeploy
-        2. enter username : admin pass : admin to undeploy on wildfly docker
 

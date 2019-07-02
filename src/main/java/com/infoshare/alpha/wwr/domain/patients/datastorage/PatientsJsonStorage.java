@@ -4,19 +4,23 @@ import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
+import com.infoshare.alpha.wwr.servlet.utils.WebInfPathResolver;
 
 import javax.ejb.Stateful;
+import javax.inject.Inject;
 import java.io.*;
-import java.net.URL;
 
 @Stateful
 public class PatientsJsonStorage {
 
-    private static final URL PATIENTS_REPO_URL = Resources.getResource("patients.json");
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    @Inject
+    private WebInfPathResolver webInfPathResolver;
+
     public Patients load() {
-        try (Reader reader = new FileReader(PATIENTS_REPO_URL.getPath())) {
+
+        try (Reader reader = new FileReader(this.getPatientsRepoPath())) {
 
             Patients patients = this.gson.fromJson(reader, Patients.class);
 
@@ -29,11 +33,18 @@ public class PatientsJsonStorage {
     }
 
     public void save(Patients patients) {
-        try (Writer writer = new FileWriter(PATIENTS_REPO_URL.getPath())) {
+
+        try (Writer writer = new FileWriter(this.getPatientsRepoPath())) {
             this.gson.toJson(patients, writer);
         } catch (IOException e) {
             System.out.println("Exception during saving json file: " + e.getMessage());
         }
+    }
+
+    private String getPatientsRepoPath() {
+        return  !webInfPathResolver.getJsonRepositoryPath().isEmpty() ?
+                webInfPathResolver.getJsonRepositoryPath() + "patients.json" :
+                Resources.getResource("patients.json").getPath();
     }
 
 }

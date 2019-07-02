@@ -3,6 +3,7 @@ package com.infoshare.alpha.wwr.servlet;
 import com.google.gson.Gson;
 import com.infoshare.alpha.wwr.servlet.freemarker.TemplateProvider;
 import com.infoshare.alpha.wwr.servlet.utils.ResponsePrinter;
+import com.infoshare.alpha.wwr.servlet.utils.WebInfPathResolver;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -27,10 +28,14 @@ public abstract class BaseWwrServlet extends HttpServlet {
     protected ResponsePrinter responsePrinter;
 
     @Inject
+    protected WebInfPathResolver webInfPathResolver;
+
+    @Inject
     TemplateProvider templateProvider;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        webInfPathResolver.setWebInfPath(this.getServletContext().getRealPath("/WEB-INF"));
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
 

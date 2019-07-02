@@ -4,22 +4,24 @@ import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.servlet.utils.WebInfPathResolver;
 
 import javax.ejb.Stateful;
+import javax.inject.Inject;
 import java.io.*;
-import java.net.URL;
 
 @Stateful
 public class FacilitiesJsonStorage {
 
-    private static final URL FACILITIES_REPO_URL = Resources.getResource("facilities.json");
+    @Inject
+    private WebInfPathResolver webInfPathResolver;
+
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public Facilities load() {
-        try (Reader reader = new FileReader(FACILITIES_REPO_URL.getPath())) {
+        try (Reader reader = new FileReader(this.getFacilitiesRepoPath())) {
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
-
-            return facilities == null ? new Facilities() : facilities;
+            return facilities;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,10 +30,18 @@ public class FacilitiesJsonStorage {
     }
 
     public void save(Facilities facilities) {
-        try (Writer writer = new FileWriter(FACILITIES_REPO_URL.getPath())) {
+
+        try (Writer writer = new FileWriter(this.getFacilitiesRepoPath())) {
             this.gson.toJson(facilities, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getFacilitiesRepoPath() {
+
+        return  !webInfPathResolver.getJsonRepositoryPath().isEmpty() ?
+                webInfPathResolver.getJsonRepositoryPath() + "facilities.json" :
+                Resources.getResource("facilities.json").getPath();
     }
 }

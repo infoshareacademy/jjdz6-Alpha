@@ -144,6 +144,9 @@
                     <version>1.2.1.Final</version>
                     <configuration>
                         <name>${wwr.package.name}</name>
+                        <username>admin</username>
+                        <password>admin</password>
+<!--                        <targetDir>/opt/jboss/wildfly/standalone/deployments/</targetDir>-->
                     </configuration>
                     <executions>
                         <execution>
