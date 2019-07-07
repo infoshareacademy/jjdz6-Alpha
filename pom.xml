@@ -192,7 +192,6 @@
                         <name>${wwr.package.name}</name>
                         <username>admin</username>
                         <password>admin</password>
-<!--                        <targetDir>/opt/jboss/wildfly/standalone/deployments/</targetDir>-->
                     </configuration>
                     <executions>
                         <execution>
