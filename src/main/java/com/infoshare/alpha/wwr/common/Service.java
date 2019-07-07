@@ -1,13 +1,26 @@
 package com.infoshare.alpha.wwr.common;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "services")
 public class Service {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Service(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

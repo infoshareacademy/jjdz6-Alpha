@@ -1,12 +1,27 @@
 package com.infoshare.alpha.wwr.common;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addresses")
 public class Address {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "city", nullable = false)
     private String city;
+
+    @Column(name = "street", nullable = false)
     private String street;
+
+    @Column(name = "phone", nullable = false)
     private String phone;
+
+    @Column(name = "postal_code", nullable = false)
     private Integer postalCode;
 
     public Address(String city, String street, String phone, Integer postalCode) {
@@ -16,9 +31,9 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getCity() {
-        return city;
-    }
+    public Long getId() { return id; }
+
+    public String getCity() { return city; }
 
     public String getStreet() {
         return street;

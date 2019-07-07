@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Child support development system</display-name>
+
+  <data-source>
+    <name>java:ds/demods</name>
+    <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
+    <url>jdbc:mysql://127.0.0.1:3306/wwr?useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
+    <user>root</user>
+    <password>pass123</password>
+  </data-source>
+
 </web-app>

@@ -44,4 +44,3 @@
 ## How to uneploy app to docker wildly
 
         1. mvn wildfly:undeploy
-

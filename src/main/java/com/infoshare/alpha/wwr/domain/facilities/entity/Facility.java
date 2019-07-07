@@ -4,10 +4,14 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.common.Services;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "facilities")
 public class Facility {
 
     private int id;
