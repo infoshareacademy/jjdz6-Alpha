@@ -22,6 +22,10 @@ public class Pesel {
         this.pesel = pesel;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getPesel() {
 
         return pesel;
