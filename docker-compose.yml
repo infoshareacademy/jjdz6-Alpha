@@ -2,6 +2,7 @@
 version: "2" # zmiana wersji z 3 na 2
 services:
   db:
+    container_name: "wwr-db"
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=pass123 # hasło na początku
@@ -15,6 +16,7 @@ services:
       - 3306:3306
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
   app:
+    container_name: "wwr-app"
     build:
       context: .
     ports:
