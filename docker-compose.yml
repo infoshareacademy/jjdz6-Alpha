@@ -1,33 +1,78 @@
-version: '3'
+
+version: "2" # zmiana wersji z 3 na 2
 services:
-  web:
-    container_name: "wwr-app"
-    build: .
-    environment:
-      - DB_NAME=wwr
-      - DB_USER=mysql
-      - DB_PASS=pass123
-      - DB_URI=db:3306
-    depends_on:
-      - db
-    ports:
-      - "8080:8080"
-      - "9990:9990"
   db:
     container_name: "wwr-db"
-    image: "mysql:latest"
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
-    restart: always
+    image: mysql
     environment:
+      - MYSQL_ROOT_PASSWORD=pass123 # hasło na początku
       - MYSQL_DATABASE=wwr
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=pass123
-      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./db/init/:/docker-entrypoint-initdb.d/ # init database
       - ./db/data/:/var/lib/mysql/              # data storage
     ports:
-      - "3306:3306"
-networks:
-    default:
-        driver: bridge
+      - 3306:3306
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+  app:
+    container_name: "wwr-app"
+    build:
+      context: .
+    ports:
+      - 8080:8080
+      - 9990:9990
+    depends_on:
+      - db
+    links:
+      - db
+    dns: 8.8.8.8
+
+#version: '3'
+#services:
+#  web:
+#    container_name: "wwr-app"
+#    build: .
+#    environment:
+#      - DB_NAME=wwr
+#      - DB_USER=mysql
+#      - DB_PASS=pass123
+#      - DB_URI=db:3306
+#    depends_on:
+#      - db
+#    links:
+#      - db
+#    dns: 8.8.8.8
+#    ports:
+#      - "8080:8080"
+#      - "9990:9990"
+#
+##  phpmyadmin:
+##      container_name: "wwr-phpmyadmin"
+##      image: phpmyadmin/phpmyadmin
+##      links:
+##        - db:db
+##      ports:
+##        - "8000:80"
+##      environment:
+##        MYSQL_USER: mysql
+##        MYSQL_PASSWORD: pass123
+##        MYSQL_ROOT_PASSWORD: root
+#  db:
+#    container_name: "wwr-db"
+#    image: "mysql:latest"
+#    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+#    restart: always
+#    environment:
+#      - MYSQL_DATABASE=wwr
+#      - MYSQL_USER=mysql
+#      - MYSQL_PASSWORD=pass123
+#      - MYSQL_ROOT_PASSWORD=root
+#    volumes:
+#      - ./db/init/:/docker-entrypoint-initdb.d/ # init database
+#      - ./db/data/:/var/lib/mysql/              # data storage
+#    ports:
+#      - "3306:3306"
+#
+#
+#
