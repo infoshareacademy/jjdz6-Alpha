@@ -9,3 +9,4 @@ test.iml
 main.iml
 *.iml
 **/*.iml
+/db/data/*

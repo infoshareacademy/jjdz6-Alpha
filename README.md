@@ -4,7 +4,7 @@
 
         1. install maven in your system ( ubuntu : sudo apt install mvn )
         2. build project go to project dir where is pom.xml file, then : mvn install
-        3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.1.jar
+        3. execute jar from target/ dir: java -jar childDevelopmentSupportSystem-0.2.jar
 
 ## How to use di
         1. initialize DI: 
@@ -22,16 +22,44 @@
   <!-- mvn install dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/lib -->
   <!-- mvn clean compile assembly:single -->
 
-## How to build and run Docker with wildfly
+## App docker , how to up
+        1. docker-compose up -d or docker-compose up (in main app dir)
 
-    1. [sudo] docker build .
-    2. 
+## App docker , how to stop
+        1. docker-compose stop or Ctrl + Z (in main app dir )
 
+## App docker, how to reload
+        1. docker-compose stop
+        2. remove containers 
+        3. Clear db docker schema : rm -rf db/data/* 
 
-### Pytania do trenara j2ee
- * jak przygotowac build ktory bedzie sie skladal z budowanej paczki jar ktora bedzie uzywana w war ? 
- * czy biblioteki w depencencies przekopiowuja sie same do lib w paczce war ?
- * jak przekazywać konfigurację z pliku web.xml do serwleta (przyklad) i co to jest configuracja kontekstowa?
- * gdzie powinno sie przechowywac konfiguracje serwleta ( w projektach komercyjnych ) 
- 
- 
+## How to deploy app to docker wildfly
+
+        1. mvn clean package wildfly:deploy
+
+## How to redeploy app to docker wildly
+
+        1. mvn wildfly:redeploy
+
+## How to uneploy app to docker wildly
+
+        1. mvn wildfly:undeploy
+## How to set file encoding in docker/wildfly JAVA_OPTS (docker-compose.yml)
+      app:
+        container_name: "wwr-app"
+        environment:
+          - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true-Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8
+        build:
+          context: .
+        ports:
+          - 8080:8080
+          - 9990:9990
+        depends_on:
+          - db
+        links:
+          - db
+        dns: 8.8.8.8
+## How to start containers separately via docker-compose
+    docker-compose start [sevice-name]
+    docker-compose start db
+    docker-compose start app

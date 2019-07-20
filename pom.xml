@@ -16,6 +16,7 @@
     <url>http://www.cdss.com.pl</url>
 
     <properties>
+        <wwr.package.name>${project.artifactId}-${project.version}.${project.packaging}</wwr.package.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -138,6 +139,25 @@
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${resources.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>1.2.1.Final</version>
+                    <configuration>
+                        <name>${wwr.package.name}</name>
+                        <username>admin</username>
+                        <password>admin</password>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
 
                 <plugin>

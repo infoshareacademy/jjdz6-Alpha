@@ -2,94 +2,128 @@
   "facilities": [
     {
       "id": 1,
-      "name": "WWR1",
+      "name": "Ośrodek Wczesnej Interwencji - filia nr 1 Niepubliczny Zakład Opieki Zdrowotnej",
       "address": {
-        "city": "Gdańsk",
-        "street": "Nowe Ogrody 23",
-        "phone": "+48 564 123 123"
+        "city": "Gdynia",
+        "street": "Augustyna Necla 11-13",
+        "phone": "+48 58 621 74 40",
+        "postalCode": "81377"
       },
+      "isNfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"},
-        {"name": "abc"}
+        {"name": "rehabilitacja"},
+        {"name": "terapia SI"},
+        {"name": "pedagog specjalny"},
+        {"name": "psycholog specialny"},
+        {"name": "neurologopeda"}
       ]
     },
     {
       "id": 2,
-      "name": "WWR2",
+      "name": "Wyspa",
       "address": {
         "city": "Gdańsk",
-        "street": "Al. Grunwaldzka 223",
-        "phone": "+48 564 123 555"
+        "street": "ul. Kartuska 214",
+        "phone": "+48 564 123 555",
+        "postalCode": "80122"
       },
+      "isNfz" : false,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name": "rehabilitacja"},
+        {"name": "neurologopeda"}
       ]
     },
     {
       "id": 3,
-      "name": "WWR3",
+      "name": "Poradnia psychologiczno-pedagogiczna, filia nr 6",
       "address": {
         "city": "Sopot",
         "street": "Zwyciestwa 17",
-        "phone": "+48 754 123 123"
+        "phone": "+48 754 123 123",
+        "postalCode": "81704"
       },
-      "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+      "isNfz" : true,
+      "services": [
+        {"name": "pedagog specjalny"},
+        {"name": "neurolog"}
       ]
     },
     {
       "id": 4,
-      "name": "WWR4",
+      "name": "Poradnia psychologiczno-pedagogiczna, filia nr 7",
       "address": {
         "city": "Gdynia",
         "street": "Kolejowa 23",
-        "phone": "+48 112 123 123"
+        "phone": "+48 112 123 123",
+        "postalCode": "81303"
       },
+      "isNfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name": "neurologopedia"},
+        {"name": "rehabilitacja"}
       ]
     },
     {
       "id": 5,
-      "name": "WWR5",
+      "name": "Ośrodek Wczesnej Interwencji i Wspomagania Rozwoju",
       "address": {
-        "city": "Gdynia",
-        "street": "Swietojanska 110",
-        "phone": "+48 456 123 123"
+        "city": "Gdańsk",
+        "street": "ul. Jagiellońska 11",
+        "phone": "+48 508 186 021",
+        "postalCode": "81368"
       },
+      "isNfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "pedagog specjalny"},
+        {"name": "psycholog specjalny"}
       ]
     },
     {
       "id": 6,
-      "name": "WWR-Oliva",
+      "name": "ODiTiS",
       "address": {
         "city": "Gdańsk-Oliwa",
-        "street": "Krzywoustego 123",
-        "phone": "+48 543 234 123"
+        "street": "Matemblewska 42",
+        "phone": "+48 602 491 421",
+        "postalCode": "80830"
       },
+      "isNfz" : false,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name" : "psycholog specjalny"},
+        {"name": "terapia SI"}
       ]
     },
     {
       "id": 7,
-      "name": "WWR-Gdynia-Port",
+      "name": "Centrum Rehabilitacji Ośrodek Wczesnej Interwencji w Gdyni",
+      "address": {
+        "city": "Gdynia",
+        "street": "Harcerska 4",
+        "phone": "+48 58 622 07 48",
+        "postalCode": "81425"
+      },
+      "isNfz" : true,
+      "services" : [
+        {"name": "rehabilitacja"},
+        {"name": "terapia SI"},
+        {"name": "pedagog specjalny"},
+        {"name": "psycholog specialny"},
+        {"name": "neurologopeda"}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Poradnia psychologiczno-pedagogiczna, filia nr 4",
       "address": {
         "city": "Gdynia",
         "street": "Portowa 1",
-        "phone": "+48 112 234 123"
+        "phone": "+48 112 234 123",
+        "postalCode": "81339"
       },
+      "isNfz" : true,
       "services" : [
-        {"name" : "pediatria"},
-        {"name": "wspomaganie123"}
+        {"name": "terapia SI"},
+        {"name": "neurologopeda"}
       ]
     }
   ]
