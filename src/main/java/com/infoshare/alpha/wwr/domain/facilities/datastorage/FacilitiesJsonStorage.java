@@ -9,12 +9,17 @@ import com.infoshare.alpha.wwr.servlet.utils.WebInfPathResolver;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 import java.io.*;
+import java.util.logging.Logger;
 
 @Stateful
 public class FacilitiesJsonStorage {
 
+    public static final String FACILITIES_FILE_NAME = "facilities.json";
+
     @Inject
     private WebInfPathResolver webInfPathResolver;
+
+    private Logger logger = Logger.getLogger(FacilitiesJsonStorage.class.getName());
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -23,7 +28,7 @@ public class FacilitiesJsonStorage {
             Facilities facilities = this.gson.fromJson(reader, Facilities.class);
             return facilities;
         } catch (IOException e) {
-            e.printStackTrace();
+           logger.severe(e.getMessage());
         }
 
         return new Facilities();
@@ -34,14 +39,14 @@ public class FacilitiesJsonStorage {
         try (Writer writer = new FileWriter(this.getFacilitiesRepoPath())) {
             this.gson.toJson(facilities, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
         }
     }
 
     private String getFacilitiesRepoPath() {
 
         return  !webInfPathResolver.getJsonRepositoryPath().isEmpty() ?
-                webInfPathResolver.getJsonRepositoryPath() + "facilities.json" :
-                Resources.getResource("facilities.json").getPath();
+                webInfPathResolver.getJsonRepositoryPath() + FACILITIES_FILE_NAME :
+                Resources.getResource(FACILITIES_FILE_NAME).getPath();
     }
 }
