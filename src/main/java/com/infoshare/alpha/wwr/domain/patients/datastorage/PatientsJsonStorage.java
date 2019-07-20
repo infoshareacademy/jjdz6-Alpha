@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @Stateful
 public class PatientsJsonStorage {
 
-    public static final String PATIENTS_REPO_FILE_NAME = "patients.json";
+    public static final String PATIENTS_FILE_NAME = "patients.json";
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -48,8 +48,8 @@ public class PatientsJsonStorage {
 
     private String getPatientsRepoPath() {
         return  !webInfPathResolver.getJsonRepositoryPath().isEmpty() ?
-                webInfPathResolver.getJsonRepositoryPath() + PATIENTS_REPO_FILE_NAME :
-                Resources.getResource(PATIENTS_REPO_FILE_NAME).getPath();
+                webInfPathResolver.getJsonRepositoryPath() + PATIENTS_FILE_NAME :
+                Resources.getResource(PATIENTS_FILE_NAME).getPath();
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @Stateful
 public class FacilitiesJsonStorage {
 
-    public static final String FACILITIES_REPO_FILE_NAME = "facilities.json";
+    public static final String FACILITIES_FILE_NAME = "facilities.json";
 
     @Inject
     private WebInfPathResolver webInfPathResolver;
@@ -46,7 +46,7 @@ public class FacilitiesJsonStorage {
     private String getFacilitiesRepoPath() {
 
         return  !webInfPathResolver.getJsonRepositoryPath().isEmpty() ?
-                webInfPathResolver.getJsonRepositoryPath() + FACILITIES_REPO_FILE_NAME :
-                Resources.getResource(FACILITIES_REPO_FILE_NAME).getPath();
+                webInfPathResolver.getJsonRepositoryPath() + FACILITIES_FILE_NAME :
+                Resources.getResource(FACILITIES_FILE_NAME).getPath();
     }
 }
