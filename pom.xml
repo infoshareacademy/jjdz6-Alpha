@@ -7,7 +7,10 @@
     <groupId>com.infoshare.alpha</groupId>
     <artifactId>child-development-support-system</artifactId>
     <version>0.2-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>WWR-API</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>child-development-support-system</name>
     <url>http://www.cdss.com.pl</url>
