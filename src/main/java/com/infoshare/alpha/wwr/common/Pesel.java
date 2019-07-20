@@ -27,13 +27,11 @@ public class Pesel {
     }
 
     public String getPesel() {
-
         return pesel;
     }
 
     @Override
     public String toString() {
-
         return " Pesel = " + pesel;
     }
 }
