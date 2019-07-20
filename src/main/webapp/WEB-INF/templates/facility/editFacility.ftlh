@@ -17,12 +17,7 @@
 </head>
 <body>
 
-<header>
-    <nav>
-        <a href="/wwr/">Main page</a>
-    </nav>
-
-</header>
+<#include "../subpageHeader.ftlh">
 
 <div class="container">
 

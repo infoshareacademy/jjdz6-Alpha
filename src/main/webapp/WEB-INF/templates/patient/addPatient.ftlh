@@ -12,4 +12,4 @@
 
 <body class="bg-light">
 
-<#include "/WEB-INF/templates/subpageHeader.ftlh">
+<#include "../subpageHeader.ftlh">

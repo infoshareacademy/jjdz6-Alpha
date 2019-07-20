@@ -17,7 +17,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Znajdź pacjenta</a>
                         <a class="dropdown-item" href="find-facilities">Pokaż placówki dla pacjenta</a>
-                        <a class="dropdown-item" href="add-patient.html">Dodaj pacjenta</a>
+                        <a class="dropdown-item" href="patient">Dodaj pacjenta</a>
                         <a class="dropdown-item" href="#">Edytuj pacjenta</a>
                         <a class="dropdown-item" href="#">Usuń pacjenta</a>
                         <div class="dropdown-divider"></div>

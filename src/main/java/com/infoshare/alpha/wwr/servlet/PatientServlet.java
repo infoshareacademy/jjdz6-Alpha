@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,8 +47,10 @@ public class PatientServlet extends BaseWwrServlet {
         try {
             resp.setContentType("text/html;charset=UTF-8");
             req.setCharacterEncoding("UTF-8");
-            Map<String, Object> model = new HashMap<>();
+            PrintWriter writer = resp.getWriter();
             Template template = templateProvider.getTemplate(getServletContext(), PATIENT_ADD_TEMPLATE_PATH);
+            Map<String, Object> model = new HashMap<>();
+
 
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
@@ -68,6 +71,9 @@ public class PatientServlet extends BaseWwrServlet {
             Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam));
 
             patientsService.add(patient);
+
+            model.put("patient", patient);
+            template.process(model, writer);
 
             resp.getWriter().println("<!DOCTYPE html><html><body>");
             resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
