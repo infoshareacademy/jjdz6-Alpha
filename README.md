@@ -39,9 +39,24 @@
 
 ## How to redeploy app to docker wildly
 
-        1. mvn wildfly:reseploy
+        1. mvn wildfly:redeploy
 
 ## How to uneploy app to docker wildly
 
         1. mvn wildfly:undeploy
-
+## How to set file encoding in docker/wildfly JAVA_OPTS (docker-compose.yml)
+      app:
+        container_name: "wwr-app"
+        environment:
+          - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true-Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8
+        build:
+          context: .
+        ports:
+          - 8080:8080
+          - 9990:9990
+        depends_on:
+          - db
+        links:
+          - db
+        dns: 8.8.8.8
+    

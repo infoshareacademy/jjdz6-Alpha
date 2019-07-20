@@ -1,33 +1,30 @@
-version: '3'
+version: "2"
 services:
-  web:
-    container_name: "wwr-app"
-    build: .
-    environment:
-      - DB_NAME=wwr
-      - DB_USER=mysql
-      - DB_PASS=pass123
-      - DB_URI=db:3306
-    depends_on:
-      - db
-    ports:
-      - "8080:8080"
-      - "9990:9990"
   db:
     container_name: "wwr-db"
-    image: "mysql:latest"
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
-    restart: always
+    image: mysql:8.0
     environment:
+      - MYSQL_ROOT_PASSWORD=pass123 # hasło na początku
       - MYSQL_DATABASE=wwr
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=pass123
-      - MYSQL_ROOT_PASSWORD=root
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
     volumes:
       - ./db/init/:/docker-entrypoint-initdb.d/ # init database
       - ./db/data/:/var/lib/mysql/              # data storage
     ports:
-      - "3306:3306"
-networks:
-    default:
-        driver: bridge
+      - 3306:3306
+  app:
+    container_name: "wwr-app"
+    environment:
+      - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true  -Dfile.encoding=UTF-8
+    build:
+      context: .
+    ports:
+      - 8080:8080
+      - 9990:9990
+    depends_on:
+      - db
+    links:
+      - db
+    dns: 8.8.8.8
