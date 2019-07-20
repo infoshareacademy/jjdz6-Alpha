@@ -10,6 +10,7 @@ import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.PatientValidationException;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -86,7 +87,7 @@ public class PatientServlet extends BaseWwrServlet {
             resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
             resp.getWriter().println(e.getMessage());
             resp.getWriter().println("</body></html>\n");
-        } catch (PatientValidationException e) {
+        } catch (PatientValidationException | TemplateException e) {
             resp.getWriter().println("<!DOCTYPE html><html><body>");
             resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
             resp.getWriter().println(e.getMessage());
