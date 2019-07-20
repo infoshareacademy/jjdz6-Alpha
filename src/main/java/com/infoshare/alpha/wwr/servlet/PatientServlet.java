@@ -9,6 +9,7 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.PatientValidationException;
+import freemarker.template.Template;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -16,9 +17,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 public class PatientServlet extends BaseWwrServlet {
+
+    private final String PATIENT_ADD_TEMPLATE_PATH = "/patient/addPatient.ftlh";
 
     @Inject
     PatientsService patientsService;
@@ -41,6 +46,8 @@ public class PatientServlet extends BaseWwrServlet {
         try {
             resp.setContentType("text/html;charset=UTF-8");
             req.setCharacterEncoding("UTF-8");
+            Map<String, Object> model = new HashMap<>();
+            Template template = templateProvider.getTemplate(getServletContext(), PATIENT_ADD_TEMPLATE_PATH);
 
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
@@ -53,6 +60,8 @@ public class PatientServlet extends BaseWwrServlet {
             String postalCodeParam = req.getParameter("postalCode");
             String parentNameParam = req.getParameter("parentName");
             String parentSurnameParam = req.getParameter("parentSurname");
+
+
 
             Integer postalCode = Integer.parseInt(postalCodeParam);
 
