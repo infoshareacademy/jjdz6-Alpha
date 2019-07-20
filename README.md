@@ -59,4 +59,7 @@
         links:
           - db
         dns: 8.8.8.8
-    
+## How to start containers separately via docker-compose
+    docker-compose start [sevice-name]
+    docker-compose start db
+    docker-compose start app
