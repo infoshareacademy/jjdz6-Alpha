@@ -41,7 +41,7 @@
 
         1. mvn wildfly:redeploy
 
-## How to uneploy app to docker wildly
+## How to undeploy app to docker wildly
 
         1. mvn wildfly:undeploy
 ## How to set file encoding in docker/wildfly JAVA_OPTS (docker-compose.yml)
