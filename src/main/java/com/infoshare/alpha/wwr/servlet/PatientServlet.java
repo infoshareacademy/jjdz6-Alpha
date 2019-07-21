@@ -5,8 +5,9 @@ import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselDao;
 import com.infoshare.alpha.wwr.common.PeselException;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
+import com.infoshare.alpha.wwr.domain.patients.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
-import com.infoshare.alpha.wwr.domain.patients.entity.ParentDao;
+import com.infoshare.alpha.wwr.domain.patients.dao.ParentDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
@@ -38,15 +39,19 @@ public class PatientServlet extends BaseWwrServlet {
     @Inject
     ParentDao parentDao;
 
+    @Inject
+    PatientDao patientDao;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req,resp);
 
 //        this.renderJson(peselDao.findAll().toArray());
-        List<Parent> parents = parentDao.findAll();
+//        List<Parent> parents = parentDao.findAll();
+        List<Patient> patients = patientDao.findAll();
 
-        this.renderJson(parents.toArray());
+        this.renderJson(patients.toArray());
 
 
     }

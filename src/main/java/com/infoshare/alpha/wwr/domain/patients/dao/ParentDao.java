@@ -1,4 +1,6 @@
-package com.infoshare.alpha.wwr.domain.patients.entity;
+package com.infoshare.alpha.wwr.domain.patients.dao;
+
+import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

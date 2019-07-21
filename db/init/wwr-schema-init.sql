@@ -22,6 +22,20 @@ insert into pesel_numbers (number) values ("84101212301"); -- id =9
 insert into pesel_numbers (number) values ("85101212301"); -- id =10
 
 -- ---------------------------------------------------------------------------------------------------------------------
+create table addresses (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    city VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    postalCode INT NOT NULL
+);
+-- patients addresses
+insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Pilotów 23", "556 454 234", 80460);
+insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Miałki Szlak 12", "556 111 222", 81560);
+insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Warneńska 80", "756 121 232", 80210);
+insert into addresses (city, street, phone, postalCode) VALUES ("Sopot", "Warneńska 80", "856 422 226", 80210);
+insert into addresses (city, street, phone, postalCode) VALUES ("Gdynia", "Polska 11", "556 343 442", 80210);
+-- ---------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE parents (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -44,15 +58,17 @@ CREATE TABLE patients (
     surname VARCHAR(255) NOT NULL,
     pesel_id INT NOT NULL,
     parent_id INT NOT NULL,
+    address_id INT NOT NULL,
     CONSTRAINT fk_patients_pesel_id FOREIGN KEY (pesel_id) REFERENCES pesel_numbers(id),
-    CONSTRAINT fk_patients_parent_id FOREIGN KEY (parent_id) REFERENCES parents(id)
+    CONSTRAINT fk_patients_parent_id FOREIGN KEY (parent_id) REFERENCES parents(id),
+    CONSTRAINT fk_patients_address_id FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
 
-insert into patients (name, surname, pesel_id, parent_id) VALUES ("Łukasz", "Łukaszewski", 1, 1); -- id =1
-insert into patients (name, surname, pesel_id, parent_id) VALUES ("Magda", "Jakowska", 2, 2); -- id =2
-insert into patients (name, surname, pesel_id, parent_id) VALUES ("Adam", "Kowalski", 3, 3); -- id =3
-insert into patients (name, surname, pesel_id, parent_id) VALUES ("Kornelia", "Dorocińska", 4, 4); -- id =4
-insert into patients (name, surname, pesel_id, parent_id) VALUES ("Mieszko", "Kot", 5, 5); -- id =5
+insert into patients (name, surname, pesel_id, parent_id, address_id) VALUES ("Łukasz", "Łukaszewski", 1, 1, 1); -- id =1
+insert into patients (name, surname, pesel_id, parent_id, address_id) VALUES ("Magda", "Jakowska", 2, 2, 2); -- id =2
+insert into patients (name, surname, pesel_id, parent_id, address_id) VALUES ("Adam", "Kowalski", 3, 3, 3); -- id =3
+insert into patients (name, surname, pesel_id, parent_id, address_id) VALUES ("Kornelia", "Dorocińska", 4, 4, 4); -- id =4
+insert into patients (name, surname, pesel_id, parent_id, address_id) VALUES ("Mieszko", "Kot", 5, 5, 5); -- id =5
 
 -- ---------------------------------------------------------------------------------------------------------------------
 
@@ -67,13 +83,6 @@ create table services (
     name VARCHAR(255) NOT NULL
 );
 
-create table addresses (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    city VARCHAR(255) NOT NULL,
-    street VARCHAR(255) NOT NULL,
-    phone VARCHAR(255) NOT NULL,
-    postalCode INT NOT NULL
-);
 
 -- relational tables
  create table facilities_addresses (
@@ -84,13 +93,14 @@ create table addresses (
     CONSTRAINT fk_facilities_addresses_address_id FOREIGN KEY (address_id) REFERENCES addresses(id)
  );
 
- create table patients_addresses (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    patient_id INT NOT NULL,
-    address_id INT NOT NULL,
-    CONSTRAINT fk_patients_addresses_patient_id FOREIGN KEY (patient_id) REFERENCES patients(id),
-    CONSTRAINT fk_patients_addresses_address_id FOREIGN KEY (address_id) REFERENCES addresses(id)
- );
+-- to delete
+-- create table patients_addresses (
+--    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--    patient_id INT NOT NULL,
+--    address_id INT NOT NULL,
+--    CONSTRAINT fk_patients_addresses_patient_id FOREIGN KEY (patient_id) REFERENCES patients(id),
+--    CONSTRAINT fk_patients_addresses_address_id FOREIGN KEY (address_id) REFERENCES addresses(id)
+-- );
 
  create table facilities_services (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,

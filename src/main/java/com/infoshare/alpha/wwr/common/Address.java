@@ -24,6 +24,9 @@ public class Address {
     @Column(name = "postalCode", nullable = false)
     private int postalCode;
 
+    public Address() {
+    }
+
     public Address(String city, String street, String phone, int postalCode) {
         this.city = city;
         this.street = street;

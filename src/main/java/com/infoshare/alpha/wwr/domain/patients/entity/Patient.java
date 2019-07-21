@@ -4,26 +4,57 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
-public class Patient extends User implements Comparable<Patient> {
+@Entity
+@Table(name = "patients")
+public class Patient implements Comparable<Patient> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "surname", nullable = false)
+    private String surname;
+
+    @OneToOne()
+    @JoinColumn(name = "address_id", unique = true)
     private Address address;
+
+    @OneToOne()
+    @JoinColumn(name = "pesel_id", unique = true)
     private Pesel pesel;
+
+    @OneToOne()
+    @JoinColumn(name = "parent_id", unique = true)
     private Parent parent;
 
     public Patient(String name, String surname, Pesel pesel, Address address, Parent parent) {
-        super(name, surname);
+        this.name = name;
+        this.surname = surname;
         this.pesel = pesel;
         this.address = address;
         this.parent = parent;
     }
 
     public Patient() {
-        super("", "");
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     public Address getAddress() {
