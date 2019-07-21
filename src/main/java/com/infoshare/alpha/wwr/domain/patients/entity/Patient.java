@@ -4,9 +4,12 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.User;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
 public class Patient extends User implements Comparable<Patient> {
+
 
     private Address address;
     private Pesel pesel;

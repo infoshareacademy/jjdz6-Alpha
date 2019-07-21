@@ -1,3 +1,4 @@
+SET NAMES utf8;
 -- initialize wwr db schema , init sample data
 
 -- entity tables
@@ -71,7 +72,7 @@ create table addresses (
     city VARCHAR(255) NOT NULL,
     street VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
-    postalCode VARCHAR(255) NOT NULL
+    postalCode INT NOT NULL
 );
 
 -- relational tables

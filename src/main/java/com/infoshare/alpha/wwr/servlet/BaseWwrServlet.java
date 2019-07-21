@@ -94,6 +94,8 @@ public abstract class BaseWwrServlet extends HttpServlet {
     }
 
     protected void renderJson(Object model) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setHeader("Content-type", "application/json");
         response.setContentType("application/json");
         responsePrinter.print(response, gson.toJson(model));

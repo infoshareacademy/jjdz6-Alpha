@@ -10,7 +10,7 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -19,7 +19,7 @@ public class Service {
         this.name = name;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

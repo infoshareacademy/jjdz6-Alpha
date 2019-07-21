@@ -9,29 +9,32 @@ public class Pesel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
-    @Column(name = "pesel")
-    private String pesel;
+    @Column(name = "number", nullable = false)
+    private String number;
 
-    public Pesel(String pesel) throws PeselException {
-        if (pesel.length() != 11) {
+    public Pesel() {
+    }
+
+    public Pesel(String number) throws PeselException {
+        if (number.length() != 11) {
 
             throw PeselException.validationError();
         }
-        this.pesel = pesel;
+        this.number = number;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
     public String getPesel() {
-        return pesel;
+        return number;
     }
 
     @Override
     public String toString() {
-        return " Pesel = " + pesel;
+        return " Pesel = " + number;
     }
 }

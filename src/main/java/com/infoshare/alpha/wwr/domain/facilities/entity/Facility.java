@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "facilities")
+//@Entity
+//@Table(name = "facilities")
 public class Facility {
 
     private int id;
