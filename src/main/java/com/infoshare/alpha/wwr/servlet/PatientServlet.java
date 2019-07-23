@@ -18,10 +18,15 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
+@Transactional
 public class PatientServlet extends BaseWwrServlet {
 
     @Inject
@@ -47,11 +52,17 @@ public class PatientServlet extends BaseWwrServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req,resp);
 
+        //TODO: uwaga przy relacji many to many zeby mapowac wynik zapytania dla gsona.
 //        this.renderJson(peselDao.findAll().toArray());
 //        List<Parent> parents = parentDao.findAll();
         List<Patient> patients = patientDao.findAll();
+        Optional<Patient> first = patients.stream().findFirst();
 
-        this.renderJson(patients.toArray());
+        Map<String,String> firstUser = new HashMap<>();
+        firstUser.put(first.get().getName(), first.get().getServices().toString());
+        this.renderJson(firstUser.toString());
+
+//        this.renderJson(patients.toArray());
 
 
     }

@@ -190,5 +190,22 @@ insert into services (name) values("neurolog"); -- 18
     CONSTRAINT fk_patients_services_service_id FOREIGN KEY (service_id) REFERENCES services(id)
  );
 
+ insert into patients_services (patient_id, service_id) values (1,16);
+ insert into patients_services (patient_id, service_id) values (1,17);
+ insert into patients_services (patient_id, service_id) values (1,18);
+ insert into patients_services (patient_id, service_id) values (2,13);
+ insert into patients_services (patient_id, service_id) values (2,14);
+ insert into patients_services (patient_id, service_id) values (3,12);
+ insert into patients_services (patient_id, service_id) values (4,15);
+ insert into patients_services (patient_id, service_id) values (5,16);
+
+-- ---------------------------------------------------------------------------------------------------------------------
+ create table patients_facilities (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    patient_id INT NOT NULL,
+    facility_id INT NOT NULL,
+    CONSTRAINT fk_patients_facilities_patient_id FOREIGN KEY (patient_id) REFERENCES patients(id),
+    CONSTRAINT fk_patients_facilities_facility_id FOREIGN KEY (facility_id) REFERENCES facilities(id)
+ );
 
 

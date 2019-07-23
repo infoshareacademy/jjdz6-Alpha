@@ -2,12 +2,13 @@ package com.infoshare.alpha.wwr.domain.patients.entity;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.common.User;
+import com.infoshare.alpha.wwr.common.Service;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "Patient")
 @Table(name = "patients")
 public class Patient implements Comparable<Patient> {
 
@@ -34,12 +35,29 @@ public class Patient implements Comparable<Patient> {
     @JoinColumn(name = "parent_id", unique = true)
     private Parent parent;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "patients_services",
+            joinColumns = { @JoinColumn(name = "patient_id") },
+            inverseJoinColumns = { @JoinColumn(name = "service_id") }
+    )
+    private java.util.List<Service> services = new ArrayList<>();
+
     public Patient(String name, String surname, Pesel pesel, Address address, Parent parent) {
         this.name = name;
         this.surname = surname;
         this.pesel = pesel;
         this.address = address;
         this.parent = parent;
+    }
+
+    public Patient(String name, String surname, Pesel pesel, Address address, Parent parent, java.util.List<Service> services) {
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+        this.address = address;
+        this.parent = parent;
+        this.services = services;
     }
 
     public Patient() {
@@ -69,6 +87,10 @@ public class Patient implements Comparable<Patient> {
         return parent;
     }
 
+    public java.util.List getServices() {
+        return services;
+    }
+
     @Override
     public String toString() {
 
@@ -91,16 +113,12 @@ public class Patient implements Comparable<Patient> {
         if (this == o) return true;
         if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(getAddress(), patient.getAddress()) &&
-                Objects.equals(getPesel(), patient.getPesel()) &&
-                Objects.equals(getParent(), patient.getParent()) &&
-                Objects.equals(getName(), patient.getName()) &&
-                Objects.equals(getSurname(), patient.getSurname());
+        return getId() == patient.getId() && Objects.equals(getName(), patient.getName()) && Objects.equals(getSurname(), patient.getSurname()) && Objects.equals(getAddress(), patient.getAddress()) && Objects.equals(getPesel(), patient.getPesel()) && Objects.equals(getParent(), patient.getParent()) && Objects.equals(getServices(), patient.getServices());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAddress(), getPesel(), getParent(), getName(), getSurname());
+        return Objects.hash(getId(), getName(), getSurname(), getAddress(), getPesel(), getParent(), getServices());
     }
 }
 
