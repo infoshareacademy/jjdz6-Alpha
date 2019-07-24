@@ -19,7 +19,7 @@ services:
     environment:
       - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true  -Dfile.encoding=UTF-8
     build:
-      context: .
+      context: WWR-APP/.
     ports:
       - 8080:8080
       - 9990:9990
