@@ -2,24 +2,41 @@ package com.infoshare.alpha.wwr.domain.facilities.entity;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Service;
-import com.infoshare.alpha.wwr.common.Services;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//@Entity
-//@Table(name = "facilities")
+@Entity(name = "Facility")
+@Table(name = "facilities")
 public class Facility {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToOne()
+    @JoinColumn(name = "address_id", unique = true)
     private Address address;
+
+    @Column(name = "is_nfz")
     private Boolean isNfz;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "facilities_services",
+            joinColumns = { @JoinColumn(name = "facility_id") },
+            inverseJoinColumns = { @JoinColumn(name = "service_id") }
+    )
     private List<Service> services = new ArrayList<>();
 
+    public Facility() {
+    }
 
     public Facility(int id, String name, Address address, List<Service> services) {
         this.id = id;
@@ -66,7 +83,7 @@ public class Facility {
     }
 
     public List<Service> getServices() {
-        return this.services;
+        return services;
     }
 
     public Boolean isNfz() {
@@ -81,8 +98,7 @@ public class Facility {
     public String toString() {
         return " Id : " + this.id +
                 " Name : " + this.name + this.address.toString() +
-                " Nfz : " + valueOf(isNfz) +
-                " Services : " + Services.fromList(this.services);
+                " Nfz : " + valueOf(isNfz);
     }
 
     @Override

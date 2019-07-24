@@ -15,11 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"})
+@Transactional
 public class FacilityServlet extends BaseWwrServlet {
 
     private final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";

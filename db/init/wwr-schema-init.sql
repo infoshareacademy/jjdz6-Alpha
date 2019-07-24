@@ -207,5 +207,30 @@ insert into services (name) values("neurolog"); -- 18
     CONSTRAINT fk_patients_facilities_patient_id FOREIGN KEY (patient_id) REFERENCES patients(id),
     CONSTRAINT fk_patients_facilities_facility_id FOREIGN KEY (facility_id) REFERENCES facilities(id)
  );
+-- facilities 1-8
+-- patient 1-5
+ insert into patients_facilities (patient_id, facility_id) values (1,1);
+ insert into patients_facilities (patient_id, facility_id) values (1,2);
+ insert into patients_facilities (patient_id, facility_id) values (1,3);
+
+ insert into patients_facilities (patient_id, facility_id) values (2,2);
+ insert into patients_facilities (patient_id, facility_id) values (2,5);
+ insert into patients_facilities (patient_id, facility_id) values (2,7);
+ insert into patients_facilities (patient_id, facility_id) values (2,8);
+
+ insert into patients_facilities (patient_id, facility_id) values (3,8);
+ insert into patients_facilities (patient_id, facility_id) values (3,7);
+ insert into patients_facilities (patient_id, facility_id) values (3,1);
+
+ insert into patients_facilities (patient_id, facility_id) values (4,2);
+ insert into patients_facilities (patient_id, facility_id) values (4,8);
+ insert into patients_facilities (patient_id, facility_id) values (4,3);
+
+ insert into patients_facilities (patient_id, facility_id) values (5,5);
+ insert into patients_facilities (patient_id, facility_id) values (5,4);
+ insert into patients_facilities (patient_id, facility_id) values (5,1);
+
+-- ---------------------------------------------------------------------------------------------------------------------
+
 
 

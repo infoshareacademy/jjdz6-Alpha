@@ -1,9 +1,8 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.common.PeselDao;
-import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.common.*;
+import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
@@ -47,11 +46,27 @@ public class PatientServlet extends BaseWwrServlet {
     @Inject
     PatientDao patientDao;
 
+    @Inject
+    ServiceDao serviceDao;
+
+    @Inject
+    FacilityDao facilityDao;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req,resp);
 
+//        List<Facility> facilities = facilityDao.findAll();
+//        this.renderJson(facilities.stream().findFirst().get().toString());
+
+
+        List<Service> services = serviceDao.findAll();
+
+
+        this.renderJson(services.stream().findFirst().get().toString());
+
+        /*
         //TODO: uwaga przy relacji many to many zeby mapowac wynik zapytania dla gsona.
 //        this.renderJson(peselDao.findAll().toArray());
 //        List<Parent> parents = parentDao.findAll();
@@ -63,7 +78,7 @@ public class PatientServlet extends BaseWwrServlet {
         this.renderJson(firstUser.toString());
 
 //        this.renderJson(patients.toArray());
-
+        */
 
     }
 

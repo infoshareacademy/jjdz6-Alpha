@@ -1,5 +1,6 @@
 package com.infoshare.alpha.wwr.common;
 
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
 import javax.persistence.*;
@@ -17,12 +18,11 @@ public class Service {
     @Column(name = "name", nullable = false)
     private String name;
 
-    /**
-     * W tym przypadku zeby zapobiec infinite loop dla gson render komentujemy to albo specjalnie obrabiamy odpowiedz w servlecie
-     * TODO: do przemyślenia czy to wyrzucić z kodu
-     */
     @ManyToMany(mappedBy = "services", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Patient> patients = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "services", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    private List<Facility> facilities = new ArrayList<>();
 
     public Service() {
     }
@@ -41,6 +41,10 @@ public class Service {
 
     public List<Patient> getPatients() {
         return patients;
+    }
+
+    public List<Facility> getFacilities() {
+        return facilities;
     }
 
     @Override

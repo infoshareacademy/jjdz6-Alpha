@@ -3,9 +3,11 @@ package com.infoshare.alpha.wwr.domain.patients.entity;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.Service;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "Patient")
@@ -41,7 +43,15 @@ public class Patient implements Comparable<Patient> {
             joinColumns = { @JoinColumn(name = "patient_id") },
             inverseJoinColumns = { @JoinColumn(name = "service_id") }
     )
-    private java.util.List<Service> services = new ArrayList<>();
+    private List<Service> services = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "patients_facilities",
+            joinColumns = { @JoinColumn(name = "patient_id") },
+            inverseJoinColumns = { @JoinColumn(name = "facility_id") }
+    )
+    private List<Facility> facilities = new ArrayList<>();
 
     public Patient(String name, String surname, Pesel pesel, Address address, Parent parent) {
         this.name = name;
@@ -58,6 +68,16 @@ public class Patient implements Comparable<Patient> {
         this.address = address;
         this.parent = parent;
         this.services = services;
+    }
+
+    public Patient(String name, String surname, Address address, Pesel pesel, Parent parent, List<Service> services, List<Facility> facilities) {
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.pesel = pesel;
+        this.parent = parent;
+        this.services = services;
+        this.facilities = facilities;
     }
 
     public Patient() {
@@ -89,6 +109,10 @@ public class Patient implements Comparable<Patient> {
 
     public java.util.List getServices() {
         return services;
+    }
+
+    public List<Facility> getFacilities() {
+        return facilities;
     }
 
     @Override
