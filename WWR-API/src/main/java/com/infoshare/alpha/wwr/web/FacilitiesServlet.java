@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.servlet;
+package com.infoshare.alpha.wwr.web;
 
 import com.infoshare.alpha.wwr.domain.Facility;
 import com.infoshare.alpha.wwr.exceptions.FacilityNotFoundException;
@@ -12,16 +12,24 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/find-facilities-tracker")
-public class PatientsFacilitiesSearchTracker {
+@Path("/facilities")
+public class FacilitiesServlet {
 
     @Inject
     FacilitiesService facilitiesService;
 
     @GET
-    @Path("/facility/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFacilitiesNumberOfOccurrences(@PathParam("id") Long id) {
+    public Response getFacilities() {
+        return Response.ok()
+                .entity(facilitiesService.getFacilitiesList())
+                .build();
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFacilityDetails(@PathParam("id") Long id) {
         Facility selectedFacility;
         try {
             selectedFacility = facilitiesService.getById(id);
