@@ -1,8 +1,8 @@
 package com.infoshare.alpha.wwr.web;
 
-import com.infoshare.alpha.wwr.domain.Facility;
-import com.infoshare.alpha.wwr.exceptions.FacilityNotFoundException;
-import com.infoshare.alpha.wwr.service.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.Patient;
+import com.infoshare.alpha.wwr.exceptions.PatientNotFoundException;
+import com.infoshare.alpha.wwr.service.PatientsService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -12,34 +12,34 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/facilities")
-public class FacilitiesServlet {
+@Path("/patients")
+public class PatientsServlet {
 
     @Inject
-    FacilitiesService facilitiesService;
+    PatientsService patientsService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFacilities() {
+    public Response getPatients() {
         return Response.ok()
-                .entity(facilitiesService.getFacilitiesList())
+                .entity(patientsService.getPatientsList())
                 .build();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFacilityDetails(@PathParam("id") Long id) {
-        Facility facilityById;
+    public Response getPatientDetails(@PathParam("id") Long id) {
+        Patient patientById;
         try {
-            facilityById = facilitiesService.getById(id);
-        } catch (FacilityNotFoundException e) {
+            patientById = patientsService.getById(id);
+        } catch (PatientNotFoundException e) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage())
                     .build();
         }
         return Response.ok()
-                .entity(facilityById)
+                .entity(patientById)
                 .build();
     }
 }
