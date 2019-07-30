@@ -70,16 +70,13 @@ public class FacilityServlet extends BaseWwrServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
-            req.setCharacterEncoding("UTF-8");
-            resp.setCharacterEncoding("UTF-8");
             super.doPut(req, resp);
 
             facilityServletValidator.validatePutRequest(req.getParameterMap());
 
             Facility facility = getFacilityFromRequestData(req.getParameterMap());
-            Facility oldFacility = facilitiesReadModel.getById(facility.getId());
 
-            facilitiesService.edit(new FacilityEditCommand(oldFacility, facility));
+            facilitiesService.edit(new FacilityEditCommand(facility));
 
             response.setStatus(HttpServletResponse.SC_OK);
             Map<String, Object> model = new HashMap<>();
@@ -100,7 +97,7 @@ public class FacilityServlet extends BaseWwrServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             Map<String, Object> model = new HashMap<>();
             model.put("facility", this.getFacilityFromRequestData(req.getParameterMap()));
-            model.put("serviceError", e);
+            model.put("serviceError", new FacilitiesException(e.getMessage(), FacilitiesException.FACILITY_SERVICE_ERROR_CODE));
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
         }
     }
@@ -115,6 +112,7 @@ public class FacilityServlet extends BaseWwrServlet {
 
     private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {
         int id = Integer.valueOf(requestData.get("facility_id")[0]);
+        String isNfz = requestData.get("nfz")[0];
         String name = requestData.get("facility_name")[0];
         String city = requestData.get("facility_address_city")[0];
         String street = requestData.get("facility_address_street")[0];
@@ -132,7 +130,6 @@ public class FacilityServlet extends BaseWwrServlet {
             this.logger.severe("Postal number can't be converted to int");
         }
 
-
         String[] servicesData = requestData.get("service[]");
 
         List<Service> services = new ArrayList<>();
@@ -140,6 +137,6 @@ public class FacilityServlet extends BaseWwrServlet {
             services = Arrays.stream(servicesData).map(Service::new).collect(Collectors.toList());
         }
 
-        return new Facility(id, name, new Address(city, street, phone, postalNumber), services);
+        return new Facility(id, name, new Address(city, street, phone, postalNumber),Boolean.valueOf(isNfz), services);
     }
 }

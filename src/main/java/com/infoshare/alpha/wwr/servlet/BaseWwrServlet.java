@@ -61,6 +61,7 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         this.response = this.setResponseHeaders(resp);
     }
 

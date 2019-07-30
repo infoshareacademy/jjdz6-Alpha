@@ -20,12 +20,12 @@ public class Facility {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", unique = true)
     private Address address;
 
     @Column(name = "is_nfz")
-    private Boolean isNfz;
+    private Boolean nfz;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(
@@ -45,6 +45,14 @@ public class Facility {
         this.services = services;
     }
 
+    public Facility(int id, String name, Address address, Boolean nfz, List<Service> services) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.nfz = nfz;
+        this.services = services;
+    }
+
     public Facility(String name, Address address) {
         this(name, address, 0);
     }
@@ -55,18 +63,18 @@ public class Facility {
         this.id = id;
     }
 
-    public Facility(String name, Address address, int id, Boolean isNfz, List<Service> services) {
+    public Facility(String name, Address address, int id, Boolean nfz, List<Service> services) {
         this.address = address;
         this.name = name;
         this.id = id;
-        this.isNfz = isNfz;
+        this.nfz = nfz;
         this.services = services;
     }
 
-    public Facility(String name, Address address, Boolean isNfz, List<Service> services) {
+    public Facility(String name, Address address, Boolean nfz, List<Service> services) {
         this.address = address;
         this.name = name;
-        this.isNfz = isNfz;
+        this.nfz = nfz;
         this.services = services;
     }
 
@@ -87,7 +95,11 @@ public class Facility {
     }
 
     public Boolean isNfz() {
-        return isNfz;
+        return nfz;
+    }
+
+    public Boolean nfz() {
+        return nfz;
     }
 
     private String valueOf(boolean isNfz) {
@@ -96,9 +108,7 @@ public class Facility {
 
     @Override
     public String toString() {
-        return " Id : " + this.id +
-                " Name : " + this.name + this.address.toString() +
-                " Nfz : " + valueOf(isNfz);
+        return "Facility{" + "id=" + id + ", name='" + name + '\'' + ", address=" + address + ", nfz=" + nfz + ", services=" + services + '}';
     }
 
     @Override

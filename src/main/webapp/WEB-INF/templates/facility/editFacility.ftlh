@@ -58,6 +58,7 @@
                         <input class="form-control" type="text" name="facility_name" value="${facility.name}">
                     </#if>
                 <input type="hidden" name="facility_id" value="${facility.id}">
+                <input type="hidden" name="nfz" value="${facility.nfz()?c}">
                 <input type="hidden" name="_method" value="PUT">
             </div>
 
