@@ -43,8 +43,12 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
             Template template = templateProvider.getTemplate(getServletContext(), FIND_FACILITIES_BY_PATIENT_TEMPLATE_PATH);
 
             if (patientsSurname != null && !Objects.equals(patientsSurname, "")) {
+
                 Map<PatientQueryFields, String> patientQueryFieldsMap = new EnumMap<>(PatientQueryFields.class);
+
+
                 patientQueryFieldsMap.put(PatientQueryFields.SURNAME, patientsSurname);
+
                 List<Patient> selectedPatients = patientsReadModel.getByQuery(new PatientQuery(patientQueryFieldsMap)).getPatients();
 
                 Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();

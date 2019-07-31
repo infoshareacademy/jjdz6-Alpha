@@ -19,7 +19,7 @@ public class Parent {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "pesel_id", unique = true)
     private Pesel pesel;
 

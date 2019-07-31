@@ -19,4 +19,10 @@ public class PatientDao {
 
         return patientQuery.getResultList();
     }
+
+    public Patient add(Patient patient) {
+        entityManager.persist(patient);
+
+        return patient;
+    }
 }

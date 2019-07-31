@@ -17,12 +17,7 @@ public class PatientsService {
     private PatientsRepository patientsRepository;
 
     public void add(Patient patient) {
-
-        Patients patients = this.patientsReadModelDbRepository.getAll();
-
-        patients.add(patient);
-
-        this.patientsRepository.add(patients);
+        this.patientsRepository.add(patient);
     }
 
     public void edit(Patient patient) {

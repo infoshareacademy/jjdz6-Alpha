@@ -25,15 +25,15 @@ public class Patient implements Comparable<Patient> {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", unique = true)
     private Address address;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "pesel_id", unique = true)
     private Pesel pesel;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id", unique = true)
     private Parent parent;
 

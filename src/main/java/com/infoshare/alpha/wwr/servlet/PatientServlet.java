@@ -103,7 +103,7 @@ public class PatientServlet extends BaseWwrServlet {
 
             Integer postalCode = Integer.parseInt(postalCodeParam);
 
-            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam));
+            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam, new Pesel(peselParam)));
 
             patientsService.add(patient);
 
