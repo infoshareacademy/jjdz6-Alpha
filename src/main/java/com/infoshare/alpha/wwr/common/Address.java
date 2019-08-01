@@ -24,6 +24,9 @@ public class Address {
     @Column(name = "postalCode", nullable = false)
     private int postalCode;
 
+    @Column(name = "email")
+    private String email;
+
     public Address() {
     }
 
@@ -32,6 +35,14 @@ public class Address {
         this.street = street;
         this.phone = phone;
         this.postalCode = postalCode;
+    }
+
+    public Address(String city, String street, String phone, int postalCode, String email) {
+        this.city = city;
+        this.street = street;
+        this.phone = phone;
+        this.postalCode = postalCode;
+        this.email = email;
     }
 
     public int getId() { return id; }
@@ -48,6 +59,10 @@ public class Address {
 
     public int getPostalCode() {
         return postalCode;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

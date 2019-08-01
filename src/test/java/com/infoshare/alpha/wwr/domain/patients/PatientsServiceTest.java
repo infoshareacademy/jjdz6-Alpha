@@ -20,9 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class PatientsServiceTest {
 
     @Mock
-    private PatientsReadModelDb patientsReadModelDbRepository;
-
-    @Mock
     private PatientsRepository patientsRepository;
 
     @InjectMocks
@@ -47,18 +44,12 @@ class PatientsServiceTest {
             e.printStackTrace();
         }
 
-        Patients patients = Mockito.mock(Patients.class);
-
         // when
-
-        Mockito.when(patientsReadModelDbRepository.getAll()).thenReturn(patients);
-
-        //then
 
         testObj.add(patient);
 
-        Mockito.verify(patientsReadModelDbRepository, Mockito.times(1)).getAll();
-        Mockito.verify(patients, Mockito.times(1)).add(patient);
-        Mockito.verify(patientsRepository, Mockito.times(1)).add(patients);
+        //then
+
+        Mockito.verify(patientsRepository, Mockito.times(1)).add(patient);
     }
 }

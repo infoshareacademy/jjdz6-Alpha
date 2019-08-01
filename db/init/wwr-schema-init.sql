@@ -27,24 +27,25 @@ create table addresses (
     city VARCHAR(255) NOT NULL,
     street VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
-    postalCode INT NOT NULL
+    postalCode INT NOT NULL,
+    email VARCHAR(255) NULL
 );
 -- patients addresses
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Pilotów 23", "556 454 234", 80460); -- 1
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Miałki Szlak 12", "556 111 222", 81560); -- 2
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Warneńska 80", "756 121 232", 80210); -- 3
-insert into addresses (city, street, phone, postalCode) VALUES ("Sopot", "Warneńska 80", "856 422 226", 80210); -- 4
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdynia", "Polska 11", "556 343 442", 80210); -- 5
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdańsk", "Pilotów 23", "556 454 234", 80460, null); -- 1
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdańsk", "Miałki Szlak 12", "556 111 222", 81560, null); -- 2
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdańsk", "Warneńska 80", "756 121 232", 80210, null); -- 3
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Sopot", "Warneńska 80", "856 422 226", 80210, null); -- 4
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdynia", "Polska 11", "556 343 442", 80210, null); -- 5
 
 -- facilities addresses
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdynia", "Augustyna Necla 11-13", "+48 58 621 74 40", 81377); -- 6
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Kartuska 214", "+48 564 123 555", 80122); -- 7
-insert into addresses (city, street, phone, postalCode) VALUES ("Sopot", "Zwyciestwa 17", "+48 754 123 123", 81704); -- 8
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdynia", "Kolejowa 23", "+48 112 123 123", 81303); -- 9
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk", "Jagiellońska 11", "+48 508 186 021", 81368); -- 10
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdańsk-Oliwa", "Matemblewska 42", "+48 602 491 421", 80830); -- 11
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdynia", "Harcerska 4", "+48 58 622 07 48", 81425); -- 12
-insert into addresses (city, street, phone, postalCode) VALUES ("Gdynia", "Portowa 1", "+48 112 234 123", 81339); -- 13
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdynia", "Augustyna Necla 11-13", "+48 58 621 74 40", 81377, null); -- 6
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdańsk", "Kartuska 214", "+48 564 123 555", 80122, null); -- 7
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Sopot", "Zwyciestwa 17", "+48 754 123 123", 81704, null); -- 8
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdynia", "Kolejowa 23", "+48 112 123 123", 81303, null); -- 9
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdańsk", "Jagiellońska 11", "+48 508 186 021", 81368, null); -- 10
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdańsk-Oliwa", "Matemblewska 42", "+48 602 491 421", 80830, null); -- 11
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdynia", "Harcerska 4", "+48 58 622 07 48", 81425, null); -- 12
+insert into addresses (city, street, phone, postalCode, email) VALUES ("Gdynia", "Portowa 1", "+48 112 234 123", 81339, null); -- 13
 -- ---------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE parents (
@@ -52,14 +53,16 @@ CREATE TABLE parents (
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     pesel_id INT NOT NULL,
-    CONSTRAINT fk_parents_pesel_id FOREIGN KEY (pesel_id) REFERENCES pesel_numbers(id)
+    address_id INT NULL,
+    CONSTRAINT fk_parents_pesel_id FOREIGN KEY (pesel_id) REFERENCES pesel_numbers(id),
+    CONSTRAINT fk_parents_address_id FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
 
-insert into parents (name, surname, pesel_id) VALUES ("Michał", "Łukaszewski", 6); -- id =1
-insert into parents (name, surname, pesel_id) VALUES ("Jan", "Jakowski", 7);       -- id =2
-insert into parents (name, surname, pesel_id) VALUES ("Karolina", "Kowalska", 8);  -- id =3
-insert into parents (name, surname, pesel_id) VALUES ("Dorota", "Dorocińska", 9);  -- id =4
-insert into parents (name, surname, pesel_id) VALUES ("Kamila", "Kot", 10);        -- id =5
+insert into parents (name, surname, pesel_id, address_id) VALUES ("Michał", "Łukaszewski", 6, null); -- id =1
+insert into parents (name, surname, pesel_id, address_id) VALUES ("Jan", "Jakowski", 7, null);       -- id =2
+insert into parents (name, surname, pesel_id, address_id) VALUES ("Karolina", "Kowalska", 8, null);  -- id =3
+insert into parents (name, surname, pesel_id, address_id) VALUES ("Dorota", "Dorocińska", 9, null);  -- id =4
+insert into parents (name, surname, pesel_id, address_id) VALUES ("Kamila", "Kot", 10, null);        -- id =5
 
 -- ---------------------------------------------------------------------------------------------------------------------
 CREATE TABLE patients (

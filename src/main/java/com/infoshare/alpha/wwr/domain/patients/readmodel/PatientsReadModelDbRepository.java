@@ -18,14 +18,10 @@ import java.util.stream.Stream;
 public class PatientsReadModelDbRepository implements PatientsReadModelDb {
 
     @Inject
-    private PatientsJsonStorage storage;
-
-    @Inject
     private PatientDao patientDao;
 
-    public Patients getAll() {
-
-        return this.storage.load();
+    public List<Patient> getAll() {
+        return this.patientDao.findAll();
     }
 
     public Patients getByQuery(PatientQuery patientQuery) {

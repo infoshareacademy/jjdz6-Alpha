@@ -28,6 +28,8 @@ import java.util.Optional;
 @Transactional
 public class PatientServlet extends BaseWwrServlet {
 
+    private static final String PATIENTS_TEMPLATE_PATH = "/patient/patients.ftlh";
+
     @Inject
     PatientsService patientsService;
 
@@ -37,49 +39,19 @@ public class PatientServlet extends BaseWwrServlet {
     @Inject
     PatientServletValidator patientServletValidator;
 
-    @Inject
-    PeselDao peselDao;
-
-    @Inject
-    ParentDao parentDao;
-
-    @Inject
-    PatientDao patientDao;
-
-    @Inject
-    ServiceDao serviceDao;
-
-    @Inject
-    FacilityDao facilityDao;
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req,resp);
 
-//        List<Facility> facilities = facilityDao.findAll();
-//        this.renderJson(facilities.stream().findFirst().get().toString());
+        List<Patient> patients = patientsReadModel.getAll();
 
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("patients", patients);
+        this.renderView(model, PATIENTS_TEMPLATE_PATH);
 
-        List<Service> services = serviceDao.findAll();
-
-
-        this.renderJson(services.stream().findFirst().get().toString());
-
-        /*
         //TODO: uwaga przy relacji many to many zeby mapowac wynik zapytania dla gsona.
-//        this.renderJson(peselDao.findAll().toArray());
-//        List<Parent> parents = parentDao.findAll();
-        List<Patient> patients = patientDao.findAll();
-        Optional<Patient> first = patients.stream().findFirst();
-
-        Map<String,String> firstUser = new HashMap<>();
-        firstUser.put(first.get().getName(), first.get().getServices().toString());
-        this.renderJson(firstUser.toString());
-
-//        this.renderJson(patients.toArray());
-        */
-
+        //this.renderJson(services.stream().findFirst().get().toString());
     }
 
     @Override
