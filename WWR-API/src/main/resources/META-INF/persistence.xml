@@ -6,12 +6,9 @@
 
     <persistence-unit name="wwr-api" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-        <class>com.infoshare.alpha.wwr.domain.Facility</class>
-        <class>com.infoshare.alpha.wwr.domain.Patient</class>
         <properties>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/wwr"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://db:3306/wwr"/>
             <property name="hibernate.connection.username" value="mysql"/>
             <property name="hibernate.connection.password" value="pass123"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
