@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.web;
 
 import com.infoshare.alpha.wwr.domain.Facility;
-import com.infoshare.alpha.wwr.exceptions.FacilityNotFoundException;
+import com.infoshare.alpha.wwr.exceptions.IdNotFoundException;
 import com.infoshare.alpha.wwr.service.FacilitiesService;
 
 import javax.inject.Inject;
@@ -33,7 +33,7 @@ public class FacilitiesServlet {
         Facility facilityById;
         try {
             facilityById = facilitiesService.getById(id);
-        } catch (FacilityNotFoundException e) {
+        } catch (IdNotFoundException e) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage())
                     .build();

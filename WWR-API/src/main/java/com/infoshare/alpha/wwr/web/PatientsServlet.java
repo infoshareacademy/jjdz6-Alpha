@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.web;
 
 import com.infoshare.alpha.wwr.domain.Patient;
-import com.infoshare.alpha.wwr.exceptions.PatientNotFoundException;
+import com.infoshare.alpha.wwr.exceptions.IdNotFoundException;
 import com.infoshare.alpha.wwr.service.PatientsService;
 
 import javax.inject.Inject;
@@ -33,7 +33,7 @@ public class PatientsServlet {
         Patient patientById;
         try {
             patientById = patientsService.getById(id);
-        } catch (PatientNotFoundException e) {
+        } catch (IdNotFoundException e) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage())
                     .build();
