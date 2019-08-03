@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface FacilityDao {
 
-    Optional<Facility> findById(Long id);
+    Optional<Facility> findById(int id);
 
     List<Facility> findAll();
 }

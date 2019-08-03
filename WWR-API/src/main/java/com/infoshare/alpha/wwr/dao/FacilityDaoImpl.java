@@ -16,7 +16,7 @@ public class FacilityDaoImpl implements FacilityDao {
     private EntityManager entityManager;
 
     @Override
-    public Optional<Facility> findById(Long id) {
+    public Optional<Facility> findById(int id) {
         return Optional.ofNullable(entityManager.find(Facility.class, id));
     }
 

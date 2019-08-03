@@ -16,7 +16,7 @@ public class PatientDaoImpl implements PatientDao {
     private EntityManager entityManager;
 
     @Override
-    public Optional<Patient> findById(Long id) {
+    public Optional<Patient> findById(int id) {
         return Optional.ofNullable(entityManager.find(Patient.class, id));
     }
 

@@ -1,7 +1,5 @@
 package com.infoshare.alpha.wwr.web;
 
-import com.infoshare.alpha.wwr.domain.Patient;
-import com.infoshare.alpha.wwr.exceptions.IdNotFoundException;
 import com.infoshare.alpha.wwr.service.PatientsService;
 
 import javax.inject.Inject;
@@ -29,17 +27,9 @@ public class PatientsServlet {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPatientDetails(@PathParam("id") Long id) {
-        Patient patientById;
-        try {
-            patientById = patientsService.getById(id);
-        } catch (IdNotFoundException e) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(e.getMessage())
-                    .build();
-        }
+    public Response getPatientDetails(@PathParam("id") int id) {
         return Response.ok()
-                .entity(patientById)
+                .entity(patientsService.getById(id))
                 .build();
     }
 }

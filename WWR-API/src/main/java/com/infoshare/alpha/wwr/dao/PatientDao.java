@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface PatientDao {
 
-    Optional<Patient> findById(Long id);
+    Optional<Patient> findById(int id);
 
     List<Patient> findAll();
 }

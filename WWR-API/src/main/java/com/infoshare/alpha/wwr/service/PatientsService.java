@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.service;
 
 import com.infoshare.alpha.wwr.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.Patient;
-import com.infoshare.alpha.wwr.exceptions.IdNotFoundException;
+import com.infoshare.alpha.wwr.exceptions.ResourceNotFoundException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -14,8 +14,13 @@ public class PatientsService {
     @Inject
     PatientDao patientDao;
 
-    public Patient getById(Long id) throws IdNotFoundException {
-        return patientDao.findById(id).orElseThrow(() -> new IdNotFoundException("Patient with ID " + id + " not found"));
+    public Patient getById(int id) {
+//        return patientDao.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient with ID " + id + " not found"));
+        if (patientDao.findById(id).isEmpty()) {
+            throw new ResourceNotFoundException("Patient with ID " + id + " not found");
+        } else {
+            return patientDao.findById(id).get();
+        }
     }
 
     public List<Patient> getPatientsList() {
