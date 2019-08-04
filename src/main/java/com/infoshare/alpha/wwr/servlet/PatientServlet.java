@@ -76,10 +76,10 @@ public class PatientServlet extends BaseWwrServlet {
             model.put("patient", patient);
             template.process(model, writer);
 
-            resp.getWriter().println("<!DOCTYPE html><html><body>");
-            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println("<div><strong>Pacjent:</strong> " + patient.getName() + " " + patient.getSurname() + "<strong> - został dodany pomyślnnie.</strong></div>");
-            resp.getWriter().println("</body></html>\n");
+//            resp.getWriter().println("<!DOCTYPE html><html><body>");
+//            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
+//            resp.getWriter().println("<div><strong>Pacjent:</strong> " + patient.getName() + " " + patient.getSurname() + "<strong> - został dodany pomyślnnie.</strong></div>");
+//            resp.getWriter().println("</body></html>\n");
 
         } catch (IOException | PeselException e) {
             e.printStackTrace();
