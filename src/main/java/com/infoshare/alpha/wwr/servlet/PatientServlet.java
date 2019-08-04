@@ -39,7 +39,9 @@ public class PatientServlet extends BaseWwrServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req,resp);
+        super.doGet(req, resp);
+        Map<String, Object> model = new HashMap<>();
+        renderView(model, PATIENT_ADD_TEMPLATE_PATH);
     }
 
     @Override
@@ -66,20 +68,16 @@ public class PatientServlet extends BaseWwrServlet {
             String parentSurnameParam = req.getParameter("parentSurname");
 
 
-
             Integer postalCode = Integer.parseInt(postalCodeParam);
 
             Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam));
 
             patientsService.add(patient);
 
+
+            model.put("editSuccess", true);
             model.put("patient", patient);
             template.process(model, writer);
-
-//            resp.getWriter().println("<!DOCTYPE html><html><body>");
-//            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-//            resp.getWriter().println("<div><strong>Pacjent:</strong> " + patient.getName() + " " + patient.getSurname() + "<strong> - został dodany pomyślnnie.</strong></div>");
-//            resp.getWriter().println("</body></html>\n");
 
         } catch (IOException | PeselException e) {
             e.printStackTrace();
