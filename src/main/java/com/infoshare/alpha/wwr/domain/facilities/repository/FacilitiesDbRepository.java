@@ -23,6 +23,11 @@ public class FacilitiesDbRepository implements FacilitiesRepository {
     }
 
     @Override
+    public void add(Facility facility) {
+        facilityDao.add(facility);
+    }
+
+    @Override
     public Facility update(Facility facility) {
         return facilityDao.update(facility);
     }
@@ -30,5 +35,10 @@ public class FacilitiesDbRepository implements FacilitiesRepository {
     @Override
     public Facility getById(int id) throws FacilitiesException {
         return facilityDao.getById(id);
+    }
+
+    @Override
+    public void remove(Facility facility) {
+        facilityDao.remove(facility);
     }
 }

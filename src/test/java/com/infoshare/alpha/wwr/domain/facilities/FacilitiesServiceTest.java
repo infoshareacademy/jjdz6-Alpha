@@ -39,31 +39,18 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "old_facility",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
 
-        Facility facility2 = new Facility(
-                2,
-                "facility1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
-        );
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        Facilities facilities = Mockito.mock(Facilities.class);
-
-        FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility2);
+        FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility1);
 
         // when
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(null);
 
         try {
             testObj.add(facilityAddCommand);
@@ -73,9 +60,7 @@ class FacilitiesServiceTest {
 
         // then
 
-        Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getAll();
-        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
-        Mockito.verify(facilities, Mockito.times(1)).add(facility2);
+        Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getById(1);
     }
 
     @Test
@@ -84,24 +69,19 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "old_facility",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        Facilities facilities = Mockito.mock(Facilities.class);
 
         FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility1);
 
         // when/then
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+
+        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(facility1);
 
         assertThatThrownBy(() -> testObj.add(facilityAddCommand))
                 .isInstanceOf(FacilitiesException.class)
@@ -115,23 +95,16 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "facility-1",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        Facilities facilities = Mockito.mock(Facilities.class);
 
         // when
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
-
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(facility1);
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
         try {
@@ -142,7 +115,7 @@ class FacilitiesServiceTest {
 
         // then
 
-        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
+        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).remove(facility1);
     }
 
     @Test
@@ -151,23 +124,19 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "facility-1",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
 
-        List<Facility> facilitiesList = new ArrayList<>();
-        Facilities facilities = Mockito.mock(Facilities.class);
 
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
         // when/then
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(null);
 
         assertThatThrownBy(() -> testObj.delete(facilityDeleteCommand))
                 .isInstanceOf(FacilitiesException.class)

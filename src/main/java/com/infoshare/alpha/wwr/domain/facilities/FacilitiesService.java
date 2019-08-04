@@ -22,32 +22,22 @@ public class FacilitiesService {
     private FacilitiesRepository facilitiesDbRepository;
 
     public void add(FacilityAddCommand command) throws FacilitiesException {
-
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-
-        if (facilities.getFacilities().contains(command.getFacility())) {
-
+        if (facilitiesReadModelDbRepository.getById(command.getFacility().getId()) != null) {
             throw FacilitiesException.facilityExists(command.getFacility().getName());
         }
-
-        facilities.add(command.getFacility());
-        this.facilitiesDbRepository.add(facilities);
+       facilitiesDbRepository.add(command.getFacility());
     }
 
     public void delete(FacilityDeleteCommand command) throws FacilitiesException {
-
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-        if (facilities.getFacilities().contains(command.getFacility())) {
-            facilities.getFacilities().remove(command.getFacility());
-            this.facilitiesDbRepository.add(facilities);
-        } else {
+        if (facilitiesReadModelDbRepository.getById(command.getFacility().getId()) == null) {
             throw FacilitiesException.facilityNotFound(command.getFacility().getName());
         }
+        facilitiesDbRepository.remove(command.getFacility());
     }
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {
         try {
-            this.checkFacilityExists(command.getFacility());
+            checkFacilityExists(command.getFacility());
             facilitiesDbRepository.update(command.getFacility());
         } catch (FacilitiesException e) {
             throw FacilitiesException.editError(e.getMessage());
@@ -59,7 +49,6 @@ public class FacilitiesService {
     }
     
     public void upload(UploadCommand uploadCommand) {
-
         // funkcja ktora wrzuca do repozutorium dodatkowe placowki
         // 1. zaciagnij aktualne placowki z repozytorium placowek -> Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
         // 2. wczytaj placowki z pliku -> wykorzystaj : FacilitiesJsonStorage

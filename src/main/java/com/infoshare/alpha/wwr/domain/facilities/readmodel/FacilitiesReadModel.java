@@ -21,11 +21,6 @@ public class FacilitiesReadModel {
     @Inject
     private FacilitiesReadModelDb repository;
 
-    public Facilities getAll() {
-
-        return this.repository.getAll();
-    }
-
     public Facility getById(int id) {
 
         return repository.getById(id);

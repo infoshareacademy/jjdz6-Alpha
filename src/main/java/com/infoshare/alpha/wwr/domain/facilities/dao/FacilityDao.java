@@ -33,4 +33,12 @@ public class FacilityDao {
 
         return facility;
     }
+
+    public void add(Facility facility) {
+        entityManager.persist(facility);
+    }
+
+    public void remove(Facility facility) {
+        entityManager.remove(facility);
+    }
 }

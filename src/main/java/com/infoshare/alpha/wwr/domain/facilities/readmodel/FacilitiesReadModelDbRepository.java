@@ -3,7 +3,6 @@ package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.PostalCodeComparator;
 import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
-import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
@@ -22,15 +21,15 @@ import java.util.stream.Stream;
 public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
     @Inject
-    private FacilitiesJsonStorage storage;
-
-    @Inject
     private FacilityDao facilityDao;
 
     @Override
     public Facilities getAll() {
 
-        return this.storage.load();
+        Facilities facilities = new Facilities();
+        facilities.setFacilities(facilityDao.findAll());
+
+        return facilities;
     }
 
     @Override
