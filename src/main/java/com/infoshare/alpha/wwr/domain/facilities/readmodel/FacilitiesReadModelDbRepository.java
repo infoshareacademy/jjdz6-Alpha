@@ -1,9 +1,7 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
-import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.PostalCodeComparator;
 import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
@@ -24,12 +22,8 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
     private FacilityDao facilityDao;
 
     @Override
-    public Facilities getAll() {
-
-        Facilities facilities = new Facilities();
-        facilities.setFacilities(facilityDao.findAll());
-
-        return facilities;
+    public List<Facility> getAll() {
+        return facilityDao.findAll();
     }
 
     @Override
@@ -55,18 +49,6 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
         return facilities
                 .stream()
                 .filter(s -> city.equals(s.getAddress().getCity()))
-                .collect(Collectors.toList());
-    }
-
-
-    @Override
-    public List<Facility> getByAddress(Address address) {
-
-        List<Facility> facilities = facilityDao.findAll();
-
-        return facilities
-                .stream()
-                .filter(facility -> facility.getAddress().equals(address))
                 .collect(Collectors.toList());
     }
 
