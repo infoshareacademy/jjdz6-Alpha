@@ -30,6 +30,8 @@
         <hibernate-core.dependency.version>5.2.12.Final</hibernate-core.dependency.version>
         <hibernate-jpa.dependency.version>1.0.0.Final</hibernate-jpa.dependency.version>
         <mysql.dependency.version>8.0.16</mysql.dependency.version>
+        <slf4j.dependency.version>1.7.26</slf4j.dependency.version>
+        <logback.dependency.version>1.2.3</logback.dependency.version>
 
         <clean.plugin.version>3.1.0</clean.plugin.version>
         <resources.plugin.version>3.0.2</resources.plugin.version>
@@ -141,6 +143,18 @@
                 <artifactId>assertj-core</artifactId>
                 <version>3.11.1</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.dependency.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.dependency.version}</version>
             </dependency>
 
         </dependencies>
