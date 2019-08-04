@@ -81,15 +81,23 @@ public class PatientServlet extends BaseWwrServlet {
 
         } catch (IOException | PeselException e) {
             e.printStackTrace();
+
+
             resp.getWriter().println("<!DOCTYPE html><html><body>");
             resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
             resp.getWriter().println(e.getMessage());
             resp.getWriter().println("</body></html>\n");
         } catch (PatientValidationException | TemplateException e) {
-            resp.getWriter().println("<!DOCTYPE html><html><body>");
-            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println(e.getMessage());
-            resp.getWriter().println("</body></html>\n");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            Map<String, Object> model = new HashMap<>();
+            model.put("validationError", e);
+            this.renderView(model, PATIENT_ADD_TEMPLATE_PATH);
+
+
+//            resp.getWriter().println("<!DOCTYPE html><html><body>");
+//            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
+//            resp.getWriter().println(e.getMessage());
+//            resp.getWriter().println("</body></html>\n");
         }
     }
 

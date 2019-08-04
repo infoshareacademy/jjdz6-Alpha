@@ -15,126 +15,134 @@
 <#include "../subpageHeader.ftlh">
 
 <main>
-    <form method="post" action="/wwr/patient" class="needs-validation m-3" novalidate>
-        <div>
-            <h2>DANE PACJENTA</h2>
-        </div>
-        <#if editSuccess??>
-            <div class="alert alert-success" role="alert">Dane pacjenta zostały dodane.</div>
-        </#if>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="validationCustom01">Imię</label>
-                <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="imię" required>
-                <div class="valid-feedback">
-                    Prawidłowo!
+    <div class="container">
+            <form method="post" action="/wwr/patient" class="needs-validation m-3" novalidate>
+                <div>
+                    <h2>DANE PACJENTA</h2>
                 </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
+                <#if editSuccess??>
+                    <div class="alert alert-success" role="alert">Dane pacjenta zostały dodane.</div>
+                </#if>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="validationCustom01">Imię</label>
+                        <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="imię"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="validationCustom02">Nazwisko</label>
+                        <input type="text" class="form-control" id="validationCustom02" name="surname"
+                               placeholder="nazwisko"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="validationCustom03">PESEL</label>
+                        <input type="number" class="form-control" id="validationCustom03" name="pesel"
+                               placeholder="PESEL"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="validationCustom02">Nazwisko</label>
-                <input type="text" class="form-control" id="validationCustom02" name="surname" placeholder="nazwisko"
-                       required>
-                <div class="valid-feedback">
-                    Prawidłowo!
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="validationCustom04">Ulica</label>
+                        <input type="text" class="form-control" id="validationCustom04" name="street"
+                               placeholder="ulica, nr domu / nr mieszkania"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="validationCustom04">Kod pocztowy</label>
+                        <input type="number" class="form-control" id="validationCustom05" name="postalCode"
+                               placeholder="80000"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
                 </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom05">Miasto</label>
+                        <input type="text" class="form-control" id="validationCustom06" name="city" required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="validationCustom06">Telefon</label>
+                        <input type="number" class="form-control" id="validationCustom07" name="phone"
+                               placeholder="123123123"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="validationCustom03">PESEL</label>
-                <input type="number" class="form-control" id="validationCustom03" name="pesel" placeholder="PESEL"
-                       required>
-                <div class="valid-feedback">
-                    Prawidłowo!
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom07">Imię rodzica / opiekuna</label>
+                        <input type="text" class="form-control" id="validationCustom08" name="parentName"
+                               placeholder="imię"
+                               required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom08">Nazwisko rodzica / opiekuna</label>
+                        <input type="text" class="form-control" id="validationCustom09" name="parentSurname"
+                               placeholder="nazwisko" required>
+                        <div class="valid-feedback">
+                            Prawidłowo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Podaj wartość!
+                        </div>
+                    </div>
                 </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="validationCustom04">Ulica</label>
-                <input type="text" class="form-control" id="validationCustom04" name="street"
-                       placeholder="ulica, nr domu / nr mieszkania"
-                       required>
-                <div class="valid-feedback">
-                    Prawidłowo!
-                </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="validationCustom04">Kod pocztowy</label>
-                <input type="number" class="form-control" id="validationCustom05" name="postalCode"
-                       placeholder="80000"
-                       required>
-                <div class="valid-feedback">
-                    Prawidłowo!
-                </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="validationCustom05">Miasto</label>
-                <input type="text" class="form-control" id="validationCustom06" name="city" required>
-                <div class="valid-feedback">
-                    Prawidłowo!
-                </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="validationCustom06">Telefon</label>
-                <input type="number" class="form-control" id="validationCustom07" name="phone" placeholder="123123123"
-                       required>
-                <div class="valid-feedback">
-                    Prawidłowo!
-                </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="validationCustom07">Imię rodzica / opiekuna</label>
-                <input type="text" class="form-control" id="validationCustom08" name="parentName" placeholder="imię"
-                       required>
-                <div class="valid-feedback">
-                    Prawidłowo!
-                </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="validationCustom08">Nazwisko rodzica / opiekuna</label>
-                <input type="text" class="form-control" id="validationCustom09" name="parentSurname"
-                       placeholder="nazwisko" required>
-                <div class="valid-feedback">
-                    Prawidłowo!
-                </div>
-                <div class="invalid-feedback">
-                    Podaj wartość!
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary" name="save" value="save">Wyślij formularz</button>
+                <button type="submit" class="btn btn-primary" name="save" value="save">Wyślij formularz</button>
 
-    </form>
+            </form>
+    </div>
 
 
 </main>
+
 <#include "../footer.ftlh">
 
 <script>
