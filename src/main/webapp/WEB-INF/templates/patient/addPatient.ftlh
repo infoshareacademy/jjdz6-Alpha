@@ -135,6 +135,7 @@
 
 
 </main>
+<#include "../footer.ftlh">
 
 <script>
     (function () {
