@@ -25,6 +25,11 @@ create table addresses (
     postalCode VARCHAR(255) NOT NULL
 );
 
+create table search_bar_queries (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    query_text VARCHAR(255)
+);
+
 -- relational tables
  create table facilities_addresses (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
