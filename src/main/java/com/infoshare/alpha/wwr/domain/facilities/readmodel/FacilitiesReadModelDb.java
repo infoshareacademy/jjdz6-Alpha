@@ -8,19 +8,19 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 
 import java.util.List;
 
-public interface FacilitiesReadModelDb {
+ interface FacilitiesReadModelDb {
 
-    public Facilities getAll();
+     Facilities getAll();
 
-    Facility getById(int id);
+     Facility getById(int id);
 
-    public List<Facility> getByName(String name);
+     List<Facility> getByName(String name);
 
-    public List<Facility> getByCity(String city);
+     List<Facility> getByCity(String city);
 
-    public List<Facility> getByAddress(Address address);
+     List<Facility> getByAddress(Address address);
 
-    public List<Facility> getByPatient(FacilityPatientQuery query);
+     List<Facility> getByPatient(FacilityPatientQuery query);
 
-    public List<Facility> getByQuery(FacilityQuery query);
+     List<Facility> getByQuery(FacilityQuery query);
 }

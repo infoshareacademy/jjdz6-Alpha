@@ -1,24 +1,53 @@
 package com.infoshare.alpha.wwr.common;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addresses")
 public class Address {
 
-    private String city;
-    private String street;
-    private String phone;
-    private Integer postalCode;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    public Address(String city, String street, String phone, Integer postalCode) {
+    @Column(name = "city", nullable = false)
+    private String city;
+
+    @Column(name = "street", nullable = false)
+    private String street;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
+    @Column(name = "postalCode", nullable = false)
+    private int postalCode;
+
+    @Column(name = "email")
+    private String email;
+
+    public Address() {
+    }
+
+    public Address(String city, String street, String phone, int postalCode) {
         this.city = city;
         this.street = street;
         this.phone = phone;
         this.postalCode = postalCode;
     }
 
-    public String getCity() {
-        return city;
+    public Address(String city, String street, String phone, int postalCode, String email) {
+        this.city = city;
+        this.street = street;
+        this.phone = phone;
+        this.postalCode = postalCode;
+        this.email = email;
     }
+
+    public int getId() { return id; }
+
+    public String getCity() { return city; }
 
     public String getStreet() {
         return street;
@@ -28,8 +57,12 @@ public class Address {
         return phone;
     }
 
-    public Integer getPostalCode() {
+    public int getPostalCode() {
         return postalCode;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

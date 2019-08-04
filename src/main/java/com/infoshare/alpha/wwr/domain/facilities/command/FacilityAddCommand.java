@@ -13,17 +13,13 @@ import java.util.stream.Collectors;
  */
 public class FacilityAddCommand extends FacilityCommand {
 
-    // klasa polecenie - command która bedzie parametrem serwisu podczas dodawania nowej placowki
-
     public FacilityAddCommand(Facility facility) {
         super(facility);
     }
 
     public FacilityAddCommand(String name, String city, String street, String phone, Integer postalCode, Boolean isNfz, String[] services) {
         Address address = new Address(city, street, phone, postalCode);
-        List<Service> serviceList = Arrays.stream(services)
-                                          .map(Service::new)
-                                          .collect(Collectors.toList());
+        List<Service> serviceList = Arrays.stream(services).map(Service::new).collect(Collectors.toList());
         Facility facility = new Facility(name, address, isNfz, serviceList);
         this.set(facility);
     }

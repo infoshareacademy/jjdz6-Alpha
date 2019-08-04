@@ -1,25 +1,40 @@
 package com.infoshare.alpha.wwr.common;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "pesel_numbers")
 public class Pesel {
 
-    private String pesel;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    public Pesel(String pesel) throws PeselException {
-        if (pesel.length() != 11) {
+    @Column(name = "number", nullable = false)
+    private String number;
+
+    public Pesel() {
+    }
+
+    public Pesel(String number) throws PeselException {
+        if (number.length() != 11) {
 
             throw PeselException.validationError();
         }
-        this.pesel = pesel;
+        this.number = number;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPesel() {
-
-        return pesel;
+        return number;
     }
 
     @Override
     public String toString() {
-
-        return " Pesel = " + pesel;
+        return " Pesel = " + number;
     }
 }

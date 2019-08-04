@@ -1,10 +1,12 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.common.*;
+import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
+import com.infoshare.alpha.wwr.domain.patients.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
+import com.infoshare.alpha.wwr.domain.patients.dao.ParentDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
@@ -15,10 +17,18 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
+@Transactional
 public class PatientServlet extends BaseWwrServlet {
+
+    private static final String PATIENTS_TEMPLATE_PATH = "/patient/patients.ftlh";
 
     @Inject
     PatientsService patientsService;
@@ -29,10 +39,19 @@ public class PatientServlet extends BaseWwrServlet {
     @Inject
     PatientServletValidator patientServletValidator;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req,resp);
+
+        List<Patient> patients = patientsReadModel.getAll();
+
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("patients", patients);
+        this.renderView(model, PATIENTS_TEMPLATE_PATH);
+
+        //TODO: uwaga przy relacji many to many zeby mapowac wynik zapytania dla gsona.
+        //this.renderJson(services.stream().findFirst().get().toString());
     }
 
     @Override
@@ -56,7 +75,7 @@ public class PatientServlet extends BaseWwrServlet {
 
             Integer postalCode = Integer.parseInt(postalCodeParam);
 
-            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam));
+            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam, new Pesel(peselParam)));
 
             patientsService.add(patient);
 

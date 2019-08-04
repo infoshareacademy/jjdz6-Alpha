@@ -2,6 +2,7 @@ package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.PostalCodeComparator;
+import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
@@ -22,6 +23,9 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
     @Inject
     private FacilitiesJsonStorage storage;
 
+    @Inject
+    private FacilityDao facilityDao;
+
     @Override
     public Facilities getAll() {
 
@@ -31,7 +35,7 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
     @Override
     public Facility getById(int id) {
 
-        return this.storage.load().getFacilities().stream().filter(f -> id == f.getId()).findAny().orElse(null);
+        return facilityDao.findAll().stream().filter(f -> id == f.getId()).findAny().orElse(null);
     }
 
     @Override

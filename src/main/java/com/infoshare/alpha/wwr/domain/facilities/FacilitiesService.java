@@ -46,25 +46,16 @@ public class FacilitiesService {
     }
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {
-
-        Facilities facilities = this.facilitiesReadModelDbRepository.getAll();
-        Integer oldFacilityIndex;
-
-        if (facilities.getFacilities().contains(command.getOldFacility())) {
-            oldFacilityIndex = facilities.getFacilities().indexOf(command.getOldFacility());
-        } else {
-            throw FacilitiesException.facilityNotFound(command.getOldFacility().getName());
+        try {
+            this.checkFacilityExists(command.getFacility());
+            facilitiesDbRepository.update(command.getFacility());
+        } catch (FacilitiesException e) {
+            throw FacilitiesException.editError(e.getMessage());
         }
+    }
 
-        for (Facility facility : facilities.getFacilities()) {
-            if (facility.equals(command.getEditedFacility())) {
-                throw FacilitiesException.facilityExists(command.getEditedFacility().getName());
-            }
-        }
-
-        facilities.getFacilities().remove(command.getOldFacility());
-        facilities.getFacilities().add(oldFacilityIndex, command.getEditedFacility());
-        this.facilitiesDbRepository.add(facilities);
+    private void checkFacilityExists(Facility facility) throws FacilitiesException {
+        facilitiesDbRepository.getById(facility.getId());
     }
     
     public void upload(UploadCommand uploadCommand) {

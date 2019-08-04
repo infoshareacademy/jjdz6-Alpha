@@ -4,8 +4,10 @@ import java.io.IOException;
 
 public class FacilitiesException extends IOException {
 
-    public static final int FACILITY_NOT_FOUND_ERROR_CODE = 10000;
-    public static final int FACILITY_EXISTS_ERROR_CODE = 10001;
+    public static final int FACILITY_SERVICE_ERROR_CODE = 10000;
+    public static final int FACILITY_NOT_FOUND_ERROR_CODE = 10001;
+    public static final int FACILITY_EXISTS_ERROR_CODE = 10002;
+    public static final int FACILITY_EDIT_ERROR_CODE = 10003;
 
     private String message;
     private int code;
@@ -24,12 +26,19 @@ public class FacilitiesException extends IOException {
     }
 
     public static FacilitiesException facilityNotFound(String name) {
-
         return new FacilitiesException("Facility " + name + " not found ", FacilitiesException.FACILITY_NOT_FOUND_ERROR_CODE);
     }
 
-    public static FacilitiesException facilityExists(String name) {
+    public static FacilitiesException facilityNotFound() {
+        return new FacilitiesException("Facility not found.", FacilitiesException.FACILITY_NOT_FOUND_ERROR_CODE);
+    }
 
+    public static FacilitiesException facilityExists(String name) {
         return new FacilitiesException("Facility " + name + " already exists ", FacilitiesException.FACILITY_EXISTS_ERROR_CODE);
     }
+
+    public static FacilitiesException editError(String message) {
+        return new FacilitiesException("Facility edit error: " + message, FacilitiesException.FACILITY_EDIT_ERROR_CODE);
+    }
+
 }
