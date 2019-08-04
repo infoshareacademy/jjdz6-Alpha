@@ -2,6 +2,7 @@ package com.infoshare.alpha.wwr.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Entity
 @Table(name = "search_bar_queries")
@@ -28,8 +29,9 @@ public class SearchBarQuery {
         return id;
     }
 
-    public String getQueryText() {
-        return queryText;
+    //TODO domyslnie przesylac "" zamiast null? -> dodac @NotNull
+    public Optional<String> getQueryText() {
+        return Optional.ofNullable(queryText);
     }
 
     public void setQueryText(String queryText) {
