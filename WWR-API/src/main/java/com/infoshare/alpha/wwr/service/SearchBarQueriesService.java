@@ -14,6 +14,7 @@ public class SearchBarQueriesService {
 
     @Inject
     Logger logger;
+
     @Inject
     SearchBarQueryDao searchBarQueryDao;
 

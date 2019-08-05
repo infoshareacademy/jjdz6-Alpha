@@ -3,6 +3,7 @@ package com.infoshare.alpha.wwr.service;
 import com.infoshare.alpha.wwr.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.Patient;
 import com.infoshare.alpha.wwr.exceptions.ResourceNotFoundException;
+import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -12,11 +13,14 @@ import java.util.List;
 public class PatientsService {
 
     @Inject
+    Logger logger;
+
+    @Inject
     PatientDao patientDao;
 
     public Patient getById(int id) {
-//        return patientDao.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient with ID " + id + " not found"));
         if (patientDao.findById(id).isEmpty()) {
+            logger.warn("Patient with ID: {} has not been found.", id);
             throw new ResourceNotFoundException("Patient with ID " + id + " not found");
         } else {
             return patientDao.findById(id).get();
