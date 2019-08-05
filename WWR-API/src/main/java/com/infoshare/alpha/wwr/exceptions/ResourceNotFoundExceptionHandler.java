@@ -15,7 +15,7 @@ public class ResourceNotFoundExceptionHandler implements ExceptionMapper<Resourc
 
     @Override
     public Response toResponse(ResourceNotFoundException e) {
-        logger.warn("ResourceNotFoundException has been thrown.");
+        logger.warn("ResourceNotFoundException has been thrown. StackTrace: ", e);
         return Response.status(Response.Status.NOT_FOUND)
                 .entity(e.getMessage())
                 .build();
