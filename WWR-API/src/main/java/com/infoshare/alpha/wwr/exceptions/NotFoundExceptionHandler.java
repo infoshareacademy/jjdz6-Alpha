@@ -17,8 +17,8 @@ public class NotFoundExceptionHandler implements ExceptionMapper<NotFoundExcepti
     @Override
     public Response toResponse(NotFoundException e) {
         logger.warn("NotFoundException has been thrown. StackTrace: ", e);
-        return Response.status(Response.Status.BAD_REQUEST)
-                .entity("400 BAD REQUEST")
+        return Response.status(Response.Status.NOT_FOUND)
+                .entity("404 NOT FOUND")
                 .build();
     }
 }
