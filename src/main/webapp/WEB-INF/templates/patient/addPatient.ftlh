@@ -23,6 +23,9 @@
                 <#if editSuccess??>
                     <div class="alert alert-success" role="alert">Dane pacjenta zostały dodane.</div>
                 </#if>
+                <#if validationError??>
+                    <div class="alert alert-danger" role="alert">Błąd : ${message}</div>
+                </#if>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="validationCustom01">Imię</label>

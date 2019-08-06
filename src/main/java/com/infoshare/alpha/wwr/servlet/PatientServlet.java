@@ -79,25 +79,20 @@ public class PatientServlet extends BaseWwrServlet {
             model.put("patient", patient);
             template.process(model, writer);
 
-        } catch (IOException | PeselException e) {
+        } catch (IOException | PeselException | PatientValidationException | TemplateException e) {
             e.printStackTrace();
-
-
-            resp.getWriter().println("<!DOCTYPE html><html><body>");
-            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println(e.getMessage());
-            resp.getWriter().println("</body></html>\n");
-        } catch (PatientValidationException | TemplateException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            PrintWriter writer = resp.getWriter();
+            Template template = templateProvider.getTemplate(getServletContext(), PATIENT_ADD_TEMPLATE_PATH);
             Map<String, Object> model = new HashMap<>();
-            model.put("validationError", e);
-            this.renderView(model, PATIENT_ADD_TEMPLATE_PATH);
+            model.put("validationError", true);
+            model.put("message", e.getMessage());
 
-
-//            resp.getWriter().println("<!DOCTYPE html><html><body>");
-//            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-//            resp.getWriter().println(e.getMessage());
-//            resp.getWriter().println("</body></html>\n");
+            try {
+                template.process(model, writer);
+            } catch (TemplateException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
