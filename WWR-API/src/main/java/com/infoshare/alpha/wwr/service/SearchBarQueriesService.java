@@ -19,11 +19,11 @@ public class SearchBarQueriesService {
     SearchBarQueryDao searchBarQueryDao;
 
     public SearchBarQuery getById(int id) {
-        if (searchBarQueryDao.findById(id).isEmpty()) {
+        if (searchBarQueryDao.findById(id).isPresent()) {
+            return searchBarQueryDao.findById(id).get();
+        } else {
             logger.warn("SearchBarQuery with ID: {} has not been found.", id);
             throw new ResourceNotFoundException("Query with ID " + id + " not found");
-        } else {
-            return searchBarQueryDao.findById(id).get();
         }
     }
 

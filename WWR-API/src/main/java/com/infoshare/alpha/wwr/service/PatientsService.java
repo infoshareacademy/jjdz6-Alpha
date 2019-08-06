@@ -19,11 +19,11 @@ public class PatientsService {
     PatientDao patientDao;
 
     public Patient getById(int id) {
-        if (patientDao.findById(id).isEmpty()) {
+        if (patientDao.findById(id).isPresent()) {
+            return patientDao.findById(id).get();
+        } else {
             logger.warn("Patient with ID: {} has not been found.", id);
             throw new ResourceNotFoundException("Patient with ID " + id + " not found");
-        } else {
-            return patientDao.findById(id).get();
         }
     }
 

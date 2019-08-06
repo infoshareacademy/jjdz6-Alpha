@@ -19,11 +19,11 @@ public class FacilitiesService {
     FacilityDao facilityDao;
 
     public Facility getById(int id) {
-        if (facilityDao.findById(id).isEmpty()) {
+        if (facilityDao.findById(id).isPresent()) {
+            return facilityDao.findById(id).get();
+        } else {
             logger.warn("Facility with ID: {} has not been found.", id);
             throw new ResourceNotFoundException("Facility with ID " + id + " not found");
-        } else {
-            return facilityDao.findById(id).get();
         }
     }
 
