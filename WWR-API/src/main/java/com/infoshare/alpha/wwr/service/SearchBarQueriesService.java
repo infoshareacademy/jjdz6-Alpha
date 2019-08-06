@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RequestScoped
@@ -29,5 +30,10 @@ public class SearchBarQueriesService {
 
     public List<SearchBarQuery> getSearchBarQueriesList() {
         return searchBarQueryDao.findAll();
+    }
+
+    @Transactional
+    public SearchBarQuery saveSearchBarQuery(SearchBarQuery searchBarQuery) {
+        return searchBarQueryDao.addSearchBarQuery(searchBarQuery);
     }
 }

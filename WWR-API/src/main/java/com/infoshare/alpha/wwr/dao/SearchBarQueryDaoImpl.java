@@ -25,4 +25,10 @@ public class SearchBarQueryDaoImpl implements SearchBarQueryDao {
         final Query query = entityManager.createQuery("SELECT s FROM SearchBarQuery s");
         return query.getResultList();
     }
+
+    @Override
+    public SearchBarQuery addSearchBarQuery(SearchBarQuery searchBarQuery) {
+        entityManager.persist(searchBarQuery);
+        return searchBarQuery;
+    }
 }

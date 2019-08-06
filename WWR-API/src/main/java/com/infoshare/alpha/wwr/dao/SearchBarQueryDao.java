@@ -10,4 +10,6 @@ public interface SearchBarQueryDao {
     Optional<SearchBarQuery> findById(int id);
 
     List<SearchBarQuery> findAll();
+
+    SearchBarQuery addSearchBarQuery(SearchBarQuery searchBarQuery);
 }
