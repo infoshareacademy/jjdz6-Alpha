@@ -25,7 +25,7 @@ import java.util.Map;
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 public class PatientServlet extends BaseWwrServlet {
 
-    private final String PATIENT_ADD_TEMPLATE_PATH = "/patient/addPatient.ftlh";
+    private final String ADD_PATIENT_TEMPLATE_PATH = "/patient/addPatient.ftlh";
 
     @Inject
     PatientsService patientsService;
@@ -41,7 +41,7 @@ public class PatientServlet extends BaseWwrServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
         Map<String, Object> model = new HashMap<>();
-        renderView(model, PATIENT_ADD_TEMPLATE_PATH);
+        renderView(model, ADD_PATIENT_TEMPLATE_PATH);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PatientServlet extends BaseWwrServlet {
             resp.setContentType("text/html;charset=UTF-8");
             req.setCharacterEncoding("UTF-8");
             PrintWriter writer = resp.getWriter();
-            Template template = templateProvider.getTemplate(getServletContext(), PATIENT_ADD_TEMPLATE_PATH);
+            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
             Map<String, Object> model = new HashMap<>();
 
 
@@ -83,7 +83,7 @@ public class PatientServlet extends BaseWwrServlet {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             PrintWriter writer = resp.getWriter();
-            Template template = templateProvider.getTemplate(getServletContext(), PATIENT_ADD_TEMPLATE_PATH);
+            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
             Map<String, Object> model = new HashMap<>();
             model.put("validationError", true);
             model.put("message", e.getMessage());
