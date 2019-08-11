@@ -32,4 +32,9 @@ public class FacilitiesDbRepository implements FacilitiesRepository {
     public void remove(Facility facility) {
         facilityDao.remove(facility);
     }
+
+    @Override
+    public boolean containsPatients(int facilityId) {
+        return facilityDao.containsPatients(facilityId);
+    }
 }

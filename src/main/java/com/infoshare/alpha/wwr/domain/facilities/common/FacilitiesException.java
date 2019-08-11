@@ -8,6 +8,7 @@ public class FacilitiesException extends IOException {
     public static final int FACILITY_NOT_FOUND_ERROR_CODE = 10001;
     public static final int FACILITY_EXISTS_ERROR_CODE = 10002;
     public static final int FACILITY_EDIT_ERROR_CODE = 10003;
+    private static final int FACILITY_CONTAINTS_PATIENTS_ERROR_CODE = 10004;
 
     private String message;
     private int code;
@@ -15,6 +16,10 @@ public class FacilitiesException extends IOException {
     public FacilitiesException(String message, int code) {
         this.message = message;
         this.code = code;
+    }
+
+    public static FacilitiesException facilityContainsPatients(String name) {
+        return new FacilitiesException("Facility :" + name + " contains patients ", FacilitiesException.FACILITY_CONTAINTS_PATIENTS_ERROR_CODE);
     }
 
     public String getMessage() {

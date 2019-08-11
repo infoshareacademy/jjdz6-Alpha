@@ -2,7 +2,7 @@
 <!--dm13.05.2019-->
 <html lang="pl">
 <head>
-    <title>Pacjenci w systemie</title>
+    <title>Placówki w systemie</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -84,13 +84,13 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2><b>Pacjenci</b> w systemie</h2>
+                        <h2><b>Placówki</b> w systemie</h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="add-patient.html" class="btn btn-success" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Dodaj pacjenta</span></a>
+                                    class="material-icons"></i> <span>Dodaj dplacówkę</span></a>
                         <a href="#deletePatientModal" class="btn btn-danger" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Usuń wybranych pacjentów</span></a>
+                                    class="material-icons"></i> <span>Usuń wybrane placówki</span></a>
                     </div>
                 </div>
             </div>
@@ -111,26 +111,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list patients as patient>
+                <#list facilities as facility>
                     <tr>
                         <td>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="${patient.id}">
-								<label for="checkbox${patient.id}"></label>
+								<input type="checkbox" id="checkbox1" name="options[]" value="${facility.id}">
+								<label for="checkbox${facility.id}"></label>
 							</span>
                         </td>
-                        <td>${patient.name} ${patient.surname}</td>
-                        <td><#if patient.address.email??> ${patient.address.email}<#else> N/A </#if></td>
-                        <td>${patient.address.street}, ${patient.address.city}, PL</td>
-                        <td>${patient.address.phone}</td>
+                        <td>${facility.name}</td>
+                        <td><#if facility.address.email??> ${facility.address.email}<#else> N/A </#if></td>
+                        <td>${facility.address.street}, ${facility.address.city}, PL</td>
+                        <td>${facility.address.phone}</td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
+                            <a href="facility?id=${facility.id}" class="edit"><i class="material-icons"
                                                                                              data-toggle="tooltip" title=""
-                                                                                             data-original-title="Edit"></i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons"
+                                                                                             data-original-title="Edit">Edycja</i></a>
+                            <a href="facility?id=${facility.id}&action=delete" class="delete" ><i class="material-icons"
                                                                                                  data-toggle="tooltip"
                                                                                                  title=""
-                                                                                                 data-original-title="Delete"></i></a>
+                                                                                                 data-original-title="Delete">Usuń</i></a>
                         </td>
                     </tr>
                 </#list>

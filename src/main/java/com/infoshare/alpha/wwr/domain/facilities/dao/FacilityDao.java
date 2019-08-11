@@ -5,6 +5,7 @@ import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -40,5 +41,19 @@ public class FacilityDao {
 
     public void remove(Facility facility) {
         entityManager.remove(facility);
+    }
+
+    public boolean containsPatients(int facilityId) {
+
+        final TypedQuery<Facility> facilityQuery = entityManager.createQuery("SELECT f FROM Facility f ", Facility.class);
+
+        String sql = "SELECT count(pf.patient_id) FROM facilities AS f JOIN patients_facilities AS pf  pf.facility_id = f.id where f.id = " + facilityId;
+
+        Query nativeQuery = entityManager.createNativeQuery(sql);
+        int firstResult = nativeQuery.getFirstResult();
+
+
+        return true;
+
     }
 }

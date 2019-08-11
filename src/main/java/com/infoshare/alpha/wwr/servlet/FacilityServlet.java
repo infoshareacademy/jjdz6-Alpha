@@ -3,10 +3,12 @@ package com.infoshare.alpha.wwr.servlet;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
+import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityValidationException;
 
@@ -25,12 +27,16 @@ import java.util.stream.Collectors;
 public class FacilityServlet extends BaseWwrServlet {
 
     private final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";
+    private static final String FACILITIES_TEMPLATE_PATH = "/facility/facilities.ftlh";
 
     @Inject
     FacilitiesService facilitiesService;
 
     @Inject
     FacilitiesReadModel facilitiesReadModel;
+
+    @Inject
+    FacilitiesReadModelDbRepository facilitiesReadModelDbRepository;
 
     @Inject
     FacilityServletValidator facilityServletValidator;
@@ -40,11 +46,13 @@ public class FacilityServlet extends BaseWwrServlet {
 
         try {
             super.doGet(req, resp);
+            facilityDispatch(req,resp);
 
             String id = req.getParameter("id");
 
             if (null == id) {
-                throw new IOException("Id param missing.");
+                renderFacilities();
+                return;
             }
 
             Facility facility = facilitiesReadModel.getById(Integer.parseInt(id));
@@ -65,6 +73,15 @@ public class FacilityServlet extends BaseWwrServlet {
             model.put("notFoundError", true);
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
         }
+    }
+
+    private void renderFacilities() throws IOException {
+        List<Facility> facilities = facilitiesReadModelDbRepository.getAll();
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("facilities", facilities);
+        this.renderView(model, FACILITIES_TEMPLATE_PATH);
+        return;
     }
 
     @Override
@@ -108,6 +125,27 @@ public class FacilityServlet extends BaseWwrServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+
+        try {
+            String id = req.getParameter("id");
+
+            Facility facility = facilitiesReadModel.getById(Integer.parseInt(id));
+
+            if (null == facility) {
+                throw new IOException("Facility id: " + id + " not found.");
+            }
+
+            facilitiesService.delete(new FacilityDeleteCommand(facility));
+
+            renderFacilities();
+
+        } catch (FacilitiesException e) {
+            this.logError(e.getMessage(), e.hashCode());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (IOException e) {
+            this.logError(e.getMessage(), e.hashCode());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 
     private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {
@@ -138,5 +176,17 @@ public class FacilityServlet extends BaseWwrServlet {
         }
 
         return new Facility(id, name, new Address(city, street, phone, postalNumber),Boolean.valueOf(isNfz), services);
+    }
+
+    private void facilityDispatch(HttpServletRequest req, HttpServletResponse resp) {
+
+        String actionParam = req.getParameter("action");
+        if (actionParam != null) {
+            String action = actionParam.toUpperCase();
+            switch (action) {
+                case "DELETE" :
+                    doDelete(req, resp);
+            }
+        }
     }
 }

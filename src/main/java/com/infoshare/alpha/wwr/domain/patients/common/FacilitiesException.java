@@ -5,6 +5,7 @@ public class FacilitiesException extends Throwable {
     public static final int FACILITY_NOT_FOUND_ERROR_CODE = 1000;
     public static final int FACILITY_EXISTS_ERROR_CODE = 1001;
 
+
     private String message;
     private int code;
 

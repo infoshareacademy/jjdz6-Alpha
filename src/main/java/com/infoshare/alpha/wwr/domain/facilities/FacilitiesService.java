@@ -27,10 +27,25 @@ public class FacilitiesService {
     }
 
     public void delete(FacilityDeleteCommand command) throws FacilitiesException {
-        if (facilitiesReadModelDbRepository.getById(command.getFacility().getId()) == null) {
-            throw FacilitiesException.facilityNotFound(command.getFacility().getName());
-        }
+
+        assertFacilityExists(command.getFacility());
+        assertFacilityEmpty(command.getFacility());
+
         facilitiesDbRepository.remove(command.getFacility());
+    }
+
+    private void assertFacilityEmpty(Facility facility) throws FacilitiesException {
+
+        if (facilitiesDbRepository.containsPatients(facility.getId())) {
+            throw FacilitiesException.facilityContainsPatients(facility.getName());
+        }
+
+    }
+
+    private void assertFacilityExists(Facility facility) throws FacilitiesException {
+        if (facilitiesReadModelDbRepository.getById(facility.getId()) == null) {
+            throw FacilitiesException.facilityNotFound(facility.getName());
+        }
     }
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {

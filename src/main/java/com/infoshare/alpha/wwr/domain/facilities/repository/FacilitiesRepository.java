@@ -12,4 +12,7 @@ public interface FacilitiesRepository {
     Facility getById(int id) throws FacilitiesException;
 
     void remove(Facility facility);
+
+    boolean containsPatients(int facilityId);
+
 }
