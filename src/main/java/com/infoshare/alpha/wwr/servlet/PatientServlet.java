@@ -47,13 +47,11 @@ public class PatientServlet extends BaseWwrServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try {
-            resp.setContentType("text/html;charset=UTF-8");
-            req.setCharacterEncoding("UTF-8");
-            PrintWriter writer = resp.getWriter();
-            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
-            Map<String, Object> model = new HashMap<>();
+        resp.setContentType("text/html;charset=UTF-8");
+        Map<String, Object> model = new HashMap<>();
 
+
+        try {
 
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
@@ -74,27 +72,25 @@ public class PatientServlet extends BaseWwrServlet {
 
             patientsService.add(patient);
 
-
             model.put("editSuccess", true);
             model.put("patient", patient);
-            template.process(model, writer);
 
-        } catch (IOException | PeselException | PatientValidationException | TemplateException e) {
-            e.printStackTrace();
+        } catch (PeselException | PatientValidationException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            PrintWriter writer = resp.getWriter();
-            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
-            Map<String, Object> model = new HashMap<>();
             model.put("validationError", true);
             model.put("message", e.getMessage());
+            e.printStackTrace();
+        }
 
-            try {
-                template.process(model, writer);
-            } catch (TemplateException e1) {
-                e1.printStackTrace();
-            }
+        try {
+            PrintWriter writer = resp.getWriter();
+            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
+            template.process(model, writer);
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
         }
     }
+
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
