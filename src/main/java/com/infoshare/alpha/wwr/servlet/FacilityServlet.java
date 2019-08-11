@@ -55,15 +55,15 @@ public class FacilityServlet extends BaseWwrServlet {
                 return;
             }
 
-            Facility facility = facilitiesReadModel.getById(Integer.parseInt(id));
+            Optional<Facility> facility = facilitiesReadModel.getById(Integer.parseInt(id));
 
-            if (null == facility) {
+            if (!facility.isPresent()) {
                 throw new IOException("Facility id: " + id + " not found.");
             }
 
             response.setStatus(HttpServletResponse.SC_OK);
             Map<String, Object> model = new HashMap<>();
-            model.put("facility", facility);
+            model.put("facility", facility.get());
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
 
         } catch (NumberFormatException | IOException e) {
@@ -129,13 +129,13 @@ public class FacilityServlet extends BaseWwrServlet {
         try {
             String id = req.getParameter("id");
 
-            Facility facility = facilitiesReadModel.getById(Integer.parseInt(id));
+            Optional<Facility> facility = facilitiesReadModel.getById(Integer.parseInt(id));
 
-            if (null == facility) {
+            if (!facility.isPresent()) {
                 throw new IOException("Facility id: " + id + " not found.");
             }
 
-            facilitiesService.delete(new FacilityDeleteCommand(facility));
+            facilitiesService.delete(new FacilityDeleteCommand(facility.get()));
 
             renderFacilities();
 

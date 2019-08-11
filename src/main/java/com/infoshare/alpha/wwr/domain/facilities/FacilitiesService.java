@@ -43,9 +43,11 @@ public class FacilitiesService {
     }
 
     private void assertFacilityExists(Facility facility) throws FacilitiesException {
+
         if (facilitiesReadModelDbRepository.getById(facility.getId()) == null) {
             throw FacilitiesException.facilityNotFound(facility.getName());
         }
+
     }
 
     public void edit(FacilityEditCommand command) throws FacilitiesException {

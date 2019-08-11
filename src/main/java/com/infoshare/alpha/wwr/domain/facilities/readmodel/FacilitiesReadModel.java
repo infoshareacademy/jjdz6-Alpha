@@ -7,6 +7,7 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class read data from facilities repository also eg. nearest patients facilities or by query
@@ -20,7 +21,7 @@ public class FacilitiesReadModel {
     @Inject
     private FacilitiesReadModelDb repository;
 
-    public Facility getById(int id) {
+    public Optional<Facility> getById(int id) {
 
         return repository.getById(id);
     }

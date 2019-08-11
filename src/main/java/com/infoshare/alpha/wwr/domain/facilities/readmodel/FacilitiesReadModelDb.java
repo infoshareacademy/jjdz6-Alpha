@@ -5,12 +5,13 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 
 import java.util.List;
+import java.util.Optional;
 
- interface FacilitiesReadModelDb {
+interface FacilitiesReadModelDb {
 
      List<Facility> getAll();
 
-     Facility getById(int id);
+     Optional<Facility> getById(int id);
 
      List<Facility> getByName(String name);
 

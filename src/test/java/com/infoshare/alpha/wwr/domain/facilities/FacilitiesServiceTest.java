@@ -18,6 +18,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,7 +51,7 @@ class FacilitiesServiceTest {
 
         // when
 
-        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(null);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(Optional.empty());
 
         try {
             testObj.add(facilityAddCommand);
@@ -80,7 +82,7 @@ class FacilitiesServiceTest {
         // when/then
 
 
-        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(facility1);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(Optional.of(facility1));
 
         assertThatThrownBy(() -> testObj.add(facilityAddCommand))
                 .isInstanceOf(FacilitiesException.class)
@@ -103,7 +105,7 @@ class FacilitiesServiceTest {
 
         // when
 
-        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(facility1);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
         try {

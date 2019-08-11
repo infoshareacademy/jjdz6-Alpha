@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,9 +28,8 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
     }
 
     @Override
-    public Facility getById(int id) {
-
-        return facilityDao.findAll().stream().filter(f -> id == f.getId()).findAny().orElse(null);
+    public Optional<Facility> getById(int id) {
+        return facilityDao.findAll().stream().filter(f -> id == f.getId()).findAny();
     }
 
     @Override
