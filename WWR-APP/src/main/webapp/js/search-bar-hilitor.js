@@ -2,12 +2,19 @@
 // Please acknowledge use of this code by including this header.
 
 var myHilitor = new Hilitor();
+myHilitor.setMatchType("open");
 
 $("#mainSearchBarButton").on("click", function () {
     var queryText = document.getElementById("mainSearchBarQuery").value;
     myHilitor.apply(queryText);
     return false;
 });
+
+window.addEventListener("DOMContentLoaded", function (e) {
+    document.getElementById("mainSearchBarQuery").addEventListener("input", function (e) {
+        myHilitor.remove();
+    }, false);
+}, false);
 
 function Hilitor(id, tag) {
 
