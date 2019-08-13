@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestScoped
 public class SearchBarQueriesService {
@@ -19,13 +21,17 @@ public class SearchBarQueriesService {
     @Inject
     SearchBarQueryDao searchBarQueryDao;
 
-    public SearchBarQuery getById(int id) {
+    public SearchBarQuery getById(Long id) {
         if (searchBarQueryDao.findById(id).isPresent()) {
             return searchBarQueryDao.findById(id).get();
         } else {
             logger.warn("SearchBarQuery with ID: {} has not been found.", id);
             throw new ResourceNotFoundException("Query with ID " + id + " not found");
         }
+    }
+
+    public List<SearchBarQuery> getByDate(LocalDate date) {
+        return searchBarQueryDao.findByDate(date);
     }
 
     public List<SearchBarQuery> getSearchBarQueriesList() {

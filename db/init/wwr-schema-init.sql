@@ -26,7 +26,7 @@ create table addresses (
 );
 
 create table search_bar_queries (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     query_text VARCHAR(255) NOT NULL,
     query_origin_url VARCHAR(255) NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP

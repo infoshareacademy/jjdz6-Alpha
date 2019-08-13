@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
 
 @Path("/queries")
 @Produces(MediaType.APPLICATION_JSON)
@@ -24,18 +25,26 @@ public class SearchBarQueriesServlet {
                 .build();
     }
 
-    @POST
-    public Response addQuery(@Valid SearchBarQuery searchBarQuery) {
-        return Response.status(Response.Status.CREATED)
-                .entity(searchBarQueriesService.saveSearchBarQuery(searchBarQuery))
+    @GET
+    @Path("/{id}")
+    public Response getQueryById(@PathParam("id") Long id) {
+        return Response.status(Response.Status.OK)
+                .entity(searchBarQueriesService.getById(id))
                 .build();
     }
 
     @GET
-    @Path("/{id}")
-    public Response getQueryDetails(@PathParam("id") int id) {
+    @Path("{date: \\d{4}-\\d{2}-\\d{2}}")
+    public Response getQueryByDate(@PathParam("date") String date) {
         return Response.status(Response.Status.OK)
-                .entity(searchBarQueriesService.getById(id))
+                .entity(searchBarQueriesService.getByDate(LocalDate.parse(date)))
+                .build();
+    }
+
+    @POST
+    public Response addQuery(@Valid SearchBarQuery searchBarQuery) {
+        return Response.status(Response.Status.CREATED)
+                .entity(searchBarQueriesService.saveSearchBarQuery(searchBarQuery))
                 .build();
     }
 }

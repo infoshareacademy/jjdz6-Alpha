@@ -14,7 +14,7 @@ public class SearchBarQuery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @NotNull
     @Column(name = "query_text")
@@ -36,7 +36,7 @@ public class SearchBarQuery {
     public SearchBarQuery() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
