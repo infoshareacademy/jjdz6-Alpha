@@ -6,7 +6,7 @@ myHilitor.setMatchType("open");
 
 $("#mainSearchBarButton").on("click", function () {
     var queryText = document.getElementById("mainSearchBarQuery").value;
-    myHilitor.apply(queryText);
+    myHilitor.apply(queryText.trim());
     return false;
 });
 
@@ -30,10 +30,10 @@ function Hilitor(id, tag) {
     var openRight = false;
 
     // characters to strip from start and end of the input string
-    var endRegExp = new RegExp('^[^\\w]+|[^\\w]+$', "g");
+    var endRegExp = new RegExp('^[^\\D]+|[^\\D]+$', "g");
 
     // characters used to break up the input string into words
-    var breakRegExp = new RegExp('[^\\w\'-]+', "g");
+    var breakRegExp = new RegExp('[^\\D\'-]+', "g");
 
     this.setEndRegExp = function (regex) {
         endRegExp = regex;
