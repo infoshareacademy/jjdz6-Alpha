@@ -52,8 +52,6 @@ public class FacilityDao {
         Query nativeQuery = entityManager.createNativeQuery(sql);
         int firstResult = nativeQuery.getFirstResult();
 
-
-        return true;
-
+        return firstResult > 0;
     }
 }

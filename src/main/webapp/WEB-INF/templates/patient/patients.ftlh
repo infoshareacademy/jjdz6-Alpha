@@ -86,12 +86,13 @@
                     <div class="col-sm-6">
                         <h2><b>Pacjenci</b> w systemie</h2>
                     </div>
-                    <div class="col-sm-6">
-                        <a href="add-patient.html" class="btn btn-success" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Dodaj pacjenta</span></a>
-                        <a href="#deletePatientModal" class="btn btn-danger" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Usuń wybranych pacjentów</span></a>
-                    </div>
+                    <!-- patients bulk operations not implemented -->
+                    <#--<div class="col-sm-6">-->
+                        <#--<a href="add-patient.html" class="btn btn-success" data-toggle="modal"><i-->
+                                    <#--class="material-icons"></i> <span>Dodaj pacjenta</span></a>-->
+                        <#--<a href="#deletePatientModal" class="btn btn-danger" data-toggle="modal"><i-->
+                                    <#--class="material-icons"></i> <span>Usuń wybranych pacjentów</span></a>-->
+                    <#--</div>-->
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -137,22 +138,20 @@
                 </tbody>
             </table>
 
-
-            <!-- pagination section -->
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
+            <!-- pagination section not implemented -->
+            <#--<div class="clearfix">-->
+                <#--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+                <#--<ul class="pagination">-->
+                    <#--<li class="page-item disabled"><a href="#">Previous</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">1</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">2</a></li>-->
+                    <#--<li class="page-item active"><a href="#" class="page-link">3</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">4</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">5</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">Next</a></li>-->
+                <#--</ul>-->
+            <#--</div>-->
         </div>
-
 
     </div>
 </main>

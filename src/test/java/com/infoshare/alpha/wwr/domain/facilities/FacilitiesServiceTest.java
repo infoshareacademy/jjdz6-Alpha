@@ -106,6 +106,8 @@ class FacilitiesServiceTest {
         // when
 
         Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
+        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(true);
+
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
         try {
@@ -137,12 +139,38 @@ class FacilitiesServiceTest {
 
         // when/then
 
-        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(null);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> testObj.delete(facilityDeleteCommand))
                 .isInstanceOf(FacilitiesException.class)
                 .hasMessage("Facility " + facility1.getName() + " not found ");
 
+    }
+
+    @Test
+    @DisplayName("Should not delete facility while contains patients")
+    void shouldNotDeleteFacilityWhileContainsPatients() {
+
+        // given
+
+        Facility facility1 = new Facility(
+                1,
+                "facility-1",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
+                getFacilityServices()
+        );
+
+
+        FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
+
+        // when/then
+
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
+        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(false);
+
+        assertThatThrownBy(() -> testObj.delete(facilityDeleteCommand))
+                .isInstanceOf(FacilitiesException.class)
+                .hasMessage("Facility :" + facility1.getName() + " contains patients ");
     }
 
     @Test

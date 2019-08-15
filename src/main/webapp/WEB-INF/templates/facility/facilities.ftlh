@@ -69,6 +69,17 @@
 
     <div class="container">
 
+        <#if serviceError??>
+            <div id="servicesErrors">
+                <#if serviceError.code == 10000>
+                    <div class="alert alert-danger" role="alert">Błąd servisu</div>
+                </#if>
+                <#if serviceError.code == 10004>
+                    <div class="alert alert-danger" role="alert">Nie można usunąć placówki, placówka zawiera aktywnych pacjentów.</div>
+                </#if>
+            </div>
+        </#if>
+
         <div id="signupbox" style=" margin-top:40px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 
             <div class="panel panel-info">
@@ -86,12 +97,13 @@
                     <div class="col-sm-6">
                         <h2><b>Placówki</b> w systemie</h2>
                     </div>
-                    <div class="col-sm-6">
-                        <a href="add-patient.html" class="btn btn-success" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Dodaj dplacówkę</span></a>
-                        <a href="#deletePatientModal" class="btn btn-danger" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Usuń wybrane placówki</span></a>
-                    </div>
+                    <!-- buld operations not implemented -->
+                    <#--<div class="col-sm-6">-->
+                        <#--<a href="add-patient.html" class="btn btn-success" data-toggle="modal"><i-->
+                                    <#--class="material-icons"></i> <span>Dodaj dplacówkę</span></a>-->
+                        <#--<a href="#deletePatientModal" class="btn btn-danger" data-toggle="modal"><i-->
+                                    <#--class="material-icons"></i> <span>Usuń wybrane placówki</span></a>-->
+                    <#--</div>-->
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -138,19 +150,19 @@
             </table>
 
 
-            <!-- pagination section -->
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
+            <!-- pagination section temp disabled-->
+            <#--<div class="clearfix">-->
+                <#--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+                <#--<ul class="pagination">-->
+                    <#--<li class="page-item disabled"><a href="#">Previous</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">1</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">2</a></li>-->
+                    <#--<li class="page-item active"><a href="#" class="page-link">3</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">4</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">5</a></li>-->
+                    <#--<li class="page-item"><a href="#" class="page-link">Next</a></li>-->
+                <#--</ul>-->
+            <#--</div>-->
         </div>
 
 

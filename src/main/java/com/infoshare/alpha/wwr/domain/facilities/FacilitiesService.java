@@ -36,7 +36,7 @@ public class FacilitiesService {
 
     private void assertFacilityEmpty(Facility facility) throws FacilitiesException {
 
-        if (facilitiesDbRepository.containsPatients(facility.getId())) {
+        if (!facilitiesDbRepository.containsPatients(facility.getId())) {
             throw FacilitiesException.facilityContainsPatients(facility.getName());
         }
 
@@ -44,7 +44,7 @@ public class FacilitiesService {
 
     private void assertFacilityExists(Facility facility) throws FacilitiesException {
 
-        if (facilitiesReadModelDbRepository.getById(facility.getId()) == null) {
+        if (!facilitiesReadModelDbRepository.getById(facility.getId()).isPresent()) {
             throw FacilitiesException.facilityNotFound(facility.getName());
         }
 

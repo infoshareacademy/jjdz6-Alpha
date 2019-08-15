@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class FacilityServlet extends BaseWwrServlet {
 
-    private final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";
+    private static final String FACILITY_EDIT_TEMPLATE_PATH = "/facility/editFacility.ftlh";
     private static final String FACILITIES_TEMPLATE_PATH = "/facility/facilities.ftlh";
 
     @Inject
@@ -46,42 +46,34 @@ public class FacilityServlet extends BaseWwrServlet {
 
         try {
             super.doGet(req, resp);
-            facilityDispatch(req,resp);
 
-            String id = req.getParameter("id");
+            Optional<String> action = Optional.ofNullable(req.getParameter("action"));
+            Optional<String> id = Optional.ofNullable(req.getParameter("id"));
 
-            if (null == id) {
+            if (action.isPresent() && action.get().equalsIgnoreCase("DELETE") && id.isPresent()) {
+                deleteFacility(Integer.valueOf(id.get()));
+            }
+
+            if (!id.isPresent()) {
                 renderFacilities();
                 return;
             }
 
-            Optional<Facility> facility = facilitiesReadModel.getById(Integer.parseInt(id));
+            Optional<Facility> facility = facilitiesReadModel.getById(Integer.parseInt(id.get()));
 
             if (!facility.isPresent()) {
-                throw new IOException("Facility id: " + id + " not found.");
+                renderEditFacilityNotFound();
+                return;
             }
 
-            response.setStatus(HttpServletResponse.SC_OK);
-            Map<String, Object> model = new HashMap<>();
-            model.put("facility", facility.get());
-            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+            renderEditFacility(facility.get());
 
+        } catch (FacilitiesException e) {
+            this.logError(e.getMessage(), e.hashCode());
+            renderFacilitiesWithError(e);
         } catch (NumberFormatException | IOException e) {
             this.logError(e.getMessage(), e.hashCode());
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            Map<String, Object> model = new HashMap<>();
-            model.put("notFoundError", true);
-            this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
         }
-    }
-
-    private void renderFacilities() throws IOException {
-        List<Facility> facilities = facilitiesReadModelDbRepository.getAll();
-        response.setStatus(HttpServletResponse.SC_OK);
-        Map<String, Object> model = new HashMap<>();
-        model.put("facilities", facilities);
-        this.renderView(model, FACILITIES_TEMPLATE_PATH);
-        return;
     }
 
     @Override
@@ -110,6 +102,7 @@ public class FacilityServlet extends BaseWwrServlet {
             this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
 
         } catch (FacilitiesException e) {
+
             this.logError(e.getMessage(), e.getCode());
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             Map<String, Object> model = new HashMap<>();
@@ -125,27 +118,50 @@ public class FacilityServlet extends BaseWwrServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+    }
 
-        try {
-            String id = req.getParameter("id");
+    private void deleteFacility(int id) throws FacilitiesException {
 
-            Optional<Facility> facility = facilitiesReadModel.getById(Integer.parseInt(id));
+        Optional<Facility> facility = facilitiesReadModel.getById(id);
 
-            if (!facility.isPresent()) {
-                throw new IOException("Facility id: " + id + " not found.");
-            }
-
-            facilitiesService.delete(new FacilityDeleteCommand(facility.get()));
-
-            renderFacilities();
-
-        } catch (FacilitiesException e) {
-            this.logError(e.getMessage(), e.hashCode());
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } catch (IOException e) {
-            this.logError(e.getMessage(), e.hashCode());
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        if (!facility.isPresent()) {
+            throw FacilitiesException.facilityNotFound();
         }
+
+        facilitiesService.delete(new FacilityDeleteCommand(facility.get()));
+    }
+
+    private void renderEditFacilityNotFound() throws IOException {
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        Map<String, Object> model = new HashMap<>();
+        model.put("notFoundError", true);
+        this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+    }
+
+    private void renderEditFacility(Facility facility) throws IOException {
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("facility", facility);
+        this.renderView(model, FACILITY_EDIT_TEMPLATE_PATH);
+    }
+
+    private void renderFacilitiesWithError(Object error) throws IOException {
+        List<Facility> facilities = facilitiesReadModelDbRepository.getAll();
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("facilities", facilities);
+        model.put("serviceError", error);
+        this.renderView(model, FACILITIES_TEMPLATE_PATH);
+        return;
+    }
+
+    private void renderFacilities() throws IOException {
+        List<Facility> facilities = facilitiesReadModelDbRepository.getAll();
+        response.setStatus(HttpServletResponse.SC_OK);
+        Map<String, Object> model = new HashMap<>();
+        model.put("facilities", facilities);
+        this.renderView(model, FACILITIES_TEMPLATE_PATH);
+        return;
     }
 
     private Facility getFacilityFromRequestData(Map<String, String[]> requestData) {
@@ -178,15 +194,4 @@ public class FacilityServlet extends BaseWwrServlet {
         return new Facility(id, name, new Address(city, street, phone, postalNumber),Boolean.valueOf(isNfz), services);
     }
 
-    private void facilityDispatch(HttpServletRequest req, HttpServletResponse resp) {
-
-        String actionParam = req.getParameter("action");
-        if (actionParam != null) {
-            String action = actionParam.toUpperCase();
-            switch (action) {
-                case "DELETE" :
-                    doDelete(req, resp);
-            }
-        }
-    }
 }
