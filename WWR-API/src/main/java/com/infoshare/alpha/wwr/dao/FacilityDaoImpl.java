@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.dao;
 
-import com.infoshare.alpha.wwr.domain.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;

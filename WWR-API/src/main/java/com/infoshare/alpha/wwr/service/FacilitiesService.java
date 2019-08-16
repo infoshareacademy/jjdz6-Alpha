@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.service;
 
 import com.infoshare.alpha.wwr.dao.FacilityDao;
-import com.infoshare.alpha.wwr.domain.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 
