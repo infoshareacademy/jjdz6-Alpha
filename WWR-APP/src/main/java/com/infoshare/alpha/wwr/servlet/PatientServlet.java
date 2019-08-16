@@ -4,9 +4,9 @@ import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
-import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
-import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+import com.infoshare.alpha.wwr.entities.Parent;
+import com.infoshare.alpha.wwr.entities.Patient;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.PatientValidationException;
 

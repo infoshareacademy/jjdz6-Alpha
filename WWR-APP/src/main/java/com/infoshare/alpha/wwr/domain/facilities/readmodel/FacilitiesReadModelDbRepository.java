@@ -1,13 +1,13 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
 import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.PostalCodeComparator;
+import com.infoshare.alpha.wwr.domain.facilities.common.PostalCodeComparator;
 import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
+import com.infoshare.alpha.wwr.entities.Facility;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

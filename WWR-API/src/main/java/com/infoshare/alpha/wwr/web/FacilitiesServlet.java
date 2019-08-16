@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.web;
 
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.entities.Facility;
 import com.infoshare.alpha.wwr.service.FacilitiesService;
 import com.infoshare.alpha.wwr.service.FacilityDetailsArchiveService;
 

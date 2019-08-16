@@ -1,9 +1,9 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
+import com.infoshare.alpha.wwr.entities.Facility;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

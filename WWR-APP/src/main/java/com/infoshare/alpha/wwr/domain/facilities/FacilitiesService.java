@@ -6,9 +6,10 @@ import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.UploadCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
+import com.infoshare.alpha.wwr.entities.Facility;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 

@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.domain.patients.entity;
+package com.infoshare.alpha.wwr.entities;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;

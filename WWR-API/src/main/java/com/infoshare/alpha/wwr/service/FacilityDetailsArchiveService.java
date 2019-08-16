@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.service;
 
 import com.infoshare.alpha.wwr.dao.FacilityDetailsArchiveDao;
 import com.infoshare.alpha.wwr.domain.FacilityDetailsArchive;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.entities.Facility;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;

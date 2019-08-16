@@ -1,6 +1,6 @@
-package com.infoshare.alpha.wwr.common;
+package com.infoshare.alpha.wwr.domain.facilities.common;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.entities.Facility;
 
 import java.util.Comparator;
 

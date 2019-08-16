@@ -1,6 +1,7 @@
 package com.infoshare.alpha.wwr.common;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.domain.facilities.common.PostalCodeComparator;
+import com.infoshare.alpha.wwr.entities.Facility;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

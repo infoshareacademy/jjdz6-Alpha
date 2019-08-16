@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.domain;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.entities.Facility;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;

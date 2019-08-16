@@ -2,7 +2,7 @@ package com.infoshare.alpha.wwr.domain.facilities.command;
 
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Service;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+import com.infoshare.alpha.wwr.entities.Facility;
 
 import java.util.Arrays;
 import java.util.List;

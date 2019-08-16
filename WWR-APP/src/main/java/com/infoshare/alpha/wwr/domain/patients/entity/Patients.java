@@ -1,5 +1,7 @@
 package com.infoshare.alpha.wwr.domain.patients.entity;
 
+import com.infoshare.alpha.wwr.entities.Patient;
+
 import java.util.ArrayList;
 import java.util.List;
 

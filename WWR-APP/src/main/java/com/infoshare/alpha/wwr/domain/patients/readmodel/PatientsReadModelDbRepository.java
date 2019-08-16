@@ -1,10 +1,10 @@
 package com.infoshare.alpha.wwr.domain.patients.readmodel;
 
 import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
-import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
+import com.infoshare.alpha.wwr.entities.Patient;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

@@ -3,6 +3,8 @@ package com.infoshare.alpha.wwr.domain.patients.entity;
 import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.Pesel;
 import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.entities.Parent;
+import com.infoshare.alpha.wwr.entities.Patient;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

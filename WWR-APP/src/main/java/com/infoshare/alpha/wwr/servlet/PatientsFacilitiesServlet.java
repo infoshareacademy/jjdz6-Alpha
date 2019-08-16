@@ -1,13 +1,13 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
-import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
+import com.infoshare.alpha.wwr.entities.Facility;
+import com.infoshare.alpha.wwr.entities.Patient;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 

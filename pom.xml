@@ -10,6 +10,7 @@
     <modules>
         <module>WWR-APP</module>
         <module>WWR-API</module>
+        <module>WWR-Domain</module>
     </modules>
     <packaging>pom</packaging>
 

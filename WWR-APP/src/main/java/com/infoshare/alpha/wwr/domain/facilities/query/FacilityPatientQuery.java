@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.domain.facilities.query;
 
-import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
+import com.infoshare.alpha.wwr.entities.Patient;
 
 import java.util.List;
 

@@ -5,8 +5,8 @@ import com.infoshare.alpha.wwr.common.Service;
 import com.infoshare.alpha.wwr.domain.facilities.FacilitiesService;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
+import com.infoshare.alpha.wwr.entities.Facility;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.FacilityValidationException;
 

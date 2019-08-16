@@ -1,6 +1,7 @@
 package com.infoshare.alpha.wwr.dao;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
+
+import com.infoshare.alpha.wwr.entities.Facility;
 
 import java.util.List;
 import java.util.Optional;

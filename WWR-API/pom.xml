@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>com.infoshare.alpha</groupId>
-            <artifactId>WWR-APP</artifactId>
+            <artifactId>WWR-Domain</artifactId>
             <version>0.2-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

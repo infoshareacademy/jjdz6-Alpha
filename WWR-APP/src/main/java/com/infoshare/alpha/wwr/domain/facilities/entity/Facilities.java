@@ -1,5 +1,7 @@
 package com.infoshare.alpha.wwr.domain.facilities.entity;
 
+import com.infoshare.alpha.wwr.entities.Facility;
+
 import java.util.ArrayList;
 import java.util.List;
 
