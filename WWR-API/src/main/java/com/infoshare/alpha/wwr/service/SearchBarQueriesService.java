@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequestScoped
 public class SearchBarQueriesService {

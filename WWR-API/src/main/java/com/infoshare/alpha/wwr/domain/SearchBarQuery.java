@@ -28,11 +28,6 @@ public class SearchBarQuery {
     @Column(name = "timestamp")
     private LocalDateTime timestamp;
 
-
-//    @Column(name = "user")
-//    private User user;
-
-
     public SearchBarQuery() {
     }
 
