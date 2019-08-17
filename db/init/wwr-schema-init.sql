@@ -25,6 +25,12 @@ create table addresses (
     postalCode VARCHAR(255) NOT NULL
 );
 
+# create table archived_facilities (
+#     id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+#     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+#     facility_details VARCHAR(255) NOT NULL TODO change once Facility is mapped
+# );
+
 create table search_bar_queries (
     id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     query_text VARCHAR(255) NOT NULL,
