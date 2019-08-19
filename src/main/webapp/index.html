@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
 
@@ -55,6 +58,26 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontakt</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></a>
+                    <script>
+                        function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
+                            var profile = googleUser.getBasicProfile();
+                            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                            console.log('Full Name: ' + profile.getName());
+                            console.log('Given Name: ' + profile.getGivenName());
+                            console.log('Family Name: ' + profile.getFamilyName());
+                            console.log("Image URL: " + profile.getImageUrl());
+                            console.log("Email: " + profile.getEmail());
+
+                            // The ID token you need to pass to your backend:
+                            var id_token = googleUser.getAuthResponse().id_token;
+                            console.log("ID Token: " + id_token);
+                        }
+                    </script>
                 </li>
 
             </ul>
@@ -119,11 +142,17 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-    <h1 class="display-4">Witaj na stronie Wczesnego Wspomagania Rozwoju!</h1>
-    <p class="lead">WWR to zintegrowane działania profilaktyczne, diagnostyczne, terapeutyczne i medyczne, mające na celu stymulowanie funkcji odpowiedzialnych za rozwój psychomotoryczny i komunikację małego dziecka niepełnosprawnego. Działania te obejmują również pomoc i wsparcie udzielane rodzicom i rodzinie w celu nabycia umiejętności postępowania z dzieckiem. Istotne jest, by intensywne i kompleksowe działania zostały podjęte jak najwcześniej</p>
-    <hr class="my-4">
-    <p>Celem zorganizowania wczesnego wspomagania rozwoju jest pobudzenie psychoruchowego i społecznego rozwoju dziecka od chwili wykrycia niepełnosprawności do podjęcia nauki w szkole.</p>
-    <p>Tu znajdziesz wszelie informacje dotyczące progamów wspomagania, a także zapiszesz swoje dziecko do wybranego specjalisty.</p>
+        <h1 class="display-4">Witaj na stronie Wczesnego Wspomagania Rozwoju!</h1>
+        <p class="lead">WWR to zintegrowane działania profilaktyczne, diagnostyczne, terapeutyczne i medyczne, mające na
+            celu stymulowanie funkcji odpowiedzialnych za rozwój psychomotoryczny i komunikację małego dziecka
+            niepełnosprawnego. Działania te obejmują również pomoc i wsparcie udzielane rodzicom i rodzinie w celu
+            nabycia umiejętności postępowania z dzieckiem. Istotne jest, by intensywne i kompleksowe działania zostały
+            podjęte jak najwcześniej</p>
+        <hr class="my-4">
+        <p>Celem zorganizowania wczesnego wspomagania rozwoju jest pobudzenie psychoruchowego i społecznego rozwoju
+            dziecka od chwili wykrycia niepełnosprawności do podjęcia nauki w szkole.</p>
+        <p>Tu znajdziesz wszelie informacje dotyczące progamów wspomagania, a także zapiszesz swoje dziecko do wybranego
+            specjalisty.</p>
     </div>
 </div>
 

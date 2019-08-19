@@ -50,9 +50,7 @@ public class PatientServlet extends BaseWwrServlet {
         resp.setContentType("text/html;charset=UTF-8");
         Map<String, Object> model = new HashMap<>();
 
-
         try {
-
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
             String nameParam = req.getParameter("name");
@@ -64,7 +62,6 @@ public class PatientServlet extends BaseWwrServlet {
             String postalCodeParam = req.getParameter("postalCode");
             String parentNameParam = req.getParameter("parentName");
             String parentSurnameParam = req.getParameter("parentSurname");
-
 
             Integer postalCode = Integer.parseInt(postalCodeParam);
 
@@ -90,7 +87,6 @@ public class PatientServlet extends BaseWwrServlet {
             e.printStackTrace();
         }
     }
-
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
