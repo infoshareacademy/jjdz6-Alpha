@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="674333452690-oqakalh87637ojol3g6h1383aeppqvot.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 
 </head>
 
@@ -60,28 +62,46 @@
                     <a class="nav-link" href="#">Kontakt</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="g-signin2" data-onsuccess="onSignIn"></a>
-                    <script>
-                        function onSignIn(googleUser) {
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Panel administracyjny - logowanie
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="g-signin2" data-onsuccess="onSignIn"></a>
+                        <script>
+                            function onSignIn(googleUser) {
 
-                            var profile = googleUser.getBasicProfile();
+                                var profile = googleUser.getBasicProfile();
 
-                            console.log('ID: ' + profile.getId());
-                            console.log('Name: ' + profile.getName());
-                            console.log('Image URL: ' + profile.getImageUrl());
-                            console.log('Email: ' + profile.getEmail());
-                            console.log('id_token: ' + googleUser.getAuthResponse().id_token);
+                                console.log('ID: ' + profile.getId());
+                                console.log('Name: ' + profile.getName());
+                                console.log('Image URL: ' + profile.getImageUrl());
+                                console.log('Email: ' + profile.getEmail());
+                                console.log('id_token: ' + googleUser.getAuthResponse().id_token);
 
+                                var redirectUrl = '/wwr/login';
+                                var form = $('<form action="' + redirectUrl + '" method="get">' +
+                                    '<input type="text" name="id_token" value="' +
+                                    googleUser.getAuthResponse().id_token + '" />' +
+                                    '</form>');
+                                $('body').append(form);
+                                form.submit();
+                            }
+                        </script>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" onclick="signOut();">Wyloguj się</a>
+                        <script>
+                            function signOut() {
+                                var auth2 = gapi.auth2.getAuthInstance();
+                                auth2.signOut().then(function () {
+                                    console.log('User signed out.');
+                                });
+                            }
+                        </script>
 
-                            var form = $('<form method="get" action="/wwr/login">' +
-                                '<input type="text" name="id_token" value="' +
-                                googleUser.getAuthResponse().id_token + '" />' +
-                                '</form>');
-                            $('body').append(form);
-                            form.submit();
-                        }
-                    </script>
+                    </div>
+                </div>
+
 
 
 
