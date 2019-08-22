@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.dao;
 
-import com.infoshare.alpha.wwr.domain.SearchBarQuery;
+import com.infoshare.alpha.wwr.entity.SearchBarQuery;
 
 import java.time.LocalDate;
 import java.util.List;

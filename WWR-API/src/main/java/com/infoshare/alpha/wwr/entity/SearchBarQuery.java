@@ -1,4 +1,4 @@
-package com.infoshare.alpha.wwr.domain;
+package com.infoshare.alpha.wwr.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 

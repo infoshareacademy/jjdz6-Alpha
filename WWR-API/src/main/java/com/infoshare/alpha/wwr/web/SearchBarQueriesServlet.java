@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.web;
 
-import com.infoshare.alpha.wwr.domain.SearchBarQuery;
+import com.infoshare.alpha.wwr.entity.SearchBarQuery;
 import com.infoshare.alpha.wwr.service.SearchBarQueriesService;
 
 import javax.inject.Inject;
