@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/wwr/login"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends BaseWwrServlet{
 
 
@@ -27,8 +27,6 @@ public class LoginServlet extends BaseWwrServlet{
 
             HttpSession session = req.getSession(true);
             session.setAttribute("userName", name);
-
-//            req.getServletContext().getRequestDispatcher("/wwr/admin-panel").forward(req, resp);
             resp.sendRedirect("/wwr/admin-panel");
 
         } catch (Exception e) {

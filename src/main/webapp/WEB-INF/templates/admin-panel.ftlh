@@ -83,8 +83,8 @@
                             }
                         </script>
                         <div class="dropdown-divider"></div>
-                        <#--<a class="dropdown-item" href="#">Raporty</a>-->
-                        <#--<a class="dropdown-item" href="#">Ustawienia</a>-->
+                        <a class="dropdown-item" href="#">Raporty</a>
+                        <a class="dropdown-item" href="#">Ustawienia</a>
                     </div>
                 </div>
 
