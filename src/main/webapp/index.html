@@ -85,7 +85,7 @@
                                 console.log('id_token: ' + googleUser.getAuthResponse().id_token);
 
                                 var redirectUrl = '/wwr/login';
-                                var form = $('<form action="' + redirectUrl + '" method="get">' +
+                                var form = $('<form action="' + redirectUrl + '" method="post">' +
                                     '<input type="text" name="id_token" value="' +
                                     googleUser.getAuthResponse().id_token + '" />' +
                                     '</form>');
