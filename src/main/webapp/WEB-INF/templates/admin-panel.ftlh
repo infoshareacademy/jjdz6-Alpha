@@ -72,35 +72,13 @@
 
                         <a class="g-signin2" data-onsuccess="onSignIn" id="my-signin2"></a>
 
+                        <a type="button" class="btn btn-primary" href="#" onclick="signOut();">Wyloguj się</a>
                         <script>
 
-                            function onSignIn(googleUser) {
-
-                                var profile = googleUser.getBasicProfile();
-
-                                console.log('ID: ' + profile.getId());
-                                console.log('Name: ' + profile.getName());
-                                console.log('Image URL: ' + profile.getImageUrl());
-                                console.log('Email: ' + profile.getEmail());
-                                console.log('id_token: ' + googleUser.getAuthResponse().id_token);
-
-                                var redirectUrl = '/wwr/login';
-                                var form = $('<form action="' + redirectUrl + '" method="post">' +
-                                    '<input type="text" name="id_token" value="' +
-                                    googleUser.getAuthResponse().id_token + '" />' +
-                                    '</form>');
-                                $('body').append(form);
-                                form.submit();
-                            }
-
-                            function renderButton() {
-                                gapi.signin2.render('my-signin2', {
-                                    'scope': 'profile email',
-                                    'width': 240,
-                                    'height': 50,
-                                    'longtitle': true,
-                                    'theme': 'dark',
-                                    'onsuccess': onSignIn
+                            function signOut() {
+                                var auth2 = gapi.auth2.getAuthInstance();
+                                auth2.signOut().then(function () {
+                                    location.href = "http://localhost:8080/wwr/";
                                 });
                             }
                         </script>
