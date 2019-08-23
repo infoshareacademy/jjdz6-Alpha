@@ -14,7 +14,8 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends BaseWwrServlet{
 
-    private final String LOGIN_TEMPLATE_PATH = "/login.ftlh";
+    private static final String ADMIN_PANEL_PATH = "/wwr/admin-panel" ;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +29,7 @@ public class LoginServlet extends BaseWwrServlet{
 
             HttpSession session = req.getSession(true);
             session.setAttribute("userName", name);
-            resp.sendRedirect("/wwr/admin-panel");
+            resp.sendRedirect(ADMIN_PANEL_PATH);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
