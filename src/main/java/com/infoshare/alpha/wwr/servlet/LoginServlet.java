@@ -11,13 +11,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/wwr/login"})
 public class LoginServlet extends BaseWwrServlet{
 
-    private final String LOGIN_TEMPLATE_PATH = "/login.ftlh";
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8");
 
@@ -28,6 +27,8 @@ public class LoginServlet extends BaseWwrServlet{
 
             HttpSession session = req.getSession(true);
             session.setAttribute("userName", name);
+
+//            req.getServletContext().getRequestDispatcher("/wwr/admin-panel").forward(req, resp);
             resp.sendRedirect("/wwr/admin-panel");
 
         } catch (Exception e) {

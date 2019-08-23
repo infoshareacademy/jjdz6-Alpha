@@ -72,7 +72,7 @@
 
                         <a class="g-signin2" data-onsuccess="onSignIn" id="my-signin2"></a>
 
-                        <a type="button" class="btn btn-primary" href="#" onclick="signOut();">Wyloguj się</a>
+                        <a type="button" class="btn btn-primary btn-block" href="#" onclick="signOut();">Wyloguj się</a>
                         <script>
 
                             function signOut() {
@@ -82,6 +82,9 @@
                                 });
                             }
                         </script>
+                        <div class="dropdown-divider"></div>
+                        <#--<a class="dropdown-item" href="#">Raporty</a>-->
+                        <#--<a class="dropdown-item" href="#">Ustawienia</a>-->
                     </div>
                 </div>
 
