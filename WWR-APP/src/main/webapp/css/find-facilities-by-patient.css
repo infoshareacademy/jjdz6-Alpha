@@ -1,0 +1,45 @@
+.facility-span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.facility:nth-of-type(n+4) {
+    display: none;
+}
+
+.facility-details {
+    display: none;
+}
+
+.display-all-facilities {
+    color: #1a0dab;
+    font-size: 0.95rem;
+}
+
+.patientNameInput {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: .5rem!important;
+    width: 325px;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    height: calc(1.5em + .75rem + 2px);
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s;
+    display: inline-block;
+    overflow: visible;
+}
+
+.patientNameInputButton {
+    font-size: 1rem;
+}
+
+.jumbotron {
+    min-height: 85vh;
+}
