@@ -106,7 +106,7 @@ class FacilitiesServiceTest {
         // when
 
         Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
-        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(true);
+        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(false);
 
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
@@ -166,7 +166,7 @@ class FacilitiesServiceTest {
         // when/then
 
         Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
-        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(false);
+        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(true);
 
         assertThatThrownBy(() -> testObj.delete(facilityDeleteCommand))
                 .isInstanceOf(FacilitiesException.class)
