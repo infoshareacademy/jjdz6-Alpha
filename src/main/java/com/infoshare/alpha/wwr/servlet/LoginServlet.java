@@ -7,13 +7,13 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends BaseWwrServlet{
 
+    private static final String ADMIN_PANEL_PATH = "/wwr/admin-panel" ;
 
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,9 +25,8 @@ public class LoginServlet extends BaseWwrServlet{
             GoogleIdToken.Payload payLoad = IdTokenValidator.getPayload(idToken);
             String name = (String) payLoad.get("name");
 
-            HttpSession session = req.getSession(true);
-            session.setAttribute("userName", name);
-            resp.sendRedirect("/wwr/admin-panel");
+            req.getSession().setAttribute("userName", name);
+            resp.sendRedirect(ADMIN_PANEL_PATH);
 
         } catch (Exception e) {
             throw new RuntimeException(e);

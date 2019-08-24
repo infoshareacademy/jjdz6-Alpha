@@ -11,7 +11,7 @@ import java.util.Map;
 @WebServlet(name = "AdminPanelServlet", urlPatterns = {"/admin-panel"})
 public class AdminPanelServlet extends BaseWwrServlet{
 
-    private final String ADMIN_PANEL_TEMPLATE_PATH = "/admin-panel.ftlh";
+    private static final String ADMIN_PANEL_TEMPLATE_PATH = "/admin-panel.ftlh";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

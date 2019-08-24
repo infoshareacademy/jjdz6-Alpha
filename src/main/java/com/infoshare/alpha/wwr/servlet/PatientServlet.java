@@ -25,7 +25,7 @@ import java.util.Map;
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 public class PatientServlet extends BaseWwrServlet {
 
-    private final String ADD_PATIENT_TEMPLATE_PATH = "/patient/addPatient.ftlh";
+    private static final String ADD_PATIENT_TEMPLATE_PATH = "/patient/addPatient.ftlh";
 
     @Inject
     PatientsService patientsService;

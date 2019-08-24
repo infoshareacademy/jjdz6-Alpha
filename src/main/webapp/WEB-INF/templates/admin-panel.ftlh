@@ -13,7 +13,6 @@
     <meta name="google-signin-client_id"
           content="674333452690-oqakalh87637ojol3g6h1383aeppqvot.apps.googleusercontent.com">
 
-
 </head>
 
 <body class="bg-light">
