@@ -27,6 +27,3 @@
     </nav>
 
 </header>
-
-<script src="/wwr/js/search-bar-hilitor.js"></script>
-<script src="/wwr/js/http-request-sender.js"></script>
