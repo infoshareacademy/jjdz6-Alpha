@@ -25,6 +25,8 @@ public class IdTokenValidator {
 
         if (tokenIsValid) {
             GoogleIdToken.Payload payload = token.getPayload();
+
+
             if (!GOOGLE_CLIENT_ID.equals(payload.getAudience())) {
                 throw new IllegalArgumentException("Audience mismatch");
             } else if (!GOOGLE_CLIENT_ID.equals(payload.getAuthorizedParty())) {

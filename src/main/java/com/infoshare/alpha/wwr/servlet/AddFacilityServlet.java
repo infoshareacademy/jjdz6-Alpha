@@ -16,8 +16,8 @@ import java.util.Map;
 @WebServlet(name = "AddFacilityServlet", urlPatterns = {"/facility-add"})
 public class AddFacilityServlet extends BaseWwrServlet {
 
-    private final String FACILITY_ADD_TEMPLATE_PATH = "/facility/addFacility.ftlh";
-    private final String FACILITY_ADD_CONFIRM_TEMPLATE_PATH = "/facility/addFacilityConfirm.ftlh";
+    private static final String FACILITY_ADD_TEMPLATE_PATH = "/facility/addFacility.ftlh";
+    private static final String FACILITY_ADD_CONFIRM_TEMPLATE_PATH = "/facility/addFacilityConfirm.ftlh";
 
     @Inject
     FacilitiesService facilitiesService;
