@@ -2,8 +2,6 @@
 target/
 /bin/
 /lib/
-test.iml
-main.iml
+WWR-API.iml
 *.iml
 **/*.iml
-/db/data/*
