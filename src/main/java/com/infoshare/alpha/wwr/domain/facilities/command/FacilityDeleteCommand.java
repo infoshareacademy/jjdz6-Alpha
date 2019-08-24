@@ -7,7 +7,4 @@ public class FacilityDeleteCommand extends FacilityCommand {
     public FacilityDeleteCommand(Facility facility) {
         super(facility);
     }
-
-
-
 }
