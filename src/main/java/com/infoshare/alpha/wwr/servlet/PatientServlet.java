@@ -9,6 +9,8 @@ import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
 import com.infoshare.alpha.wwr.servlet.validators.PatientValidationException;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -16,9 +18,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 public class PatientServlet extends BaseWwrServlet {
+
+    private static final String ADD_PATIENT_TEMPLATE_PATH = "/patient/addPatient.ftlh";
 
     @Inject
     PatientsService patientsService;
@@ -32,16 +39,18 @@ public class PatientServlet extends BaseWwrServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req,resp);
+        super.doGet(req, resp);
+        Map<String, Object> model = new HashMap<>();
+        renderView(model, ADD_PATIENT_TEMPLATE_PATH);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try {
-            resp.setContentType("text/html;charset=UTF-8");
-            req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        Map<String, Object> model = new HashMap<>();
 
+        try {
             patientServletValidator.validatePutRequest(req.getParameterMap());
 
             String nameParam = req.getParameter("name");
@@ -60,22 +69,22 @@ public class PatientServlet extends BaseWwrServlet {
 
             patientsService.add(patient);
 
-            resp.getWriter().println("<!DOCTYPE html><html><body>");
-            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println("<div><strong>Pacjent:</strong> " + patient.getName() + " " + patient.getSurname() + "<strong> - został dodany pomyślnnie.</strong></div>");
-            resp.getWriter().println("</body></html>\n");
+            model.put("editSuccess", true);
+            model.put("patient", patient);
 
-        } catch (IOException | PeselException e) {
+        } catch (PeselException | PatientValidationException e) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            model.put("validationError", true);
+            model.put("message", e.getMessage());
             e.printStackTrace();
-            resp.getWriter().println("<!DOCTYPE html><html><body>");
-            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println(e.getMessage());
-            resp.getWriter().println("</body></html>\n");
-        } catch (PatientValidationException e) {
-            resp.getWriter().println("<!DOCTYPE html><html><body>");
-            resp.getWriter().println("<input type=\"button\" value=\"Powrót do formularza\" onclick=\"history.back()\">");
-            resp.getWriter().println(e.getMessage());
-            resp.getWriter().println("</body></html>\n");
+        }
+
+        try {
+            PrintWriter writer = resp.getWriter();
+            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
+            template.process(model, writer);
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
         }
     }
 
