@@ -4,11 +4,20 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         version="3.1">
 
+  <!--<data-source>-->
+    <!--<name>java:ds/wwr-db</name>-->
+    <!--<class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>-->
+    <!--<url>jdbc:mysql://db:3306/wwr</url>-->
+    <!--<user>mysql</user>-->
+    <!--<password>pass123</password>-->
+  <!--</data-source>-->
+
+
   <data-source>
-    <name>java:ds/wwr-db</name>
+    <name>java:ds/wwr-api</name>
     <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-    <url>jdbc:mysql://db:3306/wwr</url>
-    <user>mysql</user>
+    <url>jdbc:mysql://127.0.0.1:3306/wwr?useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
+    <user>root</user>
     <password>pass123</password>
   </data-source>
 
