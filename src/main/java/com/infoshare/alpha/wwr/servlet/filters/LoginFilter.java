@@ -18,12 +18,16 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(false);
 
-        if (session != null && !session.isNew()) {
+        String loginURI = request.getContextPath() + "/admin-panel";
+
+        boolean loggedIn = session != null && session.getAttribute("userName") != null;
+        boolean loginRequest = request.getRequestURI().equals(loginURI);
+
+        if (loggedIn || loginRequest) {
             filterChain.doFilter(request, response);
         } else {
-            response.sendRedirect("/wwr");
+            response.sendRedirect(loginURI);
         }
-
     }
 }
 
