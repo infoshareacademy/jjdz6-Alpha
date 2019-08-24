@@ -20,10 +20,13 @@
 
             </ul>
             <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Wyszukaj na stronie" aria-label="Search">
-                <button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit">Szukaj</button>
+                <input id="mainSearchBarQuery" class="form-control mr-sm-2" type="text" placeholder="Wyszukaj na stronie" aria-label="Search">
+                <button id="mainSearchBarButton" class="btn btn-primary btn-sm my-2 my-sm-0" type="submit">Szukaj</button>
             </form>
         </div>
     </nav>
 
 </header>
+
+<script src="/wwr/js/search-bar-hilitor.js"></script>
+<script src="/wwr/js/http-request-sender.js"></script>
