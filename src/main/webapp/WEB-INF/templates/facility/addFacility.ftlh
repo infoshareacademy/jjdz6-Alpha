@@ -4,21 +4,14 @@
 <head>
     <title>Formularz dodawania placowki</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
 <body class="bg-light">
 
-<header>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/wwr">Stona główna</a>
-            </div>
-        </div>
-    </nav>
-</header>
+<#include "../subpageHeader.ftlh">
 
 <main>
 
@@ -31,7 +24,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form name="addFacility" class="form-horizontal" action="/wwr/facility/add" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+                    <form name="addFacility" class="form-horizontal" action="/wwr/facility-add" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
                         <input type='hidden' name='selection' value='selectOne'/>
                         <input type="hidden" name='_method' value="POST">
 
@@ -85,9 +78,11 @@
                             </div>
                         </div>
                         <div id="div_id_postalCode" class="form-group required">
-                            <label for="div_id_postalCode" class="control-label col-md-4  requiredField">Kod pocztowy</label>
+                            <label for="div_id_postalCode" class="control-label col-md-4  requiredField">
+                                Kod pocztowy
                             <span class="asteriskField">*</span>
                             <small id="help4Id" class="form-text text-muted">Wpisz kod pocztowy</small>
+                            </label>
 
                             <div class="controls col-md-8 ">
                                 <input class="input-md textinput textInput form-control" id="id_city" aria-describedby="help4Id" name="postalCode"
@@ -96,7 +91,7 @@
                         </div>
                         <div id="div_id_number" class="form-group required">
                             <label for="id_number" class="control-label col-md-4  requiredField">
-                                Number kontaktowy
+                                Numer kontaktowy
                                 <span class="asteriskField">*</span>
                                 <small id="help4Id" class="form-number number-muted">Wpisz numer telefonu</small>
                             </label>
@@ -178,6 +173,8 @@
         </div>
     </div>
 </main>
+<#include "../footer.ftlh">
+
 <script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
