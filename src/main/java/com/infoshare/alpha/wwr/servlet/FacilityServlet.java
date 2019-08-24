@@ -52,6 +52,8 @@ public class FacilityServlet extends BaseWwrServlet {
 
             if (action.isPresent() && action.get().equalsIgnoreCase("DELETE") && id.isPresent()) {
                 deleteFacility(Integer.valueOf(id.get()));
+                renderFacilities();
+                return;
             }
 
             if (!id.isPresent()) {

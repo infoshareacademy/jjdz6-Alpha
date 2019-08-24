@@ -20,9 +20,11 @@ public class FacilitiesService {
     private FacilitiesRepository facilitiesDbRepository;
 
     public void add(FacilityAddCommand command) throws FacilitiesException {
-        if (facilitiesReadModelDbRepository.getById(command.getFacility().getId()) != null) {
+
+        if (facilitiesReadModelDbRepository.getById(command.getFacility().getId()).isPresent()) {
             throw FacilitiesException.facilityExists(command.getFacility().getName());
         }
+
        facilitiesDbRepository.add(command.getFacility());
     }
 
@@ -36,7 +38,7 @@ public class FacilitiesService {
 
     private void assertFacilityEmpty(Facility facility) throws FacilitiesException {
 
-        if (!facilitiesDbRepository.containsPatients(facility.getId())) {
+        if (facilitiesDbRepository.containsPatients(facility.getId())) {
             throw FacilitiesException.facilityContainsPatients(facility.getName());
         }
 
