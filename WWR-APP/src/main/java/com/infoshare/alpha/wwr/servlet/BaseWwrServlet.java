@@ -25,9 +25,6 @@ public abstract class BaseWwrServlet extends HttpServlet {
     protected HttpServletResponse response;
 
     @Inject
-    protected ResponsePrinter responsePrinter;
-
-    @Inject
     protected WebInfPathResolver webInfPathResolver;
 
     @Inject
