@@ -4,6 +4,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+
+import java.security.AccessControlException;
 import java.util.Collections;
 
 public class IdTokenValidator {
@@ -30,7 +32,7 @@ public class IdTokenValidator {
             }
             return payload;
         } else {
-            throw new IllegalArgumentException("id token cannot be verified");
+            throw new AccessControlException("id token cannot be verified");
         }
     }
 }
