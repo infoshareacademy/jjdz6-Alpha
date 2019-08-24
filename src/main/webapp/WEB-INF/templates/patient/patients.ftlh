@@ -127,11 +127,11 @@
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
                                                                                              data-toggle="tooltip" title=""
-                                                                                             data-original-title="Edit"></i></a>
+                                                                                             data-original-title="Edit"></i></a>
                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons"
                                                                                                  data-toggle="tooltip"
                                                                                                  title=""
-                                                                                                 data-original-title="Delete"></i></a>
+                                                                                                 data-original-title="Delete"></i></a>
                         </td>
                     </tr>
                 </#list>
