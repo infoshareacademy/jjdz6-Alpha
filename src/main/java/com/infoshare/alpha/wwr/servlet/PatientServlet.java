@@ -1,12 +1,8 @@
 package com.infoshare.alpha.wwr.servlet;
 
 import com.infoshare.alpha.wwr.common.*;
-import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
-import com.infoshare.alpha.wwr.domain.patients.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
-import com.infoshare.alpha.wwr.domain.patients.dao.ParentDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.readmodel.PatientsReadModel;
 import com.infoshare.alpha.wwr.servlet.validators.PatientServletValidator;
@@ -22,7 +18,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
 @Transactional
