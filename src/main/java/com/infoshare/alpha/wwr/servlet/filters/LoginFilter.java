@@ -12,21 +12,18 @@ public class LoginFilter implements Filter {
 
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
 
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(false);
-        String loginURI = request.getContextPath() + "/login";
 
-        boolean loggedIn = session != null && session.getAttribute("userName") != null;
-        boolean loginRequest = request.getRequestURI().equals(loginURI);
-
-        if (loggedIn || loginRequest) {
-            chain.doFilter(request, response);
+        if (session != null && !session.isNew()) {
+            filterChain.doFilter(request, response);
         } else {
-            response.sendRedirect(loginURI);
+            response.sendRedirect("/wwr");
         }
+
     }
 }
 
