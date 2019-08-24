@@ -139,11 +139,8 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" name="save" value="save">Wyślij formularz</button>
-
             </form>
     </div>
-
-
 </main>
 
 <#include "../footer.ftlh">

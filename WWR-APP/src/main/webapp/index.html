@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="674333452690-oqakalh87637ojol3g6h1383aeppqvot.apps.googleusercontent.com">
 </head>
 
 <body class="bg-light">
@@ -33,7 +39,7 @@
                         <a class="dropdown-item" href="#">Edytuj pacjenta</a>
                         <a class="dropdown-item" href="#">Usuń pacjenta</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="patient">Pokaż wszystkich pacjentów</a>
+                        <a class="dropdown-item" href="/wwr/patient">Pokaż wszystkich pacjentów</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -48,12 +54,50 @@
                         <a class="dropdown-item" href="#">Usuń placówkę</a>
                         <a class="dropdown-item" href="#">Dodaj placówkę z pliku</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="facility">Pokaż wszystkie placówki</a>
+                        <a class="dropdown-item" href="/wwr/facility">Pokaż wszystkie placówki</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontakt</a>
                 </li>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Panel administracyjny-logowanie
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <a class="g-signin2" data-onsuccess="onSignIn" id="my-signin2"></a>
+
+                        <script>
+
+                            function onSignIn(googleUser) {
+
+                                var profile = googleUser.getBasicProfile();
+
+                                var redirectUrl = '/wwr/login';
+                                var form = $('<form action="' + redirectUrl + '" method="post">' +
+                                    '<input type="text" name="id_token" value="' +
+                                    googleUser.getAuthResponse().id_token + '" />' +
+                                    '</form>');
+                                $('body').append(form);
+                                form.submit();
+                            }
+
+                            function renderButton() {
+                                gapi.signin2.render('my-signin2', {
+                                    'scope': 'profile email',
+                                    'width': 240,
+                                    'height': 50,
+                                    'longtitle': true,
+                                    'theme': 'dark',
+                                    'onsuccess': onSignIn
+                                });
+                            }
+                        </script>
+                    </div>
+                </div>
 
             </ul>
             <form class="form-inline mt-2 mt-md-0">
@@ -136,7 +180,7 @@
     <p>&copy; 2019 Alpha-Team &middot;</p>
 </footer>
 
-
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
