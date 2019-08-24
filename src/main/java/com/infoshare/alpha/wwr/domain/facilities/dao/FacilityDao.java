@@ -44,14 +44,11 @@ public class FacilityDao {
     }
 
     public boolean containsPatients(int facilityId) {
+        String sql = "SELECT count(pf.patient_id) FROM facilities AS f JOIN patients_facilities AS pf ON pf.facility_id = f.id where f.id = :facilityId";
 
-        final TypedQuery<Facility> facilityQuery = entityManager.createQuery("SELECT f FROM Facility f ", Facility.class);
+        Query nativeQuery = entityManager.createNativeQuery(sql).setParameter("facilityId", facilityId);
+        Integer patientsCount = Integer.valueOf(nativeQuery.getSingleResult().toString());
 
-        String sql = "SELECT count(pf.patient_id) FROM facilities AS f JOIN patients_facilities AS pf  pf.facility_id = f.id where f.id = " + facilityId;
-
-        Query nativeQuery = entityManager.createNativeQuery(sql);
-        int firstResult = nativeQuery.getFirstResult();
-
-        return firstResult > 0;
+        return patientsCount > 0;
     }
 }
