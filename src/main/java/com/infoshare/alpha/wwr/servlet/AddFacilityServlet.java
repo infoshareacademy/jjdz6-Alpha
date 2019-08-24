@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-@WebServlet(name = "AddFacilityServlet", urlPatterns = {"/facility/add"})
+@WebServlet(name = "AddFacilityServlet", urlPatterns = {"/facility-add"})
 public class AddFacilityServlet extends BaseWwrServlet {
 
     private final String FACILITY_ADD_TEMPLATE_PATH = "/facility/addFacility.ftlh";
