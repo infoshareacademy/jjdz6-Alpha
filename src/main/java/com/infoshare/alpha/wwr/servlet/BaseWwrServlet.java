@@ -61,6 +61,7 @@ public abstract class BaseWwrServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         this.response = this.setResponseHeaders(resp);
     }
 
@@ -91,12 +92,6 @@ public abstract class BaseWwrServlet extends HttpServlet {
         } catch (TemplateException e) {
             throw new IOException(e.getMessage());
         }
-    }
-
-    protected void renderJson(Object model) throws IOException {
-        response.setHeader("Content-type", "application/json");
-        response.setContentType("application/json");
-        responsePrinter.print(response, gson.toJson(model));
     }
 
     protected void logError(String msg, int code) {

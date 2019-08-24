@@ -1,9 +1,5 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
-import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
-import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
-import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModel;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQueryFields;
@@ -16,17 +12,16 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
 @WebServlet("/find-facilities")
+@Transactional
 public class PatientsFacilitiesServlet extends BaseWwrServlet {
 
     private final String FIND_FACILITIES_BY_PATIENT_TEMPLATE_PATH = "/facility/find-facilities-by-patient.ftlh";
-
-    @Inject
-    private FacilitiesReadModel facilitiesReadModel;
 
     @Inject
     private PatientsReadModel patientsReadModel;
@@ -46,15 +41,7 @@ public class PatientsFacilitiesServlet extends BaseWwrServlet {
                 Map<PatientQueryFields, String> patientQueryFieldsMap = new EnumMap<>(PatientQueryFields.class);
                 patientQueryFieldsMap.put(PatientQueryFields.SURNAME, patientsSurname);
                 List<Patient> selectedPatients = patientsReadModel.getByQuery(new PatientQuery(patientQueryFieldsMap)).getPatients();
-
-                Map<Patient, List<Facility>> facilitiesByPatient = new TreeMap<>();
-                selectedPatients.forEach(patient -> facilitiesByPatient.put(
-                        patient,
-                        facilitiesReadModel.getByPatient(new FacilityPatientQuery(patient, Collections.singletonList(FacilityQueryField.POSTAL_CODE)))
-                ));
-
                 model.put("selectedPatients", selectedPatients);
-                model.put("selectedPatientsFacilities", facilitiesByPatient);
             }
             template.process(model, writer);
         } catch (IOException | TemplateException e) {

@@ -1,9 +1,7 @@
 package com.infoshare.alpha.wwr.domain.facilities.readmodel;
 
-import com.infoshare.alpha.wwr.common.Address;
 import com.infoshare.alpha.wwr.common.PostalCodeComparator;
-import com.infoshare.alpha.wwr.domain.facilities.datastorage.FacilitiesJsonStorage;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
+import com.infoshare.alpha.wwr.domain.facilities.dao.FacilityDao;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityPatientQuery;
 import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQuery;
@@ -11,8 +9,10 @@ import com.infoshare.alpha.wwr.domain.facilities.query.FacilityQueryField;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,49 +20,35 @@ import java.util.stream.Stream;
 public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
     @Inject
-    private FacilitiesJsonStorage storage;
+    private FacilityDao facilityDao;
 
     @Override
-    public Facilities getAll() {
-
-        return this.storage.load();
+    public List<Facility> getAll() {
+        return facilityDao.findAll();
     }
 
     @Override
-    public Facility getById(int id) {
-
-        return this.storage.load().getFacilities().stream().filter(f -> id == f.getId()).findAny().orElse(null);
+    public Optional<Facility> getById(int id) {
+        return facilityDao.findAll().stream().filter(f -> id == f.getId()).findAny();
     }
 
     @Override
     public List<Facility> getByName(String name) {
-        Facilities facilities = this.storage.load();
+        List<Facility> facilities = facilityDao.findAll();
 
-        return facilities.getFacilities().
-                stream().
-                filter(s -> name.equals(s.getName()))
+        return facilities
+                .stream()
+                .filter(s -> name.equals(s.getName()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Facility> getByCity(String city) {
-        Facilities facilities = this.storage.load();
+        List<Facility> facilities = facilityDao.findAll();
 
-        return facilities.getFacilities().
-                stream().
-                filter(s -> city.equals(s.getAddress().getCity()))
-                .collect(Collectors.toList());
-    }
-
-
-    @Override
-    public List<Facility> getByAddress(Address address) {
-
-        Facilities facilities = this.storage.load();
-
-        return facilities.getFacilities().
-                stream().
-                filter(facility -> facility.getAddress().equals(address))
+        return facilities
+                .stream()
+                .filter(s -> city.equals(s.getAddress().getCity()))
                 .collect(Collectors.toList());
     }
 
@@ -71,12 +57,12 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
         List<FacilityQueryField> facilityQueryFields = query.getQueryFields();
 
-        Facilities facilities = this.storage.load();
-        List<Facility> filteredFacilities = facilities.getFacilities();
+        List<Facility> facilities = facilityDao.findAll();
+        List<Facility> filteredFacilities = new ArrayList<>();
 
         if (facilityQueryFields.contains(FacilityQueryField.CITY)) {
             String filterCity = query.getPatient().getAddress().getCity();
-            Stream facilitiesStream = facilities.getFacilities().stream().filter(s -> filterCity.equals(s.getAddress().getCity()));
+            Stream facilitiesStream = facilities.stream().filter(s -> filterCity.equals(s.getAddress().getCity()));
             filteredFacilities = (List<Facility>) facilitiesStream.collect(Collectors.toList());
         }
 
@@ -101,11 +87,10 @@ public class FacilitiesReadModelDbRepository implements FacilitiesReadModelDb {
 
     @Override
     public List<Facility> getByQuery(FacilityQuery query) {
+
         Map<FacilityQueryField, String> facilityQueryFields = query.getQueryFields();
 
-
-        Facilities facilities = this.storage.load();
-        List<Facility> filteredFacilities = facilities.getFacilities();
+        List<Facility> filteredFacilities = facilityDao.findAll();
 
         if (facilityQueryFields.containsKey(FacilityQueryField.FACILITY_NAME)) {
             String filterName = facilityQueryFields.get(FacilityQueryField.FACILITY_NAME);

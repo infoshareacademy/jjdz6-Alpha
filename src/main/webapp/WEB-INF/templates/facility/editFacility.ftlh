@@ -12,7 +12,6 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
     />
-    <#--<link rel="stylesheet" href="main.css" />-->
     <title>Edycja placówki : <#if notFoundError??>nie znaleziono placówki<#else>${facility.name}</#if></title>
 </head>
 <body class="bg-light">
@@ -53,6 +52,7 @@
                         <input class="form-control" type="text" name="facility_name" value="${facility.name}">
                     </#if>
                 <input type="hidden" name="facility_id" value="${facility.id}">
+                <input type="hidden" name="nfz" value="${facility.nfz()?c}">
                 <input type="hidden" name="_method" value="PUT">
             </div>
 

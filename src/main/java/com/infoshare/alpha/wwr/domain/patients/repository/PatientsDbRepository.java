@@ -1,7 +1,7 @@
 package com.infoshare.alpha.wwr.domain.patients.repository;
 
-import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
-import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
+import com.infoshare.alpha.wwr.domain.patients.dao.PatientDao;
+import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -10,10 +10,10 @@ import javax.inject.Inject;
 public class PatientsDbRepository implements PatientsRepository {
 
     @Inject
-    private PatientsJsonStorage storage;
+    private PatientDao patientDao;
 
     @Override
-    public void add(Patients patients) {
-        this.storage.save(patients);
+    public Patient add(Patient patient) {
+        return patientDao.add(patient);
     }
 }

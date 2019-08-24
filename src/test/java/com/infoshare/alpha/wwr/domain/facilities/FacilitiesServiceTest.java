@@ -6,7 +6,6 @@ import com.infoshare.alpha.wwr.domain.facilities.command.FacilityAddCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityDeleteCommand;
 import com.infoshare.alpha.wwr.domain.facilities.command.FacilityEditCommand;
 import com.infoshare.alpha.wwr.domain.facilities.common.FacilitiesException;
-import com.infoshare.alpha.wwr.domain.facilities.entity.Facilities;
 import com.infoshare.alpha.wwr.domain.facilities.entity.Facility;
 import com.infoshare.alpha.wwr.domain.facilities.readmodel.FacilitiesReadModelDbRepository;
 import com.infoshare.alpha.wwr.domain.facilities.repository.FacilitiesRepository;
@@ -19,6 +18,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,31 +40,18 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "old_facility",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
 
-        Facility facility2 = new Facility(
-                2,
-                "facility1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
-        );
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        Facilities facilities = Mockito.mock(Facilities.class);
-
-        FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility2);
+        FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility1);
 
         // when
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(Optional.empty());
 
         try {
             testObj.add(facilityAddCommand);
@@ -73,9 +61,7 @@ class FacilitiesServiceTest {
 
         // then
 
-        Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getAll();
-        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
-        Mockito.verify(facilities, Mockito.times(1)).add(facility2);
+        Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getById(1);
     }
 
     @Test
@@ -84,24 +70,19 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "old_facility",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        Facilities facilities = Mockito.mock(Facilities.class);
 
         FacilityAddCommand facilityAddCommand = new FacilityAddCommand(facility1);
 
         // when/then
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+
+        Mockito.when(facilitiesReadModelDbRepository.getById(facilityAddCommand.getFacility().getId())).thenReturn(Optional.of(facility1));
 
         assertThatThrownBy(() -> testObj.add(facilityAddCommand))
                 .isInstanceOf(FacilitiesException.class)
@@ -115,22 +96,17 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "facility-1",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        Facilities facilities = Mockito.mock(Facilities.class);
 
         // when
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
+        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(false);
 
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
@@ -142,7 +118,7 @@ class FacilitiesServiceTest {
 
         // then
 
-        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
+        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).remove(facility1);
     }
 
     @Test
@@ -151,23 +127,19 @@ class FacilitiesServiceTest {
 
         // given
 
-        List<Service> services = getFacilityServices();
         Facility facility1 = new Facility(
                 1,
                 "facility-1",
                 new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
+                getFacilityServices()
         );
 
-        List<Facility> facilitiesList = new ArrayList<>();
-        Facilities facilities = Mockito.mock(Facilities.class);
 
         FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
 
         // when/then
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> testObj.delete(facilityDeleteCommand))
                 .isInstanceOf(FacilitiesException.class)
@@ -176,38 +148,52 @@ class FacilitiesServiceTest {
     }
 
     @Test
+    @DisplayName("Should not delete facility while contains patients")
+    void shouldNotDeleteFacilityWhileContainsPatients() {
+
+        // given
+
+        Facility facility1 = new Facility(
+                1,
+                "facility-1",
+                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
+                getFacilityServices()
+        );
+
+
+        FacilityDeleteCommand facilityDeleteCommand = new FacilityDeleteCommand(facility1);
+
+        // when/then
+
+        Mockito.when(facilitiesReadModelDbRepository.getById(facility1.getId())).thenReturn(Optional.of(facility1));
+        Mockito.when(facilitiesDbRepository.containsPatients(facility1.getId())).thenReturn(true);
+
+        assertThatThrownBy(() -> testObj.delete(facilityDeleteCommand))
+                .isInstanceOf(FacilitiesException.class)
+                .hasMessage("Facility :" + facility1.getName() + " contains patients ");
+    }
+
+    @Test
     @DisplayName("Should edit facility")
-    void shouldEdit() {
+    void shouldEdit() throws FacilitiesException {
 
         // given
 
         List<Service> services = getFacilityServices();
-
-        Facility oldFacility = new Facility(
-                1,
-                "old_facility",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800),
-                services
-        );
-
         Facility editedFacility = new Facility(
                 1,
                 "edited_facility",
                 new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333", 80800),
+                true,
                 services
         );
 
-        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(oldFacility, editedFacility);
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(oldFacility);
-
-        Facilities facilities = Mockito.mock(Facilities.class);
+        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(editedFacility);
 
         // when
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesDbRepository.getById(editedFacility.getId())).thenReturn(editedFacility);
+        Mockito.when(facilitiesDbRepository.update(editedFacility)).thenReturn(editedFacility);
 
         try {
             testObj.edit(facilityEditCommand);
@@ -217,86 +203,34 @@ class FacilitiesServiceTest {
 
         // then
 
-        Mockito.verify(facilities, Mockito.times(5)).getFacilities();
-        Mockito.verify(facilitiesReadModelDbRepository, Mockito.times(1)).getAll();
-        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).add(facilities);
+        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).getById(editedFacility.getId());
+        Mockito.verify(facilitiesDbRepository, Mockito.times(1)).update(editedFacility);
     }
 
     @Test
     @DisplayName("Should not edit facility when not found in source")
-    void shouldNotEditFacilityWhenNotFound() {
+    void shouldNotEditFacilityWhenNotFound() throws FacilitiesException {
 
         // given
 
         List<Service> services = getFacilityServices();
-
-        Facility facility1 = new Facility(2, "facility1", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800), services);
-        Facility facility2 = new Facility(3, "facility2", new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 80800), services);
-        Facility editedFacility = new Facility(1, "edited_facility", new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333", 80800), services);
-
-        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-
-        Facilities facilities = Mockito.mock(Facilities.class);
-
-        // when/then
-
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
-
-        assertThatThrownBy(() -> testObj.edit(facilityEditCommand))
-                .isInstanceOf(FacilitiesException.class)
-                .hasMessage("Facility " + facility2.getName() + " not found ");
-    }
-
-    @Test
-    @DisplayName("Should not edit facility when already exists")
-    void shouldNotEditWhenEditedFacilityAlreadyExists() {
-
-        // given
-
-        List<Service> services = getFacilityServices();
-
-        Facility facility1 = new Facility(
-                2,
-                "facility1",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123",80800),
-                services
-        );
-
-        Facility facility2 = new Facility(
-                2,
-                "facility2",
-                new Address("Gdańsk", "Kolejowa 23", "+48 123 123 123", 8000),
-                services
-        );
-
         Facility editedFacility = new Facility(
                 1,
                 "edited_facility",
                 new Address("Gdańsk-updated", "Kolejowa 24", "+48 111 222 333", 80800),
+                true,
                 services
         );
 
-        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(facility2, editedFacility);
-
-        List<Facility> facilitiesList = new ArrayList<>();
-        facilitiesList.add(facility1);
-        facilitiesList.add(facility2);
-        facilitiesList.add(editedFacility);
-
-        Facilities facilities = Mockito.mock(Facilities.class);
+        FacilityEditCommand facilityEditCommand = new FacilityEditCommand(editedFacility);
 
         // when/then
 
-        Mockito.when(facilities.getFacilities()).thenReturn(facilitiesList);
-        Mockito.when(facilitiesReadModelDbRepository.getAll()).thenReturn(facilities);
+        Mockito.when(facilitiesDbRepository.getById(editedFacility.getId())).thenThrow(FacilitiesException.facilityNotFound());
 
         assertThatThrownBy(() -> testObj.edit(facilityEditCommand))
                 .isInstanceOf(FacilitiesException.class)
-                .hasMessage("Facility " + editedFacility.getName() + " already exists ");
+                .hasMessage("Facility edit error: " + "Facility not found.");
     }
 
     private static List<Service> getFacilityServices() {

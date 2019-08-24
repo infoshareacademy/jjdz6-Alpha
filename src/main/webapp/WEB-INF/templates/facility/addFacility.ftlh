@@ -36,10 +36,10 @@
 
                             <div class="controls col-md-8 " style="margin-bottom: 10px">
                                 <label class="radio-inline">
-                                    <input type="radio" name="isNfz" id="Placowka_NFZ" value="true"> Placówka NFZ
+                                    <input type="radio" name="nfz" id="Placowka_NFZ" value="true"> Placówka NFZ
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="isNfz" id="Placowka_prywatna" value="false"> Placówka prywatna
+                                    <input type="radio" name="nfz" id="Placowka_prywatna" value="false"> Placówka prywatna
                                 </label>
                             </div>
                         </div>

@@ -1,8 +1,6 @@
 package com.infoshare.alpha.wwr.servlet;
 
-import com.infoshare.alpha.wwr.common.Address;
-import com.infoshare.alpha.wwr.common.Pesel;
-import com.infoshare.alpha.wwr.common.PeselException;
+import com.infoshare.alpha.wwr.common.*;
 import com.infoshare.alpha.wwr.domain.patients.PatientsService;
 import com.infoshare.alpha.wwr.domain.patients.entity.Parent;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
@@ -17,15 +15,20 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "PatientServlet", urlPatterns = {"/patient"})
+@Transactional
 public class PatientServlet extends BaseWwrServlet {
 
-    private final String ADD_PATIENT_TEMPLATE_PATH = "/patient/addPatient.ftlh";
+    private static final String ADD_PATIENT_TEMPLATE_PATH = "/patient/addPatient.ftlh";
+
+    private static final String PATIENTS_TEMPLATE_PATH = "/patient/patients.ftlh";
 
     @Inject
     PatientsService patientsService;
@@ -36,12 +39,16 @@ public class PatientServlet extends BaseWwrServlet {
     @Inject
     PatientServletValidator patientServletValidator;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        super.doGet(req,resp);
+
+        List<Patient> patients = patientsReadModel.getAll();
+
+        response.setStatus(HttpServletResponse.SC_OK);
         Map<String, Object> model = new HashMap<>();
-        renderView(model, ADD_PATIENT_TEMPLATE_PATH);
+        model.put("patients", patients);
+        this.renderView(model, PATIENTS_TEMPLATE_PATH);
     }
 
     @Override
@@ -65,7 +72,7 @@ public class PatientServlet extends BaseWwrServlet {
 
             Integer postalCode = Integer.parseInt(postalCodeParam);
 
-            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam));
+            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam, new Pesel(peselParam)));
 
             patientsService.add(patient);
 

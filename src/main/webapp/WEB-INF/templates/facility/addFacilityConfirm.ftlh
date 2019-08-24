@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="col-sm-10 control-label">Rodzaj placówki</label>
                             <div class="col-sm-10">
-                                <#if facility.isNfz??>
+                                <#if facility.nfz??>
                                     <p class="form-control-static">Placówka NFZ</p>
                                 <#else>
                                     <p class="form-control-static">Placówka prywatna</p>

@@ -27,20 +27,23 @@
                     <#if selectedPatients?size == 0>Nie znaleziono takiego pacjenta.
                     <#else>Najbliższe placówki rehabilitacyjne dla pacjenta:
                 </p>
-                <#list selectedPatientsFacilities as patient, facilities>
+                <#list selectedPatients as patient>
                     <p class="font-weight-bold">${patient.surname}, ${patient.name}</p>
                     <ul>
-                        <#if facilities?has_content>
-                            <#list facilities as facility>
+                        <#if patient.facilities?has_content>
+
+                            <#list patient.facilities as facility>
                                 <li class="facility"><span class="facility-span"
                                                            title="Kliknij, aby zobaczyć szczegóły">${facility.name}</span>
                                     <ul class="facility-details">
+
                                         <li>Adres: ul. ${facility.address.street}, ${facility.address.postalCode?c?substring(0,2)}-${facility.address.postalCode?c?substring(2)} ${facility.address.city}</li>
                                         <li><#if facility.services?size == 0>Brak wprowadzonych usług<#else>Usługi: ${facility.services?join(", ")}</#if></li>
                                         <li>Kontakt: tel. ${facility.address.phone}</li>
                                     </ul>
                                 </li>
                             </#list>
+
                         <#else>
                             <li>Brak placówek w mieście zamieszkania</li>
                         </#if>

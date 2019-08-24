@@ -1,6 +1,6 @@
 package com.infoshare.alpha.wwr.domain.patients.readmodel;
 
-import com.infoshare.alpha.wwr.domain.patients.datastorage.PatientsJsonStorage;
+import com.infoshare.alpha.wwr.domain.patients.dao.PatientDao;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patient;
 import com.infoshare.alpha.wwr.domain.patients.entity.Patients;
 import com.infoshare.alpha.wwr.domain.patients.query.PatientQuery;
@@ -17,23 +17,22 @@ import java.util.stream.Stream;
 public class PatientsReadModelDbRepository implements PatientsReadModelDb {
 
     @Inject
-    private PatientsJsonStorage storage;
+    private PatientDao patientDao;
 
-    public Patients getAll() {
-
-        return this.storage.load();
+    public List<Patient> getAll() {
+        return this.patientDao.findAll();
     }
 
     public Patients getByQuery(PatientQuery patientQuery) {
 
-        List<Patient> filteredPatients = (this.storage.load()).getPatients();
+        List<Patient> filteredPatients = this.patientDao.findAll();
 
         Map<PatientQueryFields, String> queryFields = patientQuery.getQueryField();
 
         if (queryFields.containsKey(PatientQueryFields.NAME)) {
             String filterName = queryFields.get(PatientQueryFields.NAME);
             Stream<Patient> stream = filteredPatients.stream().filter(s -> filterName.equals(s.getName()));
-            filteredPatients = (List<Patient>) stream.collect(Collectors.toList());
+            filteredPatients = stream.collect(Collectors.toList());
         }
 
 
