@@ -15,14 +15,9 @@
     <#--<link rel="stylesheet" href="main.css" />-->
     <title>Edycja placówki : <#if notFoundError??>nie znaleziono placówki<#else>${facility.name}</#if></title>
 </head>
-<body>
+<body class="bg-light">
 
-<header>
-    <nav>
-        <a href="/wwr/">Main page</a>
-    </nav>
-
-</header>
+<#include "../subpageHeader.ftlh">
 
 <div class="container">
 
@@ -137,6 +132,8 @@
 
 
 </div>
+
+<#include "../footer.ftlh">
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
