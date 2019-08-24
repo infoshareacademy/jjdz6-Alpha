@@ -14,17 +14,35 @@ services:
       - ./db/data/:/var/lib/mysql/              # data storage
     ports:
       - 3306:3306
+    networks:
+      - wwrnet
   app:
     container_name: "wwr-app"
     environment:
-      - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true  -Dfile.encoding=UTF-8
+      - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true  -Dfile.encoding=UTF-8 -Duser.timezone=Europe/Warsaw
     build:
-      context: .
+      context: WWR-APP/.
     ports:
       - 8080:8080
       - 9990:9990
     depends_on:
       - db
-    links:
-      - db
     dns: 8.8.8.8
+    networks:
+      - wwrnet
+  api:
+    container_name: "wwr-api"
+    environment:
+      - JAVA_OPTS=-server -Xms512m -Xmx2048m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+UseAdaptiveSizePolicy -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true  -Dfile.encoding=UTF-8 -Duser.timezone=Europe/Warsaw
+    build:
+      context: WWR-API/.
+    ports:
+      - 8081:8080
+      - 9991:9990
+    depends_on:
+      - db
+    networks:
+      - wwrnet
+networks:
+  wwrnet:
+    driver: bridge
