@@ -54,45 +54,45 @@ public class PatientServlet extends BaseWwrServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setContentType("text/html;charset=UTF-8");
-        Map<String, Object> model = new HashMap<>();
-
-        try {
-            patientServletValidator.validatePutRequest(req.getParameterMap());
-
-            String nameParam = req.getParameter("name");
-            String surnameParam = req.getParameter("surname");
-            String peselParam = req.getParameter("pesel");
-            String streetParam = req.getParameter("street");
-            String cityParam = req.getParameter("city");
-            String phoneParam = req.getParameter("phone");
-            String postalCodeParam = req.getParameter("postalCode");
-            String parentNameParam = req.getParameter("parentName");
-            String parentSurnameParam = req.getParameter("parentSurname");
-
-            Integer postalCode = Integer.parseInt(postalCodeParam);
-
-            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam, new Pesel(peselParam)));
-
-            patientsService.add(patient);
-
-            model.put("editSuccess", true);
-            model.put("patient", patient);
-
-        } catch (PeselException | PatientValidationException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            model.put("validationError", true);
-            model.put("message", e.getMessage());
-            e.printStackTrace();
-        }
-
-        try {
-            PrintWriter writer = resp.getWriter();
-            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
-            template.process(model, writer);
-        } catch (IOException | TemplateException e) {
-            e.printStackTrace();
-        }
+//        resp.setContentType("text/html;charset=UTF-8");
+//        Map<String, Object> model = new HashMap<>();
+//
+//        try {
+//            patientServletValidator.validatePutRequest(req.getParameterMap());
+//
+//            String nameParam = req.getParameter("name");
+//            String surnameParam = req.getParameter("surname");
+//            String peselParam = req.getParameter("pesel");
+//            String streetParam = req.getParameter("street");
+//            String cityParam = req.getParameter("city");
+//            String phoneParam = req.getParameter("phone");
+//            String postalCodeParam = req.getParameter("postalCode");
+//            String parentNameParam = req.getParameter("parentName");
+//            String parentSurnameParam = req.getParameter("parentSurname");
+//
+//            Integer postalCode = Integer.parseInt(postalCodeParam);
+//
+//            Patient patient = new Patient(nameParam, surnameParam, new Pesel(peselParam), new Address(cityParam, streetParam, phoneParam, postalCode), new Parent(parentNameParam, parentSurnameParam, new Pesel(peselParam)));
+//
+//            patientsService.add(patient);
+//
+//            model.put("editSuccess", true);
+//            model.put("patient", patient);
+//
+//        } catch (PeselException | PatientValidationException e) {
+//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//            model.put("validationError", true);
+//            model.put("message", e.getMessage());
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            PrintWriter writer = resp.getWriter();
+//            Template template = templateProvider.getTemplate(getServletContext(), ADD_PATIENT_TEMPLATE_PATH);
+//            template.process(model, writer);
+//        } catch (IOException | TemplateException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

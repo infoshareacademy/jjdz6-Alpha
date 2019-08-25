@@ -35,11 +35,11 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                        aria-haspopup="true" aria-expanded="false">Opcje dostępne dla pacjenta</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Znajdź pacjenta</a>
+                        <#--<a class="dropdown-item" href="#">Znajdź pacjenta</a>-->
                         <a class="dropdown-item" href="find-facilities">Pokaż placówki dla pacjenta</a>
-                        <a class="dropdown-item" href="patient">Dodaj pacjenta</a>
-                        <a class="dropdown-item" href="#">Edytuj pacjenta</a>
-                        <a class="dropdown-item" href="#">Usuń pacjenta</a>
+                        <a class="dropdown-item" href="/wwr/patient-add">Dodaj pacjenta</a>
+                        <#--<a class="dropdown-item" href="#">Edytuj pacjenta</a>-->
+                        <#--<a class="dropdown-item" href="#">Usuń pacjenta</a>-->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/wwr/patient">Pokaż wszystkich pacjentów</a>
                     </div>
@@ -50,17 +50,17 @@
                         Opcje dostępne dla placówki
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Znajdź placówkę</a>
+                        <#--<a class="dropdown-item" href="#">Znajdź placówkę</a>-->
                         <a class="dropdown-item" href="/wwr/facility-add">Dodaj placówkę</a>
                         <a class="dropdown-item" href="/wwr/facility?id=1">Edytuj placówkę</a>
-                        <a class="dropdown-item" href="#">Usuń placówkę</a>
-                        <a class="dropdown-item" href="#">Dodaj placówkę z pliku</a>
+                        <#--<a class="dropdown-item" href="#">Usuń placówkę</a>-->
+                        <#--<a class="dropdown-item" href="#">Dodaj placówkę z pliku</a>-->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/wwr/facility">Pokaż wszystkie placówki</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kontakt</a>
+                    <#--<a class="nav-link" href="#">Kontakt</a>-->
                 </li>
 
                 <div class="dropdown">
@@ -83,8 +83,8 @@
                             }
                         </script>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Raporty</a>
-                        <a class="dropdown-item" href="#">Ustawienia</a>
+                        <#--<a class="dropdown-item" href="#">Raporty</a>-->
+                        <#--<a class="dropdown-item" href="#">Ustawienia</a>-->
                     </div>
                 </div>
 
