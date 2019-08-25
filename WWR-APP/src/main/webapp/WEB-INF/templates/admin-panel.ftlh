@@ -41,7 +41,7 @@
                         <a class="dropdown-item" href="#">Edytuj pacjenta</a>
                         <a class="dropdown-item" href="#">Usuń pacjenta</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Pokaż wszystkich pacjentów</a>
+                        <a class="dropdown-item" href="/wwr/patient">Pokaż wszystkich pacjentów</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -56,7 +56,7 @@
                         <a class="dropdown-item" href="#">Usuń placówkę</a>
                         <a class="dropdown-item" href="#">Dodaj placówkę z pliku</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Pokaż wszystkie placówki</a>
+                        <a class="dropdown-item" href="/wwr/facility">Pokaż wszystkie placówki</a>
                     </div>
                 </li>
                 <li class="nav-item">
